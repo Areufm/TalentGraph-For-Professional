@@ -56,23 +56,51 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/sys',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/sys/user',
+    name: 'sysManage',
+    meta: { title: '系统管理', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'user',
+        name: 'user',
+        component: () => import('@/views/sys/user'),
+        meta: { title: '用户管理', icon: 'user' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'role',
+        name: 'role',
+        component: () => import('@/views/sys/role'),
+        meta: { title: '角色管理', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
+    path: '/test',
+    component: Layout,
+    redirect: '/test/test1',
+    name: 'test',
+    meta: { title: '测试模块', icon: 'build' },
+    children: [
+      {
+        path: 'test1',
+        name: 'test1',
+        component: () => import('@/views/test/test1'),
+        meta: { title: '测试模块1', icon: 'build-fill' }
+      },
+      {
+        path: 'test2',
+        name: 'test2',
+        component: () => import('@/views/test/test2'),
+        meta: { title: '测试模块2', icon: 'build-fill' }
+      },
+      {
+        path: 'test3',
+        name: 'test3',
+        component: () => import('@/views/test/test3'),
+        meta: { title: '测试模块3', icon: 'build-fill' }
       }
     ]
   },
