@@ -67,15 +67,15 @@
     />
 
     <!-- 用户信息编辑对话框 -->
-    <el-dialog :title="title" :visible.sync="dialogFormVisible">
-      <el-form :model="userForm">
-        <el-form-item label="用户名" :label-width="formLabelWidth">
+    <el-dialog :visible.sync="dialogFormVisible" :title="title" @close="clearForm">
+      <el-form :rules="rules" :model="userForm">
+        <el-form-item label="用户名" prop="username" :label-width="formLabelWidth">
           <el-input v-model="userForm.username" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="用户密码" :label-width="formLabelWidth">
-          <el-input type="password" v-model="userForm.password" autocomplete="off" />
+        <el-form-item label="用户密码" prop="password" :label-width="formLabelWidth">
+          <el-input v-model="userForm.password" type="password" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="联系电话" :label-width="formLabelWidth">
+        <el-form-item label="联系电话" prop="phone" :label-width="formLabelWidth">
           <el-input v-model="userForm.phone" autocomplete="off" />
         </el-form-item>
         <el-form-item label="用户状态" :label-width="formLabelWidth">
@@ -85,7 +85,7 @@
             :inactive-value="0"
           />
         </el-form-item>
-        <el-form-item label="电子邮件" :label-width="formLabelWidth">
+        <el-form-item label="电子邮件" prop="email" :label-width="formLabelWidth">
           <el-input v-model="userForm.email" autocomplete="off" />
         </el-form-item>
       </el-form>
@@ -112,13 +112,34 @@ export default {
         pageNo: 1,
         pageSize: 10
       },
-      userList: []
+      userList: [],
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: ['blur', 'change'] }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: ['blur', 'change'] }
+        ],
+        phone: [
+          { required: true, message: '请输入电话', trigger: 'blur' },
+          { min: 11, max: 11, message: '长度为 11 个字符', trigger: ['blur', 'change'] }
+        ],
+        email: [
+          { required: true, message: '请输入电子邮件', trigger: 'blur' },
+          { type: 'email', message: '请输入正确的电子邮件', trigger: ['blur', 'change'] }
+        ]
+      }
     }
   },
   created() {
     this.getUserList()
   },
   methods: {
+    clearForm() {
+      this.userForm = {}
+    },
     openEditUI() {
       this.title = '新增用户'
       this.dialogFormVisible = true
