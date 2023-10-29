@@ -6,7 +6,7 @@
         <el-col :span="20">
           <el-input v-model="searchModel.username" placeholder="用户名" clearable />
           <el-input v-model="searchModel.phone" placeholder="电话" clearable />
-          <el-button type="primary" icon="el-icon-search">查询</el-button>
+          <el-button type="primary" icon="el-icon-search" @click="getUserList">查询</el-button>
         </el-col>
         <el-col :span="4" align="right">
           <el-button type="primary" icon="el-icon-plus" circle />
@@ -22,10 +22,13 @@
         style="width: 100%"
       >
         <el-table-column
-          type="index"
           label="#"
           width="80"
-        />
+        >
+          <template slot-scope="scope">
+            {{ (searchModel.pageNo - 1) * searchModel.pageSize + scope.$index + 1 }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="id"
           label="用户ID"
@@ -58,7 +61,7 @@
       :page-sizes="[5, 10, 20, 50]"
       :page-size="searchModel.pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total=total
+      :total="total"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
@@ -66,6 +69,7 @@
 </template>
 
 <script>
+import userApi from '@/api/userManage'
 export default {
   data() {
     return {
@@ -77,12 +81,23 @@ export default {
       userList: []
     }
   },
+  created() {
+    this.getUserList()
+  },
   methods: {
-    handleSizeChange() {
-
+    handleSizeChange(pageSize) {
+      this.searchModel.pageSize = pageSize
+      this.getUserList()
     },
-    handleCurrentChange() {
-
+    handleCurrentChange(pageNo) {
+      this.searchModel.pageNo = pageNo
+      this.getUserList()
+    },
+    getUserList() {
+      userApi.getUserList(this.searchModel).then(response => {
+        this.userList = response.data.rows
+        this.total = response.data.total
+      })
     }
   }
 }
