@@ -45,6 +45,16 @@
           width="180"
         />
         <el-table-column
+          prop="status"
+          label="用户状态"
+          width="100"
+        >
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.status === 1" type="success">正常</el-tag>
+            <el-tag v-else type="danger">禁用</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
           prop="email"
           label="邮箱"
         />
@@ -68,7 +78,7 @@
 
     <!-- 用户信息编辑对话框 -->
     <el-dialog :visible.sync="dialogFormVisible" :title="title" @close="clearForm">
-      <el-form :rules="rules" :model="userForm">
+      <el-form ref="userFormRef" :rules="rules" :model="userForm">
         <el-form-item label="用户名" prop="username" :label-width="formLabelWidth">
           <el-input v-model="userForm.username" autocomplete="off" />
         </el-form-item>
@@ -91,7 +101,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        <el-button type="primary" @click="saveUser">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -137,8 +147,23 @@ export default {
     this.getUserList()
   },
   methods: {
+    saveUser() {
+      this.$refs.userFormRef.validate(valid => {
+        if (valid) {
+          userApi.addUser(this.userForm).then(response => {
+            this.$message({
+              message: '保存成功',
+              type: 'success'
+            })
+            this.dialogFormVisible = false
+            this.getUserList()
+          })
+        }
+      })
+    },
     clearForm() {
       this.userForm = {}
+      this.$refs.userFormRef.clearValidate()
     },
     openEditUI() {
       this.title = '新增用户'

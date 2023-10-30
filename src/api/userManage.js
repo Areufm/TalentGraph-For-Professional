@@ -12,5 +12,12 @@ export default {
         phone: searchModel.phone
       }
     })
+  },
+  addUser(user) {
+    return request({
+      url: '/user',
+      method: 'post',
+      data: user
+    })
   }
 }
