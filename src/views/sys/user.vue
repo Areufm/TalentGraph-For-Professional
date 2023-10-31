@@ -9,7 +9,7 @@
           <el-button type="primary" icon="el-icon-search" @click="getUserList">查询</el-button>
         </el-col>
         <el-col :span="4" align="right">
-          <el-button type="primary" icon="el-icon-plus" circle @click="openEditUI" />
+          <el-button type="primary" icon="el-icon-plus" circle @click="openEditUI(null)" />
         </el-col>
       </el-row>
     </el-card>
@@ -61,7 +61,12 @@
         <el-table-column
           label="操作"
           width="180"
-        />
+        >
+          <template slot-scope="scope">
+            <el-button type="primary" size="mini" icon="el-icon-edit" @click="openEditUI(scope.row.id)" />
+            <el-button type="danger" size="mini" icon="el-icon-delete" @click="deleteUser(scope.row)" />
+          </template>
+        </el-table-column>
       </el-table>
     </el-card>
 
@@ -82,7 +87,7 @@
         <el-form-item label="用户名" prop="username" :label-width="formLabelWidth">
           <el-input v-model="userForm.username" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="用户密码" prop="password" :label-width="formLabelWidth">
+        <el-form-item v-if="userForm.id == null || userForm.id === undefined" label="用户密码" prop="password" :label-width="formLabelWidth">
           <el-input v-model="userForm.password" type="password" autocomplete="off" />
         </el-form-item>
         <el-form-item label="联系电话" prop="phone" :label-width="formLabelWidth">
@@ -147,10 +152,30 @@ export default {
     this.getUserList()
   },
   methods: {
+    deleteUser(user) {
+      this.$confirm('确认删除该用户吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        userApi.deleteUserByID(user.id).then(response => {
+          this.$message({
+            message: `${user.username}删除成功!`,
+            type: 'success'
+          })
+          this.getUserList()
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
     saveUser() {
       this.$refs.userFormRef.validate(valid => {
         if (valid) {
-          userApi.addUser(this.userForm).then(response => {
+          userApi.saveUser(this.userForm).then(response => {
             this.$message({
               message: '保存成功',
               type: 'success'
@@ -165,8 +190,15 @@ export default {
       this.userForm = {}
       this.$refs.userFormRef.clearValidate()
     },
-    openEditUI() {
-      this.title = '新增用户'
+    openEditUI(id) {
+      if(id == null){
+        this.title = '新增用户'
+      }else{
+        this.title = '修改用户'
+        userApi.getUserByID(id).then(response => {
+          this.userForm = response.data
+        })
+      }
       this.dialogFormVisible = true
     },
     handleSizeChange(pageSize) {

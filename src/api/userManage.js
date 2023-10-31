@@ -19,5 +19,30 @@ export default {
       method: 'post',
       data: user
     })
+  },
+  updateUser(user) {
+    return request({
+      url: '/user',
+      method: 'put',
+      data: user
+    })
+  },
+  saveUser(user) {
+    if (user.id == null && user.id == undefined) {
+      return this.addUser(user)
+    }
+    return this.updateUser(user)
+  },
+  getUserByID(id) {
+    return request({
+      url: `/user/${id}`,
+      method: 'get'
+    })
+  },
+  deleteUserByID(id) {
+    return request({
+      url: `/user/${id}`,
+      method: 'delete'
+    })
   }
 }
