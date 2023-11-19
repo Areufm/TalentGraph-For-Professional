@@ -100,6 +100,16 @@
             :inactive-value="0"
           />
         </el-form-item>
+        <el-form-item label="用户角色" :label-width="formLabelWidth">
+          <el-select v-model="userForm.roleIdList" multiple placeholder="请选择角色">
+            <el-option
+              v-for="item in roleList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            />
+          </el-select>
+        </el-form-item>
         <el-form-item label="电子邮件" prop="email" :label-width="formLabelWidth">
           <el-input v-model="userForm.email" autocomplete="off" />
         </el-form-item>
@@ -115,11 +125,15 @@
 
 <script>
 import userApi from '@/api/userManage'
+import roleApi from '@/api/roleManage'
 export default {
   data() {
     return {
+      roleList: [],
       formLabelWidth: '130px',
-      userForm: {},
+      userForm: {
+        roleIdList: []
+      },
       dialogFormVisible: false,
       title: '',
       total: 0,
@@ -150,8 +164,15 @@ export default {
   },
   created() {
     this.getUserList()
+    this.getAllRoleList()
   },
   methods: {
+    getAllRoleList() {
+      roleApi.getAllRoleList().then(response => {
+        this.roleList = response.data
+        console.log(this.roleList)
+      })
+    },
     deleteUser(user) {
       this.$confirm('确认删除该用户吗?', '提示', {
         confirmButtonText: '确定',
@@ -187,13 +208,15 @@ export default {
       })
     },
     clearForm() {
-      this.userForm = {}
+      this.userForm = {
+        roleIdList: []
+      }
       this.$refs.userFormRef.clearValidate()
     },
     openEditUI(id) {
-      if(id == null){
+      if (id == null) {
         this.title = '新增用户'
-      }else{
+      } else {
         this.title = '修改用户'
         userApi.getUserByID(id).then(response => {
           this.userForm = response.data

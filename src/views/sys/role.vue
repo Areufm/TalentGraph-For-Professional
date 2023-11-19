@@ -136,7 +136,6 @@ export default {
           const halfCheckedKeys = this.$refs.menuRef.getHalfCheckedKeys()
           this.roleForm.menuIdList = checkedKeys.concat(halfCheckedKeys)
           // 提交保存请求
-          console.log(this.roleForm)
           roleApi.saveRole(this.roleForm).then(response => {
             // 成功提示
             this.$message({
@@ -167,7 +166,6 @@ export default {
         roleApi.getRoleById(id).then(response => {
           this.roleForm = response.data
           this.$refs.menuRef.setCheckedKeys(response.data.menuIdList)
-          console.log(response.data)
         })
       }
       this.dialogFormVisible = true
