@@ -1,10 +1,7 @@
 <template>
-  <el-input v-model="input" placeholder="Please input" clearable />
+  <h2>what</h2>
 </template>
 
-<script setup>
-import { ref } from "vue";
-const input = ref("");
-</script>
+<script setup></script>
 
 <style></style>
