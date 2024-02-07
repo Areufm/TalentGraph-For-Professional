@@ -1,143 +1,107 @@
 ﻿<template>
-  <div class="login-container">
-    <el-form
-      ref="loginForm"
-      :model="loginForm"
-      :rules="loginRules"
-      class="login-form"
-      auto-complete="on"
-      label-position="left"
+  <n-form>
+    <n-form-item
+      label="飞机场的"
+      :validation-status="inputValidationStatus"
+      :feedback="inputFeedback"
     >
-      <div class="title-container">
-        <h3 class="title">服务外包A15赛题</h3>
-      </div>
-
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="用户名"
-          name="username"
-          type="text"
-          tabindex="1"
-          auto-complete="on"
-        />
-      </el-form-item>
-
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :key="passwordType"
-          ref="password"
-          v-model="loginForm.password"
-          :type="passwordType"
-          placeholder="密码"
-          name="password"
-          tabindex="2"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon
-            :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
-          />
-        </span>
-      </el-form-item>
-
-      <el-button
-        :loading="loading"
-        type="primary"
-        style="width: 100%; margin-bottom: 30px"
-        @click.native.prevent="handleLogin"
-        >登 录
-      </el-button>
-
-      <div class="tips">
-        <span style="margin-right: 20px">username: admin</span>
-        <span> password: any</span>
-      </div>
-    </el-form>
-  </div>
+      <n-input v-model:value="inputValue" clearable />
+    </n-form-item>
+    <n-form-item
+      label="飞机场的"
+      :validation-status="inputNumberValidationStatus"
+    >
+      <n-input-number v-model:value="inputNumberValue" />
+      <template #feedback>
+        {{ inputNumberFeedback }}
+      </template>
+    </n-form-item>
+    <n-form-item
+      label="飞机场的"
+      :validation-status="selectValidationStatus"
+      :feedback="selectFeedback"
+    >
+      <n-select
+        v-model:value="selectValue"
+        :options="selectOptions"
+        clearable
+      />
+    </n-form-item>
+  </n-form>
 </template>
 
 <script>
-// import { validUsername } from "@/utils/validate";
+import { defineComponent, computed, ref } from "vue";
 
-export default {
-  name: "Login",
-  data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error("请输入正确的用户名"));
-      } else {
-        callback();
-      }
-    };
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error("密码不能少于6位"));
-      } else {
-        callback();
-      }
-    };
+function createStatus(value) {
+  switch (value) {
+    case "10:30":
+      return void 0;
+    case "10:29":
+      return "warning";
+    default:
+      return "error";
+  }
+}
+
+function createFeedback(value) {
+  switch (value) {
+    case "10:30":
+      return "十点半的飞机已经到了";
+    case "10:29":
+      return "虽然差不多了，请把时间调到 10:30";
+    default:
+      return "请把时间调到 10:30";
+  }
+}
+
+function createTimeForNumber(num) {
+  return `${parseInt(String(num / 100), 10)}:${num % 100}`;
+}
+
+export default defineComponent({
+  setup() {
+    const inputValueRef = ref("10:29");
+    const inputNumberValueRef = ref(1029);
+    const selectValueRef = ref("10:29");
+
     return {
-      loginForm: {
-        username: "admin",
-        password: "123456",
-      },
-      loginRules: {
-        username: [
-          { required: true, trigger: "blur", validator: validateUsername },
-        ],
-        password: [
-          { required: true, trigger: "blur", validator: validatePassword },
-        ],
-      },
-      loading: false,
-      passwordType: "password",
-      redirect: undefined,
+      inputValue: inputValueRef,
+      inputNumberValue: inputNumberValueRef,
+      selectValue: selectValueRef,
+      selectOptions: [
+        {
+          label: "10:28",
+          value: "10:28",
+        },
+        {
+          label: "10:29",
+          value: "10:29",
+        },
+        {
+          label: "10:30",
+          value: "10:30",
+        },
+      ],
+      inputValidationStatus: computed(() => {
+        return createStatus(inputValueRef.value);
+      }),
+      inputFeedback: computed(() => {
+        return createFeedback(inputValueRef.value);
+      }),
+      inputNumberValidationStatus: computed(() => {
+        return createStatus(createTimeForNumber(inputNumberValueRef.value));
+      }),
+      inputNumberFeedback: computed(() => {
+        return createFeedback(createTimeForNumber(inputNumberValueRef.value));
+      }),
+      selectValidationStatus: computed(() => {
+        return createStatus(selectValueRef.value);
+      }),
+      selectFeedback: computed(() => {
+        return createFeedback(selectValueRef.value);
+      }),
     };
   },
-  // watch: {
-  //   $route: {
-  //     handler: function (route) {
-  //       this.redirect = route.query && route.query.redirect;
-  //     },
-  //     immediate: true,
-  //   },
-  // },
-  methods: {
-    showPwd() {
-      if (this.passwordType === "password") {
-        this.passwordType = "";
-      } else {
-        this.passwordType = "password";
-      }
-      this.$nextTick(() => {
-        this.$refs.password.focus();
-      });
-    },
-    handleLogin() {
-      this.$router.push({ path: this.redirect || "/" });
-    },
-  },
-};
+});
 </script>
-
-<style scoped>
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.title {
-  text-align: center;
-}
-</style>
