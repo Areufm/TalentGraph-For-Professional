@@ -1,26 +1,8 @@
 ﻿<template>
   <form class="form">
-    <button @click="handleSearch">
-      <svg
-        width="17"
-        height="16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-labelledby="search"
-      >
-        <path
-          d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
-          stroke="currentColor"
-          stroke-width="1.333"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></path>
-      </svg>
-    </button>
     <input
       class="input"
-      placeholder="Type your text"
+      placeholder="搜索职位、公司"
       required=""
       type="text"
       v-model="searchQuery"
@@ -39,6 +21,24 @@
           stroke-linecap="round"
           stroke-linejoin="round"
           d="M6 18L18 6M6 6l12 12"
+        ></path>
+      </svg>
+    </button>
+    <button @click.prevent="handleSearch">
+      <svg
+        width="17"
+        height="16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="search"
+      >
+        <path
+          d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+          stroke="currentColor"
+          stroke-width="1.333"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         ></path>
       </svg>
     </button>
@@ -67,19 +67,16 @@ export default {
 </script>
 
 <style scoped>
-/* From uiverse.io by @satyamchaudharydev */
-/* removing default style of button */
-
 .form button {
   border: none;
   background: none;
   color: #8b8ba7;
 }
-/* styling of whole input container */
+
 .form {
   --timing: 0.3s;
-  --width-of-input: 200px;
-  --height-of-input: 40px;
+  --width-of-input: 60vw;
+  --height-of-input: 60px;
   --border-height: 2px;
   --input-bg: #fff;
   --border-color: #2f2ee9;
@@ -97,7 +94,7 @@ export default {
 }
 /* styling of Input */
 .input {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   background-color: transparent;
   width: 100%;
   height: 100%;
