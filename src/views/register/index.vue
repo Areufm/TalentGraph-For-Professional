@@ -1,7 +1,7 @@
 ﻿<template>
   <form class="form">
-    <p class="title">Login</p>
-    <p class="message">登录A15赛题.</p>
+    <p class="title">Register</p>
+    <p class="message">注册A15赛题账号.</p>
 
     <label>
       <input required="" placeholder="" type="text" class="input" />
@@ -9,11 +9,20 @@
     </label>
 
     <label>
+      <input required="" placeholder="" type="email" class="input" />
+      <span>Email</span>
+    </label>
+
+    <label>
       <input required="" placeholder="" type="password" class="input" />
       <span>Password</span>
     </label>
+    <label>
+      <input required="" placeholder="" type="password" class="input" />
+      <span>Confirm password</span>
+    </label>
     <button class="submit">Submit</button>
-    <p class="signin">Don't have an acount ? <a href="/register">Sign up</a></p>
+    <p class="signin">Already have an acount ? <a href="/login">Signin</a></p>
     <p class="signin">暂不注册 返回首页 <a href="/">back</a></p>
   </form>
 </template>
@@ -25,9 +34,9 @@ import { ref } from "vue";
 <style scoped>
 .form {
   display: flex;
-  width: 50%;
   flex-direction: column;
   gap: 10px;
+  width: 50%;
   max-width: 350px;
   background-color: #ffffff;
   padding: 30px;
@@ -81,6 +90,7 @@ import { ref } from "vue";
 
 .signin {
   text-align: center;
+  margin: 5px;
 }
 
 .signin a {
