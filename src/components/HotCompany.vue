@@ -2,7 +2,7 @@
   <div style="display: flex; justify-content: space-between">
     <div class="card">
       <div class="card-details">
-        <div style="display: flex">
+        <div style="display: flex; align-items: center">
           <img
             src="../../src/assets/xue.jpg"
             alt="企业头像"
@@ -54,6 +54,7 @@ const getMore = () => {
 <style scoped>
 .card {
   width: 350px;
+  /* width: 30vw; */
   height: 154px;
   border-radius: 20px;
   background: #f5f5f5;
