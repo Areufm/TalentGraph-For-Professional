@@ -36,12 +36,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+
 const getMore = () => {
-  router.push("/workInfo");
+  const href = router.resolve({
+    name: "WorkInfo",
+    path: "/workInfo",
+  });
+  window.open(href.href, "_blank");
 };
 </script>
 

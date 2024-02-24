@@ -47,7 +47,11 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const getMore = () => {
-  router.push("/companyInfo");
+  const href = router.resolve({
+    name: "CompanyInfo",
+    path: "/companyInfo",
+  });
+  window.open(href.href, "_blank");
 };
 </script>
 
