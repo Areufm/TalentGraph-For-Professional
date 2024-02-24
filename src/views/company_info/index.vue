@@ -1,11 +1,9 @@
 ﻿<template>
+  <HeaderBar />
   <div class="container">
-    <h1 class="job-title">公司名称</h1>
-    <p class="company-name">公司详细介绍</p>
-
-    <div class="job-details">
-      <p>薪资范围</p>
-      <p>工作地点</p>
+    <div class="work-header">
+      <h1 class="job-title">公司名称</h1>
+      <p class="company-name">公司详细介绍</p>
     </div>
 
     <div class="job-description">
@@ -42,6 +40,7 @@
 </template>
 
 <script setup>
+import HeaderBar from "@/components/HeaderBar.vue";
 import { ref } from "vue";
 </script>
 
@@ -49,8 +48,12 @@ import { ref } from "vue";
 .container {
   margin: 0 auto;
   background-color: #fff;
-  padding: 20px;
+  padding: 50px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.work-header {
+  margin-top: 60px;
 }
 
 .job-title {
@@ -61,15 +64,6 @@ import { ref } from "vue";
 .company-name {
   margin-bottom: 10px;
   color: #555;
-}
-
-.job-details {
-  margin-bottom: 20px;
-}
-
-.job-details p {
-  margin: 0;
-  margin-bottom: 10px;
 }
 
 .job-description {
