@@ -36,6 +36,13 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const toLogin = () => {
+  router.push("/login");
+};
 </script>
 
 <style scoped>
