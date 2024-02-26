@@ -30,6 +30,11 @@ const routes = [
     name: "CompanyInfo",
     component: () => import("@/views/company_info/index.vue"),
   },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: () => import("@/views/profile/index.vue"),
+  },
 ];
 
 const router = createRouter({
