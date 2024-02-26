@@ -25,19 +25,11 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import HotCompany from "@/components/HotCompany.vue";
 import HotWorks from "@/components/HotWorks.vue";
 import GetMore from "@/components/GetMore.vue";
-
-const router = useRouter();
-const count = ref(0);
-
-const toLogin = () => {
-  router.push("/register");
-};
 </script>
 
 <style scoped>
