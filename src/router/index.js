@@ -30,6 +30,11 @@ const routes = [
     name: "CompanyInfo",
     component: () => import("@/views/company_info/index.vue"),
   },
+  {
+    path: "/recommend",
+    name: "Recommend",
+    component: () => import("@/views/recommend_work/index.vue"),
+  },
 ];
 
 const router = createRouter({
