@@ -40,7 +40,8 @@ import { ref } from "vue";
 
 <style scoped>
 .n-layout-header {
-  background: rgba(0, 102, 255);
+  /* background: rgba(0, 102, 255); */
+  background: rgb(98, 145, 217);
   padding: 24px;
   /* height: 70px; */
   height: 10%;
