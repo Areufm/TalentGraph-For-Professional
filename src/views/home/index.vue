@@ -5,6 +5,7 @@
       <div class="centerPosition" style="margin-top: 20px">
         <SearchBar />
       </div>
+      <FunctionCard />
       <h1>热门职位</h1>
       <HotWorks />
       <HotWorks />
@@ -31,6 +32,7 @@ import SearchBar from "@/components/SearchBar.vue";
 import HotCompany from "@/components/HotCompany.vue";
 import HotWorks from "@/components/HotWorks.vue";
 import GetMore from "@/components/GetMore.vue";
+import FunctionCard from "@/components/FunctionCard.vue";
 
 const router = useRouter();
 const count = ref(0);
@@ -62,7 +64,8 @@ h1 {
 .n-layout-content {
   /* flex: 1; */
   height: 90%;
-  background: rgb(225, 222, 222);
+  background: rgba(167, 167, 167, 0.277);
+  /* background: rgb(225, 222, 222); */
   display: flex;
   flex-direction: column;
   margin-top: 70px;
