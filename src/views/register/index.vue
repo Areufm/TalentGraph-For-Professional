@@ -72,7 +72,7 @@
       </el-icon>
     </label>
     <button class="submit" :plain="true" @click="handleRegister">Submit</button>
-    <p class="signin">Already have an acount ? <a href="/login">Signin</a></p>
+    <p class="signin">Already have an acount ? <a href="/login">Sign in</a></p>
     <p class="signin">暂不注册 返回首页 <a href="/">back</a></p>
   </form>
 </template>
