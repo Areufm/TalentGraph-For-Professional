@@ -1,5 +1,5 @@
 ﻿<template>
-  <div style="display: flex; justify-content: space-between">
+  <div style="display: flex; justify-content: space-around">
     <div class="card">
       <div class="card-details">
         <div style="display: flex; top: 0">
