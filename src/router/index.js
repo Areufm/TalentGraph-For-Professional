@@ -31,15 +31,14 @@ const routes = [
     component: () => import("@/views/company_info/index.vue"),
   },
   {
-<<<<<<< HEAD
     path: "/profile",
     name: "Profile",
     component: () => import("@/views/profile/index.vue"),
-=======
+  },
+  {
     path: "/recommend",
     name: "Recommend",
     component: () => import("@/views/recommend_work/index.vue"),
->>>>>>> 5dc3872c6e4ae22fbf7eeaafd60fb7398258b6d9
   },
 ];
 

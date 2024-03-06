@@ -31,8 +31,6 @@ import SearchBar from "@/components/SearchBar.vue";
 import HotCompany from "@/components/HotCompany.vue";
 import HotWorks from "@/components/HotWorks.vue";
 import GetMore from "@/components/GetMore.vue";
-<<<<<<< HEAD
-=======
 import FunctionCard from "@/components/FunctionCard.vue";
 
 const router = useRouter();
@@ -41,7 +39,6 @@ const count = ref(0);
 const toLogin = () => {
   router.push("/register");
 };
->>>>>>> 5dc3872c6e4ae22fbf7eeaafd60fb7398258b6d9
 </script>
 
 <style scoped>
