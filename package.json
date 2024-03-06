@@ -9,8 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@element-plus/icons-vue": "^2.3.1",
     "element-plus": "^2.5.6",
+=======
+    "echarts": "^5.5.0",
+>>>>>>> 5dc3872c6e4ae22fbf7eeaafd60fb7398258b6d9
     "pinia": "^2.1.7",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"

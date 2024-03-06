@@ -12,8 +12,8 @@
             <div class="dorpdown-city"></div>
           </div> -->
       </div>
-      <div class="header_left_text">首页</div>
-      <div class="header_left_text">推荐岗位</div>
+      <a href="/" class="header_left_text">首页</a>
+      <a href="/recommend" class="header_left_text">推荐岗位</a>
     </div>
     <div class="header_right">
       <a href="/login" class="header_right_text">我要招聘</a>
@@ -47,7 +47,8 @@ const toLogin = () => {
 
 <style scoped>
 .n-layout-header {
-  background: rgba(0, 102, 255);
+  /* background: rgba(0, 102, 255); */
+  background: rgb(98, 145, 217);
   padding: 24px;
   /* height: 70px; */
   height: 10%;
@@ -76,6 +77,7 @@ const toLogin = () => {
 .header_left_text {
   margin: 10px;
   color: white;
+  text-decoration: none; /* 取消链接下划线 */
 }
 .header_right_text {
   margin: 10px, 0;
