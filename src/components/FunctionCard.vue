@@ -18,6 +18,7 @@ import { ref } from "vue";
 <style scoped>
 .card {
   display: flex;
+  margin: 20px auto;
 }
 .left {
   height: 300px;
