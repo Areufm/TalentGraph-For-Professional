@@ -32,13 +32,6 @@ import HotCompany from "@/components/HotCompany.vue";
 import HotWorks from "@/components/HotWorks.vue";
 import GetMore from "@/components/GetMore.vue";
 import FunctionCard from "@/components/FunctionCard.vue";
-
-const router = useRouter();
-const count = ref(0);
-
-const toLogin = () => {
-  router.push("/register");
-};
 </script>
 
 <style scoped>
