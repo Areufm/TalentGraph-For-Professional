@@ -14,6 +14,7 @@
       </div>
       <a href="/" class="header_left_text">首页</a>
       <a href="/recommend" class="header_left_text">推荐岗位</a>
+      <a href="/profile" class="header_left_text">个人信息</a>
     </div>
     <div class="header_right">
       <a href="/login" class="header_right_text">我要招聘</a>

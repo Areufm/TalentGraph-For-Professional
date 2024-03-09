@@ -35,6 +35,11 @@ const routes = [
     name: "Recommend",
     component: () => import("@/views/recommend_work/index.vue"),
   },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: () => import("@/views/profile/index.vue"),
+  },
 ];
 
 const router = createRouter({
