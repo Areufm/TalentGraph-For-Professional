@@ -1,6 +1,8 @@
 ﻿<template>
   <div class="card">
-    <div class="left"></div>
+    <div class="left">
+      <PersonCard />
+    </div>
     <div class="right">
       <div class="rleft"></div>
       <div class="rright">
@@ -12,19 +14,22 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import PersonCard from "@/components/PersonCard.vue";
 </script>
 
 <style scoped>
 .card {
   display: flex;
+  margin: 20px auto;
 }
 .left {
   height: 300px;
   flex: 1;
-  border: 2px rgba(161, 159, 159, 0.682) solid;
+  width: 400px;
+  /* border: 2px rgba(161, 159, 159, 0.682) solid; */
   border-radius: 10px;
   margin: 10px;
+  display: flex;
 }
 .right {
   height: 300px;
