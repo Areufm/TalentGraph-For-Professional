@@ -1,37 +1,169 @@
 ﻿<template>
-  <form class="form">
+  <form
+    class="form"
+    :ref="registerForm"
+    :rules="registerRules"
+    :model="registerForm"
+    auto-complete="off"
+    label-position="left"
+  >
     <p class="title">Register</p>
     <p class="message">注册A15赛题账号.</p>
 
     <label>
-      <input required="" placeholder="" type="text" class="input" />
+      <input
+        required=""
+        placeholder=""
+        type="text"
+        class="input"
+        :key="passwordType"
+        :ref="username"
+        v-model="registerForm.username"
+        name="username"
+        tabindex="1"
+        autocomplete="off"
+      />
       <span>Username</span>
     </label>
 
-    <label>
+    <!-- <label>
       <input required="" placeholder="" type="email" class="input" />
       <span>Email</span>
-    </label>
+    </label> -->
 
     <label>
-      <input required="" placeholder="" type="password" class="input" />
+      <input
+        required=""
+        placeholder=""
+        class="input"
+        :key="passwordType"
+        :ref="registerForm.password"
+        v-model="registerForm.password"
+        :type="passwordType"
+        name="password"
+        tabindex="2"
+        auto-complete="off"
+        @keyup.enter.native="handleRegister()"
+      />
       <span>Password</span>
+      <el-icon class="icon-right" @click="showPwd">
+        <i-ep-view v-if="isShow" />
+        <i-ep-hide v-else />
+      </el-icon>
     </label>
     <label>
-      <input required="" placeholder="" type="password" class="input" />
+      <input
+        required=""
+        placeholder=""
+        class="input"
+        :key="passwordConfirmType"
+        :ref="registerForm.password_confirm"
+        v-model="registerForm.password_confirm"
+        :type="passwordConfirmType"
+        name="password_confirm"
+        tabindex="3"
+        auto-complete="off"
+        @keyup.enter.native="handleRegister()"
+      />
       <span>Confirm password</span>
+      <el-icon class="icon-right" @click="showPwd_confirm">
+        <i-ep-view v-if="isShow_confirm" />
+        <i-ep-hide v-else />
+      </el-icon>
     </label>
-    <button class="submit">Submit</button>
-    <p class="signin">Already have an acount ? <a href="/login">Signin</a></p>
+    <button class="submit" :plain="true" @click="handleRegister">Submit</button>
+    <p class="signin">Already have an acount ? <a href="/login">Sign in</a></p>
     <p class="signin">暂不注册 返回首页 <a href="/">back</a></p>
   </form>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, watch, nextTick } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { validUsername } from "@/utils/validate";
+
+const validateUsername = (rule, value, callback) => {
+  if (!validUsername(value)) {
+    callback(new Error("请输入正确的用户名"));
+  } else {
+    callback();
+  }
+};
+
+const validatePassword = (rule, value, callback) => {
+  if (value.length < 6) {
+    callback(new Error("密码不能少于6位"));
+  } else {
+    callback();
+  }
+};
+
+const validatePasswordConfirm = (rule, value, callback) => {
+  if (registerForm.password !== registerForm.password_confirm) {
+    callback(new Error("两次密码不相同！"));
+  } else {
+    callback();
+  }
+};
+
+const registerForm = reactive({
+  username: "",
+  password: "",
+  password_confirm: "",
+});
+
+const registerRules = reactive({
+  username: [{ required: true, trigger: "blur", validator: validateUsername }],
+  password: [
+    { required: true, trigger: "change", validator: validatePassword },
+  ],
+  password_confirm: [
+    { required: true, trigger: "blur", validator: validatePasswordConfirm },
+  ],
+});
+
+const isShow = ref(true);
+const isShow_confirm = ref(true);
+const passwordType = ref("password");
+const passwordConfirmType = ref("password");
+const redirect = ref(undefined);
+const route = useRoute();
+const router = useRouter();
+
+const showPwd = () => {
+  passwordType.value = passwordType.value === "password" ? "" : "password";
+  isShow.value = !isShow.value;
+  // nextTick(() => {
+  //   registerForm.password.focus();
+  // });
+};
+
+const showPwd_confirm = () => {
+  if (passwordConfirmType.value === "password") {
+    passwordConfirmType.value = "";
+  } else {
+    passwordConfirmType.value = "password";
+  }
+  isShow_confirm.value = !isShow_confirm.value;
+  // nextTick(() => {
+  //   registerForm.password_confirm.value.focus();
+  // });
+};
+
+const handleRegister = () => {
+  ElNotification({
+    title: "注册成功！",
+    message: "This is a success message",
+    type: "success",
+  });
+  router.push("/login");
+};
 </script>
 
 <style scoped>
+input[type="password"]::-ms-reveal {
+  display: none;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -110,7 +242,12 @@ import { ref } from "vue";
 .form label {
   position: relative;
 }
-
+.form label .icon-right {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .form label .input {
   width: 95%;
   padding: 10px 10px 20px 10px;
@@ -158,6 +295,16 @@ import { ref } from "vue";
 
 .submit:hover {
   background-color: rgb(56, 90, 194);
+}
+
+.show-pwd {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  font-size: 16px;
+  color: #888888;
+  cursor: pointer;
+  user-select: none;
 }
 
 @keyframes pulse {
