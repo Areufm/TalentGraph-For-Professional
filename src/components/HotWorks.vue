@@ -1,5 +1,75 @@
 ﻿<template>
-  <div style="display: flex; justify-content: space-between">
+  <!-- 三行 -->
+  <div style="display: flex; justify-content: space-between; margin: 0 100px">
+    <!-- 单个卡片三列 -->
+    <div class="card">
+      <div class="card-details">
+        <div style="display: flex; top: 0">
+          <p class="work_name">工作名称</p>
+          <p class="work_salary">薪资</p>
+        </div>
+        <div style="display: flex">
+          <p style="margin: 10px">关键词1</p>
+          <p style="margin: 10px">关键词2</p>
+          <p style="margin: 10px">关键词3</p>
+        </div>
+        <div style="display: flex">
+          <p class="text-body">企业名</p>
+          <p class="text-body" style="margin-left: auto">职业类型</p>
+        </div>
+      </div>
+      <button class="card-button" @click="getMore">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; margin: 0 100px">
+    <div class="card">
+      <div class="card-details">
+        <div style="display: flex; top: 0">
+          <p class="work_name">工作名称</p>
+          <p class="work_salary">薪资</p>
+        </div>
+        <div style="display: flex">
+          <p style="margin: 10px">关键词1</p>
+          <p style="margin: 10px">关键词2</p>
+          <p style="margin: 10px">关键词3</p>
+        </div>
+        <div style="display: flex">
+          <p class="text-body">企业名</p>
+          <p class="text-body" style="margin-left: auto">职业类型</p>
+        </div>
+      </div>
+      <button class="card-button" @click="getMore">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; margin: 0 100px">
     <div class="card">
       <div class="card-details">
         <div style="display: flex; top: 0">
@@ -51,7 +121,8 @@ const getMore = () => {
 
 <style scoped>
 .card {
-  width: 350px;
+  /* width: 350px; */
+  width: 30%;
   height: 154px;
   border-radius: 20px;
   background: #f5f5f5;
