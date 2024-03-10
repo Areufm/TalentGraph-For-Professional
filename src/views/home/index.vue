@@ -27,7 +27,6 @@ import { ref } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import HotCompany from "@/components/HotCompany.vue";
-import HotWorks from "@/components/HotWorks.vue";
 import GetMore from "@/components/GetMore.vue";
 import FunctionCard from "@/components/FunctionCard.vue";
 </script>
