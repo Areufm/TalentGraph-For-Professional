@@ -4,10 +4,10 @@
       <PersonCard />
     </div>
     <div class="right">
-      <div class="rleft"></div>
+      <div class="rleft">推荐入口</div>
       <div class="rright">
-        <div class="rrtop"></div>
-        <div class="rrbottom"></div>
+        <div class="rrtop">能力评价入口</div>
+        <div class="rrbottom">简历上传入口</div>
       </div>
     </div>
   </div>
@@ -20,11 +20,11 @@ import PersonCard from "@/components/PersonCard.vue";
 <style scoped>
 .card {
   display: flex;
-  margin: 20px auto;
+  margin: 20px 100px;
 }
 .left {
   height: 300px;
-  flex: 1;
+  flex: 2;
   width: 400px;
   /* border: 2px rgba(161, 159, 159, 0.682) solid; */
   border-radius: 10px;
@@ -33,7 +33,7 @@ import PersonCard from "@/components/PersonCard.vue";
 }
 .right {
   height: 300px;
-  flex: 2;
+  flex: 3;
   border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px;
   margin: 10px;
