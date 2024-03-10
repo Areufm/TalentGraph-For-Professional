@@ -7,9 +7,7 @@
       </div>
       <FunctionCard />
       <h1>热门职位</h1>
-      <HotWorks />
-      <HotWorks />
-      <HotWorks />
+      <TagBar />
       <div class="get-more">
         <GetMore />
       </div>
@@ -33,6 +31,7 @@ import HotCompany from "@/components/HotCompany.vue";
 import HotWorks from "@/components/HotWorks.vue";
 import GetMore from "@/components/GetMore.vue";
 import FunctionCard from "@/components/FunctionCard.vue";
+import TagBar from "@/components/TagBar.vue";
 
 const router = useRouter();
 const count = ref(0);
@@ -64,7 +63,8 @@ h1 {
 .n-layout-content {
   /* flex: 1; */
   height: 90%;
-  background: rgba(167, 167, 167, 0.277);
+  /* background: rgba(167, 167, 167, 0.277); */
+  background-color: rgb(242, 244, 247);
   /* background: rgb(225, 222, 222); */
   display: flex;
   flex-direction: column;
