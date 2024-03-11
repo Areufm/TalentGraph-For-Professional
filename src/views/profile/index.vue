@@ -1,4 +1,5 @@
 ﻿<template>
+  <HeaderBar />
   <div class="container">
     <div class="left">
       <div class="profile">
@@ -96,6 +97,7 @@
 
 <script setup>
 import { ref } from "vue";
+import HeaderBar from "@/components/HeaderBar.vue";
 </script>
 
 <style scoped>
@@ -176,6 +178,7 @@ import { ref } from "vue";
   color: #666;
 }
 .container {
+  margin-top: 70px;
   display: flex;
   background-color: rgb(230, 245, 248);
   /* height: 100vh; */
