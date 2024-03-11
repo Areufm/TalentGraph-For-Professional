@@ -4,10 +4,20 @@
       <PersonCard />
     </div>
     <div class="right">
-      <div class="rleft">推荐入口</div>
+      <div class="rleft">
+        <img src="../assets/FunctionCard/cv.png" alt="简历上传入口" />
+      </div>
       <div class="rright">
-        <div class="rrtop">能力评价入口</div>
-        <div class="rrbottom">简历上传入口</div>
+        <div class="rrtop">
+          <img src="../assets/FunctionCard/ability.png" alt="能力评价入口" />
+        </div>
+        <div class="rrbottom">
+          <img
+            @click="toRecommend"
+            src="../assets/FunctionCard/recommend.png"
+            alt="推荐入口"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -15,9 +25,20 @@
 
 <script setup>
 import PersonCard from "@/components/PersonCard.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const toRecommend = () => {
+  router.push("/recommend");
+};
 </script>
 
 <style scoped>
+img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
 .card {
   display: flex;
   margin: 20px 100px;
@@ -34,35 +55,37 @@ import PersonCard from "@/components/PersonCard.vue";
 .right {
   height: 300px;
   flex: 3;
-  border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px;
+  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+  border-radius: 10px; */
   margin: 10px;
   display: flex;
 }
 .rleft {
-  height: 280px;
+  /* height: 280px; */
   flex: 2;
-  border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px;
-  margin: 10px;
+  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+  border-radius: 10px; */
+  /* margin: 10px; */
 }
 .rright {
-  height: 280px;
+  /* height: 280px; */
   flex: 1;
-  border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px;
-  margin: 10px;
+  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+  border-radius: 10px; */
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
 }
 .rrtop {
-  height: 120px;
-  border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px;
-  margin: 10px;
+  height: 50%;
+  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+  border-radius: 10px; */
+  margin: 0 0 10px 0;
 }
 .rrbottom {
-  height: 120px;
-  border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px;
-  margin: 10px;
+  height: 50%;
+  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+  border-radius: 10px; */
+  margin: 10px 0 0 0;
 }
 </style>
