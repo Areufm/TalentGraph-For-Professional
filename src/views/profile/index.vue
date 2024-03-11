@@ -90,12 +90,17 @@
         <h4>简历完成度</h4>
         <p>简历已完成： XX%</p>
       </div>
+      <div class="radar">
+        <h4>个人能力雷达图</h4>
+        <Radar />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import Radar from "@/components/Radar.vue";
 </script>
 
 <style scoped>
@@ -139,7 +144,8 @@ import { ref } from "vue";
 .upload,
 .improve,
 .security,
-.process {
+.process,
+.radar {
   /* width: 100%; */
   /* height: 100%; */
   background-color: #ffffff;
