@@ -42,9 +42,11 @@
       </div>
       <div class="add">
         <h3>额外资料</h3>
+        <Radar />
       </div>
       <div class="cv">
         <h3>个人简历</h3>
+        <Graph />
       </div>
     </div>
     <div class="right">
@@ -92,15 +94,16 @@
       </div>
       <div class="radar">
         <h4>个人能力雷达图</h4>
-        <Radar />
+        <!-- <Radar /> -->
+        <Graph />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import Radar from "@/components/Radar.vue";
+import Radar from "@/components/Chart/Radar.vue";
+import Graph from "@/components/Chart/Graph.vue";
 </script>
 
 <style scoped>
