@@ -95,8 +95,7 @@
       </div>
       <div class="radar">
         <h4>个人能力雷达图</h4>
-        <!-- <Radar /> -->
-        <Graph />
+        <Radar />
       </div>
     </div>
   </div>
@@ -105,7 +104,6 @@
 <script setup>
 import Radar from "@/components/Chart/Radar.vue";
 import Graph from "@/components/Chart/Graph.vue";
-import { ref } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 </script>
 
