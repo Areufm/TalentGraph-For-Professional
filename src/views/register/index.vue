@@ -23,7 +23,7 @@
         tabindex="1"
         autocomplete="off"
       />
-      <span>Username</span>
+      <span>用户名</span>
     </label>
 
     <!-- <label>
@@ -45,7 +45,7 @@
         auto-complete="off"
         @keyup.enter.native="handleRegister()"
       />
-      <span>Password</span>
+      <span>密码</span>
       <el-icon class="icon-right" @click="showPwd">
         <i-ep-view v-if="isShow" />
         <i-ep-hide v-else />
@@ -65,15 +65,15 @@
         auto-complete="off"
         @keyup.enter.native="handleRegister()"
       />
-      <span>Confirm password</span>
+      <span>确认密码</span>
       <el-icon class="icon-right" @click="showPwd_confirm">
         <i-ep-view v-if="isShow_confirm" />
         <i-ep-hide v-else />
       </el-icon>
     </label>
-    <button class="submit" :plain="true" @click="handleRegister">Submit</button>
-    <p class="signin">Already have an acount ? <a href="/login">Sign in</a></p>
-    <p class="signin">暂不注册 返回首页 <a href="/">back</a></p>
+    <button class="submit" :plain="true" @click="handleRegister">注册</button>
+    <p class="signin">已经有一个账户 ? <a href="/login">去登陆</a></p>
+    <p class="signin">暂不注册 <a href="/">返回首页</a></p>
   </form>
 </template>
 

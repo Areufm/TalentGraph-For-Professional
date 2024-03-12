@@ -5,16 +5,16 @@
 
     <label>
       <input required="" placeholder="" type="text" class="input" />
-      <span>Username</span>
+      <span>用户名</span>
     </label>
 
     <label>
       <input required="" placeholder="" type="password" class="input" />
-      <span>Password</span>
+      <span>密码</span>
     </label>
-    <button class="submit">Submit</button>
-    <p class="signin">Don't have an acount ? <a href="/register">Sign up</a></p>
-    <p class="signin">暂不注册 返回首页 <a href="/">back</a></p>
+    <button class="submit">登录</button>
+    <p class="signin">暂时没有账户 ? <a href="/register">去注册</a></p>
+    <p class="signin">暂不注册 <a href="/">返回首页</a></p>
   </form>
 </template>
 
