@@ -52,7 +52,7 @@ const toLogin = () => {
   background: rgb(98, 145, 217);
   padding: 24px;
   /* height: 70px; */
-  height: 10%;
+  height: 8%;
   position: fixed;
   top: 0;
   z-index: 1;
