@@ -57,7 +57,7 @@
             </ul>
           </div>
         </div>
-        <KnowGraph />
+        <Radar />
       </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
 
 <script setup>
 import HeaderBar from "@/components/HeaderBar.vue";
-import KnowGraph from "@/components/KnowGraph.vue";
+import Radar from "@/components/Chart/Radar.vue";
 import { ref } from "vue";
 </script>
 
