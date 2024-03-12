@@ -5,18 +5,18 @@
     </div>
     <div class="right">
       <div class="rleft">
-        <img src="../assets/FunctionCard/cv.png" alt="简历上传入口" />
+        <img
+          @click="toRecommend"
+          src="../assets/FunctionCard/recommend.png"
+          alt="推荐入口"
+        />
       </div>
       <div class="rright">
         <div class="rrtop">
           <img src="../assets/FunctionCard/ability.png" alt="能力评价入口" />
         </div>
         <div class="rrbottom">
-          <img
-            @click="toRecommend"
-            src="../assets/FunctionCard/recommend.png"
-            alt="推荐入口"
-          />
+          <img src="../assets/FunctionCard/cv.png" alt="简历上传入口" />
         </div>
       </div>
     </div>
