@@ -4,44 +4,22 @@
     <div class="head">推荐岗位：前端工程师</div>
     <div class="some">
       <div class="left">
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
-        <div class="card">card</div>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
-      <div class="right">
-        <!-- <ul>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-          <li>information</li>
-        </ul> -->
-      </div>
+      <div class="right"></div>
     </div>
-    推荐岗位: {{ num }}
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import Card from "./components/Card.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
-
-const num = ref(10);
 </script>
 
 <style scoped>
@@ -52,6 +30,7 @@ const num = ref(10);
   padding: 50px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
+
 .head {
   border: 1px rgb(170, 164, 164) solid;
   border-radius: 20px;
@@ -62,22 +41,33 @@ const num = ref(10);
 .some {
   /* margin-top: 60px; */
   display: flex;
+  flex-grow: 1;
   width: 100%;
+  margin: 30px 0 0 0;
 }
 .left {
+  display: flex;
+  flex-direction: column;
   width: 400px;
+  margin-left: 100px;
+  overflow-y: auto;
+  height: 60vh;
 }
-.card {
-  width: 350px;
-  height: 180px;
-  border: 2px rgb(142, 136, 136) solid;
-  border-radius: 10px;
-  margin: 10px;
+.left::-webkit-scrollbar {
+  width: 0.5em; /* 设置滚动条的宽度 */
+}
+
+.left::-webkit-scrollbar-track {
+  background-color: transparent; /* 设置滚动条轨道的背景颜色 */
+}
+
+.left::-webkit-scrollbar-thumb {
+  background-color: #88888800; /* 设置滚动条的颜色 */
 }
 .right {
   flex: 1;
   border: 2px rgb(142, 136, 136) solid;
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px 100px 0 10px;
 }
 </style>
