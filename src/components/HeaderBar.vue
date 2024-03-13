@@ -17,7 +17,7 @@
       <a href="/profile" class="header_left_text">个人信息</a>
     </div>
     <div class="header_right">
-      <a href="/login" class="header_right_text">我要招聘</a>
+      <a href="/boss" class="header_right_text">我要招聘</a>
       <a href="/login" class="header_right_text">我要求职</a>
       <button
         style="
