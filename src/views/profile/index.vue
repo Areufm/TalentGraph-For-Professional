@@ -79,6 +79,15 @@
         </div>
         <p>在简历中显示更多优势与特长</p>
       </div>
+      <div class="assess">
+        <h4>评价推荐结果</h4>
+        <el-rate
+          v-model="assess"
+          :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
+          show-text
+          size="large"
+        />
+      </div>
       <div class="improve">
         <h4>简历待完善</h4>
         <h5>基本信息：</h5>
@@ -105,6 +114,10 @@
 import Radar from "@/components/Chart/Radar.vue";
 import Graph from "@/components/Chart/Graph.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
+
+import { ref } from "vue";
+
+const assess = ref(null); //评价星星
 </script>
 
 <style scoped>
@@ -146,6 +159,7 @@ import HeaderBar from "@/components/HeaderBar.vue";
 .add,
 .cv,
 .upload,
+.assess,
 .improve,
 .security,
 .process,
