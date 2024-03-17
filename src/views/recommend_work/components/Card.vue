@@ -29,11 +29,11 @@
   border-radius: 20px;
   background: #f5f5f5;
   position: relative;
-  /* padding: 1.8rem; */
+  /* padding: 1rem; */
   border: 2px solid #c3c6ce;
   transition: 0.5s ease-out;
   overflow: visible;
-  margin: 10px;
+  margin: 5px 10px;
 }
 
 .card-details {
