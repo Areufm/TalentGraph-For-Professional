@@ -15,8 +15,9 @@
       <a href="/" class="header_left_text">首页</a>
       <a href="/recommend" class="header_left_text">推荐岗位</a>
       <a href="/profile" class="header_left_text">个人信息</a>
+      <button @click="isLogin = !isLogin">切换登录状态</button>
     </div>
-    <div class="header_right">
+    <div v-if="isLogin" class="header_right">
       <a href="/boss" class="header_right_text">我要招聘</a>
       <a href="/login" class="header_right_text">我要求职</a>
       <button
@@ -32,6 +33,15 @@
         登录 / 注册
       </button>
     </div>
+    <div v-else class="header_right">
+      <a href="/profile" class="header_right_text">简历</a>
+      <p class="header_right_text">用户名</p>
+      <img
+        src="../assets/xue.jpg"
+        alt="头像"
+        style="border-radius: 50%; height: 45px; width: 45px"
+      />
+    </div>
   </n-layout-header>
 </template>
 
@@ -40,6 +50,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const isLogin = ref(true);
 
 const toLogin = () => {
   router.push("/login");
@@ -61,12 +72,17 @@ const toLogin = () => {
 }
 
 .header_left {
+  margin-left: 20px;
   display: flex;
   align-items: center;
 }
 .header_right {
   display: flex;
   margin-left: auto;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute;
+  right: 50px; */
 }
 
 .header_left_title {
@@ -81,11 +97,11 @@ const toLogin = () => {
   text-decoration: none; /* 取消链接下划线 */
 }
 .header_right_text {
-  margin: 10px, 0;
+  margin: 0 10px;
   color: white;
   display: flex;
-  padding: 10px;
-  width: 70px;
+  /* padding: 10px; */
+  /* width: 70px; */
   text-decoration: none;
 }
 .nav-city {
