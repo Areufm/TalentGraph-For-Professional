@@ -11,7 +11,9 @@
         <Card />
         <Card />
       </div>
-      <div class="right"></div>
+      <div class="right">
+        <Info />
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +22,7 @@
 import { ref } from "vue";
 import Card from "./components/Card.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
+import Info from "./components/Info.vue";
 </script>
 
 <style scoped>
@@ -53,21 +56,26 @@ import HeaderBar from "@/components/HeaderBar.vue";
   overflow-y: auto;
   height: 60vh;
 }
-.left::-webkit-scrollbar {
+.left::-webkit-scrollbar,
+.right::-webkit-scrollbar {
   width: 0.5em; /* 设置滚动条的宽度 */
 }
 
-.left::-webkit-scrollbar-track {
+.left::-webkit-scrollbar-track,
+.right::-webkit-scrollbar-track {
   background-color: transparent; /* 设置滚动条轨道的背景颜色 */
 }
 
-.left::-webkit-scrollbar-thumb {
+.left::-webkit-scrollbar-thumb,
+.right::-webkit-scrollbar-thumb {
   background-color: #88888800; /* 设置滚动条的颜色 */
 }
 .right {
   flex: 1;
   border: 2px rgb(142, 136, 136) solid;
   border-radius: 10px;
-  margin: 10px 100px 0 10px;
+  margin: 5px 100px 0 10px;
+  height: 60vh;
+  overflow-y: auto;
 }
 </style>
