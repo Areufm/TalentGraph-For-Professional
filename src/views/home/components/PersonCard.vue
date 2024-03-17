@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="profile-card">
     <div class="top">
-      <img src="../assets/xue.jpg" alt="Profile Picture" />
+      <img src="../../../assets/xue.jpg" alt="Profile Picture" />
 
       <div class="profile-name">
         <h3>张三</h3>

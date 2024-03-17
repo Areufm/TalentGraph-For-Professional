@@ -1,22 +1,29 @@
 ﻿<template>
   <div class="card">
-    <div class="left">
+    <div v-if="isLogin" class="left">
       <PersonCard />
+    </div>
+    <div v-else class="left">
+      <!-- <Login /> -->
+      <Log />
     </div>
     <div class="right">
       <div class="rleft">
         <img
           @click="toRecommend"
-          src="../assets/FunctionCard/recommend.png"
+          src="../../../assets/FunctionCard/recommend.png"
           alt="推荐入口"
         />
       </div>
       <div class="rright">
         <div class="rrtop">
-          <img src="../assets/FunctionCard/ability.png" alt="能力评价入口" />
+          <img
+            src="../../../assets/FunctionCard/ability.png"
+            alt="能力评价入口"
+          />
         </div>
         <div class="rrbottom">
-          <img src="../assets/FunctionCard/cv.png" alt="简历上传入口" />
+          <img src="../../../assets/FunctionCard/cv.png" alt="简历上传入口" />
         </div>
       </div>
     </div>
@@ -24,8 +31,14 @@
 </template>
 
 <script setup>
-import PersonCard from "@/components/PersonCard.vue";
+import PersonCard from "./PersonCard.vue";
+import Login from "./Login.vue";
+import Register from "./Register.vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
+
+const isLogin = ref(false);
+const isRegister = ref(true);
 
 const router = useRouter();
 const toRecommend = () => {
