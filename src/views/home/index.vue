@@ -28,7 +28,7 @@ import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import HotCompany from "@/components/HotCompany.vue";
 import GetMore from "@/components/GetMore.vue";
-import FunctionCard from "@/components/FunctionCard.vue";
+import FunctionCard from "./components/FunctionCard.vue";
 </script>
 
 <style scoped>
