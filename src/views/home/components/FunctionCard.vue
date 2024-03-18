@@ -4,26 +4,18 @@
       <PersonCard />
     </div>
     <div v-else class="left">
-      <!-- <Login /> -->
-      <Log />
+      <Login />
     </div>
     <div class="right">
       <div class="rleft">
-        <img
-          @click="toRecommend"
-          src="../../../assets/FunctionCard/recommend.png"
-          alt="推荐入口"
-        />
+        <img @click="toRecommend" src="../../../assets/FunctionCard/recommend.png" alt="推荐入口" />
       </div>
       <div class="rright">
         <div class="rrtop">
-          <img
-            src="../../../assets/FunctionCard/ability.png"
-            alt="能力评价入口"
-          />
+          <img @click="toSkill" src="../../../assets/FunctionCard/ability.png" alt="能力评价入口" />
         </div>
         <div class="rrbottom">
-          <img src="../../../assets/FunctionCard/cv.png" alt="简历上传入口" />
+          <img @click="toResume" src="../../../assets/FunctionCard/cv.png" alt="简历上传入口" />
         </div>
       </div>
     </div>
@@ -33,16 +25,20 @@
 <script setup>
 import PersonCard from "./PersonCard.vue";
 import Login from "./Login.vue";
-import Register from "./Register.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const isLogin = ref(false);
-const isRegister = ref(true);
 
 const router = useRouter();
 const toRecommend = () => {
   router.push("/recommend");
+};
+const toResume = () => {
+  router.push("/profile");
+};
+const toSkill = () => {
+  router.push("/skill-evaluation");
 };
 </script>
 
@@ -52,10 +48,12 @@ img {
   height: 100%;
   border-radius: 20px;
 }
+
 .card {
   display: flex;
   margin: 20px 100px;
 }
+
 .left {
   height: 300px;
   flex: 2;
@@ -65,6 +63,7 @@ img {
   margin: 10px;
   display: flex;
 }
+
 .right {
   height: 300px;
   flex: 3;
@@ -73,6 +72,7 @@ img {
   margin: 10px;
   display: flex;
 }
+
 .rleft {
   /* height: 280px; */
   flex: 2;
@@ -80,6 +80,7 @@ img {
   border-radius: 10px; */
   /* margin: 10px; */
 }
+
 .rright {
   /* height: 280px; */
   flex: 1;
@@ -89,12 +90,14 @@ img {
   flex-direction: column;
   margin: 0 10px;
 }
+
 .rrtop {
   height: 50%;
   /* border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px; */
   margin: 0 0 10px 0;
 }
+
 .rrbottom {
   height: 50%;
   /* border: 2px rgba(161, 159, 159, 0.682) solid;
