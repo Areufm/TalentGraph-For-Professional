@@ -60,7 +60,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  window.document.title = to.meta.title + " - 职业猫" || "职业猫";
+  window.document.title = to.meta.title
+    ? to.meta.title + " - 职业猫"
+    : "职业猫";
   next();
 });
 
