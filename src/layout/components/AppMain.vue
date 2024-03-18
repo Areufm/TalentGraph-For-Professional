@@ -1,5 +1,7 @@
 <template>
   <section class="app-main">
+    <!-- transition讲解：https://juejin.cn/post/6919404953203277832 -->
+    <!-- out-in 当前元素先进行过渡，完成之后新元素过渡进入 -->
     <transition name="fade-transform" mode="out-in">
       <router-view :key="key" />
     </transition>
@@ -8,13 +10,13 @@
 
 <script>
 export default {
-  name: 'AppMain',
+  name: "AppMain",
   computed: {
     key() {
-      return this.$route.path
-    }
-  }
-}
+      return this.$route.path;
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -25,7 +27,7 @@ export default {
   position: relative;
   overflow: hidden;
 }
-.fixed-header+.app-main {
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>
