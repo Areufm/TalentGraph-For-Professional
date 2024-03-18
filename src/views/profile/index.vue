@@ -62,7 +62,7 @@ export default {
         name: "王五",
         role: "Admin",
         id: "T000323858224717",
-        phone: "7777777",
+        telephone: "7777777",
         email: "1717171717@qq.com",
         zhiXin: "60",
         recognitionTime: "2023年4月12日 17:17 PM",

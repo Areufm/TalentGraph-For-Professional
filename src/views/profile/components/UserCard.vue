@@ -45,14 +45,14 @@
         </div>
         <div class="user-bio-section-body">
           <div class="text-muted" style="padding-left: 15px">
-            {{ user.phone }}
+            {{ user.telephone }}
           </div>
         </div>
       </div>
 
       <div class="user-skills user-bio-section">
         <div class="user-bio-section-header">
-          <svg-icon icon-class="skill" />
+          <svg-icon icon-class="star" />
           <span>个人邮箱</span>
         </div>
         <div class="user-bio-section-body">

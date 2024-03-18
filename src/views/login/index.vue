@@ -1,15 +1,15 @@
 <template>
   <div class="login-container">
     <el-form
-      ref="loginForm"
-      :model="loginForm"
-      :rules="loginRules"
+      :ref="showLogin ? 'loginForm' : 'registerForm'"
+      :model="showLogin ? loginForm : registerForm"
+      :rules="showLogin ? loginRules : registerRules"
       class="login-form"
-      auto-complete="on"
+      auto-complete="off"
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">欢迎使用声纹识别系统</h3>
+        <h3 class="title">欢迎使用职业猫企业端</h3>
       </div>
 
       <el-form-item prop="username">
@@ -17,13 +17,19 @@
           <svg-icon icon-class="user" />
         </span>
         <el-input
+          :key="passwordType"
           ref="username"
-          v-model="loginForm.username"
+          :value="showLogin ? loginForm.username : registerForm.username"
+          @input="
+            showLogin
+              ? (loginForm.username = $event)
+              : (registerForm.username = $event)
+          "
           placeholder="用户名"
           name="username"
           type="text"
           tabindex="1"
-          auto-complete="on"
+          autocomplete="off"
         />
       </el-form-item>
 
@@ -34,13 +40,18 @@
         <el-input
           :key="passwordType"
           ref="password"
-          v-model="loginForm.password"
+          :value="showLogin ? loginForm.password : registerForm.password"
+          @input="
+            showLogin
+              ? (loginForm.password = $event)
+              : (registerForm.password = $event)
+          "
           :type="passwordType"
           placeholder="密码"
           name="password"
           tabindex="2"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin"
+          auto-complete="off"
+          @keyup.enter.native="showLogin ? handleLogin() : handleRegister()"
         />
         <span class="show-pwd" @click="showPwd">
           <svg-icon
@@ -49,18 +60,47 @@
         </span>
       </el-form-item>
 
+      <el-form-item prop="password_confirm" v-if="!showLogin">
+        <span class="svg-container">
+          <svg-icon icon-class="password" />
+        </span>
+        <el-input
+          :key="passwordConfirmType"
+          ref="password_confirm"
+          :value="registerForm.password_confirm"
+          @input="registerForm.password_confirm = $event"
+          :type="passwordConfirmType"
+          placeholder="确认密码"
+          name="password_confirm"
+          tabindex="3"
+          auto-complete="off"
+          @keyup.enter.native="handleRegister()"
+        />
+        <span class="show-pwd" @click="showPwd_confirm">
+          <svg-icon
+            :icon-class="
+              passwordConfirmType === 'password' ? 'eye' : 'eye-open'
+            "
+          />
+        </span>
+      </el-form-item>
+
       <el-button
         :loading="loading"
         type="primary"
         style="width: 100%; margin-bottom: 30px"
-        @click.native.prevent="handleLogin"
-        >登 录
+        @click.native.prevent="showLogin ? handleLogin() : handleRegister()"
+      >
+        {{ showLogin ? "登录" : "注册" }}
       </el-button>
+      <a style="color: white" @click="showLogin = !showLogin">
+        {{ showLogin ? "没有账号，去注册" : "已有账号，去登陆" }}
+      </a>
 
-      <!--      <div class="tips">-->
-      <!--        <span style="margin-right:20px;">username: admin</span>-->
-      <!--        <span> password: any</span>-->
-      <!--      </div>-->
+      <!-- <div class="tips">
+        <span style="margin-right: 20px">username: admin</span>
+        <span> password: any</span>
+      </div> -->
     </el-form>
   </div>
 </template>
@@ -85,22 +125,51 @@ export default {
         callback();
       }
     };
+    const validatePasswordConfirm = (rule, value, callback) => {
+      if (this.registerForm.password != this.registerForm.password_confirm) {
+        callback(new Error("两次密码不相同！"));
+      } else {
+        callback();
+      }
+    };
     return {
       loginForm: {
         username: "admin",
         password: "123456",
+      },
+      registerForm: {
+        username: "",
+        password: "",
+        password_confirm: "",
       },
       loginRules: {
         username: [
           { required: true, trigger: "blur", validator: validateUsername },
         ],
         password: [
-          { required: true, trigger: "blur", validator: validatePassword },
+          { required: true, trigger: "change", validator: validatePassword },
+        ],
+      },
+      registerRules: {
+        username: [
+          { required: true, trigger: "blur", validator: validateUsername },
+        ],
+        password: [
+          { required: true, trigger: "change", validator: validatePassword },
+        ],
+        password_confirm: [
+          {
+            required: true,
+            trigger: "blur",
+            validator: validatePasswordConfirm,
+          },
         ],
       },
       loading: false,
       passwordType: "password",
+      passwordConfirmType: "password",
       redirect: undefined,
+      showLogin: true,
     };
   },
   watch: {
@@ -122,6 +191,28 @@ export default {
         this.$refs.password.focus();
       });
     },
+    showPwd_confirm() {
+      if (this.passwordConfirmType === "password") {
+        this.passwordConfirmType = "";
+      } else {
+        this.passwordConfirmType = "password";
+      }
+      this.$nextTick(() => {
+        this.$refs.password_confirm.focus();
+      });
+    },
+    // changeForm() {
+    //   this.showLogin = !this.showLogin;
+
+    //   if (!this.showLogin) {
+    //     this.loginForm.username = "";
+    //     this.loginForm.password = "";
+    //   } else {
+    //     this.registerForm.username = "";
+    //     this.registerForm.password = "";
+    //     this.registerForm.password_confirm = "";
+    //   }
+    // },
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
@@ -141,6 +232,39 @@ export default {
         }
       });
     },
+    handleRegister() {
+      this.$notify({
+        title: "注册成功",
+        message: "恭喜你账号注册成功！",
+        type: "success",
+      });
+      this.showLogin = !this.showLogin;
+    },
+    // handleRegister() {
+    //   this.$refs.registerForm.validate((valid) => {
+    //     if (valid) {
+    //       this.loading = true;
+    //       this.$store
+    //         .dispatch("user/register", this.registerForm)
+    //         .then(() => {
+    //           this.$router.push({ path: "/" });
+    //           this.$notify({
+    //             title: "注册成功",
+    //             message: "恭喜你账号注册成功！",
+    //             type: "success",
+    //           });
+    //           showLogin = true;
+    //           this.loading = false;
+    //         })
+    //         .catch(() => {
+    //           this.loading = false;
+    //         });
+    //     } else {
+    //       console.log("error submit!!");
+    //       return false;
+    //     }
+    //   });
+    // },
   },
 };
 </script>
@@ -157,6 +281,10 @@ $cursor: #fff;
   .login-container .el-input input {
     color: $cursor;
   }
+}
+
+input[type="password"]::-ms-reveal {
+  display: none;
 }
 
 /* reset element-ui css */

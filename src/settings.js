@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '声纹识别系统',
+  title: 'A15赛题后台系统',
 
   /**
    * @type {boolean} true | false

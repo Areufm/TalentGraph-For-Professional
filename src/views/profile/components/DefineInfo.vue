@@ -15,8 +15,8 @@
         </td>
       </tr>
       <tr>
-        <th>置信度</th>
-        <td>{{ user.confidenceDegree }}</td>
+        <th>企业名</th>
+        <td>{{ user.company }}</td>
       </tr>
       <tr>
         <th>是否已经注册</th>
@@ -39,7 +39,7 @@ export default {
         zhiXin: "60",
         recognitionTime: "2023年4月12日 17:17 PM",
         certificationResult: "高级会员",
-        confidenceDegree: "92%",
+        company: "职业猫有限公司",
         isSignIn: "已注册",
       },
     };
