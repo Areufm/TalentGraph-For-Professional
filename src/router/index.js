@@ -9,6 +9,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: () => import("@/views/home/index.vue"),
+    meta: { title: "首页" },
   },
   {
     path: "/login",
@@ -39,6 +40,7 @@ const routes = [
     path: "/recommend",
     name: "Recommend",
     component: () => import("@/views/recommend_work/index.vue"),
+    meta: { title: "推荐页面" },
   },
   {
     path: "/profile",
@@ -47,14 +49,19 @@ const routes = [
   },
   {
     path: "/boss",
-    name:"Boss",
-    component:() => import("@/views/boss/index.vue")
-  }
+    name: "Boss",
+    component: () => import("@/views/boss/index.vue"),
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  window.document.title = to.meta.title + " - 职业猫" || "职业猫";
+  next();
 });
 
 export default router;
