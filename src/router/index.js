@@ -24,14 +24,14 @@ const routes = [
     meta: { title: "注册账户" },
   },
   {
-    path: "/workinfo",
+    path: "/work-info",
     name: "WorkInfo",
-    component: () => import("@/views/work_info/index.vue"),
+    component: () => import("@/views/work-info/index.vue"),
   },
   {
-    path: "/companyinfo",
+    path: "/company-info",
     name: "CompanyInfo",
-    component: () => import("@/views/company_info/index.vue"),
+    component: () => import("@/views/company-info/index.vue"),
   },
   {
     path: "/recommend",
@@ -49,6 +49,11 @@ const routes = [
     path: "/boss",
     name: "Boss",
     component: () => import("@/views/boss/index.vue"),
+  },
+  {
+    path: "/skill-evaluation",
+    name: "SkillEvaluation",
+    component: () => import("@/views/skill-evaluation/index.vue"),
   },
 ];
 
