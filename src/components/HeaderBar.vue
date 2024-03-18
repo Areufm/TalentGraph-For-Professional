@@ -1,16 +1,12 @@
 ﻿<template>
   <n-layout-header>
     <div class="header_left">
-      <img
-        src="../assets/workcat.png"
-        alt="logo"
-        style="border-radius: 50%; height: 45px; width: 45px"
-      />
+      <img src="../assets/workcat.png" alt="logo"
+        style="border-radius: 50%; height: 45px; width: 45px; margin: 0 10px" />
       <div class="header_left_title">职业猫</div>
       <div class="nav-city">
         <p class="nav-city-box" ka="header-switch-city">
-          <i class="icon-poi"></i><span class="nav-city-selected">杭州</span
-          ><span class="switchover-city">[切换城市]</span>
+          <i class="icon-poi"></i><span class="nav-city-selected">杭州</span><span class="switchover-city">[切换城市]</span>
         </p>
         <!-- <div class="city-box">
             <ul class="dorpdown-province"></ul>
@@ -25,27 +21,28 @@
     <div v-if="isLogin" class="header_right">
       <a href="/boss" class="header_right_text">我要招聘</a>
       <a href="/login" class="header_right_text">我要求职</a>
-      <button
-        style="
+      <button style="
           border: rgb(255, 255, 255) solid 2px;
           border-radius: 50px;
           background-color: rgba(255, 255, 255, 0);
           color: white;
           padding: 10px;
-        "
-        @click="toLogin"
-      >
+        " @click="toLogin">
         登录 / 注册
       </button>
     </div>
     <div v-else class="header_right">
       <a href="/profile" class="header_right_text">简历</a>
+      <div class="card-container hidden">
+        <button class="card-btn" @click="uploadFile">
+          <img src="../assets/resume-file.png" alt="卡片图片1" />
+        </button>
+        <button class="card-btn" @click="toResume">
+          <img src="../assets/resume-online.png" alt="卡片图片2" />
+        </button>
+      </div>
       <p class="header_right_text">用户名</p>
-      <img
-        src="../assets/xue.jpg"
-        alt="头像"
-        style="border-radius: 50%; height: 45px; width: 45px"
-      />
+      <img src="../assets/xue.jpg" alt="头像" style="border-radius: 50%; height: 45px; width: 45px" />
     </div>
   </n-layout-header>
 </template>
@@ -59,6 +56,9 @@ const isLogin = ref(true);
 
 const toLogin = () => {
   router.push("/login");
+};
+const toResume = () => {
+  router.push("/profile");
 };
 </script>
 
@@ -81,13 +81,56 @@ const toLogin = () => {
   display: flex;
   align-items: center;
 }
+
 .header_right {
   display: flex;
   margin-left: auto;
   justify-content: center;
   align-items: center;
-  /* position: absolute;
-  right: 50px; */
+  position: relative;
+  /* right: 50px;  */
+}
+
+.card-container {
+  display: none;
+  position: absolute;
+  top: 130%;
+  left: 30%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  white-space: nowrap;
+  border: 2px rgba(128, 128, 128, 0.586) solid;
+  border-radius: 20px;
+}
+
+.card-btn {
+  width: 120px;
+  /* 按钮宽度 */
+  height: 150px;
+  /* 按钮高度 */
+  /* margin: 5px; */
+  display: inline-block;
+  background-color: transparent;
+  /* 透明背景 */
+  border: none;
+  /* 无边框 */
+  cursor: pointer;
+  /* 鼠标悬停时显示手形光标 */
+  outline: none;
+  /* 无焦点轮廓 */
+}
+
+.card-btn img {
+  width: 100%;
+  /* 图片填满按钮 */
+  height: 100%;
+  object-fit: cover;
+  /* 图片覆盖按钮，保持宽高比 */
+  border-radius: 20px;
+}
+
+.header_right:hover .card-container {
+  display: block;
 }
 
 .header_left_title {
@@ -96,19 +139,23 @@ const toLogin = () => {
   font-size: 25px;
   font-weight: bold;
 }
+
 .header_left_text {
   margin: 10px;
   color: white;
-  text-decoration: none; /* 取消链接下划线 */
+  text-decoration: none;
+  /* 取消链接下划线 */
 }
+
 .header_right_text {
-  margin: 0 10px;
+  margin: 0 15px;
   color: white;
   display: flex;
   /* padding: 10px; */
   /* width: 70px; */
   text-decoration: none;
 }
+
 .nav-city {
   float: left;
   position: relative;
@@ -120,6 +167,7 @@ const toLogin = () => {
   align-items: center;
   margin: 5px;
 }
+
 .nav-city .nav-city-selected {
   display: inline-block;
   white-space: nowrap;
@@ -128,20 +176,22 @@ const toLogin = () => {
   max-width: 84px;
   vertical-align: middle;
 }
+
 .nav-city .icon-poi {
   display: inline-block;
   vertical-align: top;
   width: 18px;
   height: 18px;
-  background: url(https://img.bosszhipin.com/static/file/2023/umua62pczi1679922532668.png)
-    0 -18px/18px auto no-repeat;
+  background: url(https://img.bosszhipin.com/static/file/2023/umua62pczi1679922532668.png) 0 -18px/18px auto no-repeat;
   margin: 16px 3px 0 24px;
 }
+
 .nav-city .switchover-city {
   font-size: 12px;
   color: #fff;
   margin-left: 10px;
 }
+
 .nav-city .city-box {
   top: 49px;
 }
