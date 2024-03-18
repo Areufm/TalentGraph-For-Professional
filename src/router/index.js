@@ -15,11 +15,13 @@ const routes = [
     path: "/login",
     name: "Login",
     component: () => import("@/views/login/index.vue"),
+    meta: { title: "登录账户" },
   },
   {
     path: "/register",
     name: "Register",
     component: () => import("@/views/register/index.vue"),
+    meta: { title: "注册账户" },
   },
   {
     path: "/workinfo",
@@ -32,20 +34,16 @@ const routes = [
     component: () => import("@/views/company_info/index.vue"),
   },
   {
-    path: "/profile",
-    name: "Profile",
-    component: () => import("@/views/profile/index.vue"),
-  },
-  {
     path: "/recommend",
     name: "Recommend",
     component: () => import("@/views/recommend_work/index.vue"),
-    meta: { title: "推荐页面" },
+    meta: { title: "推荐岗位" },
   },
   {
     path: "/profile",
     name: "Profile",
     component: () => import("@/views/profile/index.vue"),
+    meta: { title: "个人信息" },
   },
   {
     path: "/boss",
