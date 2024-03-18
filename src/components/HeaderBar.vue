@@ -1,6 +1,11 @@
 ﻿<template>
   <n-layout-header>
     <div class="header_left">
+      <img
+        src="../assets/workcat.png"
+        alt="logo"
+        style="border-radius: 50%; height: 45px; width: 45px"
+      />
       <div class="header_left_title">职业猫</div>
       <div class="nav-city">
         <p class="nav-city-box" ka="header-switch-city">
