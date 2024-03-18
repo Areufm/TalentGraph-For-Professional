@@ -1,7 +1,7 @@
 ﻿<template>
   <n-layout-header>
     <div class="header_left">
-      <div class="header_left_title">服务外包A15赛题</div>
+      <div class="header_left_title">职业猫</div>
       <div class="nav-city">
         <p class="nav-city-box" ka="header-switch-city">
           <i class="icon-poi"></i><span class="nav-city-selected">杭州</span
