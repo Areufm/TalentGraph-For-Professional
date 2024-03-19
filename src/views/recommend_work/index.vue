@@ -37,7 +37,7 @@ import Info from "./components/Info.vue";
 .head {
   border: 1px rgb(170, 164, 164) solid;
   border-radius: 20px;
-  height: 80px;
+  height: 50px;
   padding: 20px;
 }
 
@@ -48,6 +48,7 @@ import Info from "./components/Info.vue";
   width: 100%;
   margin: 30px 0 0 0;
 }
+
 .left {
   display: flex;
   flex-direction: column;
@@ -56,20 +57,25 @@ import Info from "./components/Info.vue";
   overflow-y: auto;
   height: 60vh;
 }
+
 .left::-webkit-scrollbar,
 .right::-webkit-scrollbar {
-  width: 0.5em; /* 设置滚动条的宽度 */
+  width: 0.5em;
+  /* 设置滚动条的宽度 */
 }
 
 .left::-webkit-scrollbar-track,
 .right::-webkit-scrollbar-track {
-  background-color: transparent; /* 设置滚动条轨道的背景颜色 */
+  background-color: transparent;
+  /* 设置滚动条轨道的背景颜色 */
 }
 
 .left::-webkit-scrollbar-thumb,
 .right::-webkit-scrollbar-thumb {
-  background-color: #88888800; /* 设置滚动条的颜色 */
+  background-color: #88888800;
+  /* 设置滚动条的颜色 */
 }
+
 .right {
   flex: 1;
   border: 2px rgb(142, 136, 136) solid;

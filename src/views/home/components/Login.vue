@@ -26,10 +26,10 @@ import { ref } from "vue";
   width: 100%;
   flex-direction: column;
   gap: 10px;
-  max-width: 350px;
+  /* max-width: 350px; */
   background-color: #ffffff;
   padding: 30px;
-  border: rgba(88, 87, 87, 0.822) solid 2px;
+  /* border: rgba(88, 87, 87, 0.822) solid 2px; */
   border-radius: 20px;
 }
 
@@ -68,7 +68,7 @@ import { ref } from "vue";
   border-radius: 10px;
 }
 
-.form label .input + span {
+.form label .input+span {
   position: absolute;
   left: 10px;
   top: 15px;
@@ -78,19 +78,19 @@ import { ref } from "vue";
   transition: 0.3s ease;
 }
 
-.form label .input:placeholder-shown + span {
+.form label .input:placeholder-shown+span {
   top: 15px;
   font-size: 0.9em;
 }
 
-.form label .input:focus + span,
-.form label .input:valid + span {
+.form label .input:focus+span,
+.form label .input:valid+span {
   top: 30px;
   font-size: 0.7em;
   font-weight: 600;
 }
 
-.form label .input:valid + span {
+.form label .input:valid+span {
   color: green;
 }
 
