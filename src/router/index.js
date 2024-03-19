@@ -55,6 +55,11 @@ const routes = [
     name: "SkillEvaluation",
     component: () => import("@/views/skill-evaluation/index.vue"),
   },
+  {
+    path: "/research",
+    name: "Research",
+    component: () => import("@/views/research/index.vue"),
+  },
 ];
 
 const router = createRouter({
