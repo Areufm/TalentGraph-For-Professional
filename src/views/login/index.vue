@@ -56,9 +56,10 @@ const isLogin = ref(true);
 }
 </style> -->
 <template>
+  <h1 style="position: absolute; top: 7%; left: 10%;">欢迎使用职业猫CareerCat用户端</h1>
   <form class="form">
     <p class="title">Login</p>
-    <p class="message">登录A15赛题.</p>
+    <p class="message">登录职业猫CareerCat</p>
 
     <label>
       <input required="" placeholder="" type="text" class="input" />
@@ -92,7 +93,7 @@ import { ref } from "vue";
   border-radius: 20px;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 70%;
   transform: translate(-50%, -50%);
 }
 
@@ -166,7 +167,7 @@ import { ref } from "vue";
   border-radius: 10px;
 }
 
-.form label .input + span {
+.form label .input+span {
   position: absolute;
   left: 10px;
   top: 15px;
@@ -176,19 +177,19 @@ import { ref } from "vue";
   transition: 0.3s ease;
 }
 
-.form label .input:placeholder-shown + span {
+.form label .input:placeholder-shown+span {
   top: 15px;
   font-size: 0.9em;
 }
 
-.form label .input:focus + span,
-.form label .input:valid + span {
+.form label .input:focus+span,
+.form label .input:valid+span {
   top: 30px;
   font-size: 0.7em;
   font-weight: 600;
 }
 
-.form label .input:valid + span {
+.form label .input:valid+span {
   color: green;
 }
 
