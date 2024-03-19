@@ -15,7 +15,7 @@
       </div>
       <a href="/" class="header_left_text">首页</a>
       <a href="/recommend" class="header_left_text">推荐岗位</a>
-      <a href="/profile" class="header_left_text">个人信息</a>
+      <a href="/research" class="header_left_text">搜索</a>
       <button @click="isLogin = !isLogin">切换登录状态</button>
     </div>
     <div v-if="isLogin" class="header_right">
@@ -32,16 +32,56 @@
       </button>
     </div>
     <div v-else class="header_right">
-      <a href="/profile" class="header_right_text">简历</a>
-      <div class="card-container hidden">
-        <button class="card-btn" @click="uploadFile">
-          <img src="../assets/resume-file.png" alt="卡片图片1" />
-        </button>
-        <button class="card-btn" @click="toResume">
-          <img src="../assets/resume-online.png" alt="卡片图片2" />
-        </button>
+      <a class="header_right_resume">简历
+        <div class="card-container hidden">
+          <button class="card-btn" @click="showPopup">
+            <img src="../assets/resume-file.png" alt="卡片图片1" />
+          </button>
+          <button class="card-btn" @click="toResume">
+            <img src="../assets/resume-online.png" alt="卡片图片2" />
+          </button>
+        </div>
+      </a>
+
+      <div id="overlay">
+        <div class="popup">
+          <p class="popup_title">
+            新增附件简历
+            <svg style="width: 20px; height: 20px; position: absolute; right: 20px; top: 15px;" @click="hidePopup"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
+              <path fill="currentColor"
+                d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z">
+              </path>
+            </svg>
+          </p>
+
+          <div style="
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+            ">
+            <el-upload class="upload-demo" drag action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+              multiple>
+              <el-icon class="el-icon--upload"><upload-filled /></el-icon>
+              <div class="el-upload__text">
+                拖拽文件到此 或 <em>点击上传文件</em>
+              </div>
+              <template #tip>
+                <div class="el-upload__tip">
+                  jpg/png files with a size less than 500kb
+                </div>
+              </template>
+            </el-upload>
+            <img src="../assets/upresume.png" alt="" style="width: 40%; height: 100%" />
+          </div>
+          <div class="popup_btn">
+            <button class="cancelBtn" @click="hidePopup">上传简历附件</button>
+            <button class="confirmBtn" @click="toResume">在线填写简历</button>
+          </div>
+        </div>
       </div>
-      <p class="header_right_text">用户名</p>
+      <a href="/profile" class="header_right_text">个人信息</a>
+      <p class="header_right_text">Joker Xue</p>
       <img src="../assets/xue.jpg" alt="头像" style="border-radius: 50%; height: 45px; width: 45px" />
     </div>
   </n-layout-header>
@@ -60,9 +100,79 @@ const toLogin = () => {
 const toResume = () => {
   router.push("/profile");
 };
+const showPopup = () => {
+  var overlay = document.getElementById("overlay");
+  overlay.style.display = "block";
+};
+const hidePopup = () => {
+  var overlay = document.getElementById("overlay");
+  overlay.style.display = "none";
+};
 </script>
 
 <style scoped>
+/* 遮罩层 */
+#overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  /* IE9以下不支持rgba模式 */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 兼容IE8及以下 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000, endColorstr=#7f000000);
+  display: none;
+  z-index: 1000;
+}
+
+/* 弹出框主体 */
+.popup {
+  background-color: #ffffff;
+  width: 45%;
+  height: 50%;
+  border-radius: 25px;
+  margin: 200px auto;
+  text-align: center;
+  position: relative;
+  /* top: 20%; */
+}
+
+/* 弹出框的标题 */
+.popup_title {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: solid 1px #cccccc;
+  font-size: large;
+  font-weight: bold;
+}
+
+/* 弹出框的内容 */
+.popup_content {
+  height: 50px;
+  line-height: 50px;
+  padding: 15px 20px;
+}
+
+/* 弹出框的按钮栏 */
+.popup_btn {
+  padding-bottom: 10px;
+}
+
+/* 弹出框的按钮 */
+.popup_btn button {
+  color: #778899;
+  width: 40%;
+  height: 40px;
+  cursor: pointer;
+  border: solid 1px #cccccc;
+  border-radius: 15px;
+  margin: 5px 10px;
+  color: #ffffff;
+  background-color: #337ab7;
+}
+
 .n-layout-header {
   /* background: rgba(0, 102, 255); */
   background: rgb(98, 145, 217);
@@ -88,14 +198,14 @@ const toResume = () => {
   justify-content: center;
   align-items: center;
   position: relative;
-  /* right: 50px;  */
+  padding: 10px;
 }
 
 .card-container {
   display: none;
   position: absolute;
-  top: 130%;
-  left: 30%;
+  top: 100%;
+  left: 20%;
   transform: translateX(-50%);
   z-index: 1000;
   white-space: nowrap;
@@ -129,7 +239,7 @@ const toResume = () => {
   border-radius: 20px;
 }
 
-.header_right:hover .card-container {
+.header_right_resume:hover .card-container {
   display: block;
 }
 
@@ -147,7 +257,8 @@ const toResume = () => {
   /* 取消链接下划线 */
 }
 
-.header_right_text {
+.header_right_text,
+.header_right_resume {
   margin: 0 15px;
   color: white;
   display: flex;
