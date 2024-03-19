@@ -11,24 +11,17 @@
       <div class="get-more">
         <GetMore />
       </div>
-      <h1>热门企业</h1>
-      <HotCompany />
-      <HotCompany />
-      <HotCompany />
-      <div class="get-more">
-        <GetMore />
-      </div>
     </n-layout-content>
   </n-layout>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
-import HotCompany from "@/components/HotCompany.vue";
-import GetMore from "@/components/GetMore.vue";
+import GetMore from "./components/GetMore.vue";
 import FunctionCard from "./components/FunctionCard.vue";
+import TagBar from "@/components/TagBar.vue";
+
 </script>
 
 <style scoped>
@@ -36,6 +29,7 @@ h1 {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .centerPosition {
   align-items: center;
   display: flex;
