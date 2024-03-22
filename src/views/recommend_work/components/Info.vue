@@ -45,9 +45,6 @@
           </ul>
         </div>
       </div>
-      <div style="align-items: center">
-        <Radar />
-      </div>
     </div>
   </div>
 </template>
@@ -74,6 +71,7 @@ import Radar from "@/components/Chart/Radar.vue";
 .job-description {
   margin-bottom: 20px;
 }
+
 .job-description-card {
   margin: 10px;
   border: 2px solid rgb(182, 178, 178);

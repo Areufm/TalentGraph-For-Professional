@@ -25,7 +25,7 @@
 .card {
   /* width: 350px; */
   /* width: 30%; */
-  /* height: 154px; */
+  height: 144px;
   border-radius: 20px;
   background: #f5f5f5;
   position: relative;
@@ -69,10 +69,12 @@
 .job {
   margin-right: 10px;
 }
+
 .text-title {
   font-size: 1.5em;
   font-weight: bold;
 }
+
 /*Text*/
 .work_name {
   font-size: 1.5em;
