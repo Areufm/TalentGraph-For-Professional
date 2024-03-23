@@ -45,7 +45,7 @@
         <h3>额外资料</h3>
         <Radar />
       </div>
-      <div class="cv">
+      <div class="cv" style="height: 550px;">
         <h3>个人简历</h3>
         <Graph />
       </div>
@@ -56,23 +56,12 @@
           <h4>上传简历附件</h4>
           <div class="input-div">
             <input class="input" name="file" type="file" />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              fill="none"
-              stroke="currentColor"
-              class="icon"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round"
+              stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"
+              class="icon">
               <polyline points="16 16 12 12 8 16"></polyline>
               <line y2="21" x2="12" y1="12" x1="12"></line>
-              <path
-                d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"
-              ></path>
+              <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
               <polyline points="16 16 12 12 8 16"></polyline>
             </svg>
           </div>
@@ -81,12 +70,7 @@
       </div>
       <div class="assess">
         <h4>评价推荐结果</h4>
-        <el-rate
-          v-model="assess"
-          :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
-          show-text
-          size="large"
-        />
+        <el-rate v-model="assess" :texts="['oops', 'disappointed', 'normal', 'good', 'great']" show-text size="large" />
       </div>
       <div class="improve">
         <h4>简历待完善</h4>
@@ -148,6 +132,7 @@ const assess = ref(null); //评价星星
   height: 100%;
   cursor: pointer !important;
 }
+
 .profile,
 .job,
 .education,
@@ -175,30 +160,36 @@ const assess = ref(null); //评价星星
   font-family: Arial, sans-serif;
   margin: 5px 0;
 }
+
 .profile img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   margin-bottom: 10px;
 }
+
 .profile h3 {
   margin: 0;
   font-size: 20px;
   color: #333;
 }
+
 .top {
   display: flex;
   margin: 20px;
 }
+
 .profile-name {
   margin: auto 20px;
   text-align: center;
 }
+
 .profile p {
   margin: 10px 0;
   font-size: 16px;
   color: #666;
 }
+
 .container {
   margin-top: 70px;
   display: flex;
@@ -207,6 +198,7 @@ const assess = ref(null); //评价星星
   height: 100%;
   width: 100%;
 }
+
 .left {
   display: flex;
   flex-direction: column;
@@ -215,6 +207,7 @@ const assess = ref(null); //评价星星
   margin: 0 0 0 200px;
   padding: 10px;
 }
+
 .right {
   display: flex;
   flex-direction: column;
