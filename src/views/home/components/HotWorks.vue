@@ -162,10 +162,12 @@ const getMore = () => {
 .text-body {
   color: rgb(134, 134, 134);
 }
+
 .text-title {
   font-size: 1.5em;
   font-weight: bold;
 }
+
 /*Text*/
 .work_name {
   font-size: 1.5em;
