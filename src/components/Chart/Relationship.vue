@@ -1,6 +1,7 @@
 ﻿<template>
-    <div>
-        <div style="margin-top:0px;width: calc(100% - 10px);height:calc(100vh);">
+    <div style="height: 100%">
+        <!-- <div style="margin-top:0px;width: calc(100% - 10px);height:calc(100vh);"> -->
+        <div style="margin-top:0px; width: 100%; height: 100%;">
             <RelationGraph ref="graphRef" :options="graphOptions">
                 <template #node="{ node }">
                     <div class="my-node-style" :style="{ 'background-image': 'url(' + node.data.icon + ')' }">
@@ -42,7 +43,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import RelationGraph, { RGJsonData, RGOptions, RGNode, RGLine, RGLink, RGUserEvent, RelationGraphComponent } from 'relation-graph/vue3';
-// import demoData from './Demo4AdvDataFilterData.json';
+import { Flag } from '@element-plus/icons-vue/dist/types';
 
 const demoData = {
     "rootId": "N13",
@@ -703,13 +704,16 @@ const demoData = {
     ]
 }
 
+
 const graphOptions: RGOptions = {
     debug: false,
-    defaultNodeBorderWidth: 0,
+    defaultNodeBorderWidth: 3,
     defaultNodeColor: 'rgba(238, 178, 94, 1)',
     allowSwitchLineShape: true,
     allowSwitchJunctionPoint: true,
     defaultLineShape: 1,
+    isMoveByParentNode: true,
+    moveToCenterWhenRefresh: true,
     'layouts': [
         {
             'label': 'Auto Layout',
