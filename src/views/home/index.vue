@@ -7,7 +7,9 @@
       </div>
       <FunctionCard />
       <h1>热门职位</h1>
-      <TagBar />
+      <!-- <TagBar /> -->
+
+      <Tag />
       <div class="get-more">
         <GetMore />
       </div>
@@ -19,8 +21,9 @@
 import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import GetMore from "./components/GetMore.vue";
+import Tag from "./components/Tag.vue";
 import FunctionCard from "./components/FunctionCard.vue";
-import TagBar from "@/components/TagBar.vue";
+// import TagBar from "@/components/TagBar.vue";
 
 </script>
 
@@ -41,18 +44,19 @@ h1 {
 .n-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .n-layout-content {
   /* flex: 1; */
-  height: 90%;
+  /* height: 90%; */
+  height: calc(100vh-50px);
   /* background: rgba(167, 167, 167, 0.277); */
   background-color: rgb(242, 244, 247);
   /* background: rgb(225, 222, 222); */
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 
 .get-more {
