@@ -37,11 +37,6 @@
             <li>要求3</li>
             <li>要求3</li>
             <li>要求3</li>
-            <li>要求3</li>
-            <li>要求3</li>
-            <li>要求3</li>
-            <li>要求3</li>
-            <li>要求3</li>
           </ul>
         </div>
       </div>
@@ -56,9 +51,11 @@ import Radar from "@/components/Chart/Radar.vue";
 
 <style scoped>
 .job-card {
-  align-items: center;
-  justify-content: center;
   width: 100%;
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .job-info {
