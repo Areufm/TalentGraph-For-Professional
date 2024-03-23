@@ -32,16 +32,24 @@
       </button>
     </div>
     <div v-else class="header_right">
-      <a class="header_right_resume">简历
-        <div class="card-container hidden">
-          <button class="card-btn" @click="showPopup">
-            <img src="../assets/resume-file.png" alt="卡片图片1" />
-          </button>
-          <button class="card-btn" @click="toResume">
-            <img src="../assets/resume-online.png" alt="卡片图片2" />
-          </button>
-        </div>
-      </a>
+
+      <el-popover :width="300"
+        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;">
+        <template #reference>
+          <!-- <el-avatar src="https://avatars.githubusercontent.com/u/72015883?v=4" /> -->
+          <p style="color: white;">简历</p>
+        </template>
+        <template #default>
+          <div class="card-container">
+            <button class="card-btn" @click="showPopup">
+              <img src="../assets/resume-file.png" alt="卡片图片1" />
+            </button>
+            <button class="card-btn" @click="toResume">
+              <img src="../assets/resume-online.png" alt="卡片图片2" />
+            </button>
+          </div>
+        </template>
+      </el-popover>
 
       <div id="overlay">
         <div class="popup">
@@ -178,7 +186,7 @@ const hidePopup = () => {
   background: rgb(98, 145, 217);
   padding: 24px;
   /* height: 70px; */
-  height: 8%;
+  height: 50px;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -199,18 +207,6 @@ const hidePopup = () => {
   align-items: center;
   position: relative;
   padding: 10px;
-}
-
-.card-container {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 20%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  white-space: nowrap;
-  border: 2px rgba(128, 128, 128, 0.586) solid;
-  border-radius: 20px;
 }
 
 .card-btn {
