@@ -60,6 +60,11 @@ const routes = [
     name: "Research",
     component: () => import("@/views/research/index.vue"),
   },
+  {
+    path: "/form",
+    name: "Form",
+    component: () => import("@/views/form/index.vue"),
+  },
 ];
 
 const router = createRouter({

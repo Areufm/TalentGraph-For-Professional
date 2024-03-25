@@ -16,6 +16,7 @@
       <a href="/" class="header_left_text">首页</a>
       <a href="/recommend" class="header_left_text">推荐岗位</a>
       <a href="/research" class="header_left_text">搜索</a>
+      <a href="/form" class="header_left_text">在线表单</a>
       <button @click="isLogin = !isLogin">切换登录状态</button>
     </div>
     <div v-if="isLogin" class="header_right">
