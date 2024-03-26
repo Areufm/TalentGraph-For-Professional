@@ -45,664 +45,664 @@ import { ref, onMounted } from 'vue';
 import RelationGraph, { RGJsonData, RGOptions, RGNode, RGLine, RGLink, RGUserEvent, RelationGraphComponent } from 'relation-graph/vue3';
 import { Flag } from '@element-plus/icons-vue/dist/types';
 
-const demoData = {
-    "rootId": "N13",
-    "nodes": [
-        {
-            "id": "N1",
-            "text": "侯亮平",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "male",
-                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2308340537,462224207&fm=58&app=83&f=JPEG?w=250&h=250&s=EC708F46DA96B89CB69D5DDA0300D014&n=侯亮平"
-            }
-        },
-        {
-            "id": "N2",
-            "text": "李达康",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "male",
-                "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2677153550,2207805387&fm=58&app=83&f=JPEG?w=250&h=250&s=249039DDC2D153D411A851360300C062&n=李达康"
-            }
-        },
-        {
-            "id": "N3",
-            "text": "祁同伟",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "male",
-                "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1725297532,1915921796&fm=58&app=83&f=JPEG?w=250&h=250&s=FE8EA444A60759554DAC1DBB03000092&n=祁同伟"
-            }
-        },
-        {
-            "id": "N4",
-            "text": "陈岩石",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "male",
-                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2025797948,1615296290&fm=58&app=83&f=JPEG?w=250&h=250&s=B5B04C331F32739C4604F9F503007021&n=陈岩石"
-            }
-        },
-        {
-            "id": "N5",
-            "text": "陆亦可",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "female",
-                "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=344720653,260255884&fm=58&app=83&f=JPEG?w=250&h=250&s=57B8AB676AE862941D94ED170300E060&n=陆亦可"
-            }
-        },
-        {
-            "id": "N6",
-            "text": "高育良",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "male",
-                "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3098576865,849900134&fm=58&app=83&f=JPEG?w=250&h=250&s=EDE01A63A65917DC104509920300C0C1&n=高育良"
-            }
-        },
-        {
-            "id": "N7",
-            "text": "沙瑞金",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "male",
-                "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3722686698,2547355567&fm=58&app=83&f=JPEG?w=250&h=250&s=BF8A356E04E1B2BCEFA45D860100E0E1&n=沙瑞金"
-            }
-        },
-        {
-            "id": "N8",
-            "text": "高小琴",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "female",
-                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4266886844,1791850012&fm=58&s=66B01AC758BB67960834B8FA0300C011&n=高小琴"
-            }
-        },
-        {
-            "id": "N9",
-            "text": "高小凤",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "female",
-                "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2747443453,2680399969&fm=58&app=83&f=JPEG?w=150&h=150&s=DB8828C1562265150814ADFE03007012&n=高小凤"
-            }
-        },
-        {
-            "id": "N10",
-            "text": "赵东来",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "male",
-                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3301823375,1282024443&fm=58&app=83&f=JPG?w=250&h=250&s=2BC2834F2C22A25D12C06CA80300E013&n=赵东来"
-            }
-        },
-        {
-            "id": "N11",
-            "text": "程度",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "male",
-                "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=134233720,666111889&fm=58&app=83&f=JPG?w=250&h=250&s=4DE5A844801F1BD461E039A20300C0C3&n=程度"
-            }
-        },
-        {
-            "id": "N12",
-            "text": "吴惠芬",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "female",
-                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1215039713,3597142764&fm=58&app=83&f=JPEG?w=250&h=250&s=1A20E0018E3B6E9CD10C7DA30300E081&n=吴惠芬"
-            }
-        },
-        {
-            "id": "N13",
-            "text": "赵瑞龙",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "male",
-                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1140839330,2922201597&fm=58&app=83&f=JPEG?w=250&h=250&s=CDF9A844D45AB87512C8508B0100F080&n=赵瑞龙"
-            }
-        },
-        {
-            "id": "N14",
-            "text": "赵立春",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "male",
-                "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2110325119,1633583088&fm=58&app=83&f=JPEG?w=120&h=120&s=971E35C05A43305DCA7C1C0B030080C&n=赵立春"
-            }
-        },
-        {
-            "id": "N15",
-            "text": "陈海",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "male",
-                "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1416498138,2265298708&fm=58&app=83&f=JPEG?w=250&h=250&s=F906CF1C0E1356D046AC3CEB0300B0A0&n=陈海"
-            }
-        },
-        {
-            "id": "N16",
-            "text": "梁璐",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "female",
-                "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3749144697,3456463661&fm=58&app=83&f=JPEG?w=250&h=250&s=783823D3FE621E94138CC08B030070C2&n=梁璐"
-            }
-        },
-        {
-            "id": "N17",
-            "text": "刘新建",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "male",
-                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2263876103,310235844&fm=58&app=83&f=JPEG?w=250&h=250&s=6CE2A944CC1223DC632CC09203009082&n=刘新建"
-            }
-        },
-        {
-            "id": "N18",
-            "text": "欧阳菁",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "female",
-                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3590139977,3135325708&fm=58&app=83&f=JPEG?w=250&h=250&s=2F1C8B46C4A214BCE100A81A03004091&n=欧阳菁"
-            }
-        },
-        {
-            "id": "N19",
-            "text": "吴心怡",
-            "color": "#ec6941",
-            "borderColor": "#ff875e",
-            "data": {
-                "isGoodMan": true,
-                "sexType": "female",
-                "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2110325119,1633583088&fm=58&app=83&f=JPEG?w=120&h=120&s=971E35C05A43305DCA7C1C0B030080C&n=吴心怡"
-            }
-        },
-        {
-            "id": "N20",
-            "text": "蔡成功",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "male",
-                "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=4153440298,254451173&fm=58&app=83&f=JPEG?w=250&h=250&s=07C2B4488C42D355548CC41F010080D1&n=蔡成功"
-            }
-        },
-        {
-            "id": "N21",
-            "text": "丁义珍",
-            "color": "rgba(0, 206, 209, 1)",
-            "borderColor": "#6cc0ff",
-            "data": {
-                "isGoodMan": false,
-                "sexType": "male",
-                "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=842795163,1346447987&fm=58&app=83&f=JPEG?w=250&h=250&s=2BC3736EE499247D41C0B4820100E093&n=丁义珍"
-            }
-        }
-    ],
-    "lines": [
-        {
-            "from": "N6",
-            "to": "N1",
-            "text": "师生",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "师生"
-            }
-        },
-        {
-            "from": "N6",
-            "to": "N3",
-            "text": "师生",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "师生"
-            }
-        },
-        {
-            "from": "N14",
-            "to": "N6",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N14",
-            "to": "N13",
-            "text": "亲戚",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "亲戚"
-            }
-        },
-        {
-            "from": "N14",
-            "to": "N17",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N2",
-            "to": "N14",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N3",
-            "to": "N8",
-            "text": "情人",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "情人"
-            }
-        },
-        {
-            "from": "N4",
-            "to": "N15",
-            "text": "亲戚",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "亲戚"
-            }
-        },
-        {
-            "from": "N5",
-            "to": "N15",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N7",
-            "to": "N4",
-            "text": "朋友",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "朋友"
-            }
-        },
-        {
-            "from": "N3",
-            "to": "N15",
-            "text": "朋友",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "朋友"
-            }
-        },
-        {
-            "from": "N3",
-            "to": "N1",
-            "text": "朋友",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "朋友"
-            }
-        },
-        {
-            "from": "N1",
-            "to": "N15",
-            "text": "朋友",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "朋友"
-            }
-        },
-        {
-            "from": "N1",
-            "to": "N15",
-            "text": "朋友",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "朋友"
-            }
-        },
-        {
-            "from": "N6",
-            "to": "N12",
-            "text": "夫妻",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "夫妻"
-            }
-        },
-        {
-            "from": "N15",
-            "to": "N10",
-            "text": "朋友",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "朋友"
-            }
-        },
-        {
-            "from": "N8",
-            "to": "N9",
-            "text": "亲戚",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "亲戚"
-            }
-        },
-        {
-            "from": "N10",
-            "to": "N5",
-            "text": "情人",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "情人"
-            }
-        },
-        {
-            "from": "N3",
-            "to": "N11",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N6",
-            "to": "N9",
-            "text": "情人",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "情人"
-            }
-        },
-        {
-            "from": "N13",
-            "to": "N3",
-            "text": "勾结",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "勾结"
-            }
-        },
-        {
-            "from": "N2",
-            "to": "N10",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N13",
-            "to": "N11",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N7",
-            "to": "N2",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N7",
-            "to": "N6",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N3",
-            "to": "N16",
-            "text": "夫妻",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "夫妻"
-            }
-        },
-        {
-            "from": "N12",
-            "to": "N16",
-            "text": "朋友",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "朋友"
-            }
-        },
-        {
-            "from": "N2",
-            "to": "N18",
-            "text": "夫妻",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "夫妻"
-            }
-        },
-        {
-            "from": "N13",
-            "to": "N17",
-            "text": "腐化",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "腐化"
-            }
-        },
-        {
-            "from": "N13",
-            "to": "N8",
-            "text": "勾结",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "勾结"
-            }
-        },
-        {
-            "from": "N13",
-            "to": "N8",
-            "text": "腐化",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "腐化"
-            }
-        },
-        {
-            "from": "N13",
-            "to": "N9",
-            "text": "腐化",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "腐化"
-            }
-        },
-        {
-            "from": "N19",
-            "to": "N5",
-            "text": "亲戚",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "亲戚"
-            }
-        },
-        {
-            "from": "N19",
-            "to": "N12",
-            "text": "亲戚",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "亲戚"
-            }
-        },
-        {
-            "from": "N20",
-            "to": "N1",
-            "text": "朋友",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "朋友"
-            }
-        },
-        {
-            "from": "N20",
-            "to": "N18",
-            "text": "举报",
-            "color": "#ed724d",
-            "fontColor": "#ed724d",
-            "data": {
-                "type": "举报"
-            }
-        },
-        {
-            "from": "N18",
-            "to": "N17",
-            "text": "举报",
-            "color": "#ed724d",
-            "fontColor": "#ed724d",
-            "data": {
-                "type": "举报"
-            }
-        },
-        {
-            "from": "N17",
-            "to": "N13",
-            "text": "举报",
-            "color": "#ed724d",
-            "fontColor": "#ed724d",
-            "data": {
-                "type": "举报"
-            }
-        },
-        {
-            "from": "N2",
-            "to": "N21",
-            "text": "上下级",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "上下级"
-            }
-        },
-        {
-            "from": "N8",
-            "to": "N21",
-            "text": "勾结",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "勾结"
-            }
-        },
-        {
-            "from": "N3",
-            "to": "N21",
-            "text": "勾结",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "勾结"
-            }
-        },
-        {
-            "from": "N13",
-            "to": "N21",
-            "text": "勾结",
-            "color": "#d2c0a5",
-            "fontColor": "#d2c0a5",
-            "data": {
-                "type": "勾结"
-            }
-        }
-    ]
-}
+// const demoData = {
+//     "rootId": "N13",
+//     "nodes": [
+//         {
+//             "id": "N1",
+//             "text": "侯亮平",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "male",
+//                 "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2308340537,462224207&fm=58&app=83&f=JPEG?w=250&h=250&s=EC708F46DA96B89CB69D5DDA0300D014&n=侯亮平"
+//             }
+//         },
+//         {
+//             "id": "N2",
+//             "text": "李达康",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "male",
+//                 "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2677153550,2207805387&fm=58&app=83&f=JPEG?w=250&h=250&s=249039DDC2D153D411A851360300C062&n=李达康"
+//             }
+//         },
+//         {
+//             "id": "N3",
+//             "text": "祁同伟",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1725297532,1915921796&fm=58&app=83&f=JPEG?w=250&h=250&s=FE8EA444A60759554DAC1DBB03000092&n=祁同伟"
+//             }
+//         },
+//         {
+//             "id": "N4",
+//             "text": "陈岩石",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "male",
+//                 "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2025797948,1615296290&fm=58&app=83&f=JPEG?w=250&h=250&s=B5B04C331F32739C4604F9F503007021&n=陈岩石"
+//             }
+//         },
+//         {
+//             "id": "N5",
+//             "text": "陆亦可",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "female",
+//                 "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=344720653,260255884&fm=58&app=83&f=JPEG?w=250&h=250&s=57B8AB676AE862941D94ED170300E060&n=陆亦可"
+//             }
+//         },
+//         {
+//             "id": "N6",
+//             "text": "高育良",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3098576865,849900134&fm=58&app=83&f=JPEG?w=250&h=250&s=EDE01A63A65917DC104509920300C0C1&n=高育良"
+//             }
+//         },
+//         {
+//             "id": "N7",
+//             "text": "沙瑞金",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "male",
+//                 "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3722686698,2547355567&fm=58&app=83&f=JPEG?w=250&h=250&s=BF8A356E04E1B2BCEFA45D860100E0E1&n=沙瑞金"
+//             }
+//         },
+//         {
+//             "id": "N8",
+//             "text": "高小琴",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "female",
+//                 "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4266886844,1791850012&fm=58&s=66B01AC758BB67960834B8FA0300C011&n=高小琴"
+//             }
+//         },
+//         {
+//             "id": "N9",
+//             "text": "高小凤",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "female",
+//                 "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2747443453,2680399969&fm=58&app=83&f=JPEG?w=150&h=150&s=DB8828C1562265150814ADFE03007012&n=高小凤"
+//             }
+//         },
+//         {
+//             "id": "N10",
+//             "text": "赵东来",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "male",
+//                 "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3301823375,1282024443&fm=58&app=83&f=JPG?w=250&h=250&s=2BC2834F2C22A25D12C06CA80300E013&n=赵东来"
+//             }
+//         },
+//         {
+//             "id": "N11",
+//             "text": "程度",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=134233720,666111889&fm=58&app=83&f=JPG?w=250&h=250&s=4DE5A844801F1BD461E039A20300C0C3&n=程度"
+//             }
+//         },
+//         {
+//             "id": "N12",
+//             "text": "吴惠芬",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "female",
+//                 "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1215039713,3597142764&fm=58&app=83&f=JPEG?w=250&h=250&s=1A20E0018E3B6E9CD10C7DA30300E081&n=吴惠芬"
+//             }
+//         },
+//         {
+//             "id": "N13",
+//             "text": "赵瑞龙",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1140839330,2922201597&fm=58&app=83&f=JPEG?w=250&h=250&s=CDF9A844D45AB87512C8508B0100F080&n=赵瑞龙"
+//             }
+//         },
+//         {
+//             "id": "N14",
+//             "text": "赵立春",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2110325119,1633583088&fm=58&app=83&f=JPEG?w=120&h=120&s=971E35C05A43305DCA7C1C0B030080C&n=赵立春"
+//             }
+//         },
+//         {
+//             "id": "N15",
+//             "text": "陈海",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "male",
+//                 "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1416498138,2265298708&fm=58&app=83&f=JPEG?w=250&h=250&s=F906CF1C0E1356D046AC3CEB0300B0A0&n=陈海"
+//             }
+//         },
+//         {
+//             "id": "N16",
+//             "text": "梁璐",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "female",
+//                 "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3749144697,3456463661&fm=58&app=83&f=JPEG?w=250&h=250&s=783823D3FE621E94138CC08B030070C2&n=梁璐"
+//             }
+//         },
+//         {
+//             "id": "N17",
+//             "text": "刘新建",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2263876103,310235844&fm=58&app=83&f=JPEG?w=250&h=250&s=6CE2A944CC1223DC632CC09203009082&n=刘新建"
+//             }
+//         },
+//         {
+//             "id": "N18",
+//             "text": "欧阳菁",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "female",
+//                 "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3590139977,3135325708&fm=58&app=83&f=JPEG?w=250&h=250&s=2F1C8B46C4A214BCE100A81A03004091&n=欧阳菁"
+//             }
+//         },
+//         {
+//             "id": "N19",
+//             "text": "吴心怡",
+//             "color": "#ec6941",
+//             "borderColor": "#ff875e",
+//             "data": {
+//                 "isGoodMan": true,
+//                 "sexType": "female",
+//                 "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2110325119,1633583088&fm=58&app=83&f=JPEG?w=120&h=120&s=971E35C05A43305DCA7C1C0B030080C&n=吴心怡"
+//             }
+//         },
+//         {
+//             "id": "N20",
+//             "text": "蔡成功",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=4153440298,254451173&fm=58&app=83&f=JPEG?w=250&h=250&s=07C2B4488C42D355548CC41F010080D1&n=蔡成功"
+//             }
+//         },
+//         {
+//             "id": "N21",
+//             "text": "丁义珍",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=842795163,1346447987&fm=58&app=83&f=JPEG?w=250&h=250&s=2BC3736EE499247D41C0B4820100E093&n=丁义珍"
+//             }
+//         }
+//     ],
+//     "lines": [
+//         {
+//             "from": "N6",
+//             "to": "N1",
+//             "text": "师生",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "师生"
+//             }
+//         },
+//         {
+//             "from": "N6",
+//             "to": "N3",
+//             "text": "师生",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "师生"
+//             }
+//         },
+//         {
+//             "from": "N14",
+//             "to": "N6",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N14",
+//             "to": "N13",
+//             "text": "亲戚",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "亲戚"
+//             }
+//         },
+//         {
+//             "from": "N14",
+//             "to": "N17",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N2",
+//             "to": "N14",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N3",
+//             "to": "N8",
+//             "text": "情人",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "情人"
+//             }
+//         },
+//         {
+//             "from": "N4",
+//             "to": "N15",
+//             "text": "亲戚",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "亲戚"
+//             }
+//         },
+//         {
+//             "from": "N5",
+//             "to": "N15",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N7",
+//             "to": "N4",
+//             "text": "朋友",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "朋友"
+//             }
+//         },
+//         {
+//             "from": "N3",
+//             "to": "N15",
+//             "text": "朋友",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "朋友"
+//             }
+//         },
+//         {
+//             "from": "N3",
+//             "to": "N1",
+//             "text": "朋友",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "朋友"
+//             }
+//         },
+//         {
+//             "from": "N1",
+//             "to": "N15",
+//             "text": "朋友",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "朋友"
+//             }
+//         },
+//         {
+//             "from": "N1",
+//             "to": "N15",
+//             "text": "朋友",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "朋友"
+//             }
+//         },
+//         {
+//             "from": "N6",
+//             "to": "N12",
+//             "text": "夫妻",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "夫妻"
+//             }
+//         },
+//         {
+//             "from": "N15",
+//             "to": "N10",
+//             "text": "朋友",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "朋友"
+//             }
+//         },
+//         {
+//             "from": "N8",
+//             "to": "N9",
+//             "text": "亲戚",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "亲戚"
+//             }
+//         },
+//         {
+//             "from": "N10",
+//             "to": "N5",
+//             "text": "情人",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "情人"
+//             }
+//         },
+//         {
+//             "from": "N3",
+//             "to": "N11",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N6",
+//             "to": "N9",
+//             "text": "情人",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "情人"
+//             }
+//         },
+//         {
+//             "from": "N13",
+//             "to": "N3",
+//             "text": "勾结",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "勾结"
+//             }
+//         },
+//         {
+//             "from": "N2",
+//             "to": "N10",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N13",
+//             "to": "N11",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N7",
+//             "to": "N2",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N7",
+//             "to": "N6",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N3",
+//             "to": "N16",
+//             "text": "夫妻",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "夫妻"
+//             }
+//         },
+//         {
+//             "from": "N12",
+//             "to": "N16",
+//             "text": "朋友",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "朋友"
+//             }
+//         },
+//         {
+//             "from": "N2",
+//             "to": "N18",
+//             "text": "夫妻",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "夫妻"
+//             }
+//         },
+//         {
+//             "from": "N13",
+//             "to": "N17",
+//             "text": "腐化",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "腐化"
+//             }
+//         },
+//         {
+//             "from": "N13",
+//             "to": "N8",
+//             "text": "勾结",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "勾结"
+//             }
+//         },
+//         {
+//             "from": "N13",
+//             "to": "N8",
+//             "text": "腐化",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "腐化"
+//             }
+//         },
+//         {
+//             "from": "N13",
+//             "to": "N9",
+//             "text": "腐化",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "腐化"
+//             }
+//         },
+//         {
+//             "from": "N19",
+//             "to": "N5",
+//             "text": "亲戚",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "亲戚"
+//             }
+//         },
+//         {
+//             "from": "N19",
+//             "to": "N12",
+//             "text": "亲戚",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "亲戚"
+//             }
+//         },
+//         {
+//             "from": "N20",
+//             "to": "N1",
+//             "text": "朋友",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "朋友"
+//             }
+//         },
+//         {
+//             "from": "N20",
+//             "to": "N18",
+//             "text": "举报",
+//             "color": "#ed724d",
+//             "fontColor": "#ed724d",
+//             "data": {
+//                 "type": "举报"
+//             }
+//         },
+//         {
+//             "from": "N18",
+//             "to": "N17",
+//             "text": "举报",
+//             "color": "#ed724d",
+//             "fontColor": "#ed724d",
+//             "data": {
+//                 "type": "举报"
+//             }
+//         },
+//         {
+//             "from": "N17",
+//             "to": "N13",
+//             "text": "举报",
+//             "color": "#ed724d",
+//             "fontColor": "#ed724d",
+//             "data": {
+//                 "type": "举报"
+//             }
+//         },
+//         {
+//             "from": "N2",
+//             "to": "N21",
+//             "text": "上下级",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "上下级"
+//             }
+//         },
+//         {
+//             "from": "N8",
+//             "to": "N21",
+//             "text": "勾结",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "勾结"
+//             }
+//         },
+//         {
+//             "from": "N3",
+//             "to": "N21",
+//             "text": "勾结",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "勾结"
+//             }
+//         },
+//         {
+//             "from": "N13",
+//             "to": "N21",
+//             "text": "勾结",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "勾结"
+//             }
+//         }
+//     ]
+// }
 
 
 const graphOptions: RGOptions = {
@@ -724,20 +724,326 @@ const graphOptions: RGOptions = {
     defaultJunctionPoint: 'border'
 };
 
+const demoData = [
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "weex"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "react"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "web"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "angular"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "hybrid"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "c++"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "\u524d\u7aef"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "ruby"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "python"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "php"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "node.js"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "java"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "pc+mobile"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6280\u80fd\u9700\u6c42",
+        "m": {
+            "title": "app"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u8be6\u7ec6\u5730\u5740",
+        "m": {
+            "title": "\u5fb7\u529b\u897f\u5927\u53a610"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u5305\u542b\u804c\u4f4d",
+        "m": {
+            "title": "\u897f\u6e56\u533a"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6240\u5c5e\u533a/\u53bf",
+        "m": {
+            "title": "\u897f\u6e56\u533a"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u85aa\u6c34",
+        "m": {
+            "title": "15-25K"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u516c\u53f8\u804c\u4f4d",
+        "m": {
+            "title": "\u676d\u5dde\u5929\u9619\u79d1\u6280\u6709\u9650\u516c\u53f8"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u6240\u5c5e\u516c\u53f8",
+        "m": {
+            "title": "\u676d\u5dde\u5929\u9619\u79d1\u6280\u6709\u9650\u516c\u53f8"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u5b58\u5728\u804c\u4f4d",
+        "m": {
+            "title": "\u5927\u4e13"
+        }
+    },
+    {
+        "n": {
+            "id": "1532",
+            "title": "\u524d\u7aef\u5de5\u7a0b\u5e08"
+        },
+        "type(r)": "\u5b66\u5386\u8981\u6c42",
+        "m": {
+            "title": "\u5927\u4e13"
+        }
+    }
+]
+
+const transformData = (demoData) => {
+    let idCounter = 1; // 用于跟踪当前的 id 值
+
+    let rootId = "";
+    const nodes = [];
+    const lines = [];
+
+    let flag = 1;
+
+    demoData.forEach(item => {
+        if (flag) {
+            const root = {
+                id: item.n.id,
+                text: item.n.title,
+                data: {}
+            };
+            flag = 0;
+            rootId = root.id
+            nodes.push(root)
+        }
+
+        // 为 item.m 创建一个唯一的 id
+        const mId = `m${idCounter++}`; // 例如 "m1", "m2", "m3" 等
+
+        // 创建节点对象，这里我们假设 item.m 是目标节点，所以使用 item.m 的属性
+        const node = {
+            id: mId, // 使用生成的 id
+            text: item.m.title,
+            color: "rgba(0, 206, 209, 1)",
+            borderColor: "#6cc0ff",
+            data: {
+                "isGoodMan": false,
+                "sexType": "male",
+                "icon": "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1140839330,2922201597&fm=58&app=83&f=JPEG?w=250&h=250&s=CDF9A844D45AB87512C8508B0100F080&n=赵瑞龙"
+            },
+            type: item['type(r)']
+        };
+
+        // 根据 type 的值设置不同的图标
+        // 假设 'type' 是正确的属性名
+        switch (item['type(r)']) { // 修改这里
+            case "\u6280\u80fd\u9700\u6c42":
+                node.data.icon = 'el-icon-star-on';
+                break;
+            case "\u8be6\u7ec6\u5730\u5740":
+                node.data.icon = 'el-icon-setting';
+                break;
+            // ... 添加其他 case 来处理不同的 type 值
+            default:
+                node.data.icon = 'el-icon-sunny'; // 默认图标
+                break;
+        }
+
+        // 添加到 nodes 数组
+        nodes.push(node);
+
+        // 如果存在 m 属性，则创建边对象并添加到 lines 数组
+        if (item.m) {
+            lines.push({
+                from: item.n.title,
+                to: item.m.title, // 假设 to 应该是 m 的 title 属性
+                text: item['type(r)'], // 修改这里，移除了 (r)
+                color: "#d2c0a5",
+                fontColor: "#d2c0a5",
+                data: {
+                    "type": item['type(r)']
+                }
+            });
+        }
+    });
+
+    // 返回新的数据结构
+    return {
+        rootId,
+        nodes: nodes,
+        lines: lines,
+    };
+}
+
 const graphRef = ref<RelationGraphComponent>();
 const checked_sex = ref('');
 const checked_isgoodman = ref('');
-const rel_checkList = ref(['师生', '上下级', '亲戚', '情人', '朋友', '夫妻', '勾结', '腐化', '举报']);
-const all_rel_type = ref(['师生', '上下级', '亲戚', '情人', '朋友', '夫妻', '勾结', '腐化', '举报']);
+const rel_checkList = ref(['技能需求', '详细地址', '包含职位', '所属区/县', '薪水', '公司职位', '所属公司', '存在职位', '学历要求']);
+const all_rel_type = ref(['技能需求', '详细地址', '包含职位', '所属区/县', '薪水', '公司职位', '所属公司', '存在职位', '学历要求']);
 
 onMounted(() => {
     setGraphData();
 });
 
 const setGraphData = async () => {
-    const __graph_json_data: RGJsonData = demoData;
+    const transform = transformData(demoData)
+
+    const __graph_json_data: RGJsonData = transform;
     const graphInstance = graphRef.value!.getInstance();
     await graphInstance.setJsonData(__graph_json_data);
+    console.log(transform);
+
 };
 
 const doFilter = () => {
