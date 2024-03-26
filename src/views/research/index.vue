@@ -9,25 +9,6 @@
             <el-button type="primary" style="margin: auto 20px;">薪资优先</el-button>
             <el-button type="primary" style="margin: auto 20px;">同城优先</el-button>
             <el-button type="primary" style="margin: auto 20px;">技能优先</el-button>
-
-            <el-button type="primary" style="margin: auto 20px;" @click="drawer = true">
-                详细信息
-            </el-button>
-
-            <el-drawer v-model="drawer" direction="rtl" size="60%">
-                <template #header>
-                    <h1>职位具体信息</h1>
-                </template>
-                <template #default>
-                    <Info />
-                </template>
-                <template #footer>
-                    <div style="flex: auto">
-                        <el-button @click="cancelClick">cancel</el-button>
-                        <el-button type="primary" @click="confirmClick">confirm</el-button>
-                    </div>
-                </template>
-            </el-drawer>
         </div>
         <div class="center">
             <div class="left">
