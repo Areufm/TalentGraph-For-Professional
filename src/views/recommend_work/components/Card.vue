@@ -48,7 +48,7 @@ const handleToggleDrawer = () => {
   border: 2px solid #c3c6ce;
   transition: 0.5s ease-out;
   overflow: visible;
-  margin: 5px 5px;
+  margin: 5px 0;
 }
 
 .card-details {

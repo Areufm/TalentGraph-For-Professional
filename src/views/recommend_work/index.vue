@@ -37,8 +37,19 @@
         </div>
       </div>
       <div class="right">
-        <!-- <Graph /> -->
         <Relationship />
+        <!-- <div class="ltop">
+          <Relationship />
+        </div>
+        <div class="lbottom">
+          <Relationship />
+        </div>
+        <div class="rtop">
+          <Relationship />
+        </div>
+        <div class="rbottom">
+          <Relationship />
+        </div> -->
       </div>
     </div>
   </div>
@@ -52,6 +63,7 @@ import HeaderBar from "@/components/HeaderBar.vue";
 import Info from "./components/Info.vue";
 import Graph from "@/components/Chart/Graph.vue";
 import Relationship from "@/components/Chart/Relationship.vue"
+import Know from "@/components/Chart/Know.vue"
 
 import { ElMessage, ElMessageBox } from 'element-plus'
 
@@ -93,7 +105,7 @@ function confirmClick() {
 .container {
   margin: 0 auto;
   background-color: #fff;
-  padding: 50px 50px 0 50px;
+  padding: 50px 30px 0 30px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -110,16 +122,16 @@ function confirmClick() {
   display: flex;
   flex-grow: 1;
   width: 100%;
-  margin: 20px auto 0 auto;
+  margin: 20px 0 0 0;
   /* height: 80vh; */
-  /* height: calc(100vh-110px); */
+  height: calc(100vh-110px);
 }
 
 .left {
   display: flex;
   flex-direction: column;
-  width: 400px;
-  margin-left: 30px;
+  width: 250px;
+  /* margin-left: 30px; */
   overflow-y: auto;
   /* height: 60vh; */
 }
@@ -128,10 +140,42 @@ function confirmClick() {
   flex: 1;
   border: 2px rgb(142, 136, 136) solid;
   border-radius: 10px;
-  margin: 5px 0 5px 10px;
+  margin: 5px 0 10px 10px;
   /* height: 60vh; */
   overflow-y: auto;
   /* padding: 20px; */
+  /* display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; */
+
+}
+
+.ltop {
+  grid-area: 1 / 1 / 2 / 2;
+  border: 2px rgb(142, 136, 136) solid;
+  border-radius: 10px;
+  /* 左上角 */
+}
+
+.rtop {
+  grid-area: 1 / 2 / 2 / 3;
+  border: 2px rgb(142, 136, 136) solid;
+  border-radius: 10px;
+  /* 右上角 */
+}
+
+.lbottom {
+  grid-area: 2 / 1 / 3 / 2;
+  border: 2px rgb(142, 136, 136) solid;
+  border-radius: 10px;
+  /* 左下角 */
+}
+
+.rbottom {
+  grid-area: 2 / 2 / 3 / 3;
+  border: 2px rgb(142, 136, 136) solid;
+  border-radius: 10px;
+  /* 右下角 */
 }
 
 .left::-webkit-scrollbar,
