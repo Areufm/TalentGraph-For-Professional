@@ -61,9 +61,7 @@ import { ref } from "vue";
 import Card from "./components/Card.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import Info from "./components/Info.vue";
-import Graph from "@/components/Chart/Graph.vue";
 import Relationship from "@/components/Chart/Relationship.vue"
-import Know from "@/components/Chart/Know.vue"
 
 import { ElMessage, ElMessageBox } from 'element-plus'
 
