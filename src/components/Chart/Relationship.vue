@@ -43,7 +43,6 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import RelationGraph, { RGJsonData, RGOptions, RGNode, RGLine, RGLink, RGUserEvent, RelationGraphComponent } from 'relation-graph/vue3';
-import { Flag } from '@element-plus/icons-vue/dist/types';
 
 // const demoData = {
 //     "rootId": "N13",
@@ -704,26 +703,504 @@ import { Flag } from '@element-plus/icons-vue/dist/types';
 //     ]
 // }
 
+// const demoData = {
+//     "rootId": "1532",
+//     "nodes": [
+//         {
+//             "id": "1532",
+//             "text": "前端工程师",
+//             "data": {}
+//         },
+//         {
+//             "id": "m1",
+//             "text": "weex",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m2",
+//             "text": "react",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m3",
+//             "text": "web",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m4",
+//             "text": "angular",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m5",
+//             "text": "hybrid",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m6",
+//             "text": "c++",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m7",
+//             "text": "前端",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m8",
+//             "text": "ruby",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m9",
+//             "text": "python",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m10",
+//             "text": "php",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m11",
+//             "text": "node.js",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m12",
+//             "text": "java",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m13",
+//             "text": "pc+mobile",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m14",
+//             "text": "app",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-star-on"
+//             },
+//             "type": "技能需求"
+//         },
+//         {
+//             "id": "m15",
+//             "text": "德力西大厦10",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-setting"
+//             },
+//             "type": "详细地址"
+//         },
+//         {
+//             "id": "m16",
+//             "text": "西湖区",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-sunny"
+//             },
+//             "type": "包含职位"
+//         },
+//         {
+//             "id": "m17",
+//             "text": "西湖区",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-sunny"
+//             },
+//             "type": "所属区/县"
+//         },
+//         {
+//             "id": "m18",
+//             "text": "15-25K",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-sunny"
+//             },
+//             "type": "薪水"
+//         },
+//         {
+//             "id": "m19",
+//             "text": "杭州天阙科技有限公司",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-sunny"
+//             },
+//             "type": "公司职位"
+//         },
+//         {
+//             "id": "m20",
+//             "text": "杭州天阙科技有限公司",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-sunny"
+//             },
+//             "type": "所属公司"
+//         },
+//         {
+//             "id": "m21",
+//             "text": "大专",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-sunny"
+//             },
+//             "type": "存在职位"
+//         },
+//         {
+//             "id": "m22",
+//             "text": "大专",
+//             "color": "rgba(0, 206, 209, 1)",
+//             "borderColor": "#6cc0ff",
+//             "data": {
+//                 "isGoodMan": false,
+//                 "sexType": "male",
+//                 "icon": "el-icon-sunny"
+//             },
+//             "type": "学历要求"
+//         }
+//     ],
+//     "lines": [
+//         {
+//             "from": "1532",
+//             "to": "m1",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m2",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m3",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m4",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m5",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m6",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m7",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m8",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m9",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m10",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m11",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m12",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m13",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m14",
+//             "text": "技能需求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "技能需求"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m15",
+//             "text": "详细地址",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "详细地址"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m16",
+//             "text": "包含职位",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "包含职位"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m17",
+//             "text": "所属区/县",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "所属区/县"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m18",
+//             "text": "薪水",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "薪水"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m19",
+//             "text": "公司职位",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "公司职位"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m20",
+//             "text": "所属公司",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "所属公司"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m21",
+//             "text": "存在职位",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "存在职位"
+//             }
+//         },
+//         {
+//             "from": "1532",
+//             "to": "m22",
+//             "text": "学历要求",
+//             "color": "#d2c0a5",
+//             "fontColor": "#d2c0a5",
+//             "data": {
+//                 "type": "学历要求"
+//             }
+//         }
+//     ]
+// }
 
-const graphOptions: RGOptions = {
-    debug: false,
-    defaultNodeBorderWidth: 3,
-    defaultNodeColor: 'rgba(238, 178, 94, 1)',
-    allowSwitchLineShape: true,
-    allowSwitchJunctionPoint: true,
-    defaultLineShape: 1,
-    isMoveByParentNode: true,
-    moveToCenterWhenRefresh: true,
-    'layouts': [
-        {
-            'label': 'Auto Layout',
-            'layoutName': 'force',
-            'layoutClassName': 'seeks-layout-force'
-        }
-    ],
-    defaultJunctionPoint: 'border'
-};
-
+//原始数据
 const demoData = [
     {
         "n": {
@@ -947,7 +1424,9 @@ const demoData = [
     }
 ]
 
+//数据转换
 const transformData = (demoData) => {
+    // function transformData(demoData: any): RGJsonData {
     let idCounter = 1; // 用于跟踪当前的 id 值
 
     let rootId = "";
@@ -1006,9 +1485,9 @@ const transformData = (demoData) => {
         // 如果存在 m 属性，则创建边对象并添加到 lines 数组
         if (item.m) {
             lines.push({
-                from: item.n.title,
-                to: item.m.title, // 假设 to 应该是 m 的 title 属性
-                text: item['type(r)'], // 修改这里，移除了 (r)
+                from: item.n.id,
+                to: mId, // 假设 to 应该是 m 的 title 属性
+                text: item['type(r)'],
                 color: "#d2c0a5",
                 fontColor: "#d2c0a5",
                 data: {
@@ -1026,6 +1505,26 @@ const transformData = (demoData) => {
     };
 }
 
+const graphOptions: RGOptions = {
+    debug: false,
+    defaultNodeBorderWidth: 3,
+    defaultNodeColor: 'rgba(238, 178, 94, 1)',
+    allowSwitchLineShape: true,
+    allowSwitchJunctionPoint: true,
+    defaultLineShape: 1,
+    isMoveByParentNode: true,
+    moveToCenterWhenRefresh: true,
+    useAnimationWhenRefresh: true,
+    'layouts': [
+        {
+            'label': 'Auto Layout',
+            'layoutName': 'force',
+            'layoutClassName': 'seeks-layout-force'
+        }
+    ],
+    defaultJunctionPoint: 'border'
+};
+
 const graphRef = ref<RelationGraphComponent>();
 const checked_sex = ref('');
 const checked_isgoodman = ref('');
@@ -1038,11 +1537,9 @@ onMounted(() => {
 
 const setGraphData = async () => {
     const transform = transformData(demoData)
-
     const __graph_json_data: RGJsonData = transform;
     const graphInstance = graphRef.value!.getInstance();
     await graphInstance.setJsonData(__graph_json_data);
-    console.log(transform);
 
 };
 
