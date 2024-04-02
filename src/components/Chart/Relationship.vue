@@ -1933,17 +1933,6 @@ const transformData = (demoData) => {
             if (existingNodeWithSameTitle) {
                 // 如果存在，复用其 mId
                 mId = existingNodeWithSameTitle.id;
-                // nodes.push({
-                //     id: mId,
-                //     text: item.m.title,
-                //     color: "rgba(0, 206, 209, 1)",
-                //     borderColor: "#6cc0ff",
-                //     data: {
-                //         "isGoodMan": false,
-                //         "sexType": "male"
-                //     },
-                //     type: item['type(r)']
-                // });
             } else {
                 // 否则创建新的 mId
                 mId = `m${idCounter++}`;
