@@ -3,12 +3,12 @@
         <!-- <div style="margin-top:0px;width: calc(100% - 10px);height:calc(100vh);"> -->
         <div style="margin-top:0px; width: 100%; height: 100%;">
             <RelationGraph ref="graphRef" :options="graphOptions">
-                <template #node="{ node }">
+                <!-- <template #node="{ node }">
                     <div class="my-node-style" :style="{ 'background-image': 'url(' + node.data.icon + ')' }">
                     </div>
                     <div class="c-node-name" :style="{ color: node.color }">{{ node.text }}</div>
                 </template>
-                <template #graph-plug>
+<template #graph-plug>
                     <div
                         style="position:absolute;z-index:700;left:20px;top:20px;height:110px;padding-top:6px;padding-left: 30px;padding-right:30px;border: #efefef solid 1px;color: #555555;border-radius: 10px;background-color: rgba(255,255,255,0.79);font-size: 12px;">
                         <div style="">
@@ -33,7 +33,7 @@
                             </el-checkbox-group>
                         </div>
                     </div>
-                </template>
+                </template> -->
             </RelationGraph>
         </div>
 
@@ -44,6 +44,7 @@
 import { ref, onMounted } from 'vue';
 import RelationGraph, { RGJsonData, RGOptions, RGNode, RGLine, RGLink, RGUserEvent, RelationGraphComponent } from 'relation-graph/vue3';
 
+// 官方数据
 // const demoData = {
 //     "rootId": "N13",
 //     "nodes": [
@@ -703,6 +704,7 @@ import RelationGraph, { RGJsonData, RGOptions, RGNode, RGLine, RGLink, RGUserEve
 //     ]
 // }
 
+//一个推荐图
 // const demoData = {
 //     "rootId": "1532",
 //     "nodes": [
@@ -1200,7 +1202,8 @@ import RelationGraph, { RGJsonData, RGOptions, RGNode, RGLine, RGLink, RGUserEve
 //     ]
 // }
 
-//原始数据
+//四个推荐图一起
+
 const demoData = [
     [
         {
@@ -1367,18 +1370,28 @@ const demoData = [
     [
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
-            "type(r)": "\u6280\u80fd\u9700\u6c42",
+            "type(r)": "\u65b9\u5411",
             "m": {
-                "title": "web"
+                "title": "\u8ba1\u7b97\u673a"
             }
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+            },
+            "type(r)": "\u6280\u80fd\u9700\u6c42",
+            "m": {
+                "title": "react"
+            }
+        },
+        {
+            "n": {
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
@@ -1387,8 +1400,8 @@ const demoData = [
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
@@ -1397,18 +1410,18 @@ const demoData = [
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
-                "title": "html5"
+                "title": "git"
             }
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
@@ -1417,28 +1430,8 @@ const demoData = [
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
-            },
-            "type(r)": "\u6280\u80fd\u9700\u6c42",
-            "m": {
-                "title": "js"
-            }
-        },
-        {
-            "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
-            },
-            "type(r)": "\u6280\u80fd\u9700\u6c42",
-            "m": {
-                "title": "jquery"
-            }
-        },
-        {
-            "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
@@ -1447,18 +1440,18 @@ const demoData = [
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u8be6\u7ec6\u5730\u5740",
             "m": {
-                "title": "\u6d2a\u57ce\u5e7f\u573aB\u5ea71005"
+                "title": "\u897f\u6eaa\u79d1\u521b\u56ed9\u5e629\u697c"
             }
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u5305\u542b\u804c\u4f4d",
             "m": {
@@ -1467,8 +1460,8 @@ const demoData = [
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u6240\u5c5e\u533a/\u53bf",
             "m": {
@@ -1477,38 +1470,38 @@ const demoData = [
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u85aa\u6c34",
             "m": {
-                "title": "1-2K"
+                "title": "2-3K"
             }
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u516c\u53f8\u804c\u4f4d",
             "m": {
-                "title": "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8"
+                "title": "\u5148\u4e4b\uff08\u676d\u5dde\uff09\u6559\u80b2\u79d1\u6280\u6709\u9650\u516c\u53f8"
             }
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u6240\u5c5e\u516c\u53f8",
             "m": {
-                "title": "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8"
+                "title": "\u5148\u4e4b\uff08\u676d\u5dde\uff09\u6559\u80b2\u79d1\u6280\u6709\u9650\u516c\u53f8"
             }
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u5b58\u5728\u804c\u4f4d",
             "m": {
@@ -1517,8 +1510,8 @@ const demoData = [
         },
         {
             "n": {
-                "id": "309",
-                "title": "\u524d\u7aef\u5b9e\u4e60\u751f"
+                "id": "55",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
             },
             "type(r)": "\u5b66\u5386\u8981\u6c42",
             "m": {
@@ -1721,38 +1714,48 @@ const demoData = [
     [
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
-            },
-            "type(r)": "\u65b9\u5411",
-            "m": {
-                "title": "\u8ba1\u7b97\u673a"
-            }
-        },
-        {
-            "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
-                "title": "react"
+                "title": "node"
             }
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
-                "title": "javascript"
+                "title": "axios"
             }
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
+            },
+            "type(r)": "\u6280\u80fd\u9700\u6c42",
+            "m": {
+                "title": "npm"
+            }
+        },
+        {
+            "n": {
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
+            },
+            "type(r)": "\u6280\u80fd\u9700\u6c42",
+            "m": {
+                "title": "element-ui"
+            }
+        },
+        {
+            "n": {
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
@@ -1761,8 +1764,18 @@ const demoData = [
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
+            },
+            "type(r)": "\u6280\u80fd\u9700\u6c42",
+            "m": {
+                "title": "pc"
+            }
+        },
+        {
+            "n": {
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
@@ -1771,8 +1784,18 @@ const demoData = [
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
+            },
+            "type(r)": "\u6280\u80fd\u9700\u6c42",
+            "m": {
+                "title": "http"
+            }
+        },
+        {
+            "n": {
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
@@ -1781,8 +1804,18 @@ const demoData = [
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
+            },
+            "type(r)": "\u6280\u80fd\u9700\u6c42",
+            "m": {
+                "title": "js2"
+            }
+        },
+        {
+            "n": {
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u6280\u80fd\u9700\u6c42",
             "m": {
@@ -1791,18 +1824,18 @@ const demoData = [
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u8be6\u7ec6\u5730\u5740",
             "m": {
-                "title": "\u897f\u6eaa\u79d1\u521b\u56ed9\u5e629\u697c"
+                "title": "\u4e1c\u90e8\u8f6f\u4ef6\u56ed7\u53f7\u697c616"
             }
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u5305\u542b\u804c\u4f4d",
             "m": {
@@ -1811,8 +1844,8 @@ const demoData = [
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u6240\u5c5e\u533a/\u53bf",
             "m": {
@@ -1821,38 +1854,38 @@ const demoData = [
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u85aa\u6c34",
             "m": {
-                "title": "2-3K"
+                "title": "8-10K"
             }
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u516c\u53f8\u804c\u4f4d",
             "m": {
-                "title": "\u5148\u4e4b\uff08\u676d\u5dde\uff09\u6559\u80b2\u79d1\u6280\u6709\u9650\u516c\u53f8"
+                "title": "\u676d\u5dde\u76d8\u4e1d\u6d1e\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8"
             }
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u6240\u5c5e\u516c\u53f8",
             "m": {
-                "title": "\u5148\u4e4b\uff08\u676d\u5dde\uff09\u6559\u80b2\u79d1\u6280\u6709\u9650\u516c\u53f8"
+                "title": "\u676d\u5dde\u76d8\u4e1d\u6d1e\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8"
             }
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u5b58\u5728\u804c\u4f4d",
             "m": {
@@ -1861,8 +1894,8 @@ const demoData = [
         },
         {
             "n": {
-                "id": "8192",
-                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)"
+                "id": "909",
+                "title": "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08"
             },
             "type(r)": "\u5b66\u5386\u8981\u6c42",
             "m": {
@@ -1914,7 +1947,7 @@ const transformData = (demoData) => {
             } else {
                 // 否则创建新的 mId
                 mId = `m${idCounter++}`;
-                nodes.push({
+                const node = {
                     id: mId,
                     text: item.m.title,
                     color: "rgba(0, 206, 209, 1)",
@@ -1924,7 +1957,22 @@ const transformData = (demoData) => {
                         "sexType": "male"
                     },
                     type: item['type(r)']
-                });
+                };
+                switch (item['type(r)']) {
+                    case "\u85aa\u6c34"://薪资
+                        node.color = "#FF0000"
+                        break
+                    case "\u516c\u53f8\u804c\u4f4d": //所属公司
+                        node.color = "#A020F0"
+                        break
+                    case "\u8be6\u7ec6\u5730\u5740"://详细地址
+                        node.color = "#8B7D6B"
+                        break
+                    case "\u5305\u542b\u804c\u4f4d"://所属区县
+                        node.color = "#FF1493"
+                        break
+                }
+                nodes.push(node)
             }
 
             if (item.m) {
@@ -1948,69 +1996,11 @@ const transformData = (demoData) => {
         nodes: nodes,
         lines: Object.values(lines) // 转换为数组形式返回
     };
-
 }
-// const transformData = (demoData) => {
-//     let idCounter = 1;
-//     const rootId = [];
-//     const nodes = [];
-//     const lines = [];
-
-//     demoData.forEach(jsonDataGroup => {
-//         let flag = 1;
-//         jsonDataGroup.forEach(item => {
-//             if (flag) {
-//                 const root = {
-//                     id: item.n.id,
-//                     text: item.n.title,
-//                     data: {}
-//                 };
-//                 flag = 0;
-//                 rootId.push(root.id);
-//                 nodes.push(root);
-//             }
-
-//             const mId = `m${idCounter++}`;
-
-//             const node = {
-//                 id: mId,
-//                 text: item.m.title,
-//                 color: "rgba(0, 206, 209, 1)",
-//                 borderColor: "#6cc0ff",
-//                 data: {
-//                     "isGoodMan": false,
-//                     "sexType": "male"
-//                 },
-//                 type: item['type(r)']
-//             };
-
-//             nodes.push(node);
-
-//             if (item.m) {
-//                 lines.push({
-//                     from: item.n.id,
-//                     to: mId,
-//                     text: item['type(r)'],
-//                     color: "#d2c0a5",
-//                     fontColor: "#d2c0a5",
-//                     data: {
-//                         "type": item['type(r)']
-//                     }
-//                 });
-//             }
-//         });
-//     });
-
-//     return {
-//         rootId:rootId,
-//         nodes: nodes,
-//         lines: lines
-//     };
-// }
 
 const graphOptions: RGOptions = {
     debug: false,
-    defaultNodeBorderWidth: 3,
+    defaultNodeBorderWidth: 5,
     defaultNodeColor: 'rgba(238, 178, 94, 1)',
     allowSwitchLineShape: true,
     allowSwitchJunctionPoint: true,
