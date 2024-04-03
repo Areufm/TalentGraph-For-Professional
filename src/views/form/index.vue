@@ -73,7 +73,7 @@ import HeaderBar from "@/components/HeaderBar.vue";
 import { Edit, Picture, UploadFilled } from '@element-plus/icons-vue'
 import { regionData } from 'element-china-area-data'
 import { h } from 'vue'
-import { ElNotification } from 'element-plus'
+// import { ElNotification } from 'element-plus'
 
 const handleChange = (value) => {
     console.log(value)
