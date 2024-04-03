@@ -3,12 +3,12 @@
         <!-- <div style="margin-top:0px;width: calc(100% - 10px);height:calc(100vh);"> -->
         <div style="margin-top:0px; width: 100%; height: 100%;">
             <RelationGraph ref="graphRef" :options="graphOptions">
-                <!-- <template #node="{ node }">
+                <template #node="{ node }">
                     <div class="my-node-style" :style="{ 'background-image': 'url(' + node.data.icon + ')' }">
                     </div>
                     <div class="c-node-name" :style="{ color: node.color }">{{ node.text }}</div>
                 </template>
-<template #graph-plug>
+                <template #graph-plug>
                     <div
                         style="position:absolute;z-index:700;left:20px;top:20px;height:110px;padding-top:6px;padding-left: 30px;padding-right:30px;border: #efefef solid 1px;color: #555555;border-radius: 10px;background-color: rgba(255,255,255,0.79);font-size: 12px;">
                         <div style="">
@@ -33,7 +33,7 @@
                             </el-checkbox-group>
                         </div>
                     </div>
-                </template> -->
+                </template>
             </RelationGraph>
         </div>
 
@@ -1952,7 +1952,7 @@ const transformData = (demoData) => {
                         node.color = "#FF0000"
                         break
                     case "\u516c\u53f8\u804c\u4f4d": //所属公司
-                        node.color = "#A020F0"
+                        node.color = "royalblue"
                         break
                     case "\u8be6\u7ec6\u5730\u5740"://详细地址
                         node.color = "#8B7D6B"
