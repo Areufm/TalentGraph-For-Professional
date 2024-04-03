@@ -7,11 +7,14 @@
       <sort-button type="primary" style="margin: auto 20px;">薪资优先</sort-button>
       <sort-button type="primary" style="margin: auto 20px;">同城优先</sort-button>
       <sort-button type="primary" style="margin: auto 20px;">技能优先</sort-button>
-      <p class="title_job">岗位</p>
-      <p class="title_salary">薪资</p>
-      <p class="title_region">地区</p>
-      <p class="title_skill">技能</p>
-      <p class="title_company">公司</p>
+      <div style="display: flex; margin-left: auto;">
+
+        <p class="title_job">岗位</p>
+        <p class="title_salary">薪资</p>
+        <p class="title_region">地区</p>
+        <p class="title_skill">技能</p>
+        <p class="title_company">公司</p>
+      </div>
       <!-- <el-button type="primary" style="margin: auto 20px;">名企优先</el-button>
       <el-button type="primary" style="margin: auto 20px;">薪资优先</el-button>
       <el-button type="primary" style="margin: auto 20px;">同城优先</el-button>
