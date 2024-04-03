@@ -5,17 +5,30 @@
         style="border-radius: 50%; height: 45px; width: 45px; margin: 0 10px" />
       <div class="header_left_title">职业猫</div>
       <div class="nav-city">
-        <p class="nav-city-box" ka="header-switch-city">
-          <i class="icon-poi"></i><span class="nav-city-selected">杭州</span><span class="switchover-city">[切换城市]</span>
+        <p class="nav-city-box" ka="header-switch-city" @click="centerDialogVisible = true">
+          <i class="icon-poi"></i>
+          <span class="nav-city-selected">{{ lastSelectedRegionText }}</span>
+          <span class="switchover-city">[切换城市]</span>
         </p>
-        <!-- <div class="city-box">
-            <ul class="dorpdown-province"></ul>
-            <div class="dorpdown-city"></div>
-          </div> -->
+        <el-dialog v-model="centerDialogVisible" title="请选择您的地区" width="500" align-center
+          style="border-radius: 20px; justify-content: center;align-items: center;">
+          <!-- <span>Open the dialog from the center from the screen</span> -->
+          <el-cascader placeholder="请选择地区" size="default" :options="pcTextArr" v-model="selectedOptions" @change=""
+            style="display: flex;">
+          </el-cascader>
+          <template #footer>
+            <div class="dialog-footer">
+              <el-button @click="centerDialogVisible = false">Cancel</el-button>
+              <el-button type="primary" @click="centerDialogVisible = false">
+                Confirm
+              </el-button>
+            </div>
+          </template>
+        </el-dialog>
       </div>
       <a href="/" class="header_left_text">首页</a>
       <a href="/recommend" class="header_left_text">推荐岗位</a>
-      <a href="/research" class="header_left_text">搜索</a>
+      <a href="/research" class="header_left_text">搜索岗位</a>
       <a href="/form" class="header_left_text">在线表单</a>
       <button @click="isLogin = !isLogin">切换登录状态</button>
     </div>
@@ -97,11 +110,33 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
+import { pcTextArr } from 'element-china-area-data'
 
 const router = useRouter();
 const isLogin = ref(true);
+const centerDialogVisible = ref(false)
+const selectedOptions = ref(["11", "1101", "110101"]); // 初始化选中值
+
+function findLabelByValue(data, value) {
+  for (const item of data) {
+    if (item.value === value) {
+      return item.label;
+    } else if (Array.isArray(item.children) && item.children.length > 0) {
+      const foundLabel = findLabelByValue(item.children, value);
+      if (foundLabel) {
+        return foundLabel;
+      }
+    }
+  }
+  return '';
+}
+
+const lastSelectedRegionText = computed(() => {
+  const lastOption = selectedOptions.value[selectedOptions.value.length - 1];
+  return findLabelByValue(pcTextArr, lastOption);
+});
 
 const toLogin = () => {
   router.push("/login");
@@ -196,7 +231,7 @@ const hidePopup = () => {
 }
 
 .header_left {
-  margin-left: 20px;
+  margin-left: 80px;
   display: flex;
   align-items: center;
 }
