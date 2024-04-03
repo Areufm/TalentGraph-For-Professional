@@ -70,14 +70,75 @@ const isLogin = ref(true);
       <input required="" placeholder="" type="password" class="input" />
       <span>密码</span>
     </label>
-    <button class="submit">登录</button>
+    <button class="submit" @click="handleLogin">登录</button>
     <p class="signin">暂时没有账户 ? <a href="/register">去注册</a></p>
     <p class="signin">暂不注册 <a href="/">返回首页</a></p>
   </form>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { validUsername } from "@/utils/validate";
+
+const validateUsername = (rule, value, callback) => {
+  if (!validUsername(value)) {
+    callback(new Error("请输入正确的用户名"));
+  } else {
+    callback();
+  }
+};
+
+const validatePassword = (rule, value, callback) => {
+  if (value.length < 6) {
+    callback(new Error("密码不能少于6位"));
+  } else {
+    callback();
+  }
+};
+
+const LoginForm = reactive({
+  username: "",
+  password: "",
+  password_confirm: "",
+});
+
+const loginRules = reactive({
+  username: [{ required: true, trigger: "blur", validator: validateUsername }],
+  password: [
+    { required: true, trigger: "change", validator: validatePassword },
+  ],
+});
+
+const isShow = ref(true);
+const isShow_confirm = ref(true);
+const passwordType = ref("password");
+const redirect = ref(undefined);
+const route = useRoute();
+const router = useRouter();
+
+const showPwd = () => {
+  passwordType.value = passwordType.value === "password" ? "" : "password";
+  isShow.value = !isShow.value;
+};
+
+const showPwd_confirm = () => {
+  if (passwordConfirmType.value === "password") {
+    passwordConfirmType.value = "";
+  } else {
+    passwordConfirmType.value = "password";
+  }
+  isShow_confirm.value = !isShow_confirm.value;
+};
+
+const handleLogin = () => {
+  ElNotification({
+    title: "登录成功！",
+    message: "This is a success message",
+    type: "success",
+  });
+  router.push("/");
+};
 </script>
 
 <style scoped>
