@@ -11,19 +11,11 @@
                     <el-form-item label="年龄">
                         <el-input v-model="form.age" clearable />
                     </el-form-item>
-                    <el-form-item label="技能点">
-                        <el-input v-model="form.skill" clearable />
+                    <el-form-item label="电话号码">
+                        <el-input v-model="form.phone" clearable />
                     </el-form-item>
-                </el-form>
-            </div>
-            <div v-if="active == 1" style="width: 100%;">
-                active = 1
-                <el-form :model="form" label-width="auto" style="">
-                    <el-form-item label="教育经历">
-                        <el-input v-model="form.education" />
-                    </el-form-item>
-                    <el-form-item label="项目经历">
-                        <el-input v-model="form.projects" />
+                    <el-form-item label="邮箱">
+                        <el-input v-model="form.email" clearable />
                     </el-form-item>
                     <el-form-item label="地区">
                         <!-- <el-input v-model="form.area" /> -->
@@ -33,19 +25,39 @@
                     </el-form-item>
                 </el-form>
             </div>
+            <div v-if="active == 1" style="width: 100%;">
+                active = 1
+                <el-form-item label="学历">
+                    <el-select v-model="form.degree" placeholder="请选择你的学历">
+                        <el-option label="专科" value="专科" />
+                        <el-option label="本科" value="本科" />
+                        <el-option label="硕士" value="硕士" />
+                        <el-option label="博士" value="博士" />
+                    </el-select>
+                </el-form-item>
+                <el-form :model="form" label-width="auto" style="">
+                    <el-form-item label="教育经历">
+                        <el-input v-model="form.education" />
+                    </el-form-item>
+                    <el-form-item label="项目经历">
+                        <el-input v-model="form.projects" />
+                    </el-form-item>
+
+                </el-form>
+            </div>
             <div v-if="active == 2" style="width: 100%;">
                 active = 2
                 <el-form :model="form" label-width="auto" style="">
-                    <el-form-item label="用户名">
-                        <el-input v-model="form.username" clearable />
-                    </el-form-item>
-                    <el-form-item label="学历">
-                        <el-select v-model="form.degree" placeholder="请选择你的学历">
+                    <el-form-item label="求职岗位">
+                        <el-select v-model="form.degree" placeholder="请选择你的求职岗位">
                             <el-option label="专科" value="专科" />
                             <el-option label="本科" value="本科" />
                             <el-option label="硕士" value="硕士" />
                             <el-option label="博士" value="博士" />
                         </el-select>
+                    </el-form-item>
+                    <el-form-item label="技能点">
+                        <el-input v-model="form.skill" clearable />
                     </el-form-item>
                     <el-form-item label="个人信息描述">
                         <el-input v-model="form.info" :autosize="{ minRows: 2, maxRows: 4 }" type="textarea"
@@ -82,6 +94,8 @@ const handleChange = (value) => {
 const form = reactive({
     name: '猪开南',
     age: '19',
+    email: '',
+    phone: '',
     skill: '啥都会',
     education: '',
     projects: '',
