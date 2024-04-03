@@ -57,6 +57,7 @@ const isLogin = ref(true);
 </style> -->
 <template>
   <h1 style="position: absolute; top: 7%; left: 10%;">欢迎使用职业猫CareerCat用户端</h1>
+  <img src="../../assets/login.png" alt="" style="width: 700px; position: absolute; top:20%; left: 10%">
   <form class="form">
     <p class="title">Login</p>
     <p class="message">登录职业猫CareerCat</p>
