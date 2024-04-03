@@ -72,7 +72,9 @@ import { ref } from "vue";
 <style scoped>
 .container {
   margin: 0 auto;
-  background-color: rgb(230, 245, 248);
+  /* background-color: rgb(230, 245, 248); */
+  background: linear-gradient(to bottom, rgb(192, 230, 245), rgb(188, 228, 244),
+      rgb(211, 238, 248), rgb(221, 239, 245), rgb(225, 238, 242), white);
   padding: 50px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
@@ -81,6 +83,7 @@ import { ref } from "vue";
   margin-top: 60px;
   margin-left: 50px;
 }
+
 .job-title {
   font-size: 24px;
   margin-bottom: 10px;
@@ -117,6 +120,7 @@ import { ref } from "vue";
 .job-description {
   margin-bottom: 20px;
 }
+
 .job-description-card {
   margin: 10px;
   border: 2px solid rgb(182, 178, 178);

@@ -51,7 +51,7 @@ img {
 
 .card {
   display: flex;
-  margin: 20px 100px;
+  margin: 30px 100px;
 }
 
 .left {

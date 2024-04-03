@@ -1,15 +1,14 @@
 ﻿<template>
   <div class="card">
     <div class="card-details">
-      <div style="display: flex; top: 0; justify-content: space-between">
-        <p class="work_name">工作名称</p>
-        <p class="work_salary">薪资</p>
+      <div style="display: flex; top: 0; justify-content: space-between;">
+        <p class="work_name">前端开发工程师</p>
+        <p class="work_salary">12K-15K</p>
       </div>
       <div style="display: flex">
         <p style="margin: 0 15px">关键词1</p>
         <p style="margin: 0 15px">关键词2</p>
         <p style="margin: 0 15px">关键词3</p>
-        <p style="margin: 0 15px">关键词4</p>
       </div>
       <div style="display: flex; justify-content: space-between">
         <p class="company_name">企业名</p>
@@ -40,7 +39,7 @@ const handleToggleDrawer = () => {
 .card {
   /* width: 350px; */
   /* width: 30%; */
-  height: 134px;
+  height: 135px;
   border-radius: 20px;
   background: #f5f5f5;
   position: relative;
@@ -89,6 +88,12 @@ const handleToggleDrawer = () => {
 .company_name {
   color: rgb(134, 134, 134);
   margin-left: 15px;
+  width: 180px;
+  overflow: hidden;
+  /* 超出部分隐藏 */
+  text-overflow: ellipsis;
+  /* 超出部分以省略号显示 */
+  white-space: nowrap;
 }
 
 .job {
@@ -105,6 +110,14 @@ const handleToggleDrawer = () => {
   font-size: 1.5em;
   font-weight: bold;
   margin-left: 15px;
+  display: block;
+  width: 170px;
+  overflow: hidden;
+  /* 超出部分隐藏 */
+  text-overflow: ellipsis;
+  /* 超出部分以省略号显示 */
+  white-space: nowrap;
+  /* 禁止文本换行 */
 }
 
 .work_salary {
@@ -112,5 +125,6 @@ const handleToggleDrawer = () => {
   font-size: 1.5em;
   font-weight: bold;
   color: red;
+  display: flex;
 }
 </style>
