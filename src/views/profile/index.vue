@@ -191,9 +191,11 @@ const assess = ref(null); //评价星星
 }
 
 .container {
-  margin-top: 70px;
+  margin-top: 50px;
   display: flex;
-  background-color: rgb(230, 245, 248);
+  /* background-color: rgb(230, 245, 248); */
+  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818), rgba(188, 228, 244, 0.616),
+      rgb(211, 238, 248), rgb(221, 239, 245), rgb(225, 238, 242), white);
   /* height: 100vh; */
   height: 100%;
   width: 100%;
