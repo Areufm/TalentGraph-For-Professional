@@ -53,7 +53,6 @@ import SearchBar from "@/components/SearchBar.vue";
 import GetMore from "./components/GetMore.vue";
 import Tag from "./components/Tag.vue";
 import FunctionCard from "./components/FunctionCard.vue";
-// import TagBar from "@/components/TagBar.vue";
 
 </script>
 
@@ -75,6 +74,7 @@ h1 {
 .hotwork {
   display: flex;
   margin: 10px auto;
+  font-weight: bold;
 }
 
 .work {
@@ -108,8 +108,8 @@ h1 {
   /* background: rgba(167, 167, 167, 0.277); */
   /* background: linear-gradient(to bottom, rgb(186, 236, 255), rgb(164, 216, 236),
       rgb(191, 228, 242), rgb(205, 227, 235), rgb(210, 233, 241), white); */
-  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818), rgba(188, 228, 244, 0.616),
-      rgb(211, 238, 248), rgb(221, 239, 245), rgb(225, 238, 242), white);
+  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818) 2%, rgba(188, 228, 244, 0.616) 8%,
+      rgb(211, 238, 248) 15%, rgb(221, 239, 245) 20%, rgb(225, 238, 242) 30%, white);
   /* background-color: rgb(242, 244, 247); */
   /* background: rgb(225, 222, 222); */
   display: flex;

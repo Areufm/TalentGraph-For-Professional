@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="card">
-    <div v-if="isLogin" class="left">
+    <div v-if="authStore.isLogin" class="left">
       <PersonCard />
     </div>
     <div v-else class="left">
@@ -27,8 +27,11 @@ import PersonCard from "./PersonCard.vue";
 import Login from "./Login.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useAuthStore } from '@/stores/auth'
 
-const isLogin = ref(false);
+const authStore = useAuthStore()
+
+const isLogin = ref(true);
 
 const router = useRouter();
 const toRecommend = () => {
@@ -62,6 +65,7 @@ img {
   border-radius: 10px;
   margin: 10px;
   display: flex;
+
 }
 
 .right {

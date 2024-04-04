@@ -125,7 +125,7 @@ const getMore = () => {
   width: 30%;
   height: 154px;
   border-radius: 20px;
-  background: #f5f5f5;
+  /* background: #f5f5f5; */
   position: relative;
   padding: 1.8rem;
   /* padding: 1.8rem; */

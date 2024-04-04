@@ -2,8 +2,8 @@
   <div class="card">
     <div class="card-details">
       <div style="display: flex; top: 0; justify-content: space-between">
-        <p class="work_name">工作名称</p>
-        <p class="work_salary">薪资</p>
+        <p class="work_name">Java架构师</p>
+        <p class="work_salary">35-45K</p>
       </div>
       <div style="display: flex">
         <p style="margin: 0 10px">关键词1</p>
@@ -12,8 +12,8 @@
         <p style="margin: 0 10px">关键词4</p>
       </div>
       <div style="display: flex; justify-content: space-between">
-        <p class="company_name">企业名</p>
-        <p class="job">职业类型</p>
+        <p class="company_name">字节跳动</p>
+        <p class="job">计算机</p>
       </div>
     </div>
   </div>

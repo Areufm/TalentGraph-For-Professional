@@ -26,11 +26,13 @@ import { ref } from "vue";
   width: 100%;
   flex-direction: column;
   gap: 10px;
-  /* max-width: 350px; */
-  background-color: #ffffff;
+  max-width: 400px;
+  /* background-color: #ffffff; */
   padding: 30px;
-  /* border: rgba(88, 87, 87, 0.822) solid 2px; */
+  border: 2px rgba(137, 191, 230, 0.822) solid;
   border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
 }
 
 .signin {
@@ -66,6 +68,7 @@ import { ref } from "vue";
   outline: 0;
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
+  background-color: transparent;
 }
 
 .form label .input+span {
@@ -76,6 +79,7 @@ import { ref } from "vue";
   font-size: 0.9em;
   cursor: text;
   transition: 0.3s ease;
+
 }
 
 .form label .input:placeholder-shown+span {

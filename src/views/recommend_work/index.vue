@@ -2,28 +2,21 @@
   <HeaderBar />
   <div class="container">
     <div class="sort">
-      <p style="font-size: 20px; font-weight: bold;">请选择推荐方式:</p>
+      <p style="font-size: 17px; font-weight: bold;">请选择推荐方式:</p>
       <sort-button type="primary" style="margin: auto 20px;">名企优先</sort-button>
       <sort-button type="primary" style="margin: auto 20px;">薪资优先</sort-button>
       <sort-button type="primary" style="margin: auto 20px;">同城优先</sort-button>
       <sort-button type="primary" style="margin: auto 20px;">技能优先</sort-button>
+      <!-- 知识图谱节点说明 -->
       <div style="display: flex; margin-left: auto;">
-
         <p class="title_job">岗位</p>
         <p class="title_salary">薪资</p>
         <p class="title_region">地区</p>
         <p class="title_skill">技能</p>
         <p class="title_company">公司</p>
       </div>
-      <!-- <el-button type="primary" style="margin: auto 20px;">名企优先</el-button>
-      <el-button type="primary" style="margin: auto 20px;">薪资优先</el-button>
-      <el-button type="primary" style="margin: auto 20px;">同城优先</el-button>
-      <el-button type="primary" style="margin: auto 20px;">技能优先</el-button> -->
-
-      <!-- <el-button type="primary" style="margin: auto 20px;" @click="drawer = true">
-        详细信息
-      </el-button> -->
     </div>
+    <!-- 职位具体信息 -->
     <el-drawer v-model="drawer" direction="rtl" size="60%">
       <template #header>
         <h1>职位具体信息</h1>
@@ -44,24 +37,13 @@
         <Card :toggle-drawer="toggleDrawer" />
         <Card :toggle-drawer="toggleDrawer" />
         <Card :toggle-drawer="toggleDrawer" />
-        <div style="margin: 20px auto 0 auto;">
-          <el-pagination :page-size="4" :pager-count="5" layout="prev, pager, next" :total="40" />
+        <!-- 换页组件 -->
+        <div style="margin: 20px auto 0 auto; ">
+          <el-pagination small background :page-size="4" :pager-count="5" layout="prev, pager, next" :total="40" />
         </div>
       </div>
       <div class="right">
         <Relationship />
-        <!-- <div class="ltop">
-          <Relationship />
-        </div>
-        <div class="lbottom">
-          <Relationship />
-        </div>
-        <div class="rtop">
-          <Relationship />
-        </div>
-        <div class="rbottom">
-          <Relationship />
-        </div> -->
       </div>
     </div>
   </div>
@@ -69,13 +51,37 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeMount } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from '@/stores/auth'
+const router = useRouter();
+
 import Card from "./components/Card.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import Info from "./components/Info.vue";
 import Relationship from "@/components/Chart/Relationship.vue"
 
-// import { ElMessage, ElMessageBox } from 'element-plus'
+const authStore = useAuthStore()
+
+// onMounted(() => {
+//   console.log(authStore.isLogin);
+//   if (!authStore.isLogin) {
+//     ElMessage.error('请先登录账户！')
+//     router.push("/login")
+//   }
+// })
+onBeforeMount(() => {
+  // 初始化时从本地存储恢复登录状态
+  const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+  if (storedIsLoggedIn === "true") {
+    authStore.isLogin = true;
+  }
+  console.log(authStore.isLogin);
+  if (!authStore.isLogin) {
+    ElMessage.error('请先登录账户！')
+    router.push("/login")
+  }
+})
 
 const drawer = ref(false)
 
@@ -113,7 +119,7 @@ function confirmClick() {
 
 <style scoped>
 .title_company {
-  font-size: 20px;
+  font-size: 17px;
   color: royalblue;
   font-weight: 600;
   letter-spacing: -1px;
@@ -148,7 +154,7 @@ function confirmClick() {
 }
 
 .title_job {
-  font-size: 20px;
+  font-size: 17px;
   color: rgb(238, 178, 94);
   font-weight: 600;
   letter-spacing: -1px;
@@ -183,7 +189,7 @@ function confirmClick() {
 }
 
 .title_salary {
-  font-size: 20px;
+  font-size: 17px;
   color: #FF0000;
   font-weight: 600;
   letter-spacing: -1px;
@@ -218,7 +224,7 @@ function confirmClick() {
 }
 
 .title_region {
-  font-size: 20px;
+  font-size: 17px;
   color: #FF1493;
   font-weight: 600;
   letter-spacing: -1px;
@@ -253,7 +259,7 @@ function confirmClick() {
 }
 
 .title_skill {
-  font-size: 20px;
+  font-size: 17px;
   color: rgb(0,
       206,
       209);
@@ -303,7 +309,7 @@ function confirmClick() {
 
 sort-button {
   position: relative;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 7px;
   border: 2px solid rgb(61, 106, 255);
   font-size: 15px;
@@ -368,7 +374,7 @@ sort-button::before {
   }
 }
 
-button:active {
+sort-button:active {
   box-shadow: 0 0 0 0 transparent;
   -webkit-transition: box-shadow 0.2s ease-in;
   -moz-transition: box-shadow 0.2s ease-in;
@@ -376,6 +382,7 @@ button:active {
 }
 
 .container {
+  height: 100vh;
   margin: 0 auto;
   background-color: #fff;
   padding: 50px 30px 0 30px;
@@ -386,8 +393,8 @@ button:active {
 
 .sort {
   display: flex;
-  margin: 20px auto;
-  height: 50px;
+  margin: 10px auto;
+  /* height: 50px; */
   text-align: center;
   align-items: center
 }
@@ -397,9 +404,8 @@ button:active {
   display: flex;
   flex-grow: 1;
   width: 100%;
-  margin: 20px 0 0 0;
-  /* height: 80vh; */
-  height: calc(100vh-110px);
+  margin: 10px 0 0 0;
+  /* height: calc(100vh-50px); */
 }
 
 .left {
@@ -419,38 +425,7 @@ button:active {
   /* height: 60vh; */
   overflow-y: auto;
   /* padding: 20px; */
-  /* display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr; */
 
-}
-
-.ltop {
-  grid-area: 1 / 1 / 2 / 2;
-  border: 2px rgb(142, 136, 136) solid;
-  border-radius: 10px;
-  /* 左上角 */
-}
-
-.rtop {
-  grid-area: 1 / 2 / 2 / 3;
-  border: 2px rgb(142, 136, 136) solid;
-  border-radius: 10px;
-  /* 右上角 */
-}
-
-.lbottom {
-  grid-area: 2 / 1 / 3 / 2;
-  border: 2px rgb(142, 136, 136) solid;
-  border-radius: 10px;
-  /* 左下角 */
-}
-
-.rbottom {
-  grid-area: 2 / 2 / 3 / 3;
-  border: 2px rgb(142, 136, 136) solid;
-  border-radius: 10px;
-  /* 右下角 */
 }
 
 .left::-webkit-scrollbar,
