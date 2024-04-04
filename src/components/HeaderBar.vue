@@ -6,15 +6,21 @@
       <div class="header_left_title">职业猫</div>
       <div class="nav-city">
         <p class="nav-city-box" ka="header-switch-city" @click="centerDialogVisible = true">
-          <i class="icon-poi"></i>
+          <!-- <i class="icon-poi"></i> -->
+          <svg class="icon-poi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
+            <path fill="currentColor"
+              d="M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544">
+            </path>
+            <path fill="currentColor"
+              d="M512 512a96 96 0 1 0 0-192 96 96 0 0 0 0 192m0 64a160 160 0 1 1 0-320 160 160 0 0 1 0 320"></path>
+          </svg>
           <span class="nav-city-selected">{{ lastSelectedRegionText }}</span>
           <span class="switchover-city">[切换城市]</span>
         </p>
-        <el-dialog v-model="centerDialogVisible" title="请选择您的地区" width="500" align-center
-          style="border-radius: 20px; justify-content: center;align-items: center;">
-          <!-- <span>Open the dialog from the center from the screen</span> -->
-          <el-cascader placeholder="请选择地区" size="default" :options="pcTextArr" v-model="selectedOptions" @change=""
-            style="display: flex;">
+        <el-dialog v-model="centerDialogVisible" title="请选择您的地区" width="500"
+          style="border-radius: 15px; justify-content: center;align-items: center;">
+          <el-cascader placeholder="请选择地区" size="default" :options="regionData" v-model="selectedOptions" @change=""
+            style="display: flex">
           </el-cascader>
           <template #footer>
             <div class="dialog-footer">
@@ -30,23 +36,9 @@
       <a href="/recommend" class="header_left_text">推荐岗位</a>
       <a href="/research" class="header_left_text">搜索岗位</a>
       <a href="/form" class="header_left_text">在线表单</a>
-      <button @click="isLogin = !isLogin">切换登录状态</button>
+      <button @click="changeLogin">切换登录状态</button>
     </div>
-    <div v-if="isLogin" class="header_right">
-      <a href="/boss" class="header_right_text">我要招聘</a>
-      <a href="/login" class="header_right_text">我要求职</a>
-      <button style="
-          border: rgb(255, 255, 255) solid 2px;
-          border-radius: 50px;
-          background-color: rgba(255, 255, 255, 0);
-          color: white;
-          padding: 10px;
-        " @click="toLogin">
-        登录 / 注册
-      </button>
-    </div>
-    <div v-else class="header_right">
-
+    <div v-if="authStore.isLogin" class="header_right">
       <el-popover :width="300"
         popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;">
         <template #reference>
@@ -106,18 +98,43 @@
       <p class="header_right_text">Joker Xue</p>
       <img src="../assets/xue.jpg" alt="头像" style="border-radius: 50%; height: 45px; width: 45px" />
     </div>
+    <div v-else class="header_right">
+      <a href="/boss" class="header_right_text">我要招聘</a>
+      <a href="/login" class="header_right_text">我要求职</a>
+      <button style="
+          border: rgb(255, 255, 255) solid 2px;
+          border-radius: 50px;
+          background-color: rgba(255, 255, 255, 0);
+          color: white;
+          padding: 10px;
+        " @click="toLogin">
+        登录 / 注册
+      </button>
+
+    </div>
   </n-layout-header>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { pcTextArr } from 'element-china-area-data'
+import { regionData } from 'element-china-area-data'
+import { useAuthStore } from '@/stores/auth'
 
+const authStore = useAuthStore()
 const router = useRouter();
-const isLogin = ref(true);
 const centerDialogVisible = ref(false)
 const selectedOptions = ref(["11", "1101", "110101"]); // 初始化选中值
+
+const changeLogin = () => {
+  if (authStore.isLogin) {
+    authStore.logout();
+  } else {
+    authStore.login();
+  }
+  console.log(authStore.isLogin);
+  // 这里添加登录逻辑，登录成功后调用 authStore.login()
+}
 
 function findLabelByValue(data, value) {
   for (const item of data) {
@@ -135,19 +152,22 @@ function findLabelByValue(data, value) {
 
 const lastSelectedRegionText = computed(() => {
   const lastOption = selectedOptions.value[selectedOptions.value.length - 1];
-  return findLabelByValue(pcTextArr, lastOption);
+  return findLabelByValue(regionData, lastOption);
 });
 
 const toLogin = () => {
   router.push("/login");
 };
+
 const toResume = () => {
   router.push("/profile");
 };
+
 const showPopup = () => {
   var overlay = document.getElementById("overlay");
   overlay.style.display = "block";
 };
+
 const hidePopup = () => {
   var overlay = document.getElementById("overlay");
   overlay.style.display = "none";
@@ -305,7 +325,9 @@ const hidePopup = () => {
   cursor: pointer;
   height: 49px;
   line-height: 49px;
-  color: #00bebd;
+  /* color: #00bebd; */
+  color: rgb(0, 64, 255);
+
   display: flex;
   align-items: center;
   margin: 5px;
@@ -318,6 +340,7 @@ const hidePopup = () => {
   text-overflow: ellipsis;
   max-width: 84px;
   vertical-align: middle;
+  font-weight: bold;
 }
 
 .nav-city .icon-poi {
@@ -325,7 +348,7 @@ const hidePopup = () => {
   vertical-align: top;
   width: 18px;
   height: 18px;
-  background: url(https://img.bosszhipin.com/static/file/2023/umua62pczi1679922532668.png) 0 -18px/18px auto no-repeat;
+  /* background: url(https://img.bosszhipin.com/static/file/2023/umua62pczi1679922532668.png) 0 -18px/18px auto no-repeat; */
   margin: 16px 3px 0 24px;
 }
 

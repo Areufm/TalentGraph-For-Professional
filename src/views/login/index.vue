@@ -56,31 +56,42 @@ const isLogin = ref(true);
 }
 </style> -->
 <template>
-  <h1 style="position: absolute; top: 7%; left: 10%;">欢迎使用职业猫CareerCat用户端</h1>
-  <img src="../../assets/login.png" alt="" style="width: 700px; position: absolute; top:20%; left: 10%">
-  <form class="form">
-    <p class="title">Login</p>
-    <p class="message">登录职业猫CareerCat</p>
+  <h1 style="position: absolute; top: 7%; left: 10%;color: royalblue;">欢迎使用职业猫CareerCat用户端</h1>
+  <div class="login">
+    <div class="left">
+      <img src="../../assets/login.png" alt="" style=" ">
+    </div>
+    <div class="right">
+      <form class="form">
+        <p class="title">Login</p>
+        <p class="message">登录职业猫CareerCat</p>
 
-    <label>
-      <input required="" placeholder="" type="text" class="input" />
-      <span>用户名</span>
-    </label>
+        <label>
+          <input required="" placeholder="" type="text" class="input" />
+          <span>用户名</span>
+        </label>
 
-    <label>
-      <input required="" placeholder="" type="password" class="input" />
-      <span>密码</span>
-    </label>
-    <button class="submit" @click="handleLogin">登录</button>
-    <p class="signin">暂时没有账户 ? <a href="/register">去注册</a></p>
-    <p class="signin">暂不注册 <a href="/">返回首页</a></p>
-  </form>
+        <label>
+          <input required="" placeholder="" type="password" class="input" />
+          <span>密码</span>
+        </label>
+        <button class="submit" @click="handleLogin">登录</button>
+        <p class="signin">暂时没有账户 ? <a href="/register">去注册</a></p>
+        <p class="signin">暂不注册 <a href="/">返回首页</a></p>
+      </form>
+    </div>
+  </div>
+
+
 </template>
 
 <script setup>
 import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
 
 const validateUsername = (rule, value, callback) => {
   if (!validUsername(value)) {
@@ -135,17 +146,48 @@ const showPwd_confirm = () => {
 const handleLogin = () => {
   ElNotification({
     title: "登录成功！",
-    message: "This is a success message",
+    message: "恭喜你成功登录",
     type: "success",
+    offset: 50,
   });
+  authStore.login()
+  console.log(authStore.isLogin);
   router.push("/");
 };
 </script>
 
 <style scoped>
+.login {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  align-items: center;
+}
+
+.left {
+  width: 50%;
+  /* 或者设置一个固定的宽度，以保证图片与登录框之间的间距 */
+  background: transparent;
+  /* 如果需要让图片背景透明的话 */
+}
+
+.left img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* 确保图片适应容器大小而不变形 */
+}
+
+.right {
+  width: 50%;
+  /* 或者设置一个固定或自适应的宽度，保持与左侧图片的布局平衡 */
+}
+
 .form {
   display: flex;
-  width: 50%;
+  width: 100%;
   flex-direction: column;
   gap: 10px;
   max-width: 350px;
@@ -153,10 +195,10 @@ const handleLogin = () => {
   padding: 30px;
   border: rgba(88, 87, 87, 0.822) solid 2px;
   border-radius: 20px;
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 70%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
 .title {

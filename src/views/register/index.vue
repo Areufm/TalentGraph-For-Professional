@@ -1,46 +1,54 @@
 ﻿<template>
-  <h1 style="position: absolute; top: 7%; left: 10%;">欢迎注册职业猫CareerCat用户端</h1>
-  <img src="../../assets/login.png" alt="" style="width: 700px; position: absolute; top:20%; left: 10%">
-  <form class="form" :ref="registerForm" :rules="registerRules" :model="registerForm" auto-complete="off"
-    label-position="left">
-    <p class="title">Register</p>
-    <p class="message">注册A15赛题账号.</p>
+  <h1 style="position: absolute; top: 7%; left: 10%;color: royalblue;">欢迎注册职业猫CareerCat用户端</h1>
+  <div class="register">
+    <div class="left">
+      <img src="../../assets/login.png" alt="" style="">
 
-    <label>
-      <input required="" placeholder="" type="text" class="input" :key="passwordType" :ref="username"
-        v-model="registerForm.username" name="username" tabindex="1" autocomplete="off" />
-      <span>用户名</span>
-    </label>
+    </div>
+    <div class="right">
+      <form class="form" :ref="registerForm" :rules="registerRules" :model="registerForm" auto-complete="off"
+        label-position="left">
+        <p class="title">Register</p>
+        <p class="message">注册A15赛题账号.</p>
 
-    <!-- <label>
+        <label>
+          <input required="" placeholder="" type="text" class="input" :key="passwordType" :ref="username"
+            v-model="registerForm.username" name="username" tabindex="1" autocomplete="off" />
+          <span>用户名</span>
+        </label>
+
+        <!-- <label>
       <input required="" placeholder="" type="email" class="input" />
       <span>Email</span>
     </label> -->
 
-    <label>
-      <input required="" placeholder="" class="input" :key="passwordType" :ref="registerForm.password"
-        v-model="registerForm.password" :type="passwordType" name="password" tabindex="2" auto-complete="off"
-        @keyup.enter.native="handleRegister()" />
-      <span>密码</span>
-      <el-icon class="icon-right" @click="showPwd">
-        <i-ep-view v-if="isShow" />
-        <i-ep-hide v-else />
-      </el-icon>
-    </label>
-    <label>
-      <input required="" placeholder="" class="input" :key="passwordConfirmType" :ref="registerForm.password_confirm"
-        v-model="registerForm.password_confirm" :type="passwordConfirmType" name="password_confirm" tabindex="3"
-        auto-complete="off" @keyup.enter.native="handleRegister()" />
-      <span>确认密码</span>
-      <el-icon class="icon-right" @click="showPwd_confirm">
-        <i-ep-view v-if="isShow_confirm" />
-        <i-ep-hide v-else />
-      </el-icon>
-    </label>
-    <button class="submit" :plain="true" @click="handleRegister">注册</button>
-    <p class="signin">已经有一个账户 ? <a href="/login">去登陆</a></p>
-    <p class="signin">暂不注册 <a href="/">返回首页</a></p>
-  </form>
+        <label>
+          <input required="" placeholder="" class="input" :key="passwordType" :ref="registerForm.password"
+            v-model="registerForm.password" :type="passwordType" name="password" tabindex="2" auto-complete="off"
+            @keyup.enter.native="handleRegister()" />
+          <span>密码</span>
+          <el-icon class="icon-right" @click="showPwd">
+            <i-ep-view v-if="isShow" />
+            <i-ep-hide v-else />
+          </el-icon>
+        </label>
+        <label>
+          <input required="" placeholder="" class="input" :key="passwordConfirmType"
+            :ref="registerForm.password_confirm" v-model="registerForm.password_confirm" :type="passwordConfirmType"
+            name="password_confirm" tabindex="3" auto-complete="off" @keyup.enter.native="handleRegister()" />
+          <span>确认密码</span>
+          <el-icon class="icon-right" @click="showPwd_confirm">
+            <i-ep-view v-if="isShow_confirm" />
+            <i-ep-hide v-else />
+          </el-icon>
+        </label>
+        <button class="submit" :plain="true" @click="handleRegister">注册</button>
+        <p class="signin">已经有一个账户 ? <a href="/login">去登陆</a></p>
+        <p class="signin">暂不注册 <a href="/">返回首页</a></p>
+      </form>
+    </div>
+  </div>
+
 </template>
 
 <script setup>
@@ -127,6 +135,34 @@ const handleRegister = () => {
 </script>
 
 <style scoped>
+.register {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  align-items: center;
+}
+
+.left {
+  width: 50%;
+  /* 或者设置一个固定的宽度，以保证图片与登录框之间的间距 */
+  background: transparent;
+  /* 如果需要让图片背景透明的话 */
+}
+
+.left img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* 确保图片适应容器大小而不变形 */
+}
+
+.right {
+  width: 50%;
+  /* 或者设置一个固定或自适应的宽度，保持与左侧图片的布局平衡 */
+}
+
 input[type="password"]::-ms-reveal {
   display: none;
 }
@@ -135,16 +171,12 @@ input[type="password"]::-ms-reveal {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 50%;
+  width: 100%;
   max-width: 350px;
   background-color: #ffffff;
   padding: 30px;
   border: rgba(88, 87, 87, 0.822) solid 2px;
   border-radius: 20px;
-  position: absolute;
-  top: 50%;
-  left: 70%;
-  transform: translate(-50%, -50%);
 }
 
 .title {
