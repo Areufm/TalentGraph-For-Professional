@@ -1,17 +1,17 @@
 ﻿<template>
-    <div style="height: 100%">
+    <div style="height: 100%;width: 100%;">
         <!-- <div style="margin-top:0px;width: calc(100% - 10px);height:calc(100vh);"> -->
-        <div style="margin-top:0px; width: 100%; height: 100%;">
+        <div style="margin-top:0px; height: 100%; width: 100%;">
             <RelationGraph ref="graphRef" :options="graphOptions">
-                <template #node="{ node }">
+                <!-- <template #node="{ node }">
                     <div class="my-node-style" :style="{ 'background-image': 'url(' + node.data.icon + ')' }">
                     </div>
                     <div class="c-node-name" :style="{ color: node.color }">{{ node.text }}</div>
-                </template>
+                </template> -->
                 <template #graph-plug>
                     <div
-                        style="position:absolute;z-index:700;left:20px;top:20px;height:110px;padding-top:6px;padding-left: 30px;padding-right:30px;border: #efefef solid 1px;color: #555555;border-radius: 10px;background-color: rgba(255,255,255,0.79);font-size: 12px;">
-                        <div style="">
+                        style="position:absolute;z-index:700;left:20px;top:20px;padding:15px 10px;border: #efefef solid 1px;color: #555555;border-radius: 10px;background-color: rgba(255,255,255,0.3);font-size: 12px; font-weight: bold;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                        <!-- <div style="">
                             <div style="line-height: 20px;">Node Filter:</div>
                             <el-radio-group v-model="checked_sex" size="small" @change="doFilter">
                                 <el-radio-button label="">All</el-radio-button>
@@ -25,9 +25,9 @@
                                 <el-radio-button :label="true">Positive</el-radio-button>
                                 <el-radio-button :label="false">Negative</el-radio-button>
                             </el-radio-group>
-                        </div>
+                        </div> -->
                         <div>
-                            <div style="line-height: 20px;">Relation Filter:</div>
+                            <div style="line-height: 20px;">条件筛选:</div>
                             <el-checkbox-group v-model="rel_checkList" @change="doFilter">
                                 <el-checkbox v-for="thisItem in all_rel_type" :key="thisItem" :label="thisItem" />
                             </el-checkbox-group>
@@ -1997,10 +1997,12 @@ const graphOptions: RGOptions = {
     isMoveByParentNode: true,
     moveToCenterWhenRefresh: true,
     useAnimationWhenRefresh: true,
+    backgroundColor: "transparent",
     'layouts': [
         {
             'label': 'Auto Layout',
             'layoutName': 'force',
+            'maxLayoutTimes': 10000,
             'layoutClassName': 'seeks-layout-force'
         }
     ],
