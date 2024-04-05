@@ -2,9 +2,26 @@
   <HeaderBar />
   <div class="container">
     <div class="top">
-      <h2>求职岗位： {{ recommendWork }}</h2>
+      <div style="display: flex">
+        <svg
+          style="width: 30px"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1024 1024"
+          data-v-ea893728=""
+        >
+          <path
+            fill="currentColor"
+            d="M288 128h608L736 384l160 256H288v320h-96V64h96z"
+          ></path>
+        </svg>
+        <h2>求职岗位： {{ recommendWork }}</h2>
+      </div>
       <div class="sort">
         <p style="font-size: 17px; font-weight: bold">请选择推荐方式:</p>
+        <!-- <el-button type="primary" style="margin: auto 20px">名企优先</el-button>
+        <el-button type="primary" style="margin: auto 20px">薪资优先</el-button>
+        <el-button type="primary" style="margin: auto 20px">同城优先</el-button>
+        <el-button type="primary" style="margin: auto 20px">技能优先</el-button> -->
         <sort-button type="primary" style="margin: auto 20px"
           >名企优先</sort-button
         >
@@ -44,10 +61,10 @@
     </el-drawer>
     <div class="some">
       <div class="left">
-        <Card :toggle-drawer="toggleDrawer" />
-        <Card :toggle-drawer="toggleDrawer" />
-        <Card :toggle-drawer="toggleDrawer" />
-        <Card :toggle-drawer="toggleDrawer" />
+        <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(0)" />
+        <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(1)" />
+        <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(2)" />
+        <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(3)" />
         <!-- 换页组件 -->
         <div style="margin: 20px auto 0 auto">
           <el-pagination
@@ -61,7 +78,7 @@
         </div>
       </div>
       <div class="right">
-        <Relationship />
+        <Relationship :ref="relationshipRef" />
         <div style="position: absolute; bottom: 0; left: 0">
           <p class="title_job">岗位</p>
           <p class="title_salary">薪资</p>
@@ -83,6 +100,14 @@ import Card from "./components/Card.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import Info from "./components/Info.vue";
 import Relationship from "@/components/Chart/Relationship.vue";
+
+const relationshipRef = ref();
+
+// 假设Card组件现在能接受cardIndex并发出hover事件
+function handleCardHover(index) {
+  relationshipRef.value = index + 1;
+  // console.log(relationshipRef.value);
+}
 
 onBeforeMount(() => {
   // 初始化时从本地存储恢复登录状态
