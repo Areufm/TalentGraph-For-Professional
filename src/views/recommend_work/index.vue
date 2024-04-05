@@ -1,20 +1,31 @@
 ﻿<template>
   <HeaderBar />
   <div class="container">
-    <div class="sort">
-      <p style="font-size: 17px; font-weight: bold;">请选择推荐方式:</p>
-      <sort-button type="primary" style="margin: auto 20px;">名企优先</sort-button>
-      <sort-button type="primary" style="margin: auto 20px;">薪资优先</sort-button>
-      <sort-button type="primary" style="margin: auto 20px;">同城优先</sort-button>
-      <sort-button type="primary" style="margin: auto 20px;">技能优先</sort-button>
-      <!-- 知识图谱节点说明 -->
+    <div class="top">
+      <h2>求职岗位： {{ recommendWork }}</h2>
+      <div class="sort">
+        <p style="font-size: 17px; font-weight: bold">请选择推荐方式:</p>
+        <sort-button type="primary" style="margin: auto 20px"
+          >名企优先</sort-button
+        >
+        <sort-button type="primary" style="margin: auto 20px"
+          >薪资优先</sort-button
+        >
+        <sort-button type="primary" style="margin: auto 20px"
+          >同城优先</sort-button
+        >
+        <sort-button type="primary" style="margin: auto 20px"
+          >技能优先</sort-button
+        >
+      </div>
+      <!-- 知识图谱节点说明
       <div style="display: flex; margin-left: auto;">
         <p class="title_job">岗位</p>
         <p class="title_salary">薪资</p>
         <p class="title_region">地区</p>
         <p class="title_skill">技能</p>
         <p class="title_company">公司</p>
-      </div>
+      </div> -->
     </div>
     <!-- 职位具体信息 -->
     <el-drawer v-model="drawer" direction="rtl" size="60%">
@@ -38,38 +49,41 @@
         <Card :toggle-drawer="toggleDrawer" />
         <Card :toggle-drawer="toggleDrawer" />
         <!-- 换页组件 -->
-        <div style="margin: 20px auto 0 auto; ">
-          <el-pagination small background :page-size="4" :pager-count="5" layout="prev, pager, next" :total="40" />
+        <div style="margin: 20px auto 0 auto">
+          <el-pagination
+            small
+            background
+            :page-size="4"
+            :pager-count="5"
+            layout="prev, pager, next"
+            :total="40"
+          />
         </div>
       </div>
       <div class="right">
         <Relationship />
+        <div style="position: absolute; bottom: 0; left: 0">
+          <p class="title_job">岗位</p>
+          <p class="title_salary">薪资</p>
+          <p class="title_region">地区</p>
+          <p class="title_skill">技能</p>
+          <p class="title_company">公司</p>
+        </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeMount } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from '@/stores/auth'
-const router = useRouter();
+import { useAuthStore } from "@/stores/auth";
 
 import Card from "./components/Card.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import Info from "./components/Info.vue";
-import Relationship from "@/components/Chart/Relationship.vue"
+import Relationship from "@/components/Chart/Relationship.vue";
 
-const authStore = useAuthStore()
-
-// onMounted(() => {
-//   console.log(authStore.isLogin);
-//   if (!authStore.isLogin) {
-//     ElMessage.error('请先登录账户！')
-//     router.push("/login")
-//   }
-// })
 onBeforeMount(() => {
   // 初始化时从本地存储恢复登录状态
   const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
@@ -78,42 +92,46 @@ onBeforeMount(() => {
   }
   console.log(authStore.isLogin);
   if (!authStore.isLogin) {
-    ElMessage.error('请先登录账户！')
-    router.push("/login")
+    ElMessage.error("请先登录账户！");
+    router.push("/login");
   }
-})
+});
 
-const drawer = ref(false)
+const authStore = useAuthStore();
+const router = useRouter();
+const drawer = ref(false);
+const recommendWork = ref("前端开发工程师");
 
 const toggleDrawer = () => {
   drawer.value = !drawer.value;
 };
 
 function cancelClick() {
-  drawer.value = false
+  drawer.value = false;
 }
+
 function confirmClick() {
   ElMessageBox.confirm(
-    'proxy will permanently delete the file. Continue?',
-    'Warning',
+    "proxy will permanently delete the file. Continue?",
+    "Warning",
     {
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel',
-      type: 'warning',
+      confirmButtonText: "OK",
+      cancelButtonText: "Cancel",
+      type: "warning",
     }
   )
     .then(() => {
       ElMessage({
-        type: 'success',
-        message: 'Delete completed',
-      })
+        type: "success",
+        message: "Delete completed",
+      });
     })
     .catch(() => {
       ElMessage({
-        type: 'info',
-        message: 'Delete canceled',
-      })
-    })
+        type: "info",
+        message: "Delete canceled",
+      });
+    });
 }
 </script>
 
@@ -190,7 +208,7 @@ function confirmClick() {
 
 .title_salary {
   font-size: 17px;
-  color: #FF0000;
+  color: #ff0000;
   font-weight: 600;
   letter-spacing: -1px;
   position: relative;
@@ -208,13 +226,13 @@ function confirmClick() {
   width: 16px;
   border-radius: 50%;
   left: 0px;
-  background-color: #FF0000;
+  background-color: #ff0000;
 }
 
 .title_salary::before {
   width: 18px;
   height: 18px;
-  background-color: #FF0000;
+  background-color: #ff0000;
 }
 
 .title_salary::after {
@@ -225,7 +243,7 @@ function confirmClick() {
 
 .title_region {
   font-size: 17px;
-  color: #FF1493;
+  color: #ff1493;
   font-weight: 600;
   letter-spacing: -1px;
   position: relative;
@@ -243,13 +261,13 @@ function confirmClick() {
   width: 16px;
   border-radius: 50%;
   left: 0px;
-  background-color: #FF1493;
+  background-color: #ff1493;
 }
 
 .title_region::before {
   width: 18px;
   height: 18px;
-  background-color: #FF1493;
+  background-color: #ff1493;
 }
 
 .title_region::after {
@@ -260,9 +278,7 @@ function confirmClick() {
 
 .title_skill {
   font-size: 17px;
-  color: rgb(0,
-      206,
-      209);
+  color: rgb(0, 206, 209);
   font-weight: 600;
   letter-spacing: -1px;
   position: relative;
@@ -341,7 +357,7 @@ sort-button:hover::before {
 }
 
 sort-button::before {
-  content: '';
+  content: "";
   display: block;
   width: 0px;
   height: 86%;
@@ -387,16 +403,29 @@ sort-button:active {
   background-color: #fff;
   padding: 50px 30px 0 30px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818), rgba(188, 228, 244, 0.616),
-      rgb(211, 238, 248), rgb(221, 239, 245), rgb(225, 238, 242), white);
+  background: linear-gradient(
+    to bottom,
+    rgba(192, 230, 245, 0.818),
+    rgba(188, 228, 244, 0.616),
+    rgb(211, 238, 248),
+    rgb(221, 239, 245),
+    rgb(225, 238, 242),
+    white
+  );
+}
+
+.top {
+  display: flex;
+  margin: 0px auto;
+  /* height: 50px; */
+  text-align: center;
+  align-items: center;
 }
 
 .sort {
   display: flex;
-  margin: 10px auto;
-  /* height: 50px; */
-  text-align: center;
-  align-items: center
+  position: absolute;
+  left: 350px;
 }
 
 .some {
@@ -424,8 +453,8 @@ sort-button:active {
   margin: 5px 0 10px 10px;
   /* height: 60vh; */
   overflow-y: auto;
+  position: relative;
   /* padding: 20px; */
-
 }
 
 .left::-webkit-scrollbar,
