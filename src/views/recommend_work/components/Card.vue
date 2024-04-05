@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="card">
+  <div class="card" @click="handleToggleDrawer">
     <div class="card-details">
       <div style="display: flex; top: 0; justify-content: space-between;">
         <p class="work_name">前端开发工程师</p>
@@ -14,7 +14,7 @@
         <p class="company_name">企业名</p>
         <p class="job">职业类型</p>
       </div>
-      <button class="card-button" @click="handleToggleDrawer">More info</button>
+      <!-- <button class="card-button" @click="handleToggleDrawer">More info</button> -->
     </div>
   </div>
 </template>
