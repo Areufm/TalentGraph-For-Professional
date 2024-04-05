@@ -28,13 +28,15 @@
             <div style="">
               <div style="line-height: 20px">Node Filter:</div>
               <el-radio-group
-                v-model="checked_sex"
+                v-model="checked_type"
                 size="small"
                 @change="doFilter"
               >
                 <el-radio-button label="">All</el-radio-button>
-                <el-radio-button label="male"></el-radio-button>
-                <el-radio-button label="female"></el-radio-button>
+                <el-radio-button label="1"></el-radio-button>
+                <el-radio-button label="2"></el-radio-button>
+                <el-radio-button label="3"></el-radio-button>
+                <el-radio-button label="4"></el-radio-button>
               </el-radio-group>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <el-radio-group
@@ -66,7 +68,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, defineProps, watch } from "vue";
+
+const props = defineProps({
+  checked_type: { type: Number, required: false, default: 2 }, // 接收来自父组件的checked_type
+});
+
 import RelationGraph, {
   RGJsonData,
   RGOptions,
@@ -1948,6 +1955,7 @@ const demoData = [
 
 //数据转换
 const transformData = (demoData) => {
+  let typeCounter = 1;
   let idCounter = 1;
   let rootId = "";
   const nodes = [];
@@ -1962,8 +1970,10 @@ const transformData = (demoData) => {
           text: item.n.title,
           data: {
             isGoodMan: true,
-            sexType: "female",
+            typeCount: [typeCounter],
+            // sexType: "female",
           },
+          //   typeCount: [typeCounter],
         };
         flag = 0;
         rootId = root.id;
@@ -1979,6 +1989,9 @@ const transformData = (demoData) => {
       if (existingNodeWithSameTitle) {
         // 如果存在，复用其 mId
         mId = existingNodeWithSameTitle.id;
+        if (!existingNodeWithSameTitle.data.typeCount.includes(typeCounter)) {
+          existingNodeWithSameTitle.data["typeCount"].push(typeCounter);
+        }
       } else {
         // 否则创建新的 mId
         mId = `m${idCounter++}`;
@@ -1989,8 +2002,10 @@ const transformData = (demoData) => {
           borderColor: "#6cc0ff",
           data: {
             isGoodMan: false,
-            sexType: "male",
+            typeCount: [typeCounter],
+            // sexType: "male",
           },
+          //   typeCount: [typeCounter],
           type: item["type(r)"],
         };
         switch (item["type(r)"]) {
@@ -2024,6 +2039,7 @@ const transformData = (demoData) => {
         };
       }
     });
+    typeCounter++;
   });
 
   return {
@@ -2056,7 +2072,8 @@ const graphOptions: RGOptions = {
 };
 
 const graphRef = ref<RelationGraphComponent>();
-const checked_sex = ref("");
+const checked_type = ref("");
+
 const checked_isgoodman = ref("");
 const rel_checkList = ref([
   "技能需求",
@@ -2087,6 +2104,7 @@ onMounted(() => {
 
 const setGraphData = async () => {
   const transform = transformData(demoData);
+  console.log(transform);
   const __graph_json_data: RGJsonData = transform;
   const graphInstance = graphRef.value!.getInstance();
   await graphInstance.setJsonData(__graph_json_data);
@@ -2099,8 +2117,17 @@ const doFilter = () => {
   const _all_links = graphInstance.getLinks();
   _all_nodes.forEach((thisNode) => {
     let _isHideThisLine = false;
-    if (checked_sex.value !== "") {
-      if (thisNode.data["sexType"] !== checked_sex.value) {
+    if (checked_type.value !== "") {
+      //   console.log(checked_type.value);
+      //   console.log(thisNode.data["typeCount"]);
+
+      let typeCount = Object.values(thisNode.data["typeCount"]);
+      //   console.log(typeCount);
+
+      //   console.log(typeCount.includes(Number(checked_type.value)));
+      //   console.log("---");
+
+      if (!typeCount.includes(Number(checked_type.value))) {
         _isHideThisLine = true;
       }
     }
@@ -2128,6 +2155,22 @@ const doFilter = () => {
   });
   graphInstance.dataUpdated();
 };
+
+// 监听checked_type变化
+watch(
+  () => props.checked_type,
+  (newValue) => {
+    // 当 props.checked_type 发生变化时，更新本地响应式引用
+    checked_type.value = newValue.toString();
+    console.log(checked_type.value);
+    
+    // 调用 doFilter 函数
+    // doFilter();
+  },
+  {
+    immediate: true, // 如果你希望在初始化时也运行一次doFilter，可以设置immediate为true
+  }
+);
 </script>
 
 <style lang="scss" scoped>
