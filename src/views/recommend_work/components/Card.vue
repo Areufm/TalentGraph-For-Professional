@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="card" @click="handleToggleDrawer">
     <div class="card-details">
-      <div style="display: flex; top: 0; justify-content: space-between;">
+      <div style="display: flex; top: 0; justify-content: space-between">
         <p class="work_name">前端开发工程师</p>
         <p class="work_salary">12K-15K</p>
       </div>
@@ -20,11 +20,11 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
 
 // 定义props，接收父组件传递的方法
 const props = defineProps({
-  toggleDrawer: Function
+  toggleDrawer: Function,
 });
 
 // 在子组件中调用父组件传递的方法
@@ -45,6 +45,7 @@ const handleToggleDrawer = () => {
   position: relative;
   /* padding: 1rem; */
   border: 2px solid #c3c6ce;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
   transition: 0.5s ease-out;
   overflow: visible;
   margin: 5px 0;
