@@ -8,14 +8,26 @@
     </div>
     <div class="right">
       <div class="rleft">
-        <img @click="toRecommend" src="../../../assets/FunctionCard/recommend.png" alt="推荐入口" />
+        <img
+          @click="toRecommend"
+          src="../../../assets/FunctionCard/recommend.png"
+          alt="推荐入口"
+        />
       </div>
       <div class="rright">
         <div class="rrtop">
-          <img @click="toSkill" src="../../../assets/FunctionCard/ability.png" alt="能力评价入口" />
+          <img
+            @click="toSkill"
+            src="../../../assets/FunctionCard/ability.png"
+            alt="能力评价入口"
+          />
         </div>
         <div class="rrbottom">
-          <img @click="toResume" src="../../../assets/FunctionCard/cv.png" alt="简历上传入口" />
+          <img
+            @click="toResume"
+            src="../../../assets/FunctionCard/cv2.png"
+            alt="简历上传入口"
+          />
         </div>
       </div>
     </div>
@@ -27,9 +39,9 @@ import PersonCard from "./PersonCard.vue";
 import Login from "./Login.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from '@/stores/auth'
+import { useAuthStore } from "@/stores/auth";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 
 const isLogin = ref(true);
 
@@ -65,7 +77,6 @@ img {
   border-radius: 10px;
   margin: 10px;
   display: flex;
-
 }
 
 .right {

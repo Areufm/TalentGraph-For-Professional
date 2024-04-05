@@ -1,26 +1,55 @@
 ﻿<template>
   <n-layout-header>
     <div class="header_left">
-      <img src="../assets/workcat.png" alt="logo"
-        style="border-radius: 50%; height: 45px; width: 45px; margin: 0 10px" />
+      <img
+        src="../assets/workcat.png"
+        alt="logo"
+        style="border-radius: 50%; height: 45px; width: 45px; margin: 0 10px"
+      />
       <div class="header_left_title">职业猫</div>
       <div class="nav-city">
-        <p class="nav-city-box" ka="header-switch-city" @click="centerDialogVisible = true">
+        <p
+          class="nav-city-box"
+          ka="header-switch-city"
+          @click="centerDialogVisible = true"
+        >
           <!-- <i class="icon-poi"></i> -->
-          <svg class="icon-poi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
-            <path fill="currentColor"
-              d="M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544">
-            </path>
-            <path fill="currentColor"
-              d="M512 512a96 96 0 1 0 0-192 96 96 0 0 0 0 192m0 64a160 160 0 1 1 0-320 160 160 0 0 1 0 320"></path>
+          <svg
+            class="icon-poi"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1024 1024"
+            data-v-ea893728=""
+          >
+            <path
+              fill="currentColor"
+              d="M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544"
+            ></path>
+            <path
+              fill="currentColor"
+              d="M512 512a96 96 0 1 0 0-192 96 96 0 0 0 0 192m0 64a160 160 0 1 1 0-320 160 160 0 0 1 0 320"
+            ></path>
           </svg>
           <span class="nav-city-selected">{{ lastSelectedRegionText }}</span>
           <span class="switchover-city">[切换城市]</span>
         </p>
-        <el-dialog v-model="centerDialogVisible" title="请选择您的地区" width="500"
-          style="border-radius: 15px; justify-content: center;align-items: center;">
-          <el-cascader placeholder="请选择地区" size="default" :options="regionData" v-model="selectedOptions" @change=""
-            style="display: flex">
+        <el-dialog
+          v-model="centerDialogVisible"
+          title="请选择您的地区"
+          width="500"
+          style="
+            border-radius: 15px;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <el-cascader
+            placeholder="请选择地区"
+            size="default"
+            :options="regionData"
+            v-model="selectedOptions"
+            @change=""
+            style="display: flex"
+          >
           </el-cascader>
           <template #footer>
             <div class="dialog-footer">
@@ -39,19 +68,22 @@
       <button @click="changeLogin">切换登录状态</button>
     </div>
     <div v-if="authStore.isLogin" class="header_right">
-      <el-popover :width="300"
-        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;">
+      <el-popover
+        :width="300"
+        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px;"
+      >
         <template #reference>
-          <!-- <el-avatar src="https://avatars.githubusercontent.com/u/72015883?v=4" /> -->
-          <p style="color: white;">简历</p>
+          <p style="color: white">简历</p>
         </template>
         <template #default>
           <div class="card-container">
             <button class="card-btn" @click="showPopup">
-              <img src="../assets/resume-file.png" alt="卡片图片1" />
+              <img src="../assets/resume-file3.png" alt="卡片图片1" />
+              附件上传
             </button>
             <button class="card-btn" @click="toResume">
-              <img src="../assets/resume-online.png" alt="卡片图片2" />
+              <img src="../assets/resume-online3.png" alt="卡片图片2" />
+              在线填写
             </button>
           </div>
         </template>
@@ -61,21 +93,39 @@
         <div class="popup">
           <p class="popup_title">
             新增附件简历
-            <svg style="width: 20px; height: 20px; position: absolute; right: 20px; top: 15px;" @click="hidePopup"
-              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
-              <path fill="currentColor"
-                d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z">
-              </path>
+            <svg
+              style="
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+              "
+              @click="hidePopup"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1024 1024"
+              data-v-ea893728=""
+            >
+              <path
+                fill="currentColor"
+                d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"
+              ></path>
             </svg>
           </p>
 
-          <div style="
+          <div
+            style="
               display: flex;
               justify-content: space-around;
               align-items: center;
-            ">
-            <el-upload class="upload-demo" drag action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-              multiple>
+            "
+          >
+            <el-upload
+              class="upload-demo"
+              drag
+              action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+              multiple
+            >
               <el-icon class="el-icon--upload"><upload-filled /></el-icon>
               <div class="el-upload__text">
                 拖拽文件到此 或 <em>点击上传文件</em>
@@ -86,7 +136,11 @@
                 </div>
               </template>
             </el-upload>
-            <img src="../assets/upresume.png" alt="" style="width: 40%; height: 100%" />
+            <img
+              src="../assets/upresume.png"
+              alt=""
+              style="width: 40%; height: 100%"
+            />
           </div>
           <div class="popup_btn">
             <button class="cancelBtn" @click="hidePopup">上传简历附件</button>
@@ -96,21 +150,27 @@
       </div>
       <a href="/profile" class="header_right_text">个人信息</a>
       <p class="header_right_text">Joker Xue</p>
-      <img src="../assets/xue.jpg" alt="头像" style="border-radius: 50%; height: 45px; width: 45px" />
+      <img
+        src="../assets/xue.jpg"
+        alt="头像"
+        style="border-radius: 50%; height: 45px; width: 45px"
+      />
     </div>
     <div v-else class="header_right">
       <a href="/boss" class="header_right_text">我要招聘</a>
       <a href="/login" class="header_right_text">我要求职</a>
-      <button style="
+      <button
+        style="
           border: rgb(255, 255, 255) solid 2px;
           border-radius: 50px;
           background-color: rgba(255, 255, 255, 0);
           color: white;
           padding: 10px;
-        " @click="toLogin">
+        "
+        @click="toLogin"
+      >
         登录 / 注册
       </button>
-
     </div>
   </n-layout-header>
 </template>
@@ -118,12 +178,12 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { regionData } from 'element-china-area-data'
-import { useAuthStore } from '@/stores/auth'
+import { regionData } from "element-china-area-data";
+import { useAuthStore } from "@/stores/auth";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 const router = useRouter();
-const centerDialogVisible = ref(false)
+const centerDialogVisible = ref(false);
 const selectedOptions = ref(["11", "1101", "110101"]); // 初始化选中值
 
 const changeLogin = () => {
@@ -134,7 +194,7 @@ const changeLogin = () => {
   }
   console.log(authStore.isLogin);
   // 这里添加登录逻辑，登录成功后调用 authStore.login()
-}
+};
 
 function findLabelByValue(data, value) {
   for (const item of data) {
@@ -147,7 +207,7 @@ function findLabelByValue(data, value) {
       }
     }
   }
-  return '';
+  return "";
 }
 
 const lastSelectedRegionText = computed(() => {
@@ -266,9 +326,9 @@ const hidePopup = () => {
 }
 
 .card-btn {
-  width: 120px;
+  width: 140px;
   /* 按钮宽度 */
-  height: 150px;
+  height: 160px;
   /* 按钮高度 */
   /* margin: 5px; */
   display: inline-block;
@@ -285,14 +345,15 @@ const hidePopup = () => {
 .card-btn img {
   width: 100%;
   /* 图片填满按钮 */
-  height: 100%;
+  height: 80%;
   object-fit: cover;
   /* 图片覆盖按钮，保持宽高比 */
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .header_right_resume:hover .card-container {
   display: block;
+  background: transparent;
 }
 
 .header_left_title {
