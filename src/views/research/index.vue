@@ -4,13 +4,13 @@
         <div class="search">
             <SearchBar />
         </div>
-        <div class="sort">
+        <!-- <div class="sort">
             <p style="font-size: 17px; font-weight: bold;">请选择推荐方式:</p>
             <sort-button type="primary" style="margin: auto 20px;">名企优先</sort-button>
             <sort-button type="primary" style="margin: auto 20px;">薪资优先</sort-button>
             <sort-button type="primary" style="margin: auto 20px;">同城优先</sort-button>
             <sort-button type="primary" style="margin: auto 20px;">技能优先</sort-button>
-        </div>
+        </div> -->
         <div class="center">
             <div class="left">
                 <Card />
