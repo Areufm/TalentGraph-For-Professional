@@ -10,7 +10,7 @@
       <div class="rleft">
         <img
           @click="toRecommend"
-          src="../../../assets/FunctionCard/recommend.png"
+          src="../../../assets/FunctionCard/recommend2.png"
           alt="推荐入口"
         />
       </div>

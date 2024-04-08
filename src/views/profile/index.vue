@@ -43,9 +43,8 @@
       </div>
       <div class="add">
         <h3>额外资料</h3>
-        <Radar />
       </div>
-      <div class="cv" style="height: 550px;">
+      <div class="cv" style="height: 550px">
         <h3>个人简历</h3>
         <Graph />
       </div>
@@ -56,12 +55,23 @@
           <h4>上传简历附件</h4>
           <div class="input-div">
             <input class="input" name="file" type="file" />
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round"
-              stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"
-              class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              fill="none"
+              stroke="currentColor"
+              class="icon"
+            >
               <polyline points="16 16 12 12 8 16"></polyline>
               <line y2="21" x2="12" y1="12" x1="12"></line>
-              <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+              <path
+                d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"
+              ></path>
               <polyline points="16 16 12 12 8 16"></polyline>
             </svg>
           </div>
@@ -70,7 +80,12 @@
       </div>
       <div class="assess">
         <h4>评价推荐结果</h4>
-        <el-rate v-model="assess" :texts="['oops', 'disappointed', 'normal', 'good', 'great']" show-text size="large" />
+        <el-rate
+          v-model="assess"
+          :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
+          show-text
+          size="large"
+        />
       </div>
       <div class="improve">
         <h4>简历待完善</h4>
@@ -86,7 +101,7 @@
         <h4>简历完成度</h4>
         <p>简历已完成： XX%</p>
       </div>
-      <div class="radar">
+      <div class="radar" style="height: 400px">
         <h4>个人能力雷达图</h4>
         <Radar />
       </div>
@@ -194,8 +209,15 @@ const assess = ref(null); //评价星星
   margin-top: 50px;
   display: flex;
   /* background-color: rgb(230, 245, 248); */
-  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818), rgba(188, 228, 244, 0.616),
-      rgb(211, 238, 248), rgb(221, 239, 245), rgb(225, 238, 242), white);
+  background: linear-gradient(
+    to bottom,
+    rgba(192, 230, 245, 0.818),
+    rgba(188, 228, 244, 0.616),
+    rgb(211, 238, 248),
+    rgb(221, 239, 245),
+    rgb(225, 238, 242),
+    white
+  );
   /* height: 100vh; */
   height: 100%;
   width: 100%;

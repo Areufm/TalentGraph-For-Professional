@@ -78,11 +78,11 @@
         <template #default>
           <div class="card-container">
             <button class="card-btn" @click="showPopup">
-              <img src="../assets/resume-file3.png" alt="卡片图片1" />
+              <img src="../assets/resume-file4.png" alt="卡片图片1" />
               附件上传
             </button>
             <button class="card-btn" @click="toResume">
-              <img src="../assets/resume-online3.png" alt="卡片图片2" />
+              <img src="../assets/resume-online4.png" alt="卡片图片2" />
               在线填写
             </button>
           </div>
@@ -149,6 +149,7 @@
         </div>
       </div>
       <a href="/profile" class="header_right_text">个人信息</a>
+      <a href="/skill-evaluation" class="header_right_text">能力评估</a>
       <p class="header_right_text">Joker Xue</p>
       <img
         src="../assets/xue.jpg"
@@ -325,13 +326,20 @@ const hidePopup = () => {
   padding: 10px;
 }
 
+.card-container {
+  justify-content: center;
+  align-items: center;
+}
+
 .card-btn {
-  width: 140px;
+  width: 145px;
   /* 按钮宽度 */
   height: 160px;
   /* 按钮高度 */
   /* margin: 5px; */
   display: inline-block;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
   /* 透明背景 */
   border: none;
@@ -343,10 +351,11 @@ const hidePopup = () => {
 }
 
 .card-btn img {
-  width: 100%;
+  /* width: 100%; */
   /* 图片填满按钮 */
   height: 80%;
   object-fit: cover;
+  border-radius: 10px;
   /* 图片覆盖按钮，保持宽高比 */
   /* border-radius: 20px; */
 }
@@ -354,6 +363,9 @@ const hidePopup = () => {
 .header_right_resume:hover .card-container {
   display: block;
   background: transparent;
+  /* justify-content: center;
+  align-items: center;
+  width: 250px; */
 }
 
 .header_left_title {

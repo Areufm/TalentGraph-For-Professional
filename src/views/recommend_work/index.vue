@@ -23,6 +23,9 @@
         <el-button type="primary" style="margin: auto 20px">同城优先</el-button>
         <el-button type="primary" style="margin: auto 20px">技能优先</el-button> -->
         <sort-button type="primary" style="margin: auto 20px"
+          >技能优先</sort-button
+        >
+        <sort-button type="primary" style="margin: auto 20px"
           >名企优先</sort-button
         >
         <sort-button type="primary" style="margin: auto 20px"
@@ -30,9 +33,6 @@
         >
         <sort-button type="primary" style="margin: auto 20px"
           >同城优先</sort-button
-        >
-        <sort-button type="primary" style="margin: auto 20px"
-          >技能优先</sort-button
         >
       </div>
       <!-- 知识图谱节点说明
