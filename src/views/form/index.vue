@@ -13,29 +13,29 @@
         <img src="../../assets/login.png" alt="" style="width: 100%" />
       </div>
       <div class="form">
-        <div v-if="active == 0" style="width: 100%">
-          <el-form
-            :model="form"
-            label-width="auto"
-            style="width: 70%; margin: 0 auto"
-          >
-            <el-form-item label="姓名">
-              <el-input v-model="form.name" clearable />
+        <el-form :model="form" label-width="auto" style="width: 100%">
+          <div v-if="active == 0" style="width: 70%; margin: 0 auto">
+            <el-form-item label="姓名" style="text-align: center">
+              <el-input
+                v-model="form.name"
+                clearable
+                style="text-align: center"
+              />
             </el-form-item>
             <el-form-item label="年龄">
-              <el-input v-model="form.age" clearable />
+              <!-- <el-input v-model="form.age" clearable /> -->
+              <el-input-number
+                v-model="form.age"
+                controls-position="right"
+                style="width: 500px"
+              >
+              </el-input-number>
             </el-form-item>
             <el-form-item label="电话号码">
               <el-input v-model="form.phone" clearable />
             </el-form-item>
-          </el-form>
-        </div>
-        <div v-if="active == 1" style="width: 100%">
-          <el-form
-            :model="form"
-            label-width="auto"
-            style="width: 70%; margin: 0 auto"
-          >
+          </div>
+          <div v-if="active == 1" style="width: 70%; margin: 0 auto">
             <el-form-item label="邮箱">
               <el-input v-model="form.email" clearable />
             </el-form-item>
@@ -58,13 +58,10 @@
                 <el-option label="博士" value="博士" />
               </el-select>
             </el-form-item>
-          </el-form>
-        </div>
-        <div v-if="active == 2" style="width: 100%; max-height: 350px">
-          <el-form
-            :model="form"
-            label-width="auto"
-            style="width: 70%; margin: 0 auto"
+          </div>
+          <div
+            v-if="active == 2"
+            style="width: 70%; margin: 0 auto; max-height: 350px"
           >
             <el-form-item label="求职岗位">
               <el-cascader
@@ -83,14 +80,14 @@
             <el-form-item label="个人信息描述">
               <el-input
                 v-model="form.info"
-                :autosize="{ minRows: 2, maxRows: 4 }"
+                :autosize="{ minRows: 5, maxRows: 11 }"
                 type="textarea"
                 placeholder="请输入你的个人信息"
                 clearable
               />
             </el-form-item>
-          </el-form>
-        </div>
+          </div>
+        </el-form>
 
         <div style="display: flex">
           <el-button @click="active-- ? active >= 0 : (active = 0)"
@@ -128,7 +125,14 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
-import { Edit, Picture, UploadFilled, Upload } from "@element-plus/icons-vue";
+import {
+  Edit,
+  Picture,
+  UploadFilled,
+  Upload,
+  Minus,
+  Plus,
+} from "@element-plus/icons-vue";
 import { regionData } from "element-china-area-data";
 import { h } from "vue";
 // import { ElNotification } from 'element-plus'
@@ -338,33 +342,37 @@ const options = [
   {
     value: "Electrical",
     label: "电气",
-    // children: [
-    //   {
-    //     value: "Electrical/Automation",
-    //     label: "电气/自动化",
-    //     children: [
-    //       { value: "Electrical Engineer", label: "电气工程师" },
-    //       { value: "Electrical Design Engineer", label: "电气设计工程师" },
-    //       { value: "Automation", label: "自动化" },
-    //       { value: "Mechatronics Engineer", label: "机电工程师" },
-    //       { value: "Building Electromechanical Engineer", label: "建筑机电工程师" },
-    //       { value: "Other", label: "其他" },
-    //     ],
-    //   },
-    // ],
     children: [
-      { value: "Electrical Engineer", label: "电气工程师" },
-      { value: "Electrical Design Engineer", label: "电气设计工程师" },
-      { value: "Automation", label: "自动化" },
-      { value: "Mechatronics Engineer", label: "机电工程师" },
-      { value: "Building Electromechanical Engineer", label: "建筑机电工程师" },
-      { value: "Other", label: "其他" },
+      {
+        value: "Electrical/Automation",
+        label: "电气/自动化",
+        children: [
+          { value: "Electrical Engineer", label: "电气工程师" },
+          { value: "Electrical Design Engineer", label: "电气设计工程师" },
+          { value: "Automation", label: "自动化" },
+          { value: "Mechatronics Engineer", label: "机电工程师" },
+          { value: "Building Electromechanical Engineer", label: "建筑机电工程师" },
+          { value: "Other", label: "其他" },
+        ],
+      },
     ],
+    // children: [
+    //   { value: "Electrical Engineer", label: "电气工程师" },
+    //   { value: "Electrical Design Engineer", label: "电气设计工程师" },
+    //   { value: "Automation", label: "自动化" },
+    //   { value: "Mechatronics Engineer", label: "机电工程师" },
+    //   { value: "Building Electromechanical Engineer", label: "建筑机电工程师" },
+    //   { value: "Other", label: "其他" },
+    // ],
   },
   {
     value: "Telecommunications",
     label: "通信",
     children: [
+      {
+        value: "Electrical/Automation",
+        label: "通信",
+        children: [
       { value: "Telecom Specialist", label: "通信项目专员" },
       { value: "Telecom Project Manager", label: "通信项目经理" },
       { value: "Telecom Technology Engineer", label: "通信技术工程师" },
@@ -390,6 +398,9 @@ const options = [
       },
       { value: "Other", label: "其他" },
     ],
+      },
+    ],
+    
   },
 ];
 </script>
@@ -433,6 +444,7 @@ const options = [
   padding: 10px;
   align-items: center;
   justify-content: center;
+  text-align: center;
   /* max-height: 500px; */
 }
 </style>
