@@ -152,7 +152,7 @@ const handleLogin = () => {
   });
   authStore.login()
   console.log(authStore.isLogin);
-  router.push("/");
+  router.push("/form");
 };
 </script>
 
