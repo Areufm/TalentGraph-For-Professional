@@ -73,7 +73,7 @@
             :page-size="4"
             :pager-count="5"
             layout="prev, pager, next"
-            :total="40"
+            :total="20"
           />
         </div>
       </div>
@@ -125,7 +125,7 @@ onBeforeMount(() => {
 const authStore = useAuthStore();
 const router = useRouter();
 const drawer = ref(false);
-const recommendWork = ref("前端开发工程师");
+const recommendWork = ref("前端开发");
 
 const toggleDrawer = () => {
   drawer.value = !drawer.value;
