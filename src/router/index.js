@@ -27,6 +27,7 @@ const routes = [
     path: "/work-info",
     name: "WorkInfo",
     component: () => import("@/views/work-info/index.vue"),
+    meta: { title: "工作详细信息" },
   },
   {
     path: "/company-info",
@@ -54,16 +55,19 @@ const routes = [
     path: "/skill-evaluation",
     name: "SkillEvaluation",
     component: () => import("@/views/skill-evaluation/index.vue"),
+    meta: { title: "能力评估" },
   },
   {
     path: "/research",
     name: "Research",
     component: () => import("@/views/research/index.vue"),
+    meta: { title: "搜索" },
   },
   {
     path: "/form",
     name: "Form",
     component: () => import("@/views/form/index.vue"),
+    meta: { title: "在线填写" },
   },
 ];
 
