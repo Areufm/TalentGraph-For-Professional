@@ -5,16 +5,12 @@
       <h1 class="job-title">{{ currentJob.title }}</h1>
 
       <div style="display: flex; align-items: center">
-        <img
-          :src="currentJob.logo"
-          alt=""
-          style="
+        <img :src="currentJob.logo" alt="" style="
             border-radius: 50%;
             width: 40px;
             height: 40px;
             margin-right: 15px;
-          "
-        />
+          " />
         <p class="company-name">{{ currentJob.company }}</p>
       </div>
       <div class="job-details">
@@ -28,27 +24,17 @@
         <p>公司福利： {{ currentJob.info }}</p>
         <p style="display: flex; align-items: center">
           推荐评价：
-          <el-rate
-            v-model="rateValue"
-            :texts="['不满意', '一般', '还行', '很棒', '非常满意']"
-            show-text
-          />
+          <el-rate v-model="rateValue" :texts="['不满意', '一般', '还行', '很棒', '非常满意']" show-text />
         </p>
       </div>
       <button>
         <div class="svg-wrapper-1">
           <div class="svg-wrapper">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
               <path fill="none" d="M0 0h24v24H0z"></path>
-              <path
-                fill="currentColor"
-                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-              ></path>
+              <path fill="currentColor"
+                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+              </path>
             </svg>
           </div>
         </div>
@@ -60,11 +46,7 @@
       <div class="job-info">
         <h2 v-if="currentJob.major.length > 0">专业方向</h2>
         <div class="flex">
-          <p
-            class="job-description-card"
-            v-for="(majorInfo, i) in currentJob.major.slice(0, 4)"
-            :key="i"
-          >
+          <p class="job-description-card" v-for="(majorInfo, i) in currentJob.major.slice(0, 4)" :key="i">
             {{ majorInfo }}
           </p>
         </div>
@@ -97,38 +79,38 @@ import { useJobStore } from "@/stores/job";
 
 const jobStore = useJobStore();
 
-const currentJob = computed(() => jobStore.getCurrentJob);
+// const currentJob = computed(() => jobStore.getCurrentJob);
 const currentNum = computed(() => jobStore.getCurrentNum);
 
-// const currentJob = {
-//   title: "Android",
-//   salary: "6-12K",
-//   education: "本科",
-//   skill: [
-//     "Java",
-//     "ui",
-//     "app",
-//     "多线程",
-//     "Android",
-//     "android ndk",
-//     "Android Studio",
-//     "网络",
-//   ],
-//   info: "带薪年假，节日福利，餐补，年终奖，工龄奖，绩效奖金",
-//   kind1: "互联网",
-//   kind2: "前端/移动开发",
-//   kind3: "移动开发",
-//   description:
-//     "岗位职责：\n1、 从事安卓APP移动平台客户端软件的功能设计、开发和实现；\n2、 根据产品功能模块设计，编码实现各模块功能，并确保开发质量与进度；\n3、 对于产品的BUG进行问题的修正；\n4、 对移动端应用做出系统优化和数据优化；\n5、 产品的迭代和维护；\n岗位要求：\n1、熟练掌握Java, 熟悉面向对象思想，熟悉常用设计模式，编程习惯良好；\n2、熟练掌握安卓应用开发技术（包括UI、网络、存储、多线程等方面）、开发工具和测试工具；\n3、熟练掌握Android开发平台及框架原理，精通系统组件的使用，能进行自定义控件的封装；\n4、熟悉android屏幕适配，有APP性能优化的经验；\n5、有独立完整开发 App 经验优先，有个人上架 App 优先；\n6、良好的沟通及人际技巧，与团队成员高效协作；\n7.熟悉安卓各大市场APP上线流程",
-//   province: "安徽省",
-//   city: "合肥市",
-//   district: "瑶海区",
-//   address: "安徽合肥市瑶海区都市科技工业园C6栋101",
-//   major: ["GIT", "vue3", "Javascript", "web", "vue2", "HTML5", "vue"],
-//   neo4j: 8852,
-//   company: "统旭智慧科技",
-//   logo: "https://img.bosszhipin.com/beijin/upload/com/logo/20220926/7b5b554d84f9729c157fc655c4aecc0c8cf8e49fb37c6801ccd75b28d7f169b2a9c7a6bce39fbdca.png?x-oss-process=image/resize,w_100,limit_0",
-// };
+const currentJob = {
+  title: "Android",
+  salary: "6-12K",
+  education: "本科",
+  skill: [
+    "Java",
+    "ui",
+    "app",
+    "多线程",
+    "Android",
+    "android ndk",
+    "Android Studio",
+    "网络",
+  ],
+  info: "带薪年假，节日福利，餐补，年终奖，工龄奖，绩效奖金",
+  kind1: "互联网",
+  kind2: "前端/移动开发",
+  kind3: "移动开发",
+  description:
+    "岗位职责：\n1、 从事安卓APP移动平台客户端软件的功能设计、开发和实现；\n2、 根据产品功能模块设计，编码实现各模块功能，并确保开发质量与进度；\n3、 对于产品的BUG进行问题的修正；\n4、 对移动端应用做出系统优化和数据优化；\n5、 产品的迭代和维护；\n岗位要求：\n1、熟练掌握Java, 熟悉面向对象思想，熟悉常用设计模式，编程习惯良好；\n2、熟练掌握安卓应用开发技术（包括UI、网络、存储、多线程等方面）、开发工具和测试工具；\n3、熟练掌握Android开发平台及框架原理，精通系统组件的使用，能进行自定义控件的封装；\n4、熟悉android屏幕适配，有APP性能优化的经验；\n5、有独立完整开发 App 经验优先，有个人上架 App 优先；\n6、良好的沟通及人际技巧，与团队成员高效协作；\n7.熟悉安卓各大市场APP上线流程",
+  province: "安徽省",
+  city: "合肥市",
+  district: "瑶海区",
+  address: "安徽合肥市瑶海区都市科技工业园C6栋101",
+  major: ["GIT", "vue3", "Javascript", "web", "vue2", "HTML5", "vue"],
+  neo4j: 8852,
+  company: "统旭智慧科技",
+  logo: "https://img.bosszhipin.com/beijin/upload/com/logo/20220926/7b5b554d84f9729c157fc655c4aecc0c8cf8e49fb37c6801ccd75b28d7f169b2a9c7a6bce39fbdca.png?x-oss-process=image/resize,w_100,limit_0",
+};
 </script>
 
 <style scoped>
@@ -143,15 +125,13 @@ const currentNum = computed(() => jobStore.getCurrentNum);
     rgb(225, 238, 242),
     white
   ); */
-  background: linear-gradient(
-    to bottom,
-    rgba(192, 230, 245, 0.818) 2%,
-    rgba(188, 228, 244, 0.616) 8%,
-    rgb(211, 238, 248) 15%,
-    rgb(221, 239, 245) 20%,
-    rgb(225, 238, 242) 40%,
-    white
-  );
+  background: linear-gradient(to bottom,
+      rgba(192, 230, 245, 0.818) 2%,
+      rgba(188, 228, 244, 0.616) 8%,
+      rgb(211, 238, 248) 15%,
+      rgb(221, 239, 245) 20%,
+      rgb(225, 238, 242) 40%,
+      white);
   /* padding: 50px; */
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   display: flex;
