@@ -7,7 +7,12 @@
     <div class="center">
       <div class="left">
         <!-- <Card /> -->
-        <div class="card" v-for="(job, index) in currentJobs" :key="index" @click="selectJob(job)">
+        <div
+          class="card"
+          v-for="(job, index) in currentJobs"
+          :key="index"
+          @click="selectJob(job)"
+        >
           <div class="card-details">
             <div style="display: flex">
               <p class="work_name">{{ job.title }}</p>
@@ -52,7 +57,9 @@
         </div>
       </div>
 
-      <div class="right"></div>
+      <div class="right">
+        <button @click="add">+1</button>
+      </div>
     </div>
   </div>
 </template>
@@ -69,6 +76,7 @@ const getMore = () => {
   });
   window.open(href.href, "_blank");
 };
+
 import { ref } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
@@ -80,6 +88,11 @@ const jobStore = useJobStore();
 
 function selectJob(job) {
   jobStore.selectJob(job);
+}
+
+function add() {
+  // jobStore.currentNum++;
+  console.log(jobStore.getCurrentNum);
 }
 
 const currentPage = ref(1); // 当前页码
@@ -3592,7 +3605,7 @@ const changePage = (newPage) => {
 }
 
 .right {
-  border: 2px black solid;
+  /* border: 2px black solid; */
   border-radius: 20px;
   display: flex;
   flex: 1;
@@ -3602,7 +3615,7 @@ const changePage = (newPage) => {
 .card {
   /* width: 350px; */
   /* width: 30%; */
-  height: 144px;
+  height: 154px;
   border-radius: 20px;
   /* background: #f5f5f5; */
   position: relative;
