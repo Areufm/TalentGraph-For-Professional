@@ -55,7 +55,7 @@
   /* background-color: rgb(230, 245, 248); */
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
   text-align: center;
   font-family: Arial, sans-serif;
 }

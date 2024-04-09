@@ -51,7 +51,7 @@
               </el-cascader>
             </el-form-item>
             <el-form-item label="学历">
-              <el-select v-model="form.degree" placeholder="请选择你的学历">
+              <el-select v-model="form.education" placeholder="请选择你的学历">
                 <el-option label="专科" value="专科" />
                 <el-option label="本科" value="本科" />
                 <el-option label="硕士" value="硕士" />
@@ -135,7 +135,7 @@ import {
 } from "@element-plus/icons-vue";
 import { regionData } from "element-china-area-data";
 import { h } from "vue";
-// import { ElNotification } from 'element-plus'
+// import { ElNotification } from "element-plus";
 
 const handleChange = (value) => {
   console.log(value);
@@ -351,7 +351,10 @@ const options = [
           { value: "Electrical Design Engineer", label: "电气设计工程师" },
           { value: "Automation", label: "自动化" },
           { value: "Mechatronics Engineer", label: "机电工程师" },
-          { value: "Building Electromechanical Engineer", label: "建筑机电工程师" },
+          {
+            value: "Building Electromechanical Engineer",
+            label: "建筑机电工程师",
+          },
           { value: "Other", label: "其他" },
         ],
       },
@@ -373,36 +376,37 @@ const options = [
         value: "Electrical/Automation",
         label: "通信",
         children: [
-      { value: "Telecom Specialist", label: "通信项目专员" },
-      { value: "Telecom Project Manager", label: "通信项目经理" },
-      { value: "Telecom Technology Engineer", label: "通信技术工程师" },
-      { value: "Telecom R&D Engineer", label: "通信研发工程师" },
-      {
-        value: "Wireless/Radio Frequency Engineer",
-        label: "无线/射频通信工程师",
+          { value: "Telecom Specialist", label: "通信项目专员" },
+          { value: "Telecom Project Manager", label: "通信项目经理" },
+          { value: "Telecom Technology Engineer", label: "通信技术工程师" },
+          { value: "Telecom R&D Engineer", label: "通信研发工程师" },
+          {
+            value: "Wireless/Radio Frequency Engineer",
+            label: "无线/射频通信工程师",
+          },
+          { value: "Mobile Communication Engineer", label: "移动通信工程师" },
+          { value: "Telecom Network Engineer", label: "电信网络工程师" },
+          { value: "Data Communication Engineer", label: "数据通信工程师" },
+          { value: "Telecommunication Test Engineer", label: "通信测试工程师" },
+          { value: "Optical Communication Engineer", label: "光通信工程师" },
+          { value: "Optical Transmission Engineer", label: "光传输工程师" },
+          { value: "Optical Network Engineer", label: "光网络工程师" },
+          { value: "Telecom Power Supply Engineer", label: "通信电源工程师" },
+          { value: "Wired Transmission Engineer", label: "有线传输工程师" },
+          { value: "Telecom Equipment Engineer", label: "通信设备工程师" },
+          { value: "Core Network Engineer", label: "核心网工程师" },
+          {
+            value: "Telecommunication Standardization Engineer",
+            label: "通信标准化工程师",
+          },
+          { value: "Other", label: "其他" },
+        ],
       },
-      { value: "Mobile Communication Engineer", label: "移动通信工程师" },
-      { value: "Telecom Network Engineer", label: "电信网络工程师" },
-      { value: "Data Communication Engineer", label: "数据通信工程师" },
-      { value: "Telecommunication Test Engineer", label: "通信测试工程师" },
-      { value: "Optical Communication Engineer", label: "光通信工程师" },
-      { value: "Optical Transmission Engineer", label: "光传输工程师" },
-      { value: "Optical Network Engineer", label: "光网络工程师" },
-      { value: "Telecom Power Supply Engineer", label: "通信电源工程师" },
-      { value: "Wired Transmission Engineer", label: "有线传输工程师" },
-      { value: "Telecom Equipment Engineer", label: "通信设备工程师" },
-      { value: "Core Network Engineer", label: "核心网工程师" },
-      {
-        value: "Telecommunication Standardization Engineer",
-        label: "通信标准化工程师",
-      },
-      { value: "Other", label: "其他" },
     ],
-      },
-    ],
-    
   },
 ];
+
+const selectedOptions = ref(["11", "1101", "110101"]);
 </script>
 
 <style scoped>

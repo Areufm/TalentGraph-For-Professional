@@ -8,14 +8,26 @@
     </div>
     <div class="right">
       <div class="rleft">
-        <img @click="toRecommend" src="../../../assets/FunctionCard/recommend2.png" alt="推荐入口" />
+        <img
+          @click="toRecommend"
+          src="../../../assets/FunctionCard/recommend2.png"
+          alt="推荐入口"
+        />
       </div>
       <div class="rright">
         <div class="rrtop">
-          <img @click="toSkill" src="../../../assets/FunctionCard/ability2.png" alt="能力评价入口" />
+          <img
+            @click="toSkill"
+            src="../../../assets/FunctionCard/ability2.png"
+            alt="能力评价入口"
+          />
         </div>
         <div class="rrbottom">
-          <img @click="toResume" src="../../../assets/FunctionCard/cv2.png" alt="简历上传入口" />
+          <img
+            @click="toResume"
+            src="../../../assets/FunctionCard/cv2.png"
+            alt="简历上传入口"
+          />
         </div>
       </div>
     </div>
@@ -95,20 +107,20 @@ img {
 }
 
 .rrtop {
-  /* height: 50%; */
+  height: 50%;
   /* flex:1; */
   /* border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px; */
-  padding: 5px;
+  /* padding: 5px; */
   /* margin: 0 0 0px 0; */
 }
 
 .rrbottom {
-  /* height: 50%; */
+  height: 50%;
   /* flex:1; */
   /* border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px; */
   /* margin: 0px 0 0 0; */
-  padding: 5px;
+  /* padding: 5px; */
 }
 </style>

@@ -1,121 +1,4 @@
-﻿<!-- <template>
-  
-  <div style="display: flex; justify-content: space-between; margin: 0 100px">
-    
-    <div class="card">
-      <div class="card-details">
-        <div style="display: flex">
-          <p class="work_name">工作名称</p>
-          <p class="work_salary">薪资</p>
-        </div>
-        <div style="display: flex">
-          <p style="margin: 10px">关键词1</p>
-          <p style="margin: 10px">关键词2</p>
-          <p style="margin: 10px">关键词3</p>
-        </div>
-        <div style="display: flex">
-          <img
-            src="../../../assets/xue.jpg"
-            alt=""
-            style="
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-              margin-right: 10px;
-            "
-          />
-          <p class="text-body">企业名</p>
-          <p class="text-body" style="margin-left: auto">职业类型</p>
-        </div>
-      </div>
-      <button class="card-button" @click="getMore">More info</button>
-    </div>
-    <div class="card">
-      <div class="card-details">
-        <p class="text-title">Card title</p>
-        <p class="text-body">Here are the details of the card</p>
-      </div>
-      <button class="card-button">More info</button>
-    </div>
-    <div class="card">
-      <div class="card-details">
-        <p class="text-title">Card title</p>
-        <p class="text-body">Here are the details of the card</p>
-      </div>
-      <button class="card-button">More info</button>
-    </div>
-  </div>
-  <div style="display: flex; justify-content: space-between; margin: 0 100px">
-    <div class="card">
-      <div class="card-details">
-        <div style="display: flex; top: 0">
-          <p class="work_name">工作名称</p>
-          <p class="work_salary">薪资</p>
-        </div>
-        <div style="display: flex">
-          <p style="margin: 10px">关键词1</p>
-          <p style="margin: 10px">关键词2</p>
-          <p style="margin: 10px">关键词3</p>
-        </div>
-        <div style="display: flex">
-          <p class="text-body">企业名</p>
-          <p class="text-body" style="margin-left: auto">职业类型</p>
-        </div>
-      </div>
-      <button class="card-button" @click="getMore">More info</button>
-    </div>
-    <div class="card">
-      <div class="card-details">
-        <p class="text-title">Card title</p>
-        <p class="text-body">Here are the details of the card</p>
-      </div>
-      <button class="card-button">More info</button>
-    </div>
-    <div class="card">
-      <div class="card-details">
-        <p class="text-title">Card title</p>
-        <p class="text-body">Here are the details of the card</p>
-      </div>
-      <button class="card-button">More info</button>
-    </div>
-  </div>
-  <div style="display: flex; justify-content: space-between; margin: 0 100px">
-    <div class="card">
-      <div class="card-details">
-        <div style="display: flex; top: 0">
-          <p class="work_name">工作名称</p>
-          <p class="work_salary">薪资</p>
-        </div>
-        <div style="display: flex">
-          <p style="margin: 10px">关键词1</p>
-          <p style="margin: 10px">关键词2</p>
-          <p style="margin: 10px">关键词3</p>
-        </div>
-        <div style="display: flex">
-          <p class="text-body">企业名</p>
-          <p class="text-body" style="margin-left: auto">职业类型</p>
-        </div>
-      </div>
-      <button class="card-button" @click="getMore">More info</button>
-    </div>
-    <div class="card">
-      <div class="card-details">
-        <p class="text-title">Card title</p>
-        <p class="text-body">Here are the details of the card</p>
-      </div>
-      <button class="card-button">More info</button>
-    </div>
-    <div class="card">
-      <div class="card-details">
-        <p class="text-title">Card title</p>
-        <p class="text-body">Here are the details of the card</p>
-      </div>
-      <button class="card-button">More info</button>
-    </div>
-  </div>
-</template> -->
-
-<template>
+﻿<template>
     <div class="cards-container">
         <div class="card" v-for="(job, index) in jobsData" :key="index"
             :class="{ 'last-in-row': (index + 1) % 3 === 0 }">
@@ -475,6 +358,205 @@ const jobsData = [
     }
 ]
 </script>
+<style scoped>
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.card {
+    width: 80%;
+    height: 154px;
+    border-radius: 20px;
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+    transition: 0.5s ease-out;
+    overflow: visible;
+    margin: 10px;
+}
+
+.card-details {
+    color: black;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.card-button {
+    width: 100%;
+    border-radius: 1rem;
+    border: none;
+    background-color: #008bf8;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-top: auto;
+    opacity: 0;
+    transition: 0.3s ease-out;
+}
+
+.text-body {
+    color: rgb(134, 134, 134);
+}
+
+.text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*Text*/
+.work_name {
+    font-size: 1.5em;
+    font-weight: bold;
+    overflow: hidden;
+        /* 隐藏超出内容 */
+        text-overflow: ellipsis;
+        /* 显示省略号 */
+        white-space: nowrap;
+        /* 禁止换行 */
+        width: 60%;
+        /* 设置合适的宽度，根据实际情况调整 */
+}
+
+.work_salary {
+    margin-left: auto;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: red;
+}
+
+/*Hover*/
+.card:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+    opacity: 1;
+}
+</style>
+
+
+<!-- <template>
+  
+  <div style="display: flex; justify-content: space-between; margin: 0 100px">
+    
+    <div class="card">
+      <div class="card-details">
+        <div style="display: flex">
+          <p class="work_name">工作名称</p>
+          <p class="work_salary">薪资</p>
+        </div>
+        <div style="display: flex">
+          <p style="margin: 10px">关键词1</p>
+          <p style="margin: 10px">关键词2</p>
+          <p style="margin: 10px">关键词3</p>
+        </div>
+        <div style="display: flex">
+          <img
+            src="../../../assets/xue.jpg"
+            alt=""
+            style="
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              margin-right: 10px;
+            "
+          />
+          <p class="text-body">企业名</p>
+          <p class="text-body" style="margin-left: auto">职业类型</p>
+        </div>
+      </div>
+      <button class="card-button" @click="getMore">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; margin: 0 100px">
+    <div class="card">
+      <div class="card-details">
+        <div style="display: flex; top: 0">
+          <p class="work_name">工作名称</p>
+          <p class="work_salary">薪资</p>
+        </div>
+        <div style="display: flex">
+          <p style="margin: 10px">关键词1</p>
+          <p style="margin: 10px">关键词2</p>
+          <p style="margin: 10px">关键词3</p>
+        </div>
+        <div style="display: flex">
+          <p class="text-body">企业名</p>
+          <p class="text-body" style="margin-left: auto">职业类型</p>
+        </div>
+      </div>
+      <button class="card-button" @click="getMore">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; margin: 0 100px">
+    <div class="card">
+      <div class="card-details">
+        <div style="display: flex; top: 0">
+          <p class="work_name">工作名称</p>
+          <p class="work_salary">薪资</p>
+        </div>
+        <div style="display: flex">
+          <p style="margin: 10px">关键词1</p>
+          <p style="margin: 10px">关键词2</p>
+          <p style="margin: 10px">关键词3</p>
+        </div>
+        <div style="display: flex">
+          <p class="text-body">企业名</p>
+          <p class="text-body" style="margin-left: auto">职业类型</p>
+        </div>
+      </div>
+      <button class="card-button" @click="getMore">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Card title</p>
+        <p class="text-body">Here are the details of the card</p>
+      </div>
+      <button class="card-button">More info</button>
+    </div>
+  </div>
+</template> -->
 
 <!-- <style scoped>
 .card {
@@ -549,83 +631,3 @@ const jobsData = [
   opacity: 1;
 }
 </style> -->
-<style scoped>
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-}
-
-.card {
-    width: 80%;
-    height: 154px;
-    border-radius: 20px;
-    position: relative;
-    padding: 1.8rem;
-    border: 2px solid #c3c6ce;
-    transition: 0.5s ease-out;
-    overflow: visible;
-    margin: 10px;
-}
-
-.card-details {
-    color: black;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-}
-
-.card-button {
-    width: 100%;
-    border-radius: 1rem;
-    border: none;
-    background-color: #008bf8;
-    color: #fff;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    margin-top: auto;
-    opacity: 0;
-    transition: 0.3s ease-out;
-}
-
-.text-body {
-    color: rgb(134, 134, 134);
-}
-
-.text-title {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-/*Text*/
-.work_name {
-    font-size: 1.5em;
-    font-weight: bold;
-    overflow: hidden;
-        /* 隐藏超出内容 */
-        text-overflow: ellipsis;
-        /* 显示省略号 */
-        white-space: nowrap;
-        /* 禁止换行 */
-        width: 60%;
-        /* 设置合适的宽度，根据实际情况调整 */
-}
-
-.work_salary {
-    margin-left: auto;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: red;
-}
-
-/*Hover*/
-.card:hover {
-    border-color: #008bf8;
-    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-}
-
-.card:hover .card-button {
-    opacity: 1;
-}
-</style>

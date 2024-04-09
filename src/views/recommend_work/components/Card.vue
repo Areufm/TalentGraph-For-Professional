@@ -45,7 +45,7 @@ const handleToggleDrawer = () => {
   position: relative;
   /* padding: 1rem; */
   border: 2px solid #c3c6ce;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: 0.5s ease-out;
   overflow: visible;
   margin: 5px 0;
