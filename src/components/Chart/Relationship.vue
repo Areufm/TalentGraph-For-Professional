@@ -9,8 +9,7 @@
                     <div class="c-node-name" :style="{ color: node.color }">{{ node.text }}</div>
                 </template> -->
         <template #graph-plug>
-          <div
-            style="
+          <div style="
               position: absolute;
               z-index: 700;
               left: 20px;
@@ -23,29 +22,19 @@
               font-size: 12px;
               font-weight: bold;
               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            "
-          >
+            ">
             <div style="">
               <div style="line-height: 20px">Node Filter:</div>
-              <el-radio-group
-                v-model="checked_type"
-                size="small"
-                @change="doFilter"
-              >
+              <el-radio-group v-model="checked_type" size="small" @change="doFilter">
                 <el-radio-button label="">All</el-radio-button>
-                <el-radio-button label="0"></el-radio-button>
-                <el-radio-button label="1"></el-radio-button>
-                <el-radio-button label="2"></el-radio-button>
-                <el-radio-button label="3"></el-radio-button>
-                <el-radio-button label="4"></el-radio-button>
+                <el-radio-button label="个人"></el-radio-button>
+                <el-radio-button label="职位1"></el-radio-button>
+                <el-radio-button label="职位2"></el-radio-button>
+                <el-radio-button label="职位3"></el-radio-button>
+                <el-radio-button label="职位4"></el-radio-button>
               </el-radio-group>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <el-radio-group
-                v-model="checked_isgoodman"
-                size="small"
-                style="margin-left: 50px"
-                @change="doFilter"
-              >
+              <el-radio-group v-model="checked_isgoodman" size="small" style="margin-left: 50px" @change="doFilter">
                 <el-radio-button label="">All</el-radio-button>
                 <el-radio-button :label="true">Positive</el-radio-button>
                 <el-radio-button :label="false">Negative</el-radio-button>
@@ -54,11 +43,7 @@
             <div>
               <div style="line-height: 20px">条件筛选:</div>
               <el-checkbox-group v-model="rel_checkList" @change="doFilter">
-                <el-checkbox
-                  v-for="thisItem in all_rel_type"
-                  :key="thisItem"
-                  :label="thisItem"
-                />
+                <el-checkbox v-for="thisItem in all_rel_type" :key="thisItem" :label="thisItem" />
               </el-checkbox-group>
             </div>
           </div>
@@ -72,7 +57,7 @@
 import { ref, onMounted, defineProps, watch } from "vue";
 
 const props = defineProps({
-  checked_type: { type: Number, required: false, default: 2 }, // 接收来自父组件的checked_type
+  checked_type: { type: String, required: false, default: "" }, // 接收来自父组件的checked_type
 });
 
 import RelationGraph, {
@@ -1821,7 +1806,7 @@ const userData = [
 
 //数据转换
 const transformData = (demoData, userData) => {
-  let typeCounter = 0;
+  let typeCounter = 1;
   let idCounter = 1;
   let rootId = "";
   const nodes = [];
@@ -1836,7 +1821,7 @@ const transformData = (demoData, userData) => {
         color: "Tomato",
         data: {
           isGoodMan: true,
-          typeCount: [typeCounter],
+          typeCount: ["个人"],
           // sexType: "female",
         },
         //   typeCount: [typeCounter],
@@ -1854,7 +1839,7 @@ const transformData = (demoData, userData) => {
       borderColor: "#6cc0ff",
       data: {
         isGoodMan: false,
-        typeCount: [typeCounter],
+        typeCount: ["个人"],
         // sexType: "male",
       },
       //   typeCount: [typeCounter],
@@ -1877,9 +1862,9 @@ const transformData = (demoData, userData) => {
     }
   });
 
-  typeCounter++;
   demoData.forEach((jsonDataGroup) => {
     let flag = 1;
+    let position = `职位${typeCounter}`
     jsonDataGroup.forEach((item) => {
       if (flag) {
         const root = {
@@ -1887,7 +1872,7 @@ const transformData = (demoData, userData) => {
           text: item.n.title,
           data: {
             isGoodMan: true,
-            typeCount: [typeCounter],
+            typeCount: [position],
             // sexType: "female",
           },
           //   typeCount: [typeCounter],
@@ -1903,11 +1888,12 @@ const transformData = (demoData, userData) => {
       );
       let mId;
 
+
       if (existingNodeWithSameTitle) {
         // 如果存在，复用其 mId
         mId = existingNodeWithSameTitle.id;
         if (!existingNodeWithSameTitle.data.typeCount.includes(typeCounter)) {
-          existingNodeWithSameTitle.data["typeCount"].push(typeCounter);
+          existingNodeWithSameTitle.data["typeCount"].push(position);
         }
       } else {
         // 否则创建新的 mId
@@ -1919,7 +1905,7 @@ const transformData = (demoData, userData) => {
           borderColor: "#6cc0ff",
           data: {
             isGoodMan: false,
-            typeCount: [typeCounter],
+            typeCount: [position],
             // sexType: "male",
           },
           //   typeCount: [typeCounter],
@@ -1939,6 +1925,7 @@ const transformData = (demoData, userData) => {
             node.color = "#FF1493";
             break;
           case "包含职位":
+            // item["type(r)"] = "所在地区"
             node.color = "Chartreuse";
             break;
         }
@@ -1957,6 +1944,9 @@ const transformData = (demoData, userData) => {
             type: item["type(r)"],
           },
         };
+        if (item["type(r)"] == "包含职位") {
+          lines[`${item.n.id}-${mId}`].text = " "
+        }
       }
     });
     typeCounter++;
@@ -2041,7 +2031,7 @@ const doFilter = () => {
       //   console.log(typeCount.includes(Number(checked_type.value)));
       //   console.log("---");
 
-      if (!typeCount.includes(Number(checked_type.value))) {
+      if (!typeCount.includes(checked_type.value)) {
         _isHideThisLine = true;
       }
     }
