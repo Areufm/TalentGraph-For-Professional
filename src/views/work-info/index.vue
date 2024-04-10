@@ -27,7 +27,7 @@
           <el-rate v-model="rateValue" :texts="['不满意', '一般', '还行', '很棒', '非常满意']" show-text />
         </p>
       </div>
-      <button>
+      <button class="send-button">
         <div class="svg-wrapper-1">
           <div class="svg-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -45,26 +45,27 @@
     <div class="job-card">
       <div class="job-info">
         <h2 v-if="currentJob.major.length > 0">专业方向</h2>
+        <ul v-for="(majorInfo, i) in currentJob.major.slice(0, 5)" :key="i">
+          <li>{{ majorInfo }}</li>
+        </ul>
+        <h2>要求和技能</h2>
+
         <div class="flex">
-          <p class="job-description-card" v-for="(majorInfo, i) in currentJob.major.slice(0, 4)" :key="i">
-            {{ majorInfo }}
+          <p class="job-description-card" v-for="(keyword, i) in currentJob.skill.slice(0, 5) " :key="i">
+            {{ keyword }}
           </p>
         </div>
-        <h2>要求和技能</h2>
-        <ul v-for="(keyword, i) in currentJob.skill.slice(0, 5)" :key="i">
-          <li>{{ keyword }}</li>
-        </ul>
         <h2>职位描述</h2>
-        <p style="text-indent: 32px">{{ currentJob.description }}</p>
+        <p style=" white-space: pre-wrap;">{{ currentJob.description }}</p>
       </div>
     </div>
   </div>
   <div v-else style="margin-top: 100px">
     ？？？？正在加载中
-    <h1>JOB: -- {{ jobStore.currentJob }}</h1>
+    <h1>JOB: -- {{ infoJob }}</h1>
     <h1>{{ currentNum }}</h1>
     <button @click="jobStore.addNum()">+1</button>
-    <button @click="console.log(currentJob)">job</button>
+    <button @click="console.log(infoJob)">job</button>
   </div>
 </template>
 
@@ -76,9 +77,11 @@ import { ref, onMounted, onBeforeMount } from "vue";
 const rateValue = ref();
 
 import { useJobStore } from "@/stores/job";
+import { storeToRefs } from "pinia";
 
 const jobStore = useJobStore();
 
+const { infoJob } = storeToRefs(jobStore)
 // const currentJob = computed(() => jobStore.getCurrentJob);
 const currentNum = computed(() => jobStore.getCurrentNum);
 
@@ -101,12 +104,12 @@ const currentJob = {
   kind2: "前端/移动开发",
   kind3: "移动开发",
   description:
-    "岗位职责：\n1、 从事安卓APP移动平台客户端软件的功能设计、开发和实现；\n2、 根据产品功能模块设计，编码实现各模块功能，并确保开发质量与进度；\n3、 对于产品的BUG进行问题的修正；\n4、 对移动端应用做出系统优化和数据优化；\n5、 产品的迭代和维护；\n岗位要求：\n1、熟练掌握Java, 熟悉面向对象思想，熟悉常用设计模式，编程习惯良好；\n2、熟练掌握安卓应用开发技术（包括UI、网络、存储、多线程等方面）、开发工具和测试工具；\n3、熟练掌握Android开发平台及框架原理，精通系统组件的使用，能进行自定义控件的封装；\n4、熟悉android屏幕适配，有APP性能优化的经验；\n5、有独立完整开发 App 经验优先，有个人上架 App 优先；\n6、良好的沟通及人际技巧，与团队成员高效协作；\n7.熟悉安卓各大市场APP上线流程",
+    "岗位职责：\n1、 从事安卓APP移动平台客户端软件的功能设计、开发和实现；\n2、 根据产品功能模块设计，编码实现各模块功能，并确保开发质量与进度；\n3、 对于产品的BUG进行问题的修正；\n4、 对移动端应用做出系统优化和数据优化；\n5、 产品的迭代和维护；\n岗位要求：\n1、熟练掌握Java, 熟悉面向对象思想，熟悉常用设计模式，编程习惯良好；\n2、熟练掌握安卓应用开发技术（包括UI、网络、存储、多线程等方面）、开发工具和测试工具；\n3、熟练掌握Android开发平台及框架原理，精通系统组件的使用，能进行自定义控件的封装；\n4、熟悉android屏幕适配，有APP性能优化的经验；\n5、有独立完整开发 App 经验优先，有个人上架 App 优先；\n6、良好的沟通及人际技巧，与团队成员高效协作；\n7、熟悉安卓各大市场APP上线流程",
   province: "安徽省",
   city: "合肥市",
   district: "瑶海区",
   address: "安徽合肥市瑶海区都市科技工业园C6栋101",
-  major: ["GIT", "vue3", "Javascript", "web", "vue2", "HTML5", "vue"],
+  major: ["计算机"],
   neo4j: 8852,
   company: "统旭智慧科技",
   logo: "https://img.bosszhipin.com/beijin/upload/com/logo/20220926/7b5b554d84f9729c157fc655c4aecc0c8cf8e49fb37c6801ccd75b28d7f169b2a9c7a6bce39fbdca.png?x-oss-process=image/resize,w_100,limit_0",
@@ -211,7 +214,7 @@ const currentJob = {
   font-size: 13px;
 }
 
-button {
+.send-button {
   font-family: inherit;
   font-size: 17px;
   background: skyblue;
@@ -227,31 +230,31 @@ button {
   cursor: pointer;
 }
 
-button span {
+.send-button span {
   display: block;
   margin-left: 0.3em;
   transition: all 0.3s ease-in-out;
 }
 
-button svg {
+.send-button svg {
   display: block;
   transform-origin: center center;
   transition: transform 0.3s ease-in-out;
 }
 
-button:hover .svg-wrapper {
+.send-button:hover .svg-wrapper {
   animation: fly-1 0.6s ease-in-out infinite alternate;
 }
 
-button:hover svg {
+.send-button:hover svg {
   transform: translateX(1.2em) rotate(45deg) scale(1.1);
 }
 
-button:hover span {
+.send-button:hover span {
   transform: translateX(5em);
 }
 
-button:active {
+.send-button:active {
   transform: scale(0.95);
 }
 
