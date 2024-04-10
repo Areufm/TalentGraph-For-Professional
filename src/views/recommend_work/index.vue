@@ -3,16 +3,8 @@
   <div class="container">
     <div class="top">
       <div style="display: flex">
-        <svg
-          style="width: 30px"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1024 1024"
-          data-v-ea893728=""
-        >
-          <path
-            fill="currentColor"
-            d="M288 128h608L736 384l160 256H288v320h-96V64h96z"
-          ></path>
+        <svg style="width: 30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
+          <path fill="currentColor" d="M288 128h608L736 384l160 256H288v320h-96V64h96z"></path>
         </svg>
         <h2>求职岗位： {{ recommendWork }}</h2>
       </div>
@@ -22,18 +14,10 @@
         <el-button type="primary" style="margin: auto 20px">薪资优先</el-button>
         <el-button type="primary" style="margin: auto 20px">同城优先</el-button>
         <el-button type="primary" style="margin: auto 20px">技能优先</el-button> -->
-        <sort-button type="primary" style="margin: auto 20px"
-          >技能优先</sort-button
-        >
-        <sort-button type="primary" style="margin: auto 20px"
-          >名企优先</sort-button
-        >
-        <sort-button type="primary" style="margin: auto 20px"
-          >薪资优先</sort-button
-        >
-        <sort-button type="primary" style="margin: auto 20px"
-          >同城优先</sort-button
-        >
+        <sort-button type="primary" style="margin: auto 20px">技能优先</sort-button>
+        <sort-button type="primary" style="margin: auto 20px">名企优先</sort-button>
+        <sort-button type="primary" style="margin: auto 20px">薪资优先</sort-button>
+        <sort-button type="primary" style="margin: auto 20px">同城优先</sort-button>
       </div>
       <!-- 知识图谱节点说明
       <div style="display: flex; margin-left: auto;">
@@ -45,11 +29,7 @@
       </div> -->
     </div>
     <!-- 职位具体信息 -->
-    <el-drawer
-      v-model="drawer"
-      direction="rtl"
-      size="60%"
-      style="
+    <el-drawer v-model="drawer" direction="rtl" size="60%" style="
         background: linear-gradient(
           to bottom,
           rgba(192, 230, 245) 2%,
@@ -59,8 +39,7 @@
           rgb(225, 238, 242) 40%,
           white
         );
-      "
-    >
+      ">
       <template #header>
         <h1 class="job-title">{{ currentJob.title }}</h1>
       </template>
@@ -69,16 +48,12 @@
         <div class="Info-container">
           <div class="job-header">
             <div style="display: flex; align-items: center">
-              <img
-                :src="currentJob.logo"
-                alt=""
-                style="
+              <img :src="currentJob.logo" alt="" style="
                   border-radius: 50%;
-                  width: 40px;
-                  height: 40px;
+                  width: 50px;
+                  height: 50px;
                   margin-right: 15px;
-                "
-              />
+                " />
               <p class="company-name">{{ currentJob.company }}</p>
             </div>
             <div class="job-details">
@@ -90,34 +65,20 @@
               </p>
 
               <p>公司福利： {{ currentJob.info }}</p>
-              <p style="display: flex; align-items: center">
-                推荐评价：
-                <el-rate
-                  v-model="rateValue"
-                  :texts="['不满意', '一般', '还行', '很棒', '非常满意']"
-                  show-text
-                />
-              </p>
+
             </div>
           </div>
 
           <div class="job-card">
             <div class="job-info">
               <h2 v-if="currentJob.major.length > 0">专业方向</h2>
-              <ul
-                v-for="(majorInfo, i) in currentJob.major.slice(0, 5)"
-                :key="i"
-              >
+              <ul v-for="(majorInfo, i) in currentJob.major.slice(0, 5)" :key="i">
                 <li>{{ majorInfo }}</li>
               </ul>
               <h2>要求和技能</h2>
 
               <div class="flex">
-                <p
-                  class="job-description-card"
-                  v-for="(keyword, i) in currentJob.skill.slice(0, 5)"
-                  :key="i"
-                >
+                <p class="job-description-card" v-for="(keyword, i) in currentJob.skill.slice(0, 5)" :key="i">
                   {{ keyword }}
                 </p>
               </div>
@@ -130,27 +91,30 @@
         </div>
       </template>
       <template #footer>
-        <div style="display: flex; flex: auto">
-          <el-button @click="cancelClick">取消</el-button>
-          <button class="send-button" @click="confirmClick">
-            <div class="svg-wrapper-1">
-              <div class="svg-wrapper">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                >
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path
-                    fill="currentColor"
-                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                  ></path>
-                </svg>
+        <div style="display: flex; ">
+          <p style="display: flex; align-items: center">
+            推荐评价：
+            <el-rate v-model="rateValue" :texts="['不满意', '一般', '还行', '很棒', '非常满意']" show-text />
+          </p>
+          <div style="margin-left: auto;display: flex;align-items: center">
+
+            <!-- <el-button @click="cancelClick">取消</el-button> -->
+
+            <button class="send-button" @click="confirmClick">
+              <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path fill="currentColor"
+                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                    </path>
+                  </svg>
+                </div>
               </div>
-            </div>
-            <span>投递简历</span>
-          </button>
+              <span>投递简历</span>
+            </button>
+
+          </div>
           <!-- <el-button type="primary" @click="confirmClick">confirm</el-button> -->
         </div>
       </template>
@@ -162,34 +126,21 @@
         <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(2)" />
         <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(3)" /> -->
 
-        <div
-          class="card"
-          v-for="(job, index) in currentJobs"
-          :key="index"
-          @click="selectJob(job)"
-        >
+        <div class="card" v-for="(job, index) in currentJobs" :key="index" @click="selectJob(job,index)">
           <div class="card-details">
-            <div
-              style="display: flex; align-items: center; padding-right: 10px"
-            >
-              <div
-                style="
+            <div style="display: flex; align-items: center; padding-right: 10px">
+              <div style="
                   display: flex;
                   flex-direction: column;
                   top: 0;
-                  width: 170px;
+                  width: 200px;
                   /* justify-content: center; */
-                "
-              >
+                ">
                 <p class="work_name">{{ job.title }}</p>
                 <p class="work_salary">{{ job.salary }}</p>
               </div>
-              <el-progress
-                class="custom-progress"
-                type="dashboard"
-                :percentage="(job.match_value * 100).toFixed(1)"
-                :width="70"
-              >
+              <el-progress class="custom-progress" type="dashboard" :percentage="(job.match_value * 100).toFixed(1)"
+                :width="70">
                 <template #default="{ percentage }">
                   <span class="percentage-value">{{ percentage }}%</span>
                   <span class="percentage-label">岗位匹配度</span>
@@ -197,9 +148,7 @@
               </el-progress>
             </div>
 
-            <div
-              style="display: flex; align-items: center; padding-right: 10px"
-            >
+            <div style="display: flex; align-items: center; padding-right: 10px">
               <!-- <img
                 :src="job.logo"
                 alt=""
@@ -214,15 +163,8 @@
 
         <!-- 换页组件 -->
         <div style="margin: 20px auto 0 auto">
-          <el-pagination
-            small
-            background
-            :page-size="pageSize"
-            :pager-count="5"
-            layout="prev, pager, next"
-            :total="total"
-            @current-change="changePage"
-          />
+          <el-pagination small background :page-size="pageSize" :pager-count="5" layout="prev, pager, next"
+            :total="total" @current-change="changePage" />
         </div>
       </div>
       <div class="right">
@@ -249,7 +191,7 @@ import HeaderBar from "@/components/HeaderBar.vue";
 import Info from "./components/Info.vue";
 import Relationship from "@/components/Chart/Relationship.vue";
 
-const relationshipRef = ref();
+const relationshipRef = ref(0);
 
 // 假设Card组件现在能接受cardIndex并发出hover事件
 function handleCardHover(index) {
@@ -277,7 +219,8 @@ const jobStore = useJobStore();
 
 const { currentJob } = storeToRefs(jobStore);
 
-function selectJob(job) {
+function selectJob(job,index) {
+  relationshipRef.value = index + 1;
   jobStore.selectJob(job);
   toggleDrawer();
 }
@@ -291,30 +234,26 @@ const toggleDrawer = () => {
   drawer.value = !drawer.value;
 };
 
-function cancelClick() {
-  drawer.value = false;
-}
-
 function confirmClick() {
   ElMessageBox.confirm(
-    "proxy will permanently delete the file. Continue?",
-    "Warning",
+    "你确定要投递简历信息吗？",
+    "Confirm",
     {
       confirmButtonText: "OK",
       cancelButtonText: "Cancel",
-      type: "warning",
+      type: "info",
     }
   )
     .then(() => {
       ElMessage({
         type: "success",
-        message: "Delete completed",
+        message: "投递简历成功！",
       });
     })
     .catch(() => {
       ElMessage({
         type: "info",
-        message: "Delete canceled",
+        message: "取消投递简历",
       });
     });
 }
@@ -852,6 +791,2635 @@ const currentJobs = computed(() => {
 const changePage = (newPage) => {
   currentPage.value = newPage;
 };
+
+const relationInfo = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value;
+  const end = start + pageSize.value;
+  return relationData.value.slice(start, end);
+});
+
+const relationData = ref([
+  [
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Golang"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "PHP"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "MySQL"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "嘉策信息"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "6-10K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "学历不限"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "临安市",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "PHP"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "浙江永旗区块链科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "16-26K"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州涂鸦信息技术有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-30K"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "three.js"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "WebGL"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "canvas"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "浙江讯盟科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-25K·14薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "GIT"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "先之（杭州）教育科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "2-3K"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "4234",
+        "title": "前端开发工程师(实习生)"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "H5"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "小程序"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Ruby"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "PHP"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Python"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C++"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "湖州全都来了网络科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "17-23K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5122",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "前端"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州微声科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "20-25K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Ruby"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node.js"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "app"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "PHP"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Python"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C++"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Angular"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "前端"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州天阙科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-25K"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5240",
+        "title": "前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "7989",
+        "title": "PHP"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
+    },
+    {
+      "n": {
+        "id": "7989",
+        "title": "PHP"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "7989",
+        "title": "PHP"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML/CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "7989",
+        "title": "PHP"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "裕隆通信"
+      }
+    },
+    {
+      "n": {
+        "id": "7989",
+        "title": "PHP"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "8-13K"
+      }
+    },
+    {
+      "n": {
+        "id": "7989",
+        "title": "PHP"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "7989",
+        "title": "PHP"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "7989",
+        "title": "PHP"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "PHP"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "通信"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Kotlin"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "小程序"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "计算机相关专业"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "全栈项目经验"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "全栈无侧重"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Swift"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JavaScript"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Vue"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "1000",
+        "title": "莱普晟医疗"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-20K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "上城区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "8411",
+        "title": "全栈工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "全栈工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "前端"
+      }
+    },
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "canvas"
+      }
+    },
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "西格玛（海南）家居科技发展有限责任公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-30K"
+      }
+    },
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5160",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "H5"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "SVN"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "app"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "gulp"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Webpack"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "前端"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "GIT"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "浙江爱电机器人科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "5-10K"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "4840",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "H5"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vuejs"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "uni-app"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTTP"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州趣村游文旅集团有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "12-20K"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "上城区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5035",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Flask"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "bootstrap"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Django"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JQuery"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "VisionVera"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "13-20K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "上城区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "8286",
+        "title": "Python开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "Python"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "英文"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTTP"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "前端"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州爱逛网络信息服务有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "20-30K·16薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "axios"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "element-ui"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTTP"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "npm"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "GIT"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州盘丝洞网络科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "8-10K"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "4727",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "ECharts"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "element-ui"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "api"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "ui"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTTP"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "博彦科技"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "19-22K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5088",
+        "title": "前端开发工程师（杭州/react）"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "英文"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "LoadRunner"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Selenium"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "SQL"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTTP"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州飓卓科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "2-4K"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "上城区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5510",
+        "title": "软件测试工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "软件测试"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "app"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "json"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTTP"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "uniapp"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "mqtt"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州雪意科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "4-8K"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "4495",
+        "title": "uniapp前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "运维"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "银行"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "架构师"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Spring"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "微服务"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "网商银行"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "25-35K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "java"
+      }
+    }
+  ]
+])
 </script>
 
 <style scoped>
@@ -1122,15 +3690,13 @@ sort-button:active {
   background-color: #fff;
   padding: 50px 30px 0 30px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(
-    to bottom,
-    rgba(192, 230, 245, 0.818),
-    rgba(188, 228, 244, 0.616),
-    rgb(211, 238, 248),
-    rgb(221, 239, 245),
-    rgb(225, 238, 242),
-    white
-  );
+  background: linear-gradient(to bottom,
+      rgba(192, 230, 245, 0.818),
+      rgba(188, 228, 244, 0.616),
+      rgb(211, 238, 248),
+      rgb(221, 239, 245),
+      rgb(225, 238, 242),
+      white);
 }
 
 .top {
@@ -1197,7 +3763,8 @@ sort-button:active {
 /* 添加或修改 el-progress 组件容器的 CSS 类名，例如：custom-progress */
 .custom-progress {
   margin-left: auto;
-  position: relative; /* 使内部元素能够基于此容器进行定位 */
+  position: relative;
+  /* 使内部元素能够基于此容器进行定位 */
 }
 
 .percentage-value {
@@ -1207,7 +3774,8 @@ sort-button:active {
   transform: translate(-50%, -50%);
   display: block;
   font-size: 20px;
-  margin-top: 0; /* 移除不必要的上外边距 */
+  margin-top: 0;
+  /* 移除不必要的上外边距 */
 }
 
 .percentage-label {
@@ -1216,13 +3784,15 @@ sort-button:active {
   transform: translateX(-50%); */
   display: block;
   font-size: 12px;
-  margin-top: 80px; /* 移除不必要的上外边距 */
+  margin-top: 80px;
+  /* 移除不必要的上外边距 */
 }
 
 ::v-deep .demo-progress .el-progress--line {
   margin-bottom: 15px;
   max-width: 200px;
 }
+
 .card {
   /* width: 350px; */
   /* width: 30%; */
@@ -1296,12 +3866,12 @@ sort-button:active {
 
 /*Text*/
 .work_name {
-  /* font-size: 1.5em; */
+  font-size: 1.5em;
   /* font-size: 20px; */
   font-weight: bold;
-  margin-left: 10px;
+  margin: 10px;
   display: block;
-  width: 150px;
+  /* width: 150px; */
   overflow: hidden;
   /* 超出部分隐藏 */
   text-overflow: ellipsis;
@@ -1311,34 +3881,15 @@ sort-button:active {
 }
 
 .work_salary {
-  margin-left: 15px;
-  /* font-size: 1.5em; */
+  margin: 5px 10px;
+  font-size: 1.3em;
   /* font-size: 20px; */
   font-weight: bold;
   color: red;
-  display: flex;
+  /* display: flex; */
 }
 
 .Info-container {
-  /* margin: 0 auto; */
-  /* background: linear-gradient(
-    to bottom,
-    rgb(192, 230, 245),
-    rgb(188, 228, 244),
-    rgb(211, 238, 248),
-    rgb(221, 239, 245),
-    rgb(225, 238, 242),
-    white
-  ); */
-  /* background: linear-gradient(
-    to bottom,
-    rgba(192, 230, 245, 0.818) 2%,
-    rgba(188, 228, 244, 0.616) 8%,
-    rgb(211, 238, 248) 15%,
-    rgb(221, 239, 245) 20%,
-    rgb(225, 238, 242) 40%,
-    white
-  ); */
   /* padding: 50px; */
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -1350,7 +3901,7 @@ sort-button:active {
 
 .job-header {
   width: 45vw;
-  margin: 60px auto 20px 50px;
+  margin: 60px auto 0 50px;
   padding: 20px;
 }
 
@@ -1387,7 +3938,7 @@ sort-button:active {
   /* border: 1px rgb(181, 178, 178) solid;
   border-radius: 30px;
   box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5); */
-  padding: 40px 50px;
+  padding: 0px 50px;
   /* height: 70vh; */
   overflow-y: auto;
 }
@@ -1421,7 +3972,7 @@ sort-button:active {
 
 .send-button {
   font-family: inherit;
-  font-size: 17px;
+  font-size: 13px;
   background: skyblue;
   color: white;
   padding: 0.5em 0.7em;
@@ -1433,6 +3984,7 @@ sort-button:active {
   overflow: hidden;
   transition: all 0.2s;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .send-button span {
