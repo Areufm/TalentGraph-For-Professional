@@ -1,5 +1,5 @@
 ﻿<template>
-  <div style="height: 100%; width: 100%">
+  <div style="height: 80vh; width: 100%">
     <!-- <div style="margin-top:0px;width: calc(100% - 10px);height:calc(100vh);"> -->
     <div style="margin-top: 0px; height: 100%; width: 100%">
       <RelationGraph ref="graphRef" :options="graphOptions">
@@ -9,7 +9,8 @@
                     <div class="c-node-name" :style="{ color: node.color }">{{ node.text }}</div>
                 </template> -->
         <template #graph-plug>
-          <div style="
+          <div
+            style="
               position: absolute;
               z-index: 700;
               left: 20px;
@@ -22,18 +23,29 @@
               font-size: 12px;
               font-weight: bold;
               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            ">
+            "
+          >
             <div style="">
               <div style="line-height: 20px">Node Filter:</div>
-              <el-radio-group v-model="checked_type" size="small" @change="doFilter">
+              <el-radio-group
+                v-model="checked_type"
+                size="small"
+                @change="doFilter"
+              >
                 <el-radio-button label="">All</el-radio-button>
+                <el-radio-button label="0"></el-radio-button>
                 <el-radio-button label="1"></el-radio-button>
                 <el-radio-button label="2"></el-radio-button>
                 <el-radio-button label="3"></el-radio-button>
                 <el-radio-button label="4"></el-radio-button>
               </el-radio-group>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <el-radio-group v-model="checked_isgoodman" size="small" style="margin-left: 50px" @change="doFilter">
+              <el-radio-group
+                v-model="checked_isgoodman"
+                size="small"
+                style="margin-left: 50px"
+                @change="doFilter"
+              >
                 <el-radio-button label="">All</el-radio-button>
                 <el-radio-button :label="true">Positive</el-radio-button>
                 <el-radio-button :label="false">Negative</el-radio-button>
@@ -42,7 +54,11 @@
             <div>
               <div style="line-height: 20px">条件筛选:</div>
               <el-checkbox-group v-model="rel_checkList" @change="doFilter">
-                <el-checkbox v-for="thisItem in all_rel_type" :key="thisItem" :label="thisItem" />
+                <el-checkbox
+                  v-for="thisItem in all_rel_type"
+                  :key="thisItem"
+                  :label="thisItem"
+                />
               </el-checkbox-group>
             </div>
           </div>
@@ -1232,534 +1248,636 @@ import RelationGraph, {
 const demoData = [
   [
     {
-      "n": {
-        "id": "[p]1",
-        "title": "[P]1"
-      },
-      "type(r)": "技能",
-      "m": {
-        "title": "PHP"
-      }
-    },
-    {
-      "n": {
-        "id": "[p]1",
-        "title": "[P]1"
-      },
-      "type(r)": "技能",
-      "m": {
-        "title": "Java"
-      }
-    },
-    {
-      "n": {
-        "id": "[p]1",
-        "title": "[P]1"
-      },
-      "type(r)": "技能",
-      "m": {
-        "title": "JS"
-      }
-    },
-    {
-      "n": {
-        "id": "[p]1",
-        "title": "[P]1"
-      },
-      "type(r)": "技能",
-      "m": {
-        "title": "HTML"
-      }
-    },
-    {
-      "n": {
-        "id": "[p]1",
-        "title": "[P]1"
-      },
-      "type(r)": "技能",
-      "m": {
-        "title": "CSS"
-      }
-    }
-  ],
-  [
-    {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "专业",
-      "m": {
-        "title": "计算机"
-      }
+      m: {
+        title: "计算机",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "Golang"
-      }
+      m: {
+        title: "Golang",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "HTML5"
-      }
+      m: {
+        title: "HTML5",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "web"
-      }
+      m: {
+        title: "web",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "PHP"
-      }
+      m: {
+        title: "PHP",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "MySQL"
-      }
+      m: {
+        title: "MySQL",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "Javascript"
-      }
+      m: {
+        title: "Javascript",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "CSS"
-      }
+      m: {
+        title: "CSS",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "Java"
-      }
+      m: {
+        title: "Java",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "公司",
-      "m": {
-        "scale": "100",
-        "title": "嘉策信息"
-      }
+      m: {
+        scale: "100",
+        title: "嘉策信息",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "薪资",
-      "m": {
-        "title": "6-10K·13薪"
-      }
+      m: {
+        title: "6-10K·13薪",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "学历需求",
-      "m": {
-        "title": "学历不限"
-      }
+      m: {
+        title: "学历不限",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "包含职位",
-      "m": {
-        "title": "临安市",
-        "Superior": "杭州市"
-      }
+      m: {
+        title: "临安市",
+        Superior: "杭州市",
+      },
     },
     {
-      "n": {
-        "id": "8025",
-        "title": "php开发工程师"
+      n: {
+        id: "8025",
+        title: "php开发工程师",
       },
       "type(r)": "包含职位",
-      "m": {
-        "title": "PHP"
-      }
-    }
+      m: {
+        title: "PHP",
+      },
+    },
   ],
   [
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "HTML5"
-      }
+      m: {
+        title: "HTML5",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "JS"
-      }
+      m: {
+        title: "JS",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "web"
-      }
+      m: {
+        title: "web",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "Javascript"
-      }
+      m: {
+        title: "Javascript",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "CSS"
-      }
+      m: {
+        title: "CSS",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "公司",
-      "m": {
-        "scale": "100",
-        "title": "浙江永旗区块链科技有限公司"
-      }
+      m: {
+        scale: "100",
+        title: "浙江永旗区块链科技有限公司",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "薪资",
-      "m": {
-        "title": "16-26K"
-      }
+      m: {
+        title: "16-26K",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "学历需求",
-      "m": {
-        "title": "大专"
-      }
+      m: {
+        title: "大专",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "包含职位",
-      "m": {
-        "title": "西湖区",
-        "Superior": "杭州市"
-      }
+      m: {
+        title: "西湖区",
+        Superior: "杭州市",
+      },
     },
     {
-      "n": {
-        "id": "5176",
-        "title": "web前端工程师"
+      n: {
+        id: "5176",
+        title: "web前端工程师",
       },
       "type(r)": "包含职位",
-      "m": {
-        "title": "前端开发工程师"
-      }
-    }
+      m: {
+        title: "前端开发工程师",
+      },
+    },
   ],
   [
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "JS"
-      }
+      m: {
+        title: "JS",
+      },
     },
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "vue"
-      }
+      m: {
+        title: "vue",
+      },
     },
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "React"
-      }
+      m: {
+        title: "React",
+      },
     },
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "CSS"
-      }
+      m: {
+        title: "CSS",
+      },
     },
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "公司",
-      "m": {
-        "scale": "100",
-        "title": "杭州涂鸦信息技术有限公司"
-      }
+      m: {
+        scale: "100",
+        title: "杭州涂鸦信息技术有限公司",
+      },
     },
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "薪资",
-      "m": {
-        "title": "15-30K"
-      }
+      m: {
+        title: "15-30K",
+      },
     },
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "学历需求",
-      "m": {
-        "title": "大专"
-      }
+      m: {
+        title: "大专",
+      },
     },
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "包含职位",
-      "m": {
-        "title": "西湖区",
-        "Superior": "杭州市"
-      }
+      m: {
+        title: "西湖区",
+        Superior: "杭州市",
+      },
     },
     {
-      "n": {
-        "id": "5252",
-        "title": "前端开发工程师"
+      n: {
+        id: "5252",
+        title: "前端开发工程师",
       },
       "type(r)": "包含职位",
-      "m": {
-        "title": "前端开发工程师"
-      }
-    }
+      m: {
+        title: "前端开发工程师",
+      },
+    },
   ],
   [
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "three.js"
-      }
+      m: {
+        title: "three.js",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "WebGL"
-      }
+      m: {
+        title: "WebGL",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "JS"
-      }
+      m: {
+        title: "JS",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "HTML"
-      }
+      m: {
+        title: "HTML",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "Javascript"
-      }
+      m: {
+        title: "Javascript",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "CSS"
-      }
+      m: {
+        title: "CSS",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "技能",
-      "m": {
-        "title": "canvas"
-      }
+      m: {
+        title: "canvas",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "公司",
-      "m": {
-        "scale": "100",
-        "title": "浙江讯盟科技有限公司"
-      }
+      m: {
+        scale: "100",
+        title: "浙江讯盟科技有限公司",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "薪资",
-      "m": {
-        "title": "15-25K·14薪"
-      }
+      m: {
+        title: "15-25K·14薪",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "学历需求",
-      "m": {
-        "title": "大专"
-      }
+      m: {
+        title: "大专",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "包含职位",
-      "m": {
-        "title": "西湖区",
-        "Superior": "杭州市"
-      }
+      m: {
+        title: "西湖区",
+        Superior: "杭州市",
+      },
     },
     {
-      "n": {
-        "id": "5173",
-        "title": "3D前端开发工程师"
+      n: {
+        id: "5173",
+        title: "3D前端开发工程师",
       },
       "type(r)": "包含职位",
-      "m": {
-        "title": "前端开发工程师"
-      }
-    }
+      m: {
+        title: "前端开发工程师",
+      },
+    },
   ],
+  // [
+  //   {
+  //     n: {
+  //       id: "[p]1",
+  //       title: "[P]1",
+  //     },
+  //     "type(r)": "技能",
+  //     m: {
+  //       title: "PHP",
+  //     },
+  //   },
+  //   {
+  //     n: {
+  //       id: "[p]1",
+  //       title: "[P]1",
+  //     },
+  //     "type(r)": "技能",
+  //     m: {
+  //       title: "Java",
+  //     },
+  //   },
+  //   {
+  //     n: {
+  //       id: "[p]1",
+  //       title: "[P]1",
+  //     },
+  //     "type(r)": "技能",
+  //     m: {
+  //       title: "JS",
+  //     },
+  //   },
+  //   {
+  //     n: {
+  //       id: "[p]1",
+  //       title: "[P]1",
+  //     },
+  //     "type(r)": "技能",
+  //     m: {
+  //       title: "HTML",
+  //     },
+  //   },
+  //   {
+  //     n: {
+  //       id: "[p]1",
+  //       title: "[P]1",
+  //     },
+  //     "type(r)": "技能",
+  //     m: {
+  //       title: "CSS",
+  //     },
+  //   },
+  // ],
 ];
 
-
+const userData = [
+  {
+    n: {
+      id: "[p]1",
+      title: "[P]1",
+    },
+    "type(r)": "技能",
+    m: {
+      title: "PHP",
+    },
+  },
+  {
+    n: {
+      id: "[p]1",
+      title: "[P]1",
+    },
+    "type(r)": "技能",
+    m: {
+      title: "Java",
+    },
+  },
+  {
+    n: {
+      id: "[p]1",
+      title: "[P]1",
+    },
+    "type(r)": "技能",
+    m: {
+      title: "JS",
+    },
+  },
+  {
+    n: {
+      id: "[p]1",
+      title: "[P]1",
+    },
+    "type(r)": "技能",
+    m: {
+      title: "HTML",
+    },
+  },
+  {
+    n: {
+      id: "[p]1",
+      title: "[P]1",
+    },
+    "type(r)": "技能",
+    m: {
+      title: "CSS",
+    },
+  },
+];
 
 //数据转换
-const transformData = (demoData) => {
-  let typeCounter = 1;
+const transformData = (demoData, userData) => {
+  let typeCounter = 0;
   let idCounter = 1;
   let rootId = "";
   const nodes = [];
   const lines = {};
 
+  let userFlag = 1;
+  userData.forEach((item) => {
+    if (userFlag) {
+      const root = {
+        id: item.n.id,
+        text: item.n.title,
+        color: "Tomato",
+        data: {
+          isGoodMan: true,
+          typeCount: [typeCounter],
+          // sexType: "female",
+        },
+        //   typeCount: [typeCounter],
+      };
+      userFlag = 0;
+      rootId = root.id;
+      nodes.push(root);
+    }
+
+    let mId = `m${idCounter++}`;
+    const node = {
+      id: mId,
+      text: item.m.title,
+      color: "rgba(0, 206, 209, 1)",
+      borderColor: "#6cc0ff",
+      data: {
+        isGoodMan: false,
+        typeCount: [typeCounter],
+        // sexType: "male",
+      },
+      //   typeCount: [typeCounter],
+      type: item["type(r)"],
+    };
+    nodes.push(node);
+
+    if (item.m) {
+      // 存储每一对连接关系，避免重复
+      lines[`${item.n.id}-${mId}`] = {
+        from: item.n.id,
+        to: mId,
+        text: item["type(r)"],
+        color: "#d2c0a5",
+        fontColor: "#d2c0a5",
+        data: {
+          type: item["type(r)"],
+        },
+      };
+    }
+  });
+
+  typeCounter++;
   demoData.forEach((jsonDataGroup) => {
     let flag = 1;
     jsonDataGroup.forEach((item) => {
@@ -1775,7 +1893,7 @@ const transformData = (demoData) => {
           //   typeCount: [typeCounter],
         };
         flag = 0;
-        rootId = root.id;
+        // rootId = root.id;
         nodes.push(root);
       }
 
@@ -1808,17 +1926,20 @@ const transformData = (demoData) => {
           type: item["type(r)"],
         };
         switch (item["type(r)"]) {
-          case "\u85aa\u6c34": //薪资
+          case "薪资": //薪资
             node.color = "#FF0000";
             break;
-          case "\u516c\u53f8\u804c\u4f4d": //所属公司
+          case "专业":
             node.color = "royalblue";
             break;
-          case "\u8be6\u7ec6\u5730\u5740": //详细地址
+          case "公司":
             node.color = "#8B7D6B";
             break;
-          case "\u5305\u542b\u804c\u4f4d": //所属区县
+          case "学历需求":
             node.color = "#FF1493";
+            break;
+          case "包含职位":
+            node.color = "Chartreuse";
             break;
         }
         nodes.push(node);
@@ -1896,7 +2017,7 @@ onMounted(() => {
 });
 
 const setGraphData = async () => {
-  const transform = transformData(demoData);
+  const transform = transformData(demoData, userData);
   console.log(transform);
   const __graph_json_data: RGJsonData = transform;
   const graphInstance = graphRef.value!.getInstance();
