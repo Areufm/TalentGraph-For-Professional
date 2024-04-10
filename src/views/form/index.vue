@@ -2,37 +2,57 @@
   <!-- <HeaderBar /> -->
   <div class="container">
     <div class="card">
-      <div style="
+      <div
+        style="
           width: 40%;
           /* margin-right: 20px; */
           justify-content: center;
           align-items: center;
-        ">
-        <img src="../../assets/login2.png" alt="" style="width: 100%; border-radius: 20px;" @click="clickImg" />
+        "
+      >
+        <img
+          src="../../assets/login2.png"
+          alt=""
+          style="width: 100%; border-radius: 20px"
+          @click="clickImg"
+        />
       </div>
       <div class="form">
         <el-form :model="form" label-width="auto" style="width: 100%">
           <div v-if="active == 0" style="width: 70%; margin: 0 auto">
-            <el-upload class="upload-demo" drag action="" style="background-color: transparent;" accept=".docx, .pdf"
-              :before-upload="beforeUpload" @progress="simulateSuccess">
+            <el-upload
+              class="upload-demo"
+              drag
+              action=""
+              style="background-color: transparent"
+              accept=".docx, .pdf"
+              :before-upload="beforeUpload"
+              @progress="simulateSuccess"
+            >
               <el-icon class="el-icon--upload"><upload-filled /></el-icon>
               <div class="el-upload__text">
                 拖拽文件到此 或者 <em>点击上传文件</em>
               </div>
               <template #tip>
-                <div class="el-upload__tip">
-                  pdf / docx 文件大小限制 2 MB
-                </div>
+                <div class="el-upload__tip">pdf / docx 文件大小限制 2 MB</div>
               </template>
             </el-upload>
           </div>
           <div v-if="active == 1" style="width: 70%; margin: 0 auto">
             <el-form-item label="姓名" style="text-align: center">
-              <el-input v-model="form.name" clearable style="text-align: center" />
+              <el-input
+                v-model="form.name"
+                clearable
+                style="text-align: center"
+              />
             </el-form-item>
             <el-form-item label="年龄">
               <!-- <el-input v-model="form.age" clearable /> -->
-              <el-input-number v-model="form.age" controls-position="right" style="width: 500px">
+              <el-input-number
+                v-model="form.age"
+                controls-position="right"
+                style="width: 500px"
+              >
               </el-input-number>
             </el-form-item>
             <el-form-item label="电话号码">
@@ -44,8 +64,14 @@
               <el-input v-model="form.email" clearable />
             </el-form-item>
             <el-form-item label="地区">
-              <el-cascader style="width: 500px" placeholder="请选择求职地区" size="default" :options="regionData"
-                v-model="form.area" @change="handleChange">
+              <el-cascader
+                style="width: 500px"
+                placeholder="请选择求职地区"
+                size="default"
+                :options="regionData"
+                v-model="form.area"
+                @change="handleChange"
+              >
               </el-cascader>
             </el-form-item>
             <el-form-item label="学历">
@@ -57,23 +83,40 @@
               </el-select>
             </el-form-item>
           </div>
-          <div v-if="active == 3" style="width: 70%; margin: 0 auto; max-height: 350px">
+          <div
+            v-if="active == 3"
+            style="width: 70%; margin: 0 auto; max-height: 350px"
+          >
             <el-form-item label="求职岗位">
-              <el-cascader style="width: 500px" v-model="value" :options="options" :props="props"
-                :show-all-levels="false" @change="handleChange" placeholder="请选择你的求职岗位" />
+              <el-cascader
+                style="width: 500px"
+                v-model="value"
+                :options="options"
+                :props="props"
+                :show-all-levels="false"
+                @change="handleChange"
+                placeholder="请选择你的求职岗位"
+              />
             </el-form-item>
             <el-form-item label="技能点">
               <el-input v-model="form.skill" clearable />
             </el-form-item>
             <el-form-item label="个人信息描述">
-              <el-input v-model="form.info" :autosize="{ minRows: 5, maxRows: 11 }" type="textarea"
-                placeholder="请输入你的个人信息" clearable />
+              <el-input
+                v-model="form.info"
+                :autosize="{ minRows: 5, maxRows: 11 }"
+                type="textarea"
+                placeholder="请输入你的个人信息"
+                clearable
+              />
             </el-form-item>
           </div>
         </el-form>
 
         <div v-if="active != 0" style="display: flex">
-          <el-button @click="active-- ? active => 0 : (active = 0)">上一步</el-button>
+          <el-button @click="active-- ? (active) => 0 : (active = 0)"
+            >上一步</el-button
+          >
           <el-button v-if="active < 3" @click="active++">下一步</el-button>
           <el-button v-else @click="submit">提交</el-button>
         </div>
@@ -88,7 +131,12 @@
           <el-step title="Step 2" :icon="UploadFilled" />
           <el-step title="Step 3" :icon="Picture" />
         </el-steps> -->
-        <el-steps style="width: 80%; margin-top: 20px" :active="active" align-center :space="200">
+        <el-steps
+          style="width: 80%; margin-top: 20px"
+          :active="active"
+          align-center
+          :space="200"
+        >
           <el-step title="Step 1" description="" />
           <el-step title="Step 2" description="" />
           <el-step title="Step 3" description="" />
@@ -139,7 +187,7 @@ const submit = () => {
     message: h("i", { style: "color: teal" }, "恭喜你提交成功！"),
     offset: 50,
   });
-  router.push("/")
+  router.push("/");
 };
 
 const value = ref([]);
@@ -387,8 +435,8 @@ const options = [
 const uploadFile = (response, file, fileList) => {
   // 假设这是一个模拟成功的响应对象
   const mockResponse = {
-    code: 0,
-    message: '上传成功',
+    code: 1,
+    message: "上传成功",
     data: {
       filename: file.name,
       size: file.size,
@@ -396,42 +444,52 @@ const uploadFile = (response, file, fileList) => {
     },
   };
 
-  ElNotification({
-    title: "上传成功",
-    message: h("i", { style: "color: teal" }, "简历上传成功！"),
-    offset: 50,
-  });
+  // 如果响应码表示上传成功
+  if (mockResponse.code === 1) {
+    // 显示上传成功的提示信息
+    ElNotification({
+      title: "简历上传成功",
+      message: h("i", { style: "color: teal" }, "简历正在解析中..."),
+      offset: 50,
+    });
 
-
-  active.value = 1;
-}
+    // 设置一个3秒后执行的定时器
+    setTimeout(() => {
+      // 在这里将active赋值
+      active.value = 1;
+    }, 3000); // 3000毫秒即3秒
+  } else {
+    ElNotification({
+      title: "上传失败！",
+      message: h("i", { style: "color: teal" }, "简历上传失败，请重新上传！"),
+      type: "error",
+      offset: 50,
+    });
+  }
+};
 
 const simulateSuccess = (file, fileList) => {
   // 模拟上传成功，直接调用原本的on-success回调
   uploadFile(null, file, fileList);
-
-}
+};
 const beforeUpload = (file) => {
   // 忽略实际上传，直接返回true
   return true;
-}
+};
 
 const authStore = useAuthStore();
 const router = useRouter();
 
 const clickImg = () => {
   if (authStore.isLogin) {
-    authStore.logout()
-    router.push("/");
+    authStore.logout();
   }
-  else {
-    router.push("/")
-  }
-}
+  router.push("/");
+};
 </script>
 
 <style scoped>
-.upload-demo>>>.el-upload-dragger,
+.upload-demo >>> .el-upload-dragger,
 .upload-demo ::v-deep .el-upload-dragger {
   border-radius: 30px;
   background-color: transparent;
@@ -442,13 +500,15 @@ const clickImg = () => {
   /* margin-top: 50px; */
   width: 100%;
   height: 90vh;
-  background: linear-gradient(to bottom,
-      rgba(192, 230, 245, 0.818) 2%,
-      rgba(188, 228, 244, 0.616) 8%,
-      rgb(211, 238, 248) 15%,
-      rgb(221, 239, 245) 20%,
-      rgb(225, 238, 242) 30%,
-      white);
+  background: linear-gradient(
+    to bottom,
+    rgba(192, 230, 245, 0.818) 2%,
+    rgba(188, 228, 244, 0.616) 8%,
+    rgb(211, 238, 248) 15%,
+    rgb(221, 239, 245) 20%,
+    rgb(225, 238, 242) 30%,
+    white
+  );
 }
 
 .card {

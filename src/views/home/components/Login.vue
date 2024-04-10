@@ -11,13 +11,80 @@
       <input required="" placeholder="" type="password" class="input" />
       <span>密码</span>
     </label>
-    <button class="submit">登录</button>
+    <button class="submit" @click="handleLogin">登录</button>
     <p class="signin">暂时没有账户 ? <a href="/register">去注册</a></p>
   </form>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { validUsername } from "@/utils/validate";
+import { useAuthStore } from "@/stores/auth";
+
+const authStore = useAuthStore();
+
+const validateUsername = (rule, value, callback) => {
+  if (!validUsername(value)) {
+    callback(new Error("请输入正确的用户名"));
+  } else {
+    callback();
+  }
+};
+
+const validatePassword = (rule, value, callback) => {
+  if (value.length < 6) {
+    callback(new Error("密码不能少于6位"));
+  } else {
+    callback();
+  }
+};
+
+const LoginForm = reactive({
+  username: "",
+  password: "",
+  password_confirm: "",
+});
+
+const loginRules = reactive({
+  username: [{ required: true, trigger: "blur", validator: validateUsername }],
+  password: [
+    { required: true, trigger: "change", validator: validatePassword },
+  ],
+});
+
+const isShow = ref(true);
+const isShow_confirm = ref(true);
+const passwordType = ref("password");
+const redirect = ref(undefined);
+const route = useRoute();
+const router = useRouter();
+
+const showPwd = () => {
+  passwordType.value = passwordType.value === "password" ? "" : "password";
+  isShow.value = !isShow.value;
+};
+
+const showPwd_confirm = () => {
+  if (passwordConfirmType.value === "password") {
+    passwordConfirmType.value = "";
+  } else {
+    passwordConfirmType.value = "password";
+  }
+  isShow_confirm.value = !isShow_confirm.value;
+};
+
+const handleLogin = () => {
+  ElNotification({
+    title: "登录成功！",
+    message: "恭喜你成功登录",
+    type: "success",
+    offset: 50,
+  });
+  authStore.login();
+  console.log(authStore.isLogin);
+  router.push("/form");
+};
 </script>
 
 <style scoped>
@@ -71,7 +138,7 @@ import { ref } from "vue";
   background-color: transparent;
 }
 
-.form label .input+span {
+.form label .input + span {
   position: absolute;
   left: 10px;
   top: 15px;
@@ -79,22 +146,21 @@ import { ref } from "vue";
   font-size: 0.9em;
   cursor: text;
   transition: 0.3s ease;
-
 }
 
-.form label .input:placeholder-shown+span {
+.form label .input:placeholder-shown + span {
   top: 15px;
   font-size: 0.9em;
 }
 
-.form label .input:focus+span,
-.form label .input:valid+span {
+.form label .input:focus + span,
+.form label .input:valid + span {
   top: 30px;
   font-size: 0.7em;
   font-weight: 600;
 }
 
-.form label .input:valid+span {
+.form label .input:valid + span {
   color: green;
 }
 

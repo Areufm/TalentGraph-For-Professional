@@ -1,29 +1,55 @@
 ﻿<template>
   <n-layout-header>
     <div class="header_left">
-      <img src="../assets/workcat2.png" alt="logo"
-        style="border-radius: 50%; height: 35px; width: 35px; margin: 0 10px" />
+      <img
+        src="../assets/workcat2.png"
+        alt="logo"
+        style="border-radius: 50%; height: 35px; width: 35px; margin: 0 10px"
+      />
       <div class="header_left_title">职业猫</div>
       <div class="nav-city">
-        <p class="nav-city-box" ka="header-switch-city" @click="centerDialogVisible = true">
+        <p
+          class="nav-city-box"
+          ka="header-switch-city"
+          @click="centerDialogVisible = true"
+        >
           <!-- <i class="icon-poi"></i> -->
-          <svg class="icon-poi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
-            <path fill="currentColor"
-              d="M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544">
-            </path>
-            <path fill="currentColor"
-              d="M512 512a96 96 0 1 0 0-192 96 96 0 0 0 0 192m0 64a160 160 0 1 1 0-320 160 160 0 0 1 0 320"></path>
+          <svg
+            class="icon-poi"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1024 1024"
+            data-v-ea893728=""
+          >
+            <path
+              fill="currentColor"
+              d="M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544"
+            ></path>
+            <path
+              fill="currentColor"
+              d="M512 512a96 96 0 1 0 0-192 96 96 0 0 0 0 192m0 64a160 160 0 1 1 0-320 160 160 0 0 1 0 320"
+            ></path>
           </svg>
           <span class="nav-city-selected">{{ lastSelectedRegionText }}</span>
           <span class="switchover-city">[切换城市]</span>
         </p>
-        <el-dialog v-model="centerDialogVisible" title="请选择您的地区" width="500" style="
+        <el-dialog
+          v-model="centerDialogVisible"
+          title="请选择您的地区"
+          width="500"
+          style="
             border-radius: 15px;
             justify-content: center;
             align-items: center;
-          ">
-          <el-cascader placeholder="请选择地区" size="default" :options="regionData" v-model="selectedOptions" @change=""
-            style="display: flex">
+          "
+        >
+          <el-cascader
+            placeholder="请选择地区"
+            size="default"
+            :options="regionData"
+            v-model="selectedOptions"
+            @change=""
+            style="display: flex"
+          >
           </el-cascader>
           <template #footer>
             <div class="dialog-footer">
@@ -38,12 +64,14 @@
       <a href="/" class="header_left_text">首页</a>
       <a href="/recommend" class="header_left_text">推荐岗位</a>
       <a href="/research" class="header_left_text">搜索岗位</a>
-      <a href="/form" class="header_left_text">在线表单</a>
-      <button @click="changeLogin">切换登录状态</button>
+      <!-- <a href="/form" class="header_left_text">在线表单</a> -->
+      <!-- <button @click="changeLogin">切换登录状态</button> -->
     </div>
     <div v-if="authStore.isLogin" class="header_right">
-      <el-popover :width="300"
-        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px;">
+      <el-popover
+        :width="300"
+        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px;"
+      >
         <template #reference>
           <p style="color: white">简历</p>
         </template>
@@ -65,26 +93,39 @@
         <div class="popup">
           <p class="popup_title">
             新增附件简历
-            <svg style="
+            <svg
+              style="
                 width: 20px;
                 height: 20px;
                 position: absolute;
                 right: 20px;
                 top: 15px;
-              " @click="hidePopup" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
-              <path fill="currentColor"
-                d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z">
-              </path>
+              "
+              @click="hidePopup"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1024 1024"
+              data-v-ea893728=""
+            >
+              <path
+                fill="currentColor"
+                d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"
+              ></path>
             </svg>
           </p>
 
-          <div style="
+          <div
+            style="
               display: flex;
               justify-content: space-around;
               align-items: center;
-            ">
-            <el-upload class="upload-demo" drag action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-              multiple>
+            "
+          >
+            <el-upload
+              class="upload-demo"
+              drag
+              action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+              multiple
+            >
               <el-icon class="el-icon--upload"><upload-filled /></el-icon>
               <div class="el-upload__text">
                 拖拽文件到此 或 <em>点击上传文件</em>
@@ -95,7 +136,11 @@
                 </div>
               </template>
             </el-upload>
-            <img src="../assets/upresume.png" alt="" style="width: 40%; height: 100%" />
+            <img
+              src="../assets/upresume.png"
+              alt=""
+              style="width: 40%; height: 100%"
+            />
           </div>
           <div class="popup_btn">
             <button class="cancelBtn" @click="hidePopup">上传简历附件</button>
@@ -106,24 +151,40 @@
       <a href="/profile" class="header_right_text">个人信息</a>
       <a href="/skill-evaluation" class="header_right_text">能力评估</a>
       <p class="header_right_text">Joker Xue</p>
-      <el-popover :width="50"
-        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 10px;text-align: center">
+      <el-popover
+        :width="50"
+        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 10px;text-align: center"
+      >
         <template #reference>
-          <img src="../assets/xue.jpg" alt="头像" style="border-radius: 50%; height: 45px; width: 45px" />
+          <img
+            src="../assets/xue.jpg"
+            alt="头像"
+            style="border-radius: 50%; height: 45px; width: 45px"
+          />
         </template>
-        <template #default>退出登录</template>
+        <template #default>
+          <button
+            @click="authStore.logout"
+            style="border: 0; outline: none; background-color: transparent"
+          >
+            退出登录
+          </button>
+        </template>
       </el-popover>
     </div>
     <div v-else class="header_right">
       <a href="/boss" class="header_right_text">我要招聘</a>
       <a href="/login" class="header_right_text">我要求职</a>
-      <button style="
+      <button
+        style="
           border: rgb(255, 255, 255) solid 2px;
           border-radius: 50px;
           background-color: rgba(255, 255, 255, 0);
           color: white;
-          padding: 10px;
-        " @click="toLogin">
+          padding: 5px 10px;
+        "
+        @click="toLogin"
+      >
         登录 / 注册
       </button>
     </div>
@@ -135,6 +196,7 @@ import { ref, computed, onMounted, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { regionData } from "element-china-area-data";
 import { useAuthStore } from "@/stores/auth";
+import { UploadFilled } from "@element-plus/icons-vue";
 
 const authStore = useAuthStore();
 const router = useRouter();
