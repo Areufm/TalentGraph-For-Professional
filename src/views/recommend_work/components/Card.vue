@@ -1,15 +1,32 @@
 ﻿<template>
   <div class="card" @click="handleToggleDrawer">
     <div class="card-details">
-      <div style="display: flex; top: 0; justify-content: space-between">
-        <p class="work_name">前端开发工程师</p>
-        <p class="work_salary">12K-15K</p>
-      </div>
       <div style="display: flex">
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            top: 0;
+            width: 170px;
+            /* justify-content: center; */
+          "
+        >
+          <p class="work_name">前端开发工程师</p>
+          <p class="work_salary">12K-15K</p>
+        </div>
+        <el-progress type="dashboard" :percentage="80" :width="80">
+          <template #default="{ percentage }">
+            <span class="percentage-value">{{ percentage }}%</span>
+            <span class="percentage-label">岗位匹配度</span>
+          </template>
+        </el-progress>
+      </div>
+
+      <!-- <div style="display: flex">
         <p style="margin: 0 15px">关键词1</p>
         <p style="margin: 0 15px">关键词2</p>
         <p style="margin: 0 15px">关键词3</p>
-      </div>
+      </div> -->
       <div style="display: flex; justify-content: space-between">
         <p class="company_name">企业名</p>
         <p class="job">职业类型</p>
@@ -36,6 +53,20 @@ const handleToggleDrawer = () => {
 </script>
 
 <style scoped>
+.percentage-value {
+  display: block;
+  margin-top: 10px;
+  font-size: 28px;
+}
+.percentage-label {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+}
+::v-deep .demo-progress .el-progress--line {
+  margin-bottom: 15px;
+  max-width: 200px;
+}
 .card {
   /* width: 350px; */
   /* width: 30%; */
@@ -108,7 +139,8 @@ const handleToggleDrawer = () => {
 
 /*Text*/
 .work_name {
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
+  /* font-size: 20px; */
   font-weight: bold;
   margin-left: 15px;
   display: block;
@@ -122,8 +154,9 @@ const handleToggleDrawer = () => {
 }
 
 .work_salary {
-  margin-right: 15px;
-  font-size: 1.5em;
+  margin-left: 15px;
+  /* font-size: 1.5em; */
+  /* font-size: 20px; */
   font-weight: bold;
   color: red;
   display: flex;
