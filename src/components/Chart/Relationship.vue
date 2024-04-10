@@ -9,8 +9,7 @@
                     <div class="c-node-name" :style="{ color: node.color }">{{ node.text }}</div>
                 </template> -->
         <template #graph-plug>
-          <div
-            style="
+          <div style="
               position: absolute;
               z-index: 700;
               left: 20px;
@@ -23,15 +22,10 @@
               font-size: 12px;
               font-weight: bold;
               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            "
-          >
+            ">
             <div style="">
               <div style="line-height: 20px">Node Filter:</div>
-              <el-radio-group
-                v-model="checked_type"
-                size="small"
-                @change="doFilter"
-              >
+              <el-radio-group v-model="checked_type" size="small" @change="doFilter">
                 <el-radio-button label="">All</el-radio-button>
                 <el-radio-button label="1"></el-radio-button>
                 <el-radio-button label="2"></el-radio-button>
@@ -39,12 +33,7 @@
                 <el-radio-button label="4"></el-radio-button>
               </el-radio-group>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <el-radio-group
-                v-model="checked_isgoodman"
-                size="small"
-                style="margin-left: 50px"
-                @change="doFilter"
-              >
+              <el-radio-group v-model="checked_isgoodman" size="small" style="margin-left: 50px" @change="doFilter">
                 <el-radio-button label="">All</el-radio-button>
                 <el-radio-button :label="true">Positive</el-radio-button>
                 <el-radio-button :label="false">Negative</el-radio-button>
@@ -53,11 +42,7 @@
             <div>
               <div style="line-height: 20px">条件筛选:</div>
               <el-checkbox-group v-model="rel_checkList" @change="doFilter">
-                <el-checkbox
-                  v-for="thisItem in all_rel_type"
-                  :key="thisItem"
-                  :label="thisItem"
-                />
+                <el-checkbox v-for="thisItem in all_rel_type" :key="thisItem" :label="thisItem" />
               </el-checkbox-group>
             </div>
           </div>
@@ -1247,711 +1232,525 @@ import RelationGraph, {
 const demoData = [
   [
     {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "web",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "PHP"
+      }
     },
     {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "javascript",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
     },
     {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
     },
     {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html5",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
     },
     {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "vue",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "js",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "jquery",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "css",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u8be6\u7ec6\u5730\u5740",
-      m: {
-        title: "\u6d2a\u57ce\u5e7f\u573aB\u5ea71005",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u5305\u542b\u804c\u4f4d",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6240\u5c5e\u533a/\u53bf",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u85aa\u6c34",
-      m: {
-        title: "1-2K",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u516c\u53f8\u804c\u4f4d",
-      m: {
-        title:
-          "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6240\u5c5e\u516c\u53f8",
-      m: {
-        title:
-          "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u5b58\u5728\u804c\u4f4d",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u5b66\u5386\u8981\u6c42",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    }
   ],
   [
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u65b9\u5411",
-      m: {
-        title: "\u8ba1\u7b97\u673a",
-      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "react",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Golang"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "javascript",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "git",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "PHP"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "vue",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "MySQL"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "css",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u8be6\u7ec6\u5730\u5740",
-      m: {
-        title: "\u897f\u6eaa\u79d1\u521b\u56ed9\u5e629\u697c",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u5305\u542b\u804c\u4f4d",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u6240\u5c5e\u533a/\u53bf",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "嘉策信息"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u85aa\u6c34",
-      m: {
-        title: "2-3K",
-      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "6-10K·13薪"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u516c\u53f8\u804c\u4f4d",
-      m: {
-        title:
-          "\u5148\u4e4b\uff08\u676d\u5dde\uff09\u6559\u80b2\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "学历不限"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u6240\u5c5e\u516c\u53f8",
-      m: {
-        title:
-          "\u5148\u4e4b\uff08\u676d\u5dde\uff09\u6559\u80b2\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "临安市",
+        "Superior": "杭州市"
+      }
     },
     {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
+      "n": {
+        "id": "8025",
+        "title": "php开发工程师"
       },
-      "type(r)": "\u5b58\u5728\u804c\u4f4d",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u5b66\u5386\u8981\u6c42",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "PHP"
+      }
+    }
   ],
   [
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "web",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "uniapp",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "javascript",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "\u5c0f\u7a0b\u5e8f",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html5",
-      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "浙江永旗区块链科技有限公司"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "vue",
-      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "16-26K"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "\u516c\u4f17\u53f7",
-      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "js",
-      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
     },
     {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "jquery",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "css",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u8be6\u7ec6\u5730\u5740",
-      m: {
-        title: "\u6d2a\u57ce\u5e7f\u573aB\u5ea71005",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5305\u542b\u804c\u4f4d",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6240\u5c5e\u533a/\u53bf",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u85aa\u6c34",
-      m: {
-        title: "2-5K",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u516c\u53f8\u804c\u4f4d",
-      m: {
-        title:
-          "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6240\u5c5e\u516c\u53f8",
-      m: {
-        title:
-          "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5b58\u5728\u804c\u4f4d",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5b66\u5386\u8981\u6c42",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
   ],
   [
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "node",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "axios",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "npm",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "element-ui",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html",
-      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州涂鸦信息技术有限公司"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "pc",
-      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-30K"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "git",
-      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "http",
-      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "vue",
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
+      "type(r)": "技能",
+      "m": {
+        "title": "three.js"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "js2",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "WebGL"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "css",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u8be6\u7ec6\u5730\u5740",
-      m: {
-        title: "\u4e1c\u90e8\u8f6f\u4ef6\u56ed7\u53f7\u697c616",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u5305\u542b\u804c\u4f4d",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u6240\u5c5e\u533a/\u53bf",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u85aa\u6c34",
-      m: {
-        title: "8-10K",
-      },
+      "type(r)": "技能",
+      "m": {
+        "title": "canvas"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u516c\u53f8\u804c\u4f4d",
-      m: {
-        title:
-          "\u676d\u5dde\u76d8\u4e1d\u6d1e\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "浙江讯盟科技有限公司"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u6240\u5c5e\u516c\u53f8",
-      m: {
-        title:
-          "\u676d\u5dde\u76d8\u4e1d\u6d1e\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-25K·14薪"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u5b58\u5728\u804c\u4f4d",
-      m: {
-        title: "\u5927\u4e13",
-      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
       },
-      "type(r)": "\u5b66\u5386\u8981\u6c42",
-      m: {
-        title: "\u5927\u4e13",
-      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
     },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
   ],
 ];
+
+
 
 //数据转换
 const transformData = (demoData) => {
@@ -2076,26 +1875,20 @@ const checked_type = ref("");
 
 const checked_isgoodman = ref("");
 const rel_checkList = ref([
-  "技能需求",
-  "详细地址",
+  "专业",
+  "技能",
+  "公司",
+  "薪资",
+  "学历需求",
   "包含职位",
-  "所属区/县",
-  "薪水",
-  "公司职位",
-  "所属公司",
-  "存在职位",
-  "学历要求",
 ]);
 const all_rel_type = ref([
-  "技能需求",
-  "详细地址",
+  "专业",
+  "技能",
+  "公司",
+  "薪资",
+  "学历需求",
   "包含职位",
-  "所属区/县",
-  "薪水",
-  "公司职位",
-  "所属公司",
-  "存在职位",
-  "学历要求",
 ]);
 
 onMounted(() => {
@@ -2163,7 +1956,7 @@ watch(
     // 当 props.checked_type 发生变化时，更新本地响应式引用
     checked_type.value = newValue.toString();
     console.log(checked_type.value);
-    
+
     // 调用 doFilter 函数
     // doFilter();
   },
