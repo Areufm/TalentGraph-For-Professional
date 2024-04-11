@@ -33,10 +33,11 @@
                 @change="doFilter"
               >
                 <el-radio-button label="">All</el-radio-button>
-                <el-radio-button label="1"></el-radio-button>
-                <el-radio-button label="2"></el-radio-button>
-                <el-radio-button label="3"></el-radio-button>
-                <el-radio-button label="4"></el-radio-button>
+                <el-radio-button label="个人"></el-radio-button>
+                <el-radio-button label="职位1"></el-radio-button>
+                <el-radio-button label="职位2"></el-radio-button>
+                <el-radio-button label="职位3"></el-radio-button>
+                <el-radio-button label="职位4"></el-radio-button>
               </el-radio-group>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <el-radio-group
@@ -71,7 +72,7 @@
 import { ref, onMounted, defineProps, watch } from "vue";
 
 const props = defineProps({
-  checked_type: { type: Number, required: false, default: 2 }, // 接收来自父组件的checked_type
+  checked_type: { type: String, required: false, default: "" }, // 接收来自父组件的checked_type
 });
 
 import RelationGraph, {
@@ -1247,708 +1248,156 @@ import RelationGraph, {
 const demoData = [
   [
     {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
+      m: {
+        title: "PHP",
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
+      n: {
+        id: "[p]1",
+        title: "[P]1",
+      },
+      "type(r)": "技能",
+    },
+    {
+      m: {
+        title: "Java",
+      },
+      n: {
+        id: "[p]1",
+        title: "[P]1",
+      },
+      "type(r)": "技能",
+    },
+    {
+      m: {
+        title: "JS",
+      },
+      n: {
+        id: "[p]1",
+        title: "[P]1",
+      },
+      "type(r)": "技能",
+    },
+    {
+      m: {
+        title: "HTML",
+      },
+      n: {
+        id: "[p]1",
+        title: "[P]1",
+      },
+      "type(r)": "技能",
+    },
+    {
+      m: {
+        title: "CSS",
+      },
+      n: {
+        id: "[p]1",
+        title: "[P]1",
+      },
+      "type(r)": "技能",
+    },
+  ],
+  [
+    {
+      m: {
+        title: "vue",
+      },
+      n: {
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
+      },
+      "type(r)": "热门技能",
+    },
+    {
+      m: {
+        title: "Javascript",
+      },
+      n: {
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
+      },
+      "type(r)": "热门技能",
+    },
+    {
       m: {
         title: "web",
       },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "javascript",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html5",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "vue",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "js",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "jquery",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "css",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u8be6\u7ec6\u5730\u5740",
-      m: {
-        title: "\u6d2a\u57ce\u5e7f\u573aB\u5ea71005",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u5305\u542b\u804c\u4f4d",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6240\u5c5e\u533a/\u53bf",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u85aa\u6c34",
-      m: {
-        title: "1-2K",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u516c\u53f8\u804c\u4f4d",
-      m: {
-        title:
-          "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u6240\u5c5e\u516c\u53f8",
-      m: {
-        title:
-          "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u5b58\u5728\u804c\u4f4d",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-    {
-      n: {
-        id: "48",
-        title: "\u524d\u7aef\u5b9e\u4e60\u751f",
-      },
-      "type(r)": "\u5b66\u5386\u8981\u6c42",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-  ],
-  [
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u65b9\u5411",
-      m: {
-        title: "\u8ba1\u7b97\u673a",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "react",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "javascript",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "git",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "vue",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "css",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u8be6\u7ec6\u5730\u5740",
-      m: {
-        title: "\u897f\u6eaa\u79d1\u521b\u56ed9\u5e629\u697c",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u5305\u542b\u804c\u4f4d",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u6240\u5c5e\u533a/\u53bf",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u85aa\u6c34",
-      m: {
-        title: "2-3K",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u516c\u53f8\u804c\u4f4d",
-      m: {
-        title:
-          "\u5148\u4e4b\uff08\u676d\u5dde\uff09\u6559\u80b2\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u6240\u5c5e\u516c\u53f8",
-      m: {
-        title:
-          "\u5148\u4e4b\uff08\u676d\u5dde\uff09\u6559\u80b2\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u5b58\u5728\u804c\u4f4d",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-    {
-      n: {
-        id: "55",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08(\u5b9e\u4e60\u751f)",
-      },
-      "type(r)": "\u5b66\u5386\u8981\u6c42",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-  ],
-  [
-    {
       n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "web",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "uniapp",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "javascript",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "\u5c0f\u7a0b\u5e8f",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html5",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "vue",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "\u516c\u4f17\u53f7",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "js",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "jquery",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "css",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u8be6\u7ec6\u5730\u5740",
-      m: {
-        title: "\u6d2a\u57ce\u5e7f\u573aB\u5ea71005",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5305\u542b\u804c\u4f4d",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6240\u5c5e\u533a/\u53bf",
-      m: {
-        title: "\u897f\u6e56\u533a",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u85aa\u6c34",
-      m: {
-        title: "2-5K",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u516c\u53f8\u804c\u4f4d",
-      m: {
-        title:
-          "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6240\u5c5e\u516c\u53f8",
-      m: {
-        title:
-          "\u5357\u660c\u8c61\u7259\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5b58\u5728\u804c\u4f4d",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-    {
-      n: {
-        id: "739",
-        title: "\u524d\u7aef\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5b66\u5386\u8981\u6c42",
-      m: {
-        title: "\u5927\u4e13",
-      },
-    },
-  ],
-  [
-    {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "node",
-      },
-    },
-    {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "axios",
-      },
-    },
-    {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "npm",
-      },
-    },
-    {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "element-ui",
-      },
-    },
-    {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "html",
-      },
+      "type(r)": "热门技能",
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
       m: {
-        title: "pc",
+        title: "CSS",
       },
-    },
-    {
       n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "git",
-      },
+      "type(r)": "热门技能",
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
       m: {
-        title: "http",
+        title: "HTML",
       },
-    },
-    {
       n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "vue",
-      },
+      "type(r)": "热门技能",
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
       m: {
-        title: "js2",
+        title: "HTML5",
       },
-    },
-    {
       n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
       },
-      "type(r)": "\u6280\u80fd\u9700\u6c42",
-      m: {
-        title: "css",
-      },
+      "type(r)": "热门技能",
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u8be6\u7ec6\u5730\u5740",
       m: {
-        title: "\u4e1c\u90e8\u8f6f\u4ef6\u56ed7\u53f7\u697c616",
+        title: "React",
       },
-    },
-    {
       n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5305\u542b\u804c\u4f4d",
-      m: {
-        title: "\u897f\u6e56\u533a",
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
       },
+      "type(r)": "热门技能",
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6240\u5c5e\u533a/\u53bf",
       m: {
-        title: "\u897f\u6e56\u533a",
+        title: "JS",
       },
-    },
-    {
       n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u85aa\u6c34",
-      m: {
-        title: "8-10K",
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
       },
+      "type(r)": "热门技能",
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u516c\u53f8\u804c\u4f4d",
       m: {
-        title:
-          "\u676d\u5dde\u76d8\u4e1d\u6d1e\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
+        title: "小程序",
       },
-    },
-    {
       n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u6240\u5c5e\u516c\u53f8",
-      m: {
-        title:
-          "\u676d\u5dde\u76d8\u4e1d\u6d1e\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8",
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
       },
+      "type(r)": "热门技能",
     },
     {
-      n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5b58\u5728\u804c\u4f4d",
       m: {
-        title: "\u5927\u4e13",
+        title: "JQuery",
       },
-    },
-    {
       n: {
-        id: "909",
-        title: "\u524d\u7aef\u5f00\u53d1\u5de5\u7a0b\u5e08",
-      },
-      "type(r)": "\u5b66\u5386\u8981\u6c42",
-      m: {
-        title: "\u5927\u4e13",
+        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
+        title: "前端开发工程师",
       },
+      "type(r)": "热门技能",
     },
   ],
 ];
@@ -1963,6 +1412,7 @@ const transformData = (demoData) => {
 
   demoData.forEach((jsonDataGroup) => {
     let flag = 1;
+    let position = `职位${typeCounter}`;
     jsonDataGroup.forEach((item) => {
       if (flag) {
         const root = {
@@ -1970,13 +1420,13 @@ const transformData = (demoData) => {
           text: item.n.title,
           data: {
             isGoodMan: true,
-            typeCount: [typeCounter],
+            typeCount: [position],
             // sexType: "female",
           },
           //   typeCount: [typeCounter],
         };
         flag = 0;
-        rootId = root.id;
+        // rootId = root.id;
         nodes.push(root);
       }
 
@@ -1990,7 +1440,7 @@ const transformData = (demoData) => {
         // 如果存在，复用其 mId
         mId = existingNodeWithSameTitle.id;
         if (!existingNodeWithSameTitle.data.typeCount.includes(typeCounter)) {
-          existingNodeWithSameTitle.data["typeCount"].push(typeCounter);
+          existingNodeWithSameTitle.data["typeCount"].push(position);
         }
       } else {
         // 否则创建新的 mId
@@ -2002,24 +1452,28 @@ const transformData = (demoData) => {
           borderColor: "#6cc0ff",
           data: {
             isGoodMan: false,
-            typeCount: [typeCounter],
+            typeCount: [position],
             // sexType: "male",
           },
           //   typeCount: [typeCounter],
           type: item["type(r)"],
         };
         switch (item["type(r)"]) {
-          case "\u85aa\u6c34": //薪资
+          case "薪资": //薪资
             node.color = "#FF0000";
             break;
-          case "\u516c\u53f8\u804c\u4f4d": //所属公司
+          case "专业":
             node.color = "royalblue";
             break;
-          case "\u8be6\u7ec6\u5730\u5740": //详细地址
+          case "公司":
             node.color = "#8B7D6B";
             break;
-          case "\u5305\u542b\u804c\u4f4d": //所属区县
+          case "学历需求":
             node.color = "#FF1493";
+            break;
+          case "包含职位":
+            // item["type(r)"] = "所在地区"
+            node.color = "Chartreuse";
             break;
         }
         nodes.push(node);
@@ -2037,6 +1491,9 @@ const transformData = (demoData) => {
             type: item["type(r)"],
           },
         };
+        if (item["type(r)"] == "包含职位") {
+          lines[`${item.n.id}-${mId}`].text = " ";
+        }
       }
     });
     typeCounter++;
@@ -2076,26 +1533,20 @@ const checked_type = ref("");
 
 const checked_isgoodman = ref("");
 const rel_checkList = ref([
-  "技能需求",
-  "详细地址",
+  "专业",
+  "技能",
+  "公司",
+  "薪资",
+  "学历需求",
   "包含职位",
-  "所属区/县",
-  "薪水",
-  "公司职位",
-  "所属公司",
-  "存在职位",
-  "学历要求",
 ]);
 const all_rel_type = ref([
-  "技能需求",
-  "详细地址",
+  "专业",
+  "技能",
+  "公司",
+  "薪资",
+  "学历需求",
   "包含职位",
-  "所属区/县",
-  "薪水",
-  "公司职位",
-  "所属公司",
-  "存在职位",
-  "学历要求",
 ]);
 
 onMounted(() => {
@@ -2108,7 +1559,7 @@ const setGraphData = async () => {
   const __graph_json_data: RGJsonData = transform;
   const graphInstance = graphRef.value!.getInstance();
   await graphInstance.setJsonData(__graph_json_data);
-  await graphInstance.setZoom(50);
+  await graphInstance.setZoom(35);
 };
 
 const doFilter = () => {
@@ -2127,7 +1578,7 @@ const doFilter = () => {
       //   console.log(typeCount.includes(Number(checked_type.value)));
       //   console.log("---");
 
-      if (!typeCount.includes(Number(checked_type.value))) {
+      if (!typeCount.includes(checked_type.value)) {
         _isHideThisLine = true;
       }
     }

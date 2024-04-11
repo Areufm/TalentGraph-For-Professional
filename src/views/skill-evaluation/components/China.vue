@@ -15,7 +15,7 @@ const mapEcharts = () => {
   echarts.registerMap("china", china);
   let options = {
     title: {
-      text: "中国地图",
+      text: "全国岗位分布图",
       sublink:
         "http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12",
     },

@@ -9,7 +9,8 @@
                     <div class="c-node-name" :style="{ color: node.color }">{{ node.text }}</div>
                 </template> -->
         <template #graph-plug>
-          <div style="
+          <div
+            style="
               position: absolute;
               z-index: 700;
               left: 20px;
@@ -22,10 +23,15 @@
               font-size: 12px;
               font-weight: bold;
               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            ">
+            "
+          >
             <div style="">
               <div style="line-height: 20px">Node Filter:</div>
-              <el-radio-group v-model="checked_type" size="small" @change="doFilter">
+              <el-radio-group
+                v-model="checked_type"
+                size="small"
+                @change="doFilter"
+              >
                 <el-radio-button label="">All</el-radio-button>
                 <el-radio-button label="个人"></el-radio-button>
                 <el-radio-button label="职位1"></el-radio-button>
@@ -34,16 +40,20 @@
                 <el-radio-button label="职位4"></el-radio-button>
               </el-radio-group>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <el-radio-group v-model="checked_isgoodman" size="small" style="margin-left: 50px" @change="doFilter">
+              <!-- <el-radio-group v-model="checked_isgoodman" size="small" style="margin-left: 50px" @change="doFilter">
                 <el-radio-button label="">All</el-radio-button>
                 <el-radio-button :label="true">Positive</el-radio-button>
                 <el-radio-button :label="false">Negative</el-radio-button>
-              </el-radio-group>
+              </el-radio-group> -->
             </div>
             <div>
               <div style="line-height: 20px">条件筛选:</div>
               <el-checkbox-group v-model="rel_checkList" @change="doFilter">
-                <el-checkbox v-for="thisItem in all_rel_type" :key="thisItem" :label="thisItem" />
+                <el-checkbox
+                  v-for="thisItem in all_rel_type"
+                  :key="thisItem"
+                  :label="thisItem"
+                />
               </el-checkbox-group>
             </div>
           </div>
@@ -1864,7 +1874,7 @@ const transformData = (demoData, userData) => {
 
   demoData.forEach((jsonDataGroup) => {
     let flag = 1;
-    let position = `职位${typeCounter}`
+    let position = `职位${typeCounter}`;
     jsonDataGroup.forEach((item) => {
       if (flag) {
         const root = {
@@ -1887,7 +1897,6 @@ const transformData = (demoData, userData) => {
         (node) => node.text === item.m.title
       );
       let mId;
-
 
       if (existingNodeWithSameTitle) {
         // 如果存在，复用其 mId
@@ -1945,7 +1954,7 @@ const transformData = (demoData, userData) => {
           },
         };
         if (item["type(r)"] == "包含职位") {
-          lines[`${item.n.id}-${mId}`].text = " "
+          lines[`${item.n.id}-${mId}`].text = " ";
         }
       }
     });

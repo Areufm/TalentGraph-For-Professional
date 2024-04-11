@@ -1,5 +1,9 @@
 ﻿<template>
-  <div ref="chart" class="echartDiv" style="width: 100%; height: 100%"></div>
+  <div
+    ref="chart"
+    class="echartDiv"
+    style="width: 100%; height: 100%; margin-top: 20px"
+  ></div>
 </template>
 <script setup>
 import * as echarts from "echarts/core";
@@ -18,20 +22,21 @@ onMounted(() => {
   // 指定图表的配置项和数据
   let option = {
     title: {
-      text: "",
+      text: "数据图",
     },
     legend: {
-      data: ["Allocated Budget", "Actual Spending"],
+      data: ["线条1", "线条2"],
+      top: 260,
     },
     radar: {
-      // shape: 'circle',
+      shape: "circle",
       indicator: [
-        { name: "Sales", max: 6500 },
-        { name: "Administration", max: 16000 },
-        { name: "Information Technology", max: 30000 },
-        { name: "Customer Support", max: 38000 },
-        { name: "Development", max: 52000 },
-        { name: "Marketing", max: 25000 },
+        { name: "数据1", max: 1 },
+        { name: "数据2", max: 1 },
+        { name: "数据3", max: 1 },
+        // { name: "Customer Support", max: 38000 },
+        // { name: "Development", max: 52000 },
+        // { name: "Marketing", max: 25000 },
       ],
     },
     series: [
@@ -40,12 +45,12 @@ onMounted(() => {
         type: "radar",
         data: [
           {
-            value: [4200, 3000, 20000, 35000, 50000, 18000],
-            name: "Allocated Budget",
+            value: [0.6, 0.2, 0.9],
+            name: "线条1",
           },
           {
-            value: [5000, 14000, 28000, 26000, 42000, 21000],
-            name: "Actual Spending",
+            value: [1, 0.4, 0.3],
+            name: "线条2",
           },
         ],
       },

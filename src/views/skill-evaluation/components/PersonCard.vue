@@ -8,7 +8,7 @@
         <p>我的简历完成度: <span>77%</span></p>
       </div>
     </div>
-    <div class="bottom">
+    <!-- <div class="bottom">
       <div class="info">
         <h1>10</h1>
         <h3>谁看过我</h3>
@@ -21,7 +21,7 @@
         <h1>22</h1>
         <h3>我的收藏</h3>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -39,7 +39,7 @@
 }
 
 .top {
-  display: flex;
+  /* display: flex; */
   margin: 20px;
   justify-content: center;
 }
@@ -49,13 +49,13 @@
 }
 
 .profile-card {
-  width: 100%;
+  /* width: 30%; */
   /* height: 100%; */
   /* background-color: #ffffff; */
   /* background-color: rgb(230, 245, 248); */
-  padding: 20px 0 0 0;
+  padding: 5px;
   border-radius: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
   text-align: center;
   font-family: Arial, sans-serif;
 }
