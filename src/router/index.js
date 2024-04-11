@@ -52,12 +52,6 @@ const routes = [
     component: () => import("@/views/boss/index.vue"),
   },
   {
-    path: "/skill-evaluation",
-    name: "SkillEvaluation",
-    component: () => import("@/views/skill-evaluation/index.vue"),
-    meta: { title: "能力评估" },
-  },
-  {
     path: "/research",
     name: "Research",
     component: () => import("@/views/research/index.vue"),
