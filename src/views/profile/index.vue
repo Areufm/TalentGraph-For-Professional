@@ -2,55 +2,93 @@
   <HeaderBar />
   <el-form class="container" :model="formData" :rules="formRules" ref="formRef">
     <div class="left">
-      <div class="profile">
+      <div class="item-card">
         <div class="top">
-          <img src="../../assets/xue.jpg" alt="Profile Picture" />
+          <!-- <img src="../../assets/xue.jpg" alt="Profile Picture" /> -->
+          <!-- <PersonCard /> -->
+          <div class="profile-card">
+            <div class="profile-top">
+              <img src="../../assets/zkn.jpg" alt="Profile Picture" />
 
+              <div class="profile-name">
+                <h3>{{ formData.name }}</h3>
+                <p>我的简历完成度: <span>77%</span></p>
+              </div>
+            </div>
+          </div>
           <div class="profile-name">
             <div style="display: flex; margin: 10px">
               <el-form-item label="姓名:" prop="name">
-                <el-input v-model="formData.name" />
+                <el-input v-model="formData.name" style="margin: 0 10px" />
               </el-form-item>
               <el-form-item label="年龄:" prop="age">
-                <el-input v-model="formData.age" type="number" style="margin: 0 10px" />
+                <!-- <el-input v-model="formData.age" type="number" style="margin: 0 10px" /> -->
+                <el-input-number v-model="formData.age" controls-position="right" style="margin: 0 10px">
+                  <template #decrement-icon>
+                    <el-icon>
+                      <Minus />
+                    </el-icon>
+                  </template>
+                  <template #increase-icon>
+                    <el-icon>
+                      <Plus />
+                    </el-icon>
+                  </template>
+                </el-input-number>
+              </el-form-item>
+            </div>
+            <div style="display: flex; margin: 10px">
+              <el-form-item label="电话:" prop="phone">
+                <el-input v-model="formData.phone" type="tel" style="margin: 0 10px" />
+              </el-form-item>
+              <el-form-item label="邮箱:" prop="email">
+                <el-input v-model="formData.email" style="margin: 0 10px" />
               </el-form-item>
 
             </div>
             <div style="display: flex; margin: 10px">
-              <el-form-item label="学校:" prop="school">
-                <el-input v-model="formData.school" style="margin: 0 10px" />
-              </el-form-item>
-              <el-form-item label="电话:" prop="phone">
-                <el-input v-model="formData.phone" type="tel" style="margin: 0 10px" />
+              <el-form-item label="求职地区">
+                <SelectArea />
               </el-form-item>
             </div>
             <div style="display: flex; margin: 10px">
-              地区：
-              <el-cascader placeholder="请选择地区" size="small" :options="regionData" v-model="selectedOptions" @change=""
-                style="display: flex">
-              </el-cascader>
+              <el-form-item label="求职岗位">
+                <SelectWork style="width: auto;" />
+              </el-form-item>
+              <el-button type="primary" @click="submitForm" style="margin-left: auto;">保存</el-button>
             </div>
           </div>
         </div>
       </div>
-      <div class="job">
-        <h3>求职意向</h3>
-      </div>
-      <div class="education">
+      <div class="item-card">
         <h3>教育经历</h3>
-        <div v-for="(item, index) in form.list" :key="index" class="list-form">
-          <div style="display: flex;flex-direction: column;">
-            <el-form-item class="form-style" label="学校名称" :prop="'list.' + index + '.caseId'" :rules="[
-    { required: true, message: '活动编号不能为空', trigger: 'blur' },
+        <div v-for="(item, index) in formData.education" :key="index" class="list-form">
+          <div style="display: flex">
+            <el-form-item class="form-style" label="学校名称" :rules="[
+    { required: true, message: '学校名称不能为空', trigger: 'blur' },
   ]">
-              <el-input v-model="item.caseId" placeholder="请填写活动编号" style="width: 150px" />
+              <el-input v-model="formData.education[index].school_name" placeholder="请填写学校名称" style="width: 130px" />
             </el-form-item>
-            <el-date-picker v-model="value1" type="monthrange" range-separator="To" start-placeholder="Start month"
-              end-placeholder="End month" />
+            <el-form-item class="form-style" label="时间" style="width: 250px;" :rules="[
+    { required: true, message: '就读日期不能为空', trigger: 'blur' },
+  ]">
+              <el-date-picker v-model="formData.education[index].school_time" style="margin-left: auto;"
+                type="monthrange" range-separator="To" start-placeholder="Start" end-placeholder="End" />
+            </el-form-item>
+            <el-form-item style="width: 130px;" label="学历" :rules="[
+    { required: true, message: '学历不能为空', trigger: 'blur' },
+  ]">
+              <el-select v-model="formData.education[index].school_degree" placeholder="请选择你的学历">
+                <el-option label="专科" value="专科" />
+                <el-option label="本科" value="本科" />
+                <el-option label="硕士" value="硕士" />
+                <el-option label="博士" value="博士" />
+              </el-select>
+            </el-form-item>
           </div>
 
           <el-form-item label-width="0" class="form-button">
-            <el-button v-if="index + 1 == form.list.length" type="primary" @click="addItem(form.list.length)">
+            <el-button v-if="index + 1 == formData.education.length" type="primary" @click="addItem(form.list.length)">
               +
             </el-button>
             <el-button v-if="index !== 0" type="danger" @click="deleteItem(item, index)">
@@ -59,32 +97,40 @@
           </el-form-item>
         </div>
       </div>
-      <div class="advance">
-        <h3>个人优势</h3>
+      <div class="item-card ">
+        <h3>个人介绍</h3>
+        <p style="text-indent: 32px;">{{ formData.info }}</p>
       </div>
-      <div class="project">
-        <h3>项目经历</h3>
-      </div>
-      <div class="skill">
+      <div class="item-card">
         <h3>技能点</h3>
+        <div v-for="(item, index) in formData.skill" :key="index" class="list-form">
+          <div style="display: flex">
+            <el-form-item class="form-style" label="技能点" :rules="[
+    { required: true, message: '技能点不能为空', trigger: 'blur' },
+  ]">
+              <el-input v-model="formData.skill[index]" placeholder="请填写技能点" style="width: 130px" />
+            </el-form-item>
+          </div>
+
+          <el-form-item label-width="0" class="form-button">
+            <el-button v-if="index + 1 == formData.skill.length" type="primary" @click="formData.skill.push('')">
+              +
+            </el-button>
+            <el-button v-if="index !== 0" type="danger" @click="formData.skill.splice(index, 1);">
+              -
+            </el-button>
+          </el-form-item>
+        </div>
       </div>
-      <div class="experience">
-        <h3>个人经历</h3>
-      </div>
-      <div class="language">
-        <h3>语言</h3>
-      </div>
-      <div class="add">
-        <h3>额外资料</h3>
-      </div>
-      <div class="cv" style="height: 550px">
-        <h3>个人简历</h3>
-        <Graph />
+      <div class="item-card" style="height: 500px;">
+        <h3>个人图谱</h3>
+        <Relationship />
       </div>
 
     </div>
     <div class="right">
-      <div class="upload">
+      <Text />
+      <div class="item-card">
         <div style="display: flex; justify-content: space-between">
           <h4>上传简历附件</h4>
           <div class="input-div">
@@ -101,36 +147,58 @@
         </div>
         <p>在简历中显示更多优势与特长</p>
       </div>
-      <div class="assess">
+      <div class="item-card">
         <h4>评价推荐结果</h4>
-        <el-rate v-model="assess" :texts="['oops', 'disappointed', 'normal', 'good', 'great']" show-text size="large" />
+        <el-rate v-model="star" :texts="['不满意', '一般', '还行', '很棒', '非常满意']" show-text size="large" />
       </div>
-      <div class="improve">
-        <h4>简历待完善</h4>
-        <h5>基本信息：</h5>
-        <h5>基本信息：</h5>
-      </div>
-      <div class="security">
+      <div class="item-card">
         <h4>个人隐私项</h4>
-        <p>谁可以联系我</p>
-        <p>屏蔽公司</p>
+        <div style="display: flex;justify-content: space-between;align-items: center">
+          <p>姓名</p>
+          <el-switch v-model="hideValue1" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
+            :inactive-icon="Close" />
+        </div>
+        <div style="display: flex;justify-content: space-between;align-items: center">
+          <p>年龄</p>
+          <el-switch v-model="hideValue2" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
+            :inactive-icon="Close" />
+        </div>
+        <div style="display: flex;justify-content: space-between;align-items: center">
+          <p>电话号码</p>
+          <el-switch v-model="hideValue3" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
+            :inactive-icon="Close" />
+        </div>
+        <div style="display: flex;justify-content: space-between;align-items: center">
+          <p>详细地址</p>
+          <el-switch v-model="hideValue4" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
+            :inactive-icon="Close" />
+        </div>
+        <div style="display: flex;justify-content: space-between;align-items: center">
+          <p>邮箱</p>
+          <el-switch v-model="hideValue5" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
+            :inactive-icon="Close" />
+        </div>
+
       </div>
-      <div class="process">
-        <h4>简历完成度</h4>
-        <p>简历已完成： 80%</p>
-      </div>
-      <div class="radar" style="height: 400px">
-        <h4>个人能力雷达图</h4>
+      <div class="item-card" style="height: 400px;padding:5px  0">
+        <!-- <h4>能力数据图</h4> -->
         <Radar />
+        <!-- <China /> -->
       </div>
-      <el-button type="primary" @click="submitForm">保存</el-button>
+      <div class="item-card" style="height: 400px;padding:0 0 20px 0">
+        <!-- <Radar /> -->
+        <China />
+      </div>
     </div>
   </el-form>
 </template>
 
 
+
 <script setup>
-const value1 = ref('')
+
+
+
 const { proxy } = getCurrentInstance();
 const emit = defineEmits(["update:modelValue"]);
 const props = defineProps({
@@ -173,56 +241,54 @@ const dialogSuccess = () => {
   });
 };
 const addItem = () => {
-  form.value.list.push({
-    caseId: "",
-    zaj: "",
+  formData.education.push({
+    school_name: "",
+    school_time: "",
+    school_degree: ""
   });
 };
 const deleteItem = (item, index) => {
-  form.value.list.splice(index, 1);
+  formData.education.splice(index, 1);
 };
+
+
 import { reactive, ref } from 'vue';
 import Radar from "@/components/Chart/Radar.vue";
-import Graph from "@/components/Chart/Graph.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
-import { regionData } from "element-china-area-data";
-const selectedOptions = ref(["11", "1101", "110101"]); // 初始化选中值
+import Text from './components/Text.vue';
+import SelectWork from '@/components/SelectWork.vue';
+import SelectArea from "@/components/SelectArea.vue"
+import Relationship from './components/Relationship.vue';
+import { Check, Close, Minus, Plus } from '@element-plus/icons-vue'
+import China from "./components/China.vue"
 
-function findLabelByValue(data, value) {
-  for (const item of data) {
-    if (item.value === value) {
-      return item.label;
-    } else if (Array.isArray(item.children) && item.children.length > 0) {
-      const foundLabel = findLabelByValue(item.children, value);
-      if (foundLabel) {
-        return foundLabel;
-      }
-    }
-  }
-  return "";
-}
+const hideValue1 = ref(true)
+const hideValue2 = ref(false)
+const hideValue3 = ref(true)
+const hideValue4 = ref(true)
+const hideValue5 = ref(false)
 
-const lastSelectedRegionText = computed(() => {
-  const lastOption = selectedOptions.value[selectedOptions.value.length - 1];
-  return findLabelByValue(regionData, lastOption);
-});
-
-const assess = ref(null); //评价星星
+const star = ref(null); //评价星星
 const formData = reactive({
-  name: '张三',
+  name: '猫猫鼠',
   location: '杭州',
   age: '19',
-  school: 'HDU',
+  email: '',
   phone: '1922394234',
-  // ... 其他表单字段
-  resume: null,
+  education: [
+    {
+      school_name: "原神大学",
+      school_time: ["2023-7", "2024-8"],
+      school_degree: "专科"
+    }
+  ],
+  skill: [""],
+  info: "尊敬的各位老师、同学们，大家好！我是来自XX大学XX学院XX专业的XXX，非常荣幸有机会在此向大家作一个详细的自我介绍。首先，关于我的基本情况。我出生于美丽的XX省XX市，自小在父母的悉心教诲和良好家庭氛围的影响下，养成了积极向上、勤奋刻苦的生活态度。高中时期，我凭借优异的成绩考入了心仪的XX大学，开始了我的大学生涯。现就读于XX专业，年级排名前X%，对所学专业怀有深厚的兴趣和热情。在学术方面，我始终秉持严谨治学的精神，积极参与各类专业课程的学习与实践。我对XX领域的理论知识进行了深入研究，尤其对XX专题有独到的理解和探索。此外，我还通过阅读专业文献、参加学术讲座和研讨会，不断拓宽视野，紧跟学科前沿动态。至今，我在导师的指导下参与了一项校级科研项目——“XXX”，负责XX部分的工作，项目成果已发表于《XX期刊》。这些学术经历不仅提升了我的专业知识水平，也锻炼了我的独立思考和团队协作能力。在实践能力方面，我深知理论与实践相结合的重要性。在校期间，我积极参与各类实践活动以提升自己的综合素质。曾担任XX社团的副社长，组织策划了多次大型活动，如“XX文化节”、“XX论坛”，在活动筹备过程中，我提升了组织协调、沟通交流以及危机应对的能力。同时，我利用寒暑假时间进行了与专业相关的实习，曾在XX公司担任XX岗位实习生，负责XX工作。实习期间，我将所学知识应用于实际工作中，深化了对专业知识的理解，也积累了宝贵的社会工作经验。对于个人兴趣爱好，我热衷于XX（比如阅读、摄影、运动等）。阅读让我在快节奏的学习生活中保持内心的宁静，从各类书籍中汲取知识、启迪思维；摄影则帮助我捕捉生活中的美好瞬间，培养了我观察事物的独特视角；而定期的体育锻炼，如跑步、篮球等，既强健了体魄，也磨炼了意志，使我更好地应对学习和生活的挑战。展望未来，我深感责任重大、使命光荣。我计划在完成本科学业后继续深造，攻读XX方向的研究生学位，进一步提升专业素养，致力于在XX领域做出自己的贡献。同时，我也期待在未来的学术研究和职业发展中，能够与志同道合的伙伴们携手共进，共同推动行业进步，服务社会。最后，我想说，我是一个热爱生活、积极进取的人，始终坚信“学无止境，行者无疆”。在接下来的大学生活中，我将继续努力学习，全面提升自己，以期在未来的人生道路上，实现自我价值，为社会的发展贡献自己的一份力量。谢谢大家！以上就是我的自我介绍，如果有任何问题或想要进一步了解我，非常欢迎各位老师和同学随时与我交流。再次感谢大家的倾听！"
 });
 
 const formRules = {
   name: { required: true, message: '姓名不能为空', trigger: 'blur' },
-  location: { required: true, message: '地点不能为空', trigger: 'blur' },
   age: { required: true, message: '年龄不能为空', trigger: 'blur' },
-  school: { required: true, message: '学校不能为空', trigger: 'blur' },
   phone: { required: true, message: '电话不能为空', trigger: 'blur' },
   // ... 其他表单字段的验证规则
 };
@@ -280,6 +346,55 @@ const submitForm = () => {
 </script>
 
 <style scoped>
+.profile-top {
+  /* display: flex; */
+  margin: 20px;
+  justify-content: center;
+}
+
+.profile-name {
+  margin: auto 20px;
+}
+
+.profile-card {
+  width: 200px;
+  /* width: 30%; */
+  /* height: 100%; */
+  /* background-color: #ffffff; */
+  /* background-color: rgb(230, 245, 248); */
+  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818) 2%, rgba(188, 228, 244, 0.616) 8%,
+        rgb(211, 238, 248) 15%, rgb(221, 239, 245) 20%, rgb(225, 238, 242) 30%, white);
+  padding: 0px;
+  border-radius: 15px;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.profile-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-card h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.profile-card p {
+  margin: 10px 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.profile-card span {
+  font-weight: bold;
+  color: #ff6600;
+}
+
 .list-form {
   display: flex;
   align-items: center;
@@ -318,32 +433,21 @@ const submitForm = () => {
   cursor: pointer !important;
 }
 
-.profile,
-.job,
-.education,
-.advance,
-.project,
-.skill,
-.experience,
-.language,
-.add,
-.cv,
-.upload,
-.assess,
-.improve,
-.security,
-.process,
-.radar {
+.item-card {
   /* width: 100%; */
   /* height: 100%; */
   background-color: #ffffff;
   /* background-color: rgb(230, 245, 248); */
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   /* text-align: center; */
   font-family: Arial, sans-serif;
   margin: 5px 0;
+}
+
+.info {
+  text-indent: 32px;
 }
 
 .profile img {
@@ -379,13 +483,8 @@ const submitForm = () => {
   margin-top: 50px;
   display: flex;
   /* background-color: rgb(230, 245, 248); */
-  background: linear-gradient(to bottom,
-      rgba(192, 230, 245, 0.818),
-      rgba(188, 228, 244, 0.616),
-      rgb(211, 238, 248),
-      rgb(221, 239, 245),
-      rgb(225, 238, 242),
-      white);
+  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818) 2%, rgba(188, 228, 244, 0.616) 8%,
+      rgb(211, 238, 248) 15%, rgb(221, 239, 245) 20%, rgb(225, 238, 242) 30%, white);
   /* height: 100vh; */
   height: 100%;
   width: 100%;
@@ -396,7 +495,7 @@ const submitForm = () => {
   flex-direction: column;
   flex: 2;
   /* border: 2px black solid; */
-  margin: 0 0 0 200px;
+  margin: 0 0 0 100px;
   padding: 10px;
 }
 
@@ -405,7 +504,7 @@ const submitForm = () => {
   flex-direction: column;
   flex: 1;
   /* border: 2px black solid; */
-  margin: 0 50px 0 0;
+  margin: 0 100px 0 0;
   padding: 10px;
 }
 </style>
