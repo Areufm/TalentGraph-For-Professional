@@ -4,11 +4,9 @@
     <div class="top">
       <div class="tleft">
         <PersonCard />
+        <Text />
       </div>
-      <div class="tcenter">
-        <Radar />
-      </div>
-      <div class="tright"></div>
+      <div class="tright"><Radar /></div>
     </div>
 
     <div class="bottom">
@@ -23,12 +21,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import Relationship from "./components/Relationship.vue";
 import China from "./components/China.vue";
 import PersonCard from "./components/PersonCard.vue";
 import Radar from "@/components/Chart/Radar.vue";
+import Info from "./components/Info.vue";
+import Text from "./components/Text.vue";
 </script>
 
 <style scoped>
@@ -57,12 +57,14 @@ import Radar from "@/components/Chart/Radar.vue";
 }
 
 .tleft,
-.tcenter,
 .tright {
   flex: 1; /* 等分宽度 */
   box-sizing: border-box; /* 计入边框、内填充等尺寸 */
   border: 1px solid #ccc; /* 可以看到效果，可删除 */
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bottom {
