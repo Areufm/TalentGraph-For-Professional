@@ -1,9 +1,12 @@
 ﻿<template>
   <n-layout>
     <HeaderBar />
-    <img src="../../assets/home.png" alt="" style="margin: 50px 0 0 0;width: 100vw;height: 150px;">
+    <!-- <div style="margin: 50px 0 0 0;width: 100vw;height: 150px;background-color: blue;">
+    </div> -->
+    <img src="../../assets/city.png" alt=""
+      style="margin-top:10px;width: 100%;height: 140px;background: rgba(192, 230, 245);">
     <n-layout-content content-style="padding: 24px;">
-      <div class="centerPosition" style="margin-top: 20px">
+      <div class="centerPosition" style="margin-top: 10px">
         <SearchBar />
         <div class="hotwork">
           热门职位：

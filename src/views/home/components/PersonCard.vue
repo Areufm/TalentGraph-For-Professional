@@ -1,10 +1,10 @@
 ﻿<template>
   <div class="profile-card">
     <div class="top">
-      <img src="../../../assets/xue.jpg" alt="Profile Picture" />
+      <img src="../../../assets/zkn.jpg" alt="Profile Picture" />
 
       <div class="profile-name">
-        <h3>猪开南</h3>
+        <h3>猫猫鼠</h3>
         <p>我的简历完成度: <span>77%</span></p>
       </div>
     </div>
