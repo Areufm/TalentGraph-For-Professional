@@ -30,11 +30,6 @@ const routes = [
     meta: { title: "工作详细信息" },
   },
   {
-    path: "/company-info",
-    name: "CompanyInfo",
-    component: () => import("@/views/company-info/index.vue"),
-  },
-  {
     path: "/recommend",
     name: "Recommend",
     component: () => import("@/views/recommend_work/index.vue"),
@@ -47,15 +42,10 @@ const routes = [
     meta: { title: "个人信息" },
   },
   {
-    path: "/boss",
-    name: "Boss",
-    component: () => import("@/views/boss/index.vue"),
-  },
-  {
-    path: "/research",
+    path: "/research/:query?",
     name: "Research",
     component: () => import("@/views/research/index.vue"),
-    meta: { title: "搜索" },
+    meta: { title: "搜索结果" },
   },
   {
     path: "/form",
