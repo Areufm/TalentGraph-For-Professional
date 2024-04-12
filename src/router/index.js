@@ -67,7 +67,7 @@ export const constantRoutes = [
       },
     ],
   },
-
+  // chartsRouter,
   // {
   //   path: "/dataanalysis",
   //   component: Layout,
@@ -86,78 +86,78 @@ export const constantRoutes = [
     path: "/analysis",
     component: Layout,
     name: "Analysis",
-    meta: { title: "分析", icon: "build-fill" },
+    meta: { title: "分析", icon: "international" },
     children: [
       {
         path: "dataanalaysis",
         name: "dataAnalysis",
         component: () => import("@/views/analysis/dataanalysis"),
-        meta: { title: "数据分析", icon: "build-fill" },
+        meta: { title: "数据分析", icon: "form" },
       },
       {
         path: "useranalysis",
         name: "userAnalysis",
         component: () => import("@/views/analysis/useranalysis"),
-        meta: { title: "用户分析", icon: "build-fill" },
+        meta: { title: "用户分析", icon: "form" },
       },
     ],
   },
 
-  {
-    path: "/page1",
-    component: Layout,
-    redirect: "/page1/page1",
-    name: "page1",
-    meta: { title: "界面1", icon: "build" },
-    children: [
-      {
-        path: "page1",
-        name: "page1",
-        component: () => import("@/views/page1/page1"),
-        meta: { title: "page1", icon: "build-fill" },
-      },
-      {
-        path: "page2",
-        name: "page2",
-        component: () => import("@/views/page1/page2"),
-        meta: { title: "page2", icon: "build-fill" },
-      },
-      {
-        path: "page3",
-        name: "page3",
-        component: () => import("@/views/page1/page3"),
-        meta: { title: "page3", icon: "build-fill" },
-      },
-    ],
-  },
+  // {
+  //   path: "/page1",
+  //   component: Layout,
+  //   redirect: "/page1/page1",
+  //   name: "page1",
+  //   meta: { title: "界面1", icon: "build" },
+  //   children: [
+  //     {
+  //       path: "page1",
+  //       name: "page1",
+  //       component: () => import("@/views/page1/page1"),
+  //       meta: { title: "page1", icon: "build-fill" },
+  //     },
+  //     {
+  //       path: "page2",
+  //       name: "page2",
+  //       component: () => import("@/views/page1/page2"),
+  //       meta: { title: "page2", icon: "build-fill" },
+  //     },
+  //     {
+  //       path: "page3",
+  //       name: "page3",
+  //       component: () => import("@/views/page1/page3"),
+  //       meta: { title: "page3", icon: "build-fill" },
+  //     },
+  //   ],
+  // },
 
-  {
-    path: "/page2",
-    component: Layout,
-    redirect: "/page2/page1",
-    name: "page2",
-    meta: { title: "界面2", icon: "build" },
-    children: [
-      {
-        path: "page1",
-        name: "page1",
-        component: () => import("@/views/page2/page1"),
-        meta: { title: "page1", icon: "build-fill" },
-      },
-      {
-        path: "page2",
-        name: "page2",
-        component: () => import("@/views/page2/page2"),
-        meta: { title: "page2", icon: "build-fill" },
-      },
-      {
-        path: "page3",
-        name: "page3",
-        component: () => import("@/views/page2/page3"),
-        meta: { title: "page3", icon: "build-fill" },
-      },
-    ],
-  },
+  // {
+  //   path: "/page2",
+  //   component: Layout,
+  //   redirect: "/page2/page1",
+  //   name: "page2",
+  //   meta: { title: "界面2", icon: "build" },
+  //   children: [
+  //     {
+  //       path: "page1",
+  //       name: "page1",
+  //       component: () => import("@/views/page2/page1"),
+  //       meta: { title: "page1", icon: "build-fill" },
+  //     },
+  //     {
+  //       path: "page2",
+  //       name: "page2",
+  //       component: () => import("@/views/page2/page2"),
+  //       meta: { title: "page2", icon: "build-fill" },
+  //     },
+  //     {
+  //       path: "page3",
+  //       name: "page3",
+  //       component: () => import("@/views/page2/page3"),
+  //       meta: { title: "page3", icon: "build-fill" },
+  //     },
+  //   ],
+  // },
 
   // {
   //   path: "/sys",
@@ -222,67 +222,67 @@ export const constantRoutes = [
   //   ],
   // },
   //
-  chartsRouter,
-  {
-    path: "/nested",
-    component: Layout,
-    redirect: "/nested/menu1",
-    name: "Nested",
-    meta: {
-      title: "Nested",
-      icon: "nested",
-    },
-    children: [
-      {
-        path: "menu1",
-        component: () => import("@/views/nested/menu1/index"), // Parent router-view
-        name: "Menu1",
-        meta: { title: "Menu1" },
-        children: [
-          {
-            path: "menu1-1",
-            component: () => import("@/views/nested/menu1/menu1-1"),
-            name: "Menu1-1",
-            meta: { title: "Menu1-1" },
-          },
-          {
-            path: "menu1-2",
-            component: () => import("@/views/nested/menu1/menu1-2"),
-            name: "Menu1-2",
-            meta: { title: "Menu1-2" },
-            children: [
-              {
-                path: "menu1-2-1",
-                component: () =>
-                  import("@/views/nested/menu1/menu1-2/menu1-2-1"),
-                name: "Menu1-2-1",
-                meta: { title: "Menu1-2-1" },
-              },
-              {
-                path: "menu1-2-2",
-                component: () =>
-                  import("@/views/nested/menu1/menu1-2/menu1-2-2"),
-                name: "Menu1-2-2",
-                meta: { title: "Menu1-2-2" },
-              },
-            ],
-          },
-          {
-            path: "menu1-3",
-            component: () => import("@/views/nested/menu1/menu1-3"),
-            name: "Menu1-3",
-            meta: { title: "Menu1-3" },
-          },
-        ],
-      },
-      {
-        path: "menu2",
-        component: () => import("@/views/nested/menu2/index"),
-        name: "Menu2",
-        meta: { title: "menu2" },
-      },
-    ],
-  },
+
+  // {
+  //   path: "/nested",
+  //   component: Layout,
+  //   redirect: "/nested/menu1",
+  //   name: "Nested",
+  //   meta: {
+  //     title: "Nested",
+  //     icon: "nested",
+  //   },
+  //   children: [
+  //     {
+  //       path: "menu1",
+  //       component: () => import("@/views/nested/menu1/index"), // Parent router-view
+  //       name: "Menu1",
+  //       meta: { title: "Menu1" },
+  //       children: [
+  //         {
+  //           path: "menu1-1",
+  //           component: () => import("@/views/nested/menu1/menu1-1"),
+  //           name: "Menu1-1",
+  //           meta: { title: "Menu1-1" },
+  //         },
+  //         {
+  //           path: "menu1-2",
+  //           component: () => import("@/views/nested/menu1/menu1-2"),
+  //           name: "Menu1-2",
+  //           meta: { title: "Menu1-2" },
+  //           children: [
+  //             {
+  //               path: "menu1-2-1",
+  //               component: () =>
+  //                 import("@/views/nested/menu1/menu1-2/menu1-2-1"),
+  //               name: "Menu1-2-1",
+  //               meta: { title: "Menu1-2-1" },
+  //             },
+  //             {
+  //               path: "menu1-2-2",
+  //               component: () =>
+  //                 import("@/views/nested/menu1/menu1-2/menu1-2-2"),
+  //               name: "Menu1-2-2",
+  //               meta: { title: "Menu1-2-2" },
+  //             },
+  //           ],
+  //         },
+  //         {
+  //           path: "menu1-3",
+  //           component: () => import("@/views/nested/menu1/menu1-3"),
+  //           name: "Menu1-3",
+  //           meta: { title: "Menu1-3" },
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       path: "menu2",
+  //       component: () => import("@/views/nested/menu2/index"),
+  //       name: "Menu2",
+  //       meta: { title: "menu2" },
+  //     },
+  //   ],
+  // },
   //
   // {
   //   path: "external-link",

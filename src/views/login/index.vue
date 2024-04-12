@@ -1,17 +1,12 @@
 <template>
   <div class="login-container">
-    <el-form
-      :ref="showLogin ? 'loginForm' : 'registerForm'"
-      :model="showLogin ? loginForm : registerForm"
-      :rules="showLogin ? loginRules : registerRules"
-      class="login-form"
-      auto-complete="off"
-      label-position="left"
-    >
+    <el-form :ref="showLogin ? 'loginForm' : 'registerForm'" :model="showLogin ? loginForm : registerForm"
+      :rules="showLogin ? loginRules : registerRules" class="login-form" auto-complete="off" label-position="left">
       <div class="title-container">
+        <img src="@/assets/workcat.png" alt="" style="width: 80px;height: 80px;margin: 0 auto;">
         <h3 class="title">
           <!-- {{ showLogin ? "欢迎使用声纹识别系统" : "欢迎注册声纹识别系统" }} -->
-          A15赛题后台系统
+          职业猫后台系统
         </h3>
       </div>
 
@@ -19,47 +14,27 @@
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input
-          :key="passwordType"
-          ref="username"
-          :value="showLogin ? loginForm.username : registerForm.username"
+        <el-input :key="passwordType" ref="username" :value="showLogin ? loginForm.username : registerForm.username"
           @input="
-            showLogin
-              ? (loginForm.username = $event)
-              : (registerForm.username = $event)
-          "
-          placeholder="用户名"
-          name="username"
-          type="text"
-          tabindex="1"
-          autocomplete="off"
-        />
+      showLogin
+        ? (loginForm.username = $event)
+        : (registerForm.username = $event)
+      " placeholder="用户名" name="username" type="text" tabindex="1" autocomplete="off" />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
-        <el-input
-          :key="passwordType"
-          ref="password"
-          :value="showLogin ? loginForm.password : registerForm.password"
+        <el-input :key="passwordType" ref="password" :value="showLogin ? loginForm.password : registerForm.password"
           @input="
-            showLogin
-              ? (loginForm.password = $event)
-              : (registerForm.password = $event)
-          "
-          :type="passwordType"
-          placeholder="密码"
-          name="password"
-          tabindex="2"
-          auto-complete="off"
-          @keyup.enter.native="showLogin ? handleLogin() : handleRegister()"
-        />
+      showLogin
+        ? (loginForm.password = $event)
+        : (registerForm.password = $event)
+      " :type="passwordType" placeholder="密码" name="password" tabindex="2" auto-complete="off"
+          @keyup.enter.native="showLogin ? handleLogin() : handleRegister()" />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon
-            :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
-          />
+          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
 
@@ -67,33 +42,17 @@
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
-        <el-input
-          :key="passwordConfirmType"
-          ref="password_confirm"
-          :value="registerForm.password_confirm"
-          @input="registerForm.password_confirm = $event"
-          :type="passwordConfirmType"
-          placeholder="确认密码"
-          name="password_confirm"
-          tabindex="3"
-          auto-complete="off"
-          @keyup.enter.native="handleRegister()"
-        />
+        <el-input :key="passwordConfirmType" ref="password_confirm" :value="registerForm.password_confirm"
+          @input="registerForm.password_confirm = $event" :type="passwordConfirmType" placeholder="确认密码"
+          name="password_confirm" tabindex="3" auto-complete="off" @keyup.enter.native="handleRegister()" />
         <span class="show-pwd" @click="showPwd_confirm">
-          <svg-icon
-            :icon-class="
-              passwordConfirmType === 'password' ? 'eye' : 'eye-open'
-            "
-          />
+          <svg-icon :icon-class="passwordConfirmType === 'password' ? 'eye' : 'eye-open'
+      " />
         </span>
       </el-form-item>
 
-      <el-button
-        :loading="loading"
-        type="primary"
-        style="width: 100%; margin-bottom: 30px"
-        @click.native.prevent="showLogin ? handleLogin() : handleRegister()"
-      >
+      <el-button :loading="loading" type="primary" style="width: 100%; margin-bottom: 30px"
+        @click.native.prevent="showLogin ? handleLogin() : handleRegister()">
         {{ showLogin ? "登录" : "注册" }}
       </el-button>
       <a style="color: white" @click="showLogin = !showLogin">
@@ -371,11 +330,15 @@ $light_gray: #eee;
 
   .title-container {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
     .title {
       font-size: 26px;
       color: $light_gray;
-      margin: 0px auto 40px auto;
+      margin: 20px auto 40px auto;
       text-align: center;
       font-weight: bold;
     }
