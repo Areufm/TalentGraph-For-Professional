@@ -153,19 +153,19 @@ export const constantRoutes = [
   //   ],
   // },
   //
+
   {
     path: "/recommend",
     component: Layout,
     children: [
       {
-        path: "index",
+        path: "/recommend",
         name: "Recommend",
         component: () => import("@/views/recommend/index"),
         meta: { title: "人才推荐", icon: "education" },
       },
     ],
   },
-
   {
     path: "/post-info",
     component: Layout,
