@@ -1,15 +1,16 @@
 ﻿<template>
-    <el-cascader style="width: 500px" v-model="value" :options="options" :props="props" :show-all-levels="false"
+    <el-cascader style="width: 500px" v-model="value" :options="options" :props="props1" :show-all-levels="false"
         @change="handleChange" placeholder="请选择你的求职岗位" />
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-const value = ref([]);
+import { ref, defineProps } from 'vue'
+// const value = ref(["Internet", "Front-end & Mobile development", "Front-end dev"]);
+const value = ref()
 
-const props = {
+const props1 = {
     expandTrigger: "hover" as const,
-};
+}
 
 const handleChange = (value) => {
     console.log(value);

@@ -28,9 +28,9 @@
           <!-- <SelectArea /> -->
           <template #footer>
             <div class="dialog-footer">
-              <el-button @click="centerDialogVisible = false">Cancel</el-button>
+              <el-button @click="centerDialogVisible = false">取消</el-button>
               <el-button type="primary" @click="centerDialogVisible = false">
-                Confirm
+                确定
               </el-button>
             </div>
           </template>
@@ -105,7 +105,7 @@
         </div>
       </div>
       <a href="/profile" class="header_right_text">个人信息</a>
-      <p class="header_right_text">Joker Xue</p>
+      <p class="header_right_text">猫猫鼠</p>
       <el-popover :width="50"
         popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 10px;text-align: center">
         <template #reference>

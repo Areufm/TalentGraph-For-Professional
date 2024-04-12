@@ -9,8 +9,7 @@
                     <div class="c-node-name" :style="{ color: node.color }">{{ node.text }}</div>
                 </template> -->
         <template #graph-plug>
-          <div
-            style="
+          <div style="
               position: absolute;
               z-index: 700;
               left: 20px;
@@ -23,15 +22,10 @@
               font-size: 12px;
               font-weight: bold;
               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            "
-          >
+            ">
             <div style="">
               <div style="line-height: 20px">Node Filter:</div>
-              <el-radio-group
-                v-model="checked_type"
-                size="small"
-                @change="doFilter"
-              >
+              <el-radio-group v-model="checked_type" size="small" @change="doFilter">
                 <el-radio-button label="">All</el-radio-button>
                 <el-radio-button label="个人"></el-radio-button>
                 <el-radio-button label="职位1"></el-radio-button>
@@ -49,11 +43,7 @@
             <div>
               <div style="line-height: 20px">条件筛选:</div>
               <el-checkbox-group v-model="rel_checkList" @change="doFilter">
-                <el-checkbox
-                  v-for="thisItem in all_rel_type"
-                  :key="thisItem"
-                  :label="thisItem"
-                />
+                <el-checkbox v-for="thisItem in all_rel_type" :key="thisItem" :label="thisItem" />
               </el-checkbox-group>
             </div>
           </div>
@@ -64,10 +54,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, defineProps, watch } from "vue";
+import { ref, onMounted, defineProps, watch, onBeforeMount } from "vue";
 
 const props = defineProps({
   checked_type: { type: String, required: false, default: "" }, // 接收来自父组件的checked_type
+  relationInfo: {
+    type: Array,
+    required: true,
+  }
 });
 
 import RelationGraph, {
@@ -80,6 +74,7 @@ import RelationGraph, {
   RelationGraphComponent,
 } from "relation-graph/vue3";
 
+let demoData = props.relationInfo
 // 官方数据
 // const demoData = {
 //     "rootId": "N13",
@@ -1240,526 +1235,526 @@ import RelationGraph, {
 
 //四个推荐图一起
 
-const demoData = [
-  [
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "专业",
-      m: {
-        title: "计算机",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "Golang",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "HTML5",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "web",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "PHP",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "MySQL",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "Javascript",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "CSS",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "Java",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "公司",
-      m: {
-        scale: "100",
-        title: "嘉策信息",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "薪资",
-      m: {
-        title: "6-10K·13薪",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "学历需求",
-      m: {
-        title: "学历不限",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "包含职位",
-      m: {
-        title: "临安市",
-        Superior: "杭州市",
-      },
-    },
-    {
-      n: {
-        id: "8025",
-        title: "php开发工程师",
-      },
-      "type(r)": "包含职位",
-      m: {
-        title: "PHP",
-      },
-    },
-  ],
-  [
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "HTML5",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "JS",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "web",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "Javascript",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "CSS",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "公司",
-      m: {
-        scale: "100",
-        title: "浙江永旗区块链科技有限公司",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "薪资",
-      m: {
-        title: "16-26K",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "学历需求",
-      m: {
-        title: "大专",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "包含职位",
-      m: {
-        title: "西湖区",
-        Superior: "杭州市",
-      },
-    },
-    {
-      n: {
-        id: "5176",
-        title: "web前端工程师",
-      },
-      "type(r)": "包含职位",
-      m: {
-        title: "前端开发工程师",
-      },
-    },
-  ],
-  [
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "JS",
-      },
-    },
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "vue",
-      },
-    },
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "React",
-      },
-    },
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "CSS",
-      },
-    },
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "公司",
-      m: {
-        scale: "100",
-        title: "杭州涂鸦信息技术有限公司",
-      },
-    },
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "薪资",
-      m: {
-        title: "15-30K",
-      },
-    },
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "学历需求",
-      m: {
-        title: "大专",
-      },
-    },
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "包含职位",
-      m: {
-        title: "西湖区",
-        Superior: "杭州市",
-      },
-    },
-    {
-      n: {
-        id: "5252",
-        title: "前端开发工程师",
-      },
-      "type(r)": "包含职位",
-      m: {
-        title: "前端开发工程师",
-      },
-    },
-  ],
-  [
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "three.js",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "WebGL",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "JS",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "HTML",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "Javascript",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "CSS",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "技能",
-      m: {
-        title: "canvas",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "公司",
-      m: {
-        scale: "100",
-        title: "浙江讯盟科技有限公司",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "薪资",
-      m: {
-        title: "15-25K·14薪",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "学历需求",
-      m: {
-        title: "大专",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "包含职位",
-      m: {
-        title: "西湖区",
-        Superior: "杭州市",
-      },
-    },
-    {
-      n: {
-        id: "5173",
-        title: "3D前端开发工程师",
-      },
-      "type(r)": "包含职位",
-      m: {
-        title: "前端开发工程师",
-      },
-    },
-  ],
-  // [
-  //   {
-  //     n: {
-  //       id: "[p]1",
-  //       title: "[P]1",
-  //     },
-  //     "type(r)": "技能",
-  //     m: {
-  //       title: "PHP",
-  //     },
-  //   },
-  //   {
-  //     n: {
-  //       id: "[p]1",
-  //       title: "[P]1",
-  //     },
-  //     "type(r)": "技能",
-  //     m: {
-  //       title: "Java",
-  //     },
-  //   },
-  //   {
-  //     n: {
-  //       id: "[p]1",
-  //       title: "[P]1",
-  //     },
-  //     "type(r)": "技能",
-  //     m: {
-  //       title: "JS",
-  //     },
-  //   },
-  //   {
-  //     n: {
-  //       id: "[p]1",
-  //       title: "[P]1",
-  //     },
-  //     "type(r)": "技能",
-  //     m: {
-  //       title: "HTML",
-  //     },
-  //   },
-  //   {
-  //     n: {
-  //       id: "[p]1",
-  //       title: "[P]1",
-  //     },
-  //     "type(r)": "技能",
-  //     m: {
-  //       title: "CSS",
-  //     },
-  //   },
-  // ],
-];
+// const demoData = [
+//   [
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "专业",
+//       m: {
+//         title: "计算机",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "Golang",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "HTML5",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "web",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "PHP",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "MySQL",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "Javascript",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "CSS",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "Java",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "公司",
+//       m: {
+//         scale: "100",
+//         title: "嘉策信息",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "薪资",
+//       m: {
+//         title: "6-10K·13薪",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "学历需求",
+//       m: {
+//         title: "学历不限",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "包含职位",
+//       m: {
+//         title: "临安市",
+//         Superior: "杭州市",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "8025",
+//         title: "php开发工程师",
+//       },
+//       "type(r)": "包含职位",
+//       m: {
+//         title: "PHP",
+//       },
+//     },
+//   ],
+//   [
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "HTML5",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "JS",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "web",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "Javascript",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "CSS",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "公司",
+//       m: {
+//         scale: "100",
+//         title: "浙江永旗区块链科技有限公司",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "薪资",
+//       m: {
+//         title: "16-26K",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "学历需求",
+//       m: {
+//         title: "大专",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "包含职位",
+//       m: {
+//         title: "西湖区",
+//         Superior: "杭州市",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5176",
+//         title: "web前端工程师",
+//       },
+//       "type(r)": "包含职位",
+//       m: {
+//         title: "前端开发工程师",
+//       },
+//     },
+//   ],
+//   [
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "JS",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "vue",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "React",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "CSS",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "公司",
+//       m: {
+//         scale: "100",
+//         title: "杭州涂鸦信息技术有限公司",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "薪资",
+//       m: {
+//         title: "15-30K",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "学历需求",
+//       m: {
+//         title: "大专",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "包含职位",
+//       m: {
+//         title: "西湖区",
+//         Superior: "杭州市",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5252",
+//         title: "前端开发工程师",
+//       },
+//       "type(r)": "包含职位",
+//       m: {
+//         title: "前端开发工程师",
+//       },
+//     },
+//   ],
+//   [
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "three.js",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "WebGL",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "JS",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "HTML",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "Javascript",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "CSS",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "技能",
+//       m: {
+//         title: "canvas",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "公司",
+//       m: {
+//         scale: "100",
+//         title: "浙江讯盟科技有限公司",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "薪资",
+//       m: {
+//         title: "15-25K·14薪",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "学历需求",
+//       m: {
+//         title: "大专",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "包含职位",
+//       m: {
+//         title: "西湖区",
+//         Superior: "杭州市",
+//       },
+//     },
+//     {
+//       n: {
+//         id: "5173",
+//         title: "3D前端开发工程师",
+//       },
+//       "type(r)": "包含职位",
+//       m: {
+//         title: "前端开发工程师",
+//       },
+//     },
+//   ],
+//   // [
+//   //   {
+//   //     n: {
+//   //       id: "[p]1",
+//   //       title: "[P]1",
+//   //     },
+//   //     "type(r)": "技能",
+//   //     m: {
+//   //       title: "PHP",
+//   //     },
+//   //   },
+//   //   {
+//   //     n: {
+//   //       id: "[p]1",
+//   //       title: "[P]1",
+//   //     },
+//   //     "type(r)": "技能",
+//   //     m: {
+//   //       title: "Java",
+//   //     },
+//   //   },
+//   //   {
+//   //     n: {
+//   //       id: "[p]1",
+//   //       title: "[P]1",
+//   //     },
+//   //     "type(r)": "技能",
+//   //     m: {
+//   //       title: "JS",
+//   //     },
+//   //   },
+//   //   {
+//   //     n: {
+//   //       id: "[p]1",
+//   //       title: "[P]1",
+//   //     },
+//   //     "type(r)": "技能",
+//   //     m: {
+//   //       title: "HTML",
+//   //     },
+//   //   },
+//   //   {
+//   //     n: {
+//   //       id: "[p]1",
+//   //       title: "[P]1",
+//   //     },
+//   //     "type(r)": "技能",
+//   //     m: {
+//   //       title: "CSS",
+//   //     },
+//   //   },
+//   // ],
+// ];
 
 const userData = [
   {
@@ -2069,19 +2064,20 @@ const doFilter = () => {
   graphInstance.dataUpdated();
 };
 
+const uploadFresh = () => {
+  setGraphData()
+  const graphInstance = graphRef.value!.getInstance();
+  graphInstance.refresh()
+}
+
 // 监听checked_type变化
 watch(
-  () => props.checked_type,
+  () => props.relationInfo,
   (newValue) => {
     // 当 props.checked_type 发生变化时，更新本地响应式引用
-    checked_type.value = newValue.toString();
-    console.log(checked_type.value);
-
+    demoData = newValue
     // 调用 doFilter 函数
-    // doFilter();
-  },
-  {
-    immediate: true, // 如果你希望在初始化时也运行一次doFilter，可以设置immediate为true
+    uploadFresh()
   }
 );
 </script>

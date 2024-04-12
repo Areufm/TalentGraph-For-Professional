@@ -30,8 +30,10 @@
             </el-form-item>
             <el-form-item label="年龄">
               <!-- <el-input v-model="form.age" clearable /> -->
-              <el-input-number v-model="form.age" controls-position="right" style="width: 500px">
-              </el-input-number>
+              <el-input v-model="form.age" type="number" style="margin: 0 10px" />
+
+              <!-- <el-input-number v-model="form.age" controls-position="right" style="width: 500px">
+              </el-input-number> -->
             </el-form-item>
             <el-form-item label="电话号码">
               <el-input v-model="form.phone" clearable />
@@ -118,14 +120,14 @@ const handleChange = (value) => {
 };
 
 const form = reactive({
-  name: "猪开南",
+  name: "猫猫鼠",
   age: "19",
-  phone: "",
+  phone: "18472638093",
   email: "",
   area: "",
   education: "",
   work: "",
-  skill: "啥都会",
+  skill: "",
   info: "",
 });
 

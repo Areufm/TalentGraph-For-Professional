@@ -8,7 +8,7 @@
 import { ref } from 'vue'
 import { regionData } from "element-china-area-data";
 
-const selectedOptions = ref(["11", "1101", "110101"]); // 初始化选中值
+const selectedOptions = ref(["33", "3301", "330106"]); // 初始化选中值
 
 function findLabelByValue(data, value) {
     for (const item of data) {
