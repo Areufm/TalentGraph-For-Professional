@@ -82,26 +82,26 @@ export const constantRoutes = [
   //   ],
   // },
 
-  {
-    path: "/analysis",
-    component: Layout,
-    name: "Analysis",
-    meta: { title: "分析", icon: "international" },
-    children: [
-      {
-        path: "dataanalaysis",
-        name: "dataAnalysis",
-        component: () => import("@/views/analysis/dataanalysis"),
-        meta: { title: "数据分析", icon: "form" },
-      },
-      {
-        path: "useranalysis",
-        name: "userAnalysis",
-        component: () => import("@/views/analysis/useranalysis"),
-        meta: { title: "用户分析", icon: "form" },
-      },
-    ],
-  },
+  // {
+  //   path: "/analysis",
+  //   component: Layout,
+  //   name: "Analysis",
+  //   meta: { title: "分析", icon: "international" },
+  //   children: [
+  //     {
+  //       path: "dataanalaysis",
+  //       name: "dataAnalysis",
+  //       component: () => import("@/views/analysis/dataanalysis"),
+  //       meta: { title: "数据分析", icon: "form" },
+  //     },
+  //     {
+  //       path: "useranalysis",
+  //       name: "userAnalysis",
+  //       component: () => import("@/views/analysis/useranalysis"),
+  //       meta: { title: "用户分析", icon: "form" },
+  //     },
+  //   ],
+  // },
 
   // {
   //   path: "/page1",
