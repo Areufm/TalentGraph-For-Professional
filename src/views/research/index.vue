@@ -2,7 +2,7 @@
   <HeaderBar />
   <div class="container">
     <div class="search">
-      <SearchBar />
+      <SearchBar :searchValue = "searchValue"/>
     </div>
     <div class="center">
       <div class="left">
@@ -47,6 +47,8 @@
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+
+const searchValue = ref("前端工程师")
 
 const getMore = () => {
   const href = router.resolve({
