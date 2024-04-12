@@ -117,37 +117,24 @@
 
 <template>
   <div class="cards-container">
-    <div
-      class="card"
-      v-for="(job, index) in jobsData"
-      :key="index"
-      :class="{ 'last-in-row': (index + 1) % 3 === 0 }"
-    >
+    <div class="card" v-for="(job, index) in jobsData" :key="index" :class="{ 'last-in-row': (index + 1) % 3 === 0 }">
       <div class="card-details">
         <div style="display: flex">
           <p class="work_name">{{ job.title }}</p>
           <p class="work_salary">{{ job.salary }}</p>
         </div>
         <div style="display: flex">
-          <p
-            v-for="(keyword, i) in job.skill.slice(0, 4)"
-            :key="i"
-            style="margin: 10px"
-          >
+          <p v-for="(keyword, i) in job.skill.slice(0, 4)" :key="i" style="margin: 10px">
             {{ keyword }}
           </p>
         </div>
         <div style="display: flex">
-          <img
-            :src="job.logo"
-            alt=""
-            style="
+          <img :src="job.logo" alt="" style="
               width: 40px;
               height: 40px;
               border-radius: 50%;
               margin-right: 10px;
-            "
-          />
+            " />
           <p class="text-body">{{ job.company }}</p>
           <p class="text-body" style="margin-left: auto">{{ job.kind2 }}</p>
         </div>
@@ -469,6 +456,7 @@ const jobsData = [
 }
 
 .card:hover .card-button {
+  transform: translate(0%, -10%);
   opacity: 1;
 }
 </style>

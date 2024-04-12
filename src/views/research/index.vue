@@ -7,37 +7,24 @@
     <div class="center">
       <div class="left">
         <!-- <Card /> -->
-        <div
-          class="card"
-          v-for="(job, index) in currentJobs"
-          :key="index"
-          @click="selectJob(job)"
-        >
+        <div class="card" v-for="(job, index) in currentJobs" :key="index" @click="selectJob(job)">
           <div class="card-details">
             <div style="display: flex">
               <p class="work_name">{{ job.title }}</p>
               <p class="work_salary">{{ job.salary }}</p>
             </div>
-            <div style="display: flex">
-              <p
-                v-for="(keyword, i) in job.skill.slice(0, 5)"
-                :key="i"
-                style="margin: 10px"
-              >
+            <div style="display: flex; font-size: 1.2em">
+              <p v-for="(keyword, i) in job.skill.slice(0, 5)" :key="i" style="margin: 10px">
                 {{ keyword }}
               </p>
             </div>
-            <div style="display: flex">
-              <img
-                :src="job.logo"
-                alt=""
-                style="
+            <div style="display: flex;align-items: center">
+              <img :src="job.logo" alt="" style="
                   width: 40px;
                   height: 40px;
                   border-radius: 50%;
                   margin-right: 10px;
-                "
-              />
+                " />
               <p class="text-body">{{ job.company }}</p>
               <p class="text-body" style="margin-left: auto">{{ job.kind2 }}</p>
             </div>
@@ -46,20 +33,12 @@
             More info
           </button>
         </div>
-        <div style="margin: 10px auto">
-          <el-pagination
-            :page-size="pageSize"
-            :pager-count="7"
-            layout="prev, pager, next"
-            :total="total"
-            @current-change="changePage"
-          />
+        <div style="margin: 30px auto">
+          <el-pagination :page-size="pageSize" :pager-count="7" layout="prev, pager, next" :total="total"
+            @current-change="changePage" />
         </div>
       </div>
 
-      <div class="right">
-        <button @click="add">+1</button>
-      </div>
     </div>
   </div>
 </template>
@@ -90,10 +69,6 @@ function selectJob(job) {
   jobStore.selectJob(job);
 }
 
-function add() {
-  // jobStore.currentNum++;
-  console.log(jobStore.getCurrentNum);
-}
 
 const currentPage = ref(1); // 当前页码
 const pageSize = ref(10); // 每页显示的数据条数
@@ -3569,17 +3544,16 @@ const changePage = (newPage) => {
 .container {
   margin-top: 50px;
   /* background-color: rgb(242, 242, 245); */
-  background: linear-gradient(
-    to bottom,
-    rgba(192, 230, 245, 0.818) 2%,
-    rgba(188, 228, 244, 0.616) 8%,
-    rgb(211, 238, 248) 15%,
-    rgb(221, 239, 245) 20%,
-    rgb(225, 238, 242) 30%,
-    white
-  );
+  background: linear-gradient(to bottom,
+      rgba(192, 230, 245, 0.818) 2%,
+      rgba(188, 228, 244, 0.616) 8%,
+      rgb(211, 238, 248) 15%,
+      rgb(221, 239, 245) 20%,
+      rgb(225, 238, 242) 30%,
+      white);
   height: calc(100vh-50px);
   overflow-y: auto;
+  justify-content: center;
 }
 
 .search {
@@ -3600,17 +3574,11 @@ const changePage = (newPage) => {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  width: 60%;
-  margin-left: 150px;
+  width: 70%;
+  margin: 0 auto;
+  /* margin-left: 150px; */
 }
 
-.right {
-  /* border: 2px black solid; */
-  border-radius: 20px;
-  display: flex;
-  flex: 1;
-  margin: 0 20px 60px 10px;
-}
 
 .card {
   /* width: 350px; */
@@ -3660,22 +3628,24 @@ const changePage = (newPage) => {
   margin-right: 10px;
 }
 
-.text-title {
-  font-size: 1.5em;
+.text-body {
+  font-size: 1.3em;
   font-weight: bold;
 }
 
 /*Text*/
 .work_name {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
+  margin-top: -10px;
   margin-left: 10px;
 }
 
 .work_salary {
   /* margin-right: 10px; */
   margin-left: auto;
-  font-size: 1.5em;
+  margin-top: -10px;
+  font-size: 2em;
   font-weight: bold;
   color: red;
 }

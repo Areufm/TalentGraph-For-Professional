@@ -10,16 +10,16 @@
     </div>
     <div class="bottom">
       <div class="info">
-        <h1>10</h1>
+        <h1>0</h1>
         <h3>谁看过我</h3>
       </div>
       <div class="info">
-        <h1>1</h1>
-        <h3>我的投递</h3>
+        <h1>0</h1>
+        <h3>我的浏览</h3>
       </div>
       <div class="info">
-        <h1>22</h1>
-        <h3>我的收藏</h3>
+        <h1>0</h1>
+        <h3>我评价过</h3>
       </div>
     </div>
   </div>
