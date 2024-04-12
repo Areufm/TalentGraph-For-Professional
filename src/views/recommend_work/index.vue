@@ -14,10 +14,10 @@
         <el-button type="primary" style="margin: auto 20px">薪资优先</el-button>
         <el-button type="primary" style="margin: auto 20px">同城优先</el-button>
         <el-button type="primary" style="margin: auto 20px">技能优先</el-button> -->
-        <sort-button type="primary" style="margin: auto 20px">技能优先</sort-button>
-        <sort-button type="primary" style="margin: auto 20px">名企优先</sort-button>
-        <sort-button type="primary" style="margin: auto 20px">薪资优先</sort-button>
-        <sort-button type="primary" style="margin: auto 20px">同城优先</sort-button>
+        <sort-button type="primary" style="margin: auto 20px" @click="changeButton">技能优先</sort-button>
+        <sort-button type="primary" style="margin: auto 20px" @click="changeButton">名企优先</sort-button>
+        <sort-button type="primary" style="margin: auto 20px" @click="changeButton">薪资优先</sort-button>
+        <sort-button type="primary" style="margin: auto 20px" @click="changeButton">同城优先</sort-button>
       </div>
       <!-- 知识图谱节点说明
       <div style="display: flex; margin-left: auto;">
@@ -126,7 +126,7 @@
         <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(2)" />
         <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(3)" /> -->
 
-        <div class="card" v-for="(job, index) in currentJobs" :key="index" @click="selectJob(job,index)">
+        <div class="card" v-for="(job, index) in currentJobs" :key="index" @click="selectJob(job, index)">
           <div class="card-details">
             <div style="display: flex; align-items: center; padding-right: 10px">
               <div style="
@@ -168,7 +168,7 @@
         </div>
       </div>
       <div class="right">
-        <Relationship :ref="relationshipRef" />
+        <Relationship :relationInfo="relationInfo" />
         <div style="position: absolute; bottom: 0; left: 0">
           <p class="title_job">岗位</p>
           <p class="title_salary">薪资</p>
@@ -192,6 +192,13 @@ import Info from "./components/Info.vue";
 import Relationship from "@/components/Chart/Relationship.vue";
 
 const relationshipRef = ref(0);
+
+
+const changeButton = () => {
+  jobsData.value = jobsData_salary.value
+  relationData.value = relationData_salary.value
+  // console.log(jobsData.value);
+}
 
 // 假设Card组件现在能接受cardIndex并发出hover事件
 function handleCardHover(index) {
@@ -219,7 +226,7 @@ const jobStore = useJobStore();
 
 const { currentJob } = storeToRefs(jobStore);
 
-function selectJob(job,index) {
+function selectJob(job, index) {
   relationshipRef.value = index + 1;
   jobStore.selectJob(job);
   toggleDrawer();
@@ -3416,6 +3423,3640 @@ const relationData = ref([
       "type(r)": "包含职位",
       "m": {
         "title": "java"
+      }
+    }
+  ]
+])
+
+const jobsData_salary = ref([
+  {
+    "title": "高级Java开发工程师",
+    "salary": "40-70K·16薪",
+    "education": "硕士",
+    "skill": ["boot", "Java", "数据库", "Spring", "OceanBase", "cloud"],
+    "info": "五险一金，餐补，带薪年假，免费班车，补充医疗保险，年终奖，定期体检，员工旅游，股票期权，交通补助，节日福利",
+    "kind1": "互联网",
+    "kind2": "后端开发",
+    "kind3": "Java",
+    "description": "团队介绍：OceanBase 是由蚂蚁集团/阿里巴巴自主研发的分布式关系型数据库。具有数据“零”丢失、可扩展、高性能、持续可用、高兼容性等特点，现已广泛应用在阿里巴巴、蚂蚁集团以及外部银行保险等领域的核心业务中。十年来，OceanBase 已经支撑了支付宝全部核心业务数据库，一次次刷新双十一交易峰值，2019 年在业界公认的 TPC-C 性能评测中成为第一个排名第一的分布式数据库和第一个上榜的中国人完全自主开发的数据库。2020年我们开始启动商业化运作，走向市场，成立北京奥星贝斯科技有限公司，未来我们也会服务于更广大的商业市场。更多信息请看我们的官网 www.oceanbase.com职位描述：1、负责 OceanBase 数据库商业化产品和工具链的研发。构建 OceanBase 商业产品生态，与业内顶尖的数据库内核及企业软件专家一起把 OceanBase 打造为一个成功的商业数据库；2、 加入 OceanBase，你将充分学习到 ToB 产品的灵魂，与技术小伙伴们一起搭建稳定可靠、强大灵活和高安全的系统架构。你将深入到技术细节中，用代码去改写中国数据库的未来；3、此岗位 P6/P7/P8 均有需求。职位要求：1、Java基础扎实，编码能力强，熟悉常用的设计模式，熟悉并发编程；2、精通 Spring Boot/Spring Cloud 相关的技术栈和工具集合，对框架背后的机制和原理有深入理解；3、自驱力强、优秀的团队合作能力和沟通能力，对新技术有好奇心，学习能力和主动性强，有钻研精神，充满激情，乐于接受挑战；4、有云产品、中间件、复杂企业软件开发经验经验者优先；5、熟悉关系数据库原理或有相关运维经验者优先。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区黄龙国际中心5楼",
+    "major": [],
+    "neo4j": 748,
+    "company": "支付宝（杭州）信息技术有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.4344966014621123
+  },
+  {
+    "title": "Android技术专家",
+    "salary": "30-50K·24薪",
+    "education": "本科",
+    "skill": [
+      "前端",
+      "Android SDK",
+      "hybird",
+      "os",
+      "Android UI",
+      "web",
+      "Android",
+      "Sdk"
+    ],
+    "info": "餐补，定期体检，带薪年假，年终奖，五险一金",
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "移动开发",
+    "description": "职位描述：\n支持支付宝支付业务持续迭代，以及维护支付业务相关SDK，打造具备高效迭代能力和动态化能力应用框架\n岗位要求：\n1. 有丰富的客户端应用开发经验，可以独立承担架构设计，并主导项目；\n2. 精通客户端iOS或者Android平台开发，对业界较流行的开源库的实现方案有深刻理解；\n3. 精通客户端调试工具和方法，可以应付客户端的复杂问题；\n4. 在客户端的性能、体验、稳定性、网络等方面指标有监控和优化经验；\n优先考虑：\n1. 在动态化方案有所实践，或对RN、Weex、web容器有项目经验\n2. Android和iOS两个平台都有研发经验或有前端开发经验",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区阿里中心·杭州Z空间",
+    "major": [],
+    "neo4j": 8849,
+    "company": "蚂蚁集团",
+    "logo": "https://img.bosszhipin.com/beijin/mcs/banner/b10345f203d9c0270a26df28e9c00429cfcd208495d565ef66e7dff9f98764da.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.33427943068502497
+  },
+  {
+    "title": "资深前端工程师",
+    "salary": "35-60K·15薪",
+    "education": "本科",
+    "skill": [
+      "MongoDB",
+      "Linux",
+      "Egg.js",
+      "Node",
+      "消息队列",
+      "Redis",
+      "ts",
+      "后端",
+      "小程序",
+      "vue",
+      "Socket技术"
+    ],
+    "info": "股票期权，补充医疗保险，带薪年假，节日福利，交通补助，年终奖，五险一金，定期体检，零食下午茶，免费班车",
+    "kind1": "互联网",
+    "kind2": "后端开发",
+    "kind3": "Node.js",
+    "description": "负责滴滴小桔问卷系统的前端及Node服务研发工作。\n在这里，你可以直接参与问卷No-code开发平台闭环系统的建设，用技术创造世界;\n在这里，你也可以深入业务，与产运团队一同探索新的玩法与产品形态，感受技术驱动创新与成长；\n在这里，你还可以参与到团队的NodeX体系建设，数据生态建设，以及面对复杂业务的技术挑战。\n团队技术栈全面，在Vue、小程序、TS、Node服务、MongoDB、消息队列、Hive离线应用等都有深入使用与应用；\n团队能力涵盖全面，团队内闭环业务及自驱项目，职能涵盖服务端、产品、设计与交互、项目管理等多方向的能力；\n我们是一个年轻、热爱技术、热爱分享、积极创新的团队，推崇用极客的方式提升效率、性能和稳定性；\n部门氛围开放，成长没有天花板，期待心里有火、眼里有光的你加入我们。\n工作内容：\n1. 滴滴问卷业务研发工作：包括问卷编辑端、渲染端；\n2. 闭环业务的全栈研发工作，包括前端与服务端研发、稳定性保障等",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区云起·西溪谷国际商务中心G座G座8楼",
+    "major": [],
+    "neo4j": 7950,
+    "company": "滴滴出行",
+    "logo": "https://img.bosszhipin.com/beijin/mcs/chatphoto/20190408/c23f08b24983fffa26a3a8ba19a463523cc05a6873981b80bf124ddd6c45f629_s.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.3718725707084724
+  },
+  {
+    "title": "web前端",
+    "salary": "30-60K·13薪",
+    "education": "大专",
+    "skill": [
+      "canvas",
+      "Webpack",
+      "Node",
+      "CSS",
+      "游戏",
+      "React",
+      "Koa",
+      "数据",
+      "HTML",
+      "web",
+      "Node.js",
+      "JS",
+      "WebGL",
+      "ap",
+      "vue",
+      "H5",
+      "算法"
+    ],
+    "info": "团建聚餐，定期体检，五险一金，带薪年假，零食下午茶，年终奖，节日福利，补充医疗保险，股票期权",
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "前端开发工程师",
+    "description": "花呗借呗前端团队（RichLab）工作地点：杭州、北京、重庆前端工程师（基础要求）? 3 年及以上工作经验。如果你觉得自己特别优秀，2 年经验同样欢迎。? 具备良好的 HTML/CSS/JS 前端基础，有 React/Vue 等主流框架开发经验，并深入理解其原理，熟悉 Webpack；? 对互联网产品和 Web 技术有浓厚兴趣，有强大的自我驱动能力、学习能力和强烈的进取心；? 良好的沟通能力和团队合作精神，良好的分析问题和解决问题的能力；在上述基础要求的基础上，设置 5 大方向：1. 移动前端方向：? 需熟练掌握移动端 H5/hybrid 开发；? 对移动前端性能优化有充足的实践和方法；? 有小程序开发经验优先。 2. Node.js 全栈方向? 熟悉 Node.js 异步编程，对 koa/co/async 等原理机制了解透彻；? 熟悉 Node.js 以及 V8 的性能和稳定性优化，能对系统整体性能进行评估，解决内存瓶颈；? 熟悉监控和运维体系，有大流量高并发经验优先。3. 互动技术方向? 精通 Canvas/WebGL/SVG/CSS3，并能够使用原生 API 绘制图形动画；? 熟悉业界流行渲染引擎或游戏开发框架，熟练掌握其中至少一种并具备实际开发经验；? 有 3D 游戏开发经验优先。4. 基础架构方向? 具备良好的抽象能力和架构设计经验，至少以架构角色参与过一个中大型前端开发项目；? 扎实的数据结构、算法和编程基本功；? 有良好的开源作品和社区参与经验，关注新技术。5. 中后台方向? 精通主流 Web 技术，主导与组织过复杂的 Web 项目开发；? 对前端工程化、标准化、组件化有充足的实践和方法；? 有可视化搭建经验优先。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区蚂蚁集团元空间",
+    "major": [],
+    "neo4j": 5285,
+    "company": "蚂蚁智信（杭州）信息技术有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.42015145542485477
+  },
+  {
+    "title": "python开发工程师",
+    "salary": "30-60K·16薪",
+    "education": "本科",
+    "skill": [
+      "Java",
+      "服务端开发经验",
+      "Shell",
+      "Python",
+      "dns",
+      "计算机相关专业",
+      "后端",
+      "运维开发",
+      "全栈开发经验"
+    ],
+    "info": "节日福利，餐补，免费班车，五险一金，年终奖，定期体检，绩效奖金，带薪年假",
+    "kind1": "互联网",
+    "kind2": "后端开发",
+    "kind3": "Python",
+    "description": "符合以下条件之一的即可：\n1、有云计算相关研发/运维经验\n2、安全&DNS方向\n3、熟悉计算机网络\n4、有管控研发经验",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区阿里巴巴云谷园区1号楼",
+    "major": ["计算机"],
+    "neo4j": 8204,
+    "company": "阿里云",
+    "logo": "https://img.bosszhipin.com/beijin/upload/com/workfeel/20230707/7bf6f160950405e94f96793d8508cdc1b01fafbca4af603ab33a0da269092f718e83480322bc9596.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.3317078279386879
+  },
+  {
+    "title": "数据挖掘专家",
+    "salary": "30-60K·17薪",
+    "education": "本科",
+    "skill": [
+      "数据挖掘",
+      "机器学习",
+      "C++",
+      "Spark",
+      "Python",
+      "SQL",
+      "Hadoop",
+      "计算机相关专业",
+      "TensorFlow",
+      "PyTorch",
+      "XGBoost",
+      "数学/统计相关专业",
+      "深度学习",
+      "数据",
+      "推荐"
+    ],
+    "info": "补充医疗保险，年终奖，夜班补助，节日福利，免费班车，交通补助，零食下午茶，带薪年假，餐补，五险一金，通讯补贴，包吃，加班补助，节假日加班费，股票期权，定期体检，员工旅游，住房补贴，全勤奖，意外险",
+    "kind1": "AI/数据",
+    "kind2": "人工智能",
+    "kind3": "数据挖掘",
+    "description": "1、运用大数据与AI技术，参与蚂蚁业务运营算法研发，推动营销推荐、用户增长相关算法在互联网保险领域落地，包括用户理解、个性化排序技术、事件营销、潜客挖掘等。驱动互联网保险业务决策与产品开发，实现保险业务运营各环节效率提升、用户服务体验优化以及产品和服务创新。\n2、深入理解用户和保险产品，通过智能化的人群定向、点击率/转化率预估建模等技术实现需求的精准匹配和产品推荐。\n3、支撑业务需求快速迭代，持续创新突破核心技术，优化平台用户体验和业务价值。\n职位描述\n1、本科及以上学历，计算机、统计等数学及相关专业，两年以上机器学习应用经验。有搜索、推荐、广告、数据挖掘等领域丰富的实战经验，在用户理解、召回排序、文本理解中一个或多个领域有深入实践。有国内外优秀论文发表者优先。\n2、熟练掌握机器学习相关算法原理，如逻辑回归、XGboost、深度学习、强化学习、迁移学习等，了解各类算法的优缺点。能够熟练运用机器学习、自然语言处理、匹配技术、预估、强化学习、智能生成等技术解决有挑战性的问题。\n3、良好的数据结构、算法和编程功底，熟练掌握Python/C++、SQL等。熟悉大规模数据处理平台Hadoop/Spark/ODPS等。熟悉主流深度学习工具TensorFlow/Pytorch等。\n4、对数据敏感，善于发现问题，并能够灵活运用数据、模型与算法解决实际的应用问题，有良好的逻辑思维和定义以及解决问题的能力。\n5、良好的口头与书面沟通表达能力，具有很好的团队合作精神。\n6、持续关注前沿进展，对营销推荐、数据挖掘等领域富有极大热情。保持强烈的学习意愿及快速的学习能力。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区蚂蚁集团Z空间7",
+    "major": ["计算机", "统计"],
+    "neo4j": 10155,
+    "company": "蚂蚁集团",
+    "logo": "https://img.bosszhipin.com/beijin/mcs/banner/b10345f203d9c0270a26df28e9c00429cfcd208495d565ef66e7dff9f98764da.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.2631733815310496
+  },
+  {
+    "title": "资深后端工程师",
+    "salary": "35-55K·14薪",
+    "education": "硕士",
+    "skill": [
+      "Linux",
+      "Java",
+      "C++",
+      "k8s",
+      "Python",
+      "Docker",
+      "视觉系统",
+      "Ai",
+      "英语"
+    ],
+    "info": null,
+    "kind1": "互联网",
+    "kind2": "后端开发",
+    "kind3": "后端其他开发",
+    "description": "岗位需求：1.计算机、自动化、电子、通信、控制等相关专业硕士学历，3年以上相关工作经验； 2.熟悉软件工程的开发过程、方法和工具，具有较好的执行力，动手能力强，较强的沟通能力和团队意识；3.熟悉Linux 操作系统，并熟练掌握C、Python、C++或Java等一种或多种编程语言，有良好的编程规范；4.有AI相关系统或平台开发经验者优先；5.较好的英语读写能力，能够查阅相关英文文档。岗位职责：1.熟悉计算机视觉的主要任务，进行视觉系统/平台设计，负责项目的后端搭建、优化、调试和模块测试工作； 2.Docker/K8S的技术支持，主要涉及系统环境部署交付与测试，做好项目过程的文档记录； 3.定期进行项目维护和升级，并负责项目的技术支持和管理工作；4.部署与运维过程中，与其他算法及软件开发人员沟通解决与修复。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区云栖未来智造创新基地润丰产业园1栋",
+    "major": ["电子", "控制", "计算机", "自动化", "通信"],
+    "neo4j": 2271,
+    "company": "中电金信软件有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.3216177257048692
+  },
+  {
+    "title": "C＋＋",
+    "salary": "30-55K·13薪",
+    "education": "本科",
+    "skill": ["Java", "C++", "分布式技术", "区块链", "C", "Go"],
+    "info": "五险一金，餐补，年终奖，定期体检，带薪年假",
+    "kind1": "互联网",
+    "kind2": "后端开发",
+    "kind3": "c/c++",
+    "description": "蚂蚁链招人啦，蚂蚁区块链已升级为全新品牌蚂蚁链，蚂蚁链期待重构数字经济的信用体系，解决数字时代的数据和隐私安全问题，风口已至，时不我待，蚂蚁集团区块链平台部真诚欢迎有志之士共同前行。\n岗位名称：区块链技术专家\n工作地点：杭州/北京/上海皆可\n岗位职责：负责主导和参与区块链基础设施平台的架构规划、系统设计及核心研发工作\n岗位需求：\n1、三年以上系统开发经验，对网络、存储、分布式系统、性能优化等经验者优先，对密码学算法、分布式共识算法有研究者优先；\n2、go、c/c++、java开发语言，具有区块链技术经验者优先；\n3、薪资根据面试能力，后续可单独沟通",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区黄龙时代广场B座蚂蚁金服",
+    "major": [],
+    "neo4j": 7479,
+    "company": "蚂蚁集团",
+    "logo": "https://img.bosszhipin.com/beijin/mcs/banner/b10345f203d9c0270a26df28e9c00429cfcd208495d565ef66e7dff9f98764da.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.3673706722171013
+  },
+  {
+    "title": "前端开发工程师",
+    "salary": "20-30K·16薪",
+    "education": "大专",
+    "skill": [
+      "前端",
+      "HTTP",
+      "Node",
+      "CSS",
+      "React",
+      "Javascript",
+      "web",
+      "HTML",
+      "vue",
+      "英文"
+    ],
+    "info": "生日福利，节日福利，夜班补助，保底工资，团建聚餐，交通补助，员工旅游，带薪年假，五险一金，定期体检，绩效奖金，法定节假日三薪，年终奖，餐补",
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "前端开发工程师",
+    "description": "工作职责：负责爱逛直播业务的前端开发和底层技术、工具支持。工作内容：1.参与前端开发；3.参与改进开发、构建、发布、监控等前端工程化体系；4.参与Web性能优化、体验优化；5.参与新技术探索、推进系统架构的演化。任职要求：1.技术栈：React(PC)+Vue(Mobile)+Node(展示层+SSR)；2.扎实的计算机以及网络基础；3.阅读英文技术文档和书籍无障碍；4.HTML、CSS、JavaScript基础扎实，了解HTTP协议以及浏览器原理；5.有大型前端工程化、大型Node项目实施经验加分。成长建议：1.多看别人的代码，学习里面的代码组织和设计思路；2.参与技术项目；3.多了解一些后端以及运维相关的知识；4.培养自己在交互和设计上的敏感性；5.工具化思维，减少重复劳动。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区杭州有赞科技有限公司7号楼",
+    "major": [],
+    "neo4j": 5155,
+    "company": "杭州爱逛网络信息服务有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.47757459931642715
+  },
+  {
+    "title": "阿里通义实验室-大模型NLP算法专家",
+    "salary": "30-45K·16薪",
+    "education": "硕士",
+    "skill": [
+      "Java",
+      "C++",
+      "数据结构",
+      "query",
+      "Python",
+      "nlp",
+      "搜索/信息检索算法经验",
+      "RAG",
+      "自然语言处理经验"
+    ],
+    "info": "五险一金，餐补，补充医疗保险，股票期权，员工旅游，零食下午茶，免费班车，交通补助，节日福利，年终奖",
+    "kind1": "AI/数据",
+    "kind2": "人工智能",
+    "kind3": "搜索算法",
+    "description": "算法专家-生成式搜索 (RAG)\n1. 负责基于大模型的生成式搜索训练和研究，研发SOTA的先进性技术，以提高生成式搜索算法的效果和性能\n2. 基于行业场景的海量数据和知识，打造大模型范式下的下一代搜索系统的行业场景和模版\n3. 负责Query理解、Doc理解、召回、相关性等技术的先进性建设和应用落地，探索大模型范式下非结构化、结构化、多模态搜索场景技术\n4. 落地下游实际场景的搜索任务，以应用生成式搜索算法解决实际业务问题\n职位要求\n1. 计算机、电子、数学等相关专业硕士及以上学历；\n2. 熟练掌握Java/C++/Python中的一门语言，有扎实的数据结构和算法基础；\n3. 对搜索技术/nlp技术/大模型技术有系统理解和实践\n4. 具备优秀的分析问题和解决问题的能力、良好的沟通协作能力；能follow前沿技术，具备独立的问题分析和解决、系统落地能力\n5. 具有良好的技术洞察力、业务敏感度和优秀的数据分析能力，能应对复杂的业务算法需求。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区阿里巴巴云谷园区0000",
+    "major": ["电子", "计算机", "数学"],
+    "neo4j": 10319,
+    "company": "阿里巴巴集团",
+    "logo": "https://img.bosszhipin.com/beijin/upload/com/workfeel/20220316/7bf6f160950405e9282fe33181a1523803562870c4e2cc4a242ac4eb7bbd10d1694083156ab76fdb.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.29788761732761443
+  },
+  {
+    "title": "Unity游戏开发工程师",
+    "salary": "30-50K·13薪",
+    "education": "本科",
+    "skill": ["IOS", "JavaScript", "Unity3D", "C#", "Android"],
+    "info": "员工旅游，节日福利，带薪年假，团建聚餐，意外险，有无线网，零食下午茶，餐补，通讯补贴，生日福利，全勤奖，定期体检，高温补贴，补充医疗保险，年终奖，夜班补助，五险一金，节假日加班费",
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "游戏3D开发",
+    "description": "岗位职责:\n1、使用Unity3D引擎开发手机游戏，包括但不局限于核心结构搭建、前后端对接、多平台发布等；\n2、负责Unity3D程序的设计、开发与优化，确保所负责模块的程序稳定性与性能优化；\n3、根据项目需求对各类所需工具进行再开发及调整优化；\n4、负责项目技术团队建设、产品研发、事故问题处理、技术问题解决；\n5、持续优化和改善客户端。\n任职要求:\n1、 本科以上学历，计算机相关专业；\n2、 熟悉Unity3D引擎架构设计，3年以上Unity3D引擎开发经验；\n3、 精通Unity3D游戏引擎和3D动画方面的知识；\n4、 有Unity3D手游戏开发经验，包括iOS和Android平台；\n5、 具备Unity3D客户端架构设计能力和性能优化经验；",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区天堂软件园E幢14楼",
+    "major": ["计算机"],
+    "neo4j": 8739,
+    "company": "零壹比特",
+    "logo": "https://img.bosszhipin.com/beijin/upload/com/workfeel/20221107/7bf6f160950405e9adb0529be26ca787eb7b5a20e32ba556fc83cbefa32a036c895a946ae5b73a50.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.3443810358024947
+  },
+  {
+    "title": "高级Java开发工程师/技术专家",
+    "salary": "25-35K·13薪",
+    "education": "本科",
+    "skill": ["微服务", "Java", "Spring", "web", "架构师", "银行", "运维"],
+    "info": "股票期权，节日福利，通讯补贴，零食下午茶，定期体检，带薪年假，餐补，年终奖，包吃，免费班车，餐补，五险一金，加班补助，交通补助，补充医疗保险，员工旅游",
+    "kind1": "互联网",
+    "kind2": "后端开发",
+    "kind3": "java",
+    "description": "1、主导信贷、存款、理财、渠道、客户营销等系统分析与设计工作，承担核心功能或组件的代码编写；\n2、主导技术难题攻关，持续提升系统稳定性和高并发处理能力，扫除技术风险；\n3、主导金融行业基础平台、业务平台的架构设计及落地。\n要求：\n1、扎实的java编程基础，精通Java EE、微服务、消息中间件等相关技术；对各种开源的框架如Spring,消息中间件等有深入的了解；\n2、2年以上大规模高并发访问的Web应用系统设计和开发经验，丰富的线上运维经验；\n3、具备良好的识别和设计通用框架及模块的能力；\n4、具有大型电子商务网站以及银行业核心系统、电信boss系统设计与研发经验背景的优先考虑。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区德力西大厦1号楼12-19层",
+    "major": [],
+    "neo4j": 7891,
+    "company": "网商银行",
+    "logo": "https://img.bosszhipin.com/beijin/mcs/chatphoto/20180226/cdcccd257874715c64fecbdc2b5922f2cfcd208495d565ef66e7dff9f98764da.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.46014786797276064
+  },
+  {
+    "title": "前端开发工程师",
+    "salary": "25-40K",
+    "education": "大专",
+    "skill": [
+      "Angular",
+      "Linux",
+      "HTTP",
+      "Node",
+      "CSS",
+      "Javascript",
+      "React",
+      "web",
+      "HTML",
+      "C",
+      "小程序",
+      "vue"
+    ],
+    "info": "有无线网，带薪年假，绩效奖金，五险一金",
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "前端开发工程师",
+    "description": "工作职责：1、负责哈啰出行两轮团队相关业务开发，包括营销体系、用车流程相关的C端及B端系统的前端架构设计、开发与优化，覆盖Web应用、支付宝小程序、微信小程序、多端组件库等多个方向；2、参与团队前端工程化体系建设，提升研发效率、研发质量；3、与其他团队成员合作打造提升公司整体运营效率的产品；4、关注前端前沿技术发展，能够对团队输出新的技术与思想，并落地到现有项目中任职资格：1. 3年相关工作经验，有扎实的计算机基础知识；2. 深入理解Web前端开发技术，包括HTML/CSS/Javascript等；3. 至少熟悉React/Angular/Vue等其中一种主流的前端框架，并了解底层原理；4. 熟悉网站性能优化，了解浏览器实现原理；5. 了解http协议的基本原理，了解常见的web性能优化手段、常见漏洞6. 优秀的团队合作能力，沟通顺畅，追求卓越，乐于创新，敢于尝试加分项：1. 熟悉node开发，能够开发node web, node cli, node desktop等类型的应用2. 熟悉linux及操作系统概念。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区益展商务大厦11楼",
+    "major": [],
+    "neo4j": 5228,
+    "company": "上海哈啰普惠科技有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.44503555041581616
+  },
+  {
+    "title": "前端开发工程师",
+    "salary": "15-30K",
+    "education": "大专",
+    "skill": ["CSS", "React", "vue", "JS"],
+    "info": "带薪年假，12%公积金，股票期权，定期体检，年终奖，餐补，五险一金，补充医疗保险，节日福利",
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "前端开发工程师",
+    "description": "我们的团队：- 在线化客户服务建设- 提供动态化，流程化，智能化的客户服务能力职位描述：- 负责IM即时通讯工具开发- 负责工单系统，反馈平台，帮助中心等开发- 负责内容运营系统开发- 涉及移动端自适应适配职位要求：- 熟悉React或者Vue技术栈及其生态圈- 有扎实的JS和CSS基础- 熟悉常用的设计模式，更够编写良好的代码模块和接口- 有较好的业务理解能力和解决能力",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区杭州涂鸦科技有限公司杭州市西湖区华策中心A座",
+    "major": [],
+    "neo4j": 5252,
+    "company": "杭州涂鸦信息技术有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.6660526792460265
+  },
+  {
+    "title": "3D前端开发工程师",
+    "salary": "15-25K·14薪",
+    "education": "大专",
+    "skill": [
+      "canvas",
+      "CSS",
+      "Javascript",
+      "HTML",
+      "JS",
+      "WebGL",
+      "three.js"
+    ],
+    "info": "五险一金，股票期权，免费班车，年终奖，补充医疗保险，带薪年假，员工旅游，定期体检，餐补，包吃",
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "前端开发工程师",
+    "description": "岗位描述：1. 负责产品的前端的技术方案选型2. 对前端性能有一定的把控与优化手段3. 关注前端前沿技术，能够运用新技术服务产品与团队岗位要求：1. 熟练掌握前端技术（javascript, html, css）2. 熟练掌握vue，react等框架及其周边技术3. 掌握常用的前端动画技术（Canvas，WebGL，SVG）等4. 熟悉至少一种3D渲染框架，如three.js、d3.js，能够熟练应用到业务中5. 具有良好的沟通与合作能力6. 有大屏开发经验，能够接受偶尔的出差",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区蒋村商务中心9楼",
+    "major": [],
+    "neo4j": 5173,
+    "company": "浙江讯盟科技有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.6166410685733384
+  },
+  {
+    "title": "政务区块链应用研发专家-java方向",
+    "salary": "25-45K",
+    "education": "本科",
+    "skill": [
+      "Linux",
+      "Java",
+      "数据库",
+      "Spring",
+      "SQL",
+      "Unix",
+      "Hibernate",
+      "架构师",
+      "JVM"
+    ],
+    "info": "带薪年假，餐补，五险一金，定期体检，年终奖",
+    "kind1": "互联网",
+    "kind2": "后端开发",
+    "kind3": "区块链工程师",
+    "description": "区块链平台部政务产品团队主要业务范围介绍：利用区块链技术结合其他安全和隐私保护解决方案，对个人或企业在日常生活中产生的托管在政府部门的数据，在进行日常生活应用需要的场景（比如：发票报销，医疗票据理赔等等），进行安全和隐私保护的数据分享和流转，打造数据拥有方在对应的数据使用场景下安全可靠的数据流转和使用通道，对此提供完整的解决方案进行技术研发支撑。\n团队介绍\n1. 解决政务数据在上述使用场景下的解决方案搭建和完善，随着政务数据使用场景的提升，不断提升系统性能，不断对丰富的业务场景的使用，进行研发支持。\n2. 负责解决方案中产品服务的系统分析和架构设计，并主导完成详细设计和编码的任务，确保项目的进度和质量；\n2. 开发和维护政务数据安全分享流转使用的产品和系统，快速定位并修复现有软件缺陷；\n3. 能够有效地对新人或普通开发工程师进行辅导，帮助其快速成长。\n职位要求\n1. JAVA基础扎实：精通多线程编程，熟悉分布式,缓存,消息队列等机制；熟悉JVM，包括内存模型、类加载机制以及性能优化；\n2. 对各种开源的框架如Spring、Hibernate等有深入的了解，精通关系型数据库设计及SQL，精通unix/linux操作系统；\n3. 具备良好的识别业务关键需求和设计领域模型的能力；\n4. 热爱技术，工作认真、严谨，对系统质量有高要求的意识，善于沟通与团队协作；\n5. 有区块链对应项目或者政务数据民生使用系统研发经验者优先。",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区阿里中心·杭州Z空间西溪路556号",
+    "major": [],
+    "neo4j": 8611,
+    "company": "蚂蚁集团",
+    "logo": "https://img.bosszhipin.com/beijin/mcs/banner/b10345f203d9c0270a26df28e9c00429cfcd208495d565ef66e7dff9f98764da.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.3945898563424142
+  },
+  {
+    "title": "前端开发工程师",
+    "salary": "20-25K·13薪",
+    "education": "大专",
+    "skill": ["web", "前端", "Javascript", "HTML5"],
+    "info": "意外险，零食下午茶，带薪年假，股票期权，节日礼品，五险一金，补充医疗保险，交通补助，家庭关爱假，餐补，免费健身设施，年终奖，餐饮及下午茶，就近租房补贴，法定节假日三薪，家属自选保险，团建聚餐，定期体检，弹性工作制，年度体检",
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "前端开发工程师",
+    "description": "岗位职责：1. 负责前端开发框架的设计和搭建；2. 根据设计文档、开发规范进行页面开发；3.公司产品线易用性改进和Web界面技术优化；4. 完成领导交代的其他工作；负责公司的PC端项目产品的开发工作；任职要求：1. 计算机相关专业，3年及以上前端区块链开发的工作经验；2. 有vue网站的前端部署和实践经验，代码风格良好；3. 熟练掌握HTML5、CSS3、JavaScript开发；4. 确保web网页能支持指定的浏览器和设备，解决兼容性问题；5. 理解能力强，善于沟通，有责任心和团队精神；",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区西溪银泰城2-西写字楼(弘德路)南楼1009",
+    "major": ["计算机"],
+    "neo4j": 5112,
+    "company": "杭州微声科技有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.5706162328399005
+  },
+  {
+    "title": "web前端工程师",
+    "salary": "16-26K",
+    "education": "大专",
+    "skill": ["CSS", "Javascript", "web", "JS", "HTML5"],
+    "info": null,
+    "kind1": "互联网",
+    "kind2": "前端/移动开发",
+    "kind3": "前端开发工程师",
+    "description": "职责描述： 1. 负责公司超级账本项目的网管子系统部分前端页面的开发工作； 2. 负责设计Web前端用户交互流程；3. 对业务需求进行评估，提出解决方案； 4. 配合后台工程师完成应用的整合测试； 5. 学习和钻研新的前端框架、前端技术，不断优化程序质量。任职要求： 1. 不低于2年Web前端项目开发; 2. 熟悉前端开发的基础技术（CSS、HTML5、CSS3等）;3. 熟悉原生js，对JavaScript的底层原理有深刻的理解，熟悉ES6;4. 能够熟练使用VUE，element-ui进行前端页面开发;5. 熟知前端代码在各种浏览器下的差异，并且能做出兼容方案;6. 精通各种前端设计模式，并且有深刻认识;",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区西溪明园13幢B楼",
+    "major": [],
+    "neo4j": 5176,
+    "company": "浙江永旗区块链科技有限公司",
+    "logo": "https://img.bosszhipin.com/beijin/icon/894ce6fa7e58d64d57e7f22d2f3a9d18afa7fcceaa24b8ea28f56f1bb14732c0.png?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.667297226198856
+  },
+  {
+    "title": "Java高级开发工程师",
+    "salary": "20-40K·16薪",
+    "education": "本科",
+    "skill": [
+      "MyBatis",
+      "Linux",
+      "IOS",
+      "Java",
+      "后端开发",
+      "SpringBoot",
+      "Dubbo",
+      "Spring",
+      "MySQL",
+      "软件工程师",
+      "Android",
+      "架构师",
+      "PC端",
+      "JVM"
+    ],
+    "info": "股票期权，年终奖，补充医疗保险，免费班车，包吃，带薪年假，五险一金，定期体检，餐补，员工旅游",
+    "kind1": "互联网",
+    "kind2": "后端开发",
+    "kind3": "java",
+    "description": "岗位信息\n我们是阿里巴巴集团菜鸟网络末端技术团队，是菜鸟乃至整个集团的战略性团队，负责菜鸟核心末端物流基础设施建设，未来发展空间巨大。\n岗位工作地在上海和杭州，大部分职位在杭州，上海主要招一些核心TL岗，社保缴纳地域可自由选择（可选择与工作地不同）。\n----------------------------------------------------\n岗位描述\n1. 负责菜鸟末端的平台化产品设计与搭建；大型项目/大促等项目的总体架构设计与风险控制；\n2. 技术预研和技术难点攻关，保障系统可用性、稳定性、和可扩展性；\n3. 快速实现业务业务需求，同时可以形成沉淀和复用架构/服务。\n岗位要求\n1. Java基础扎实，精通核心类库的使用，熟悉JVM原理\n2. 熟悉Spring、MyBatis、Dubbo、SpringBoot等开源框架，了解其原理和机制；熟悉Linux 操作系统和MySQL数据库，有开发和解决问题的经验；\n3. 了解互联网系统的架构，有分布式系统的设计经验；熟悉开源中间件的使用，了解其原理和机制；\n4. 有高并发、高可用性系统设计与开发的经验；有性能调优的经验加分项；\n5. 学习能力强，适应能力好，抗压能力强；\n6. 有做过大型项目的技术主管/架构师优先考虑；",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区中节能·西溪首座(西门)B1-1",
+    "major": [],
+    "neo4j": 7814,
+    "company": "菜鸟网络",
+    "logo": "https://img.bosszhipin.com/beijin/logo/9a78a57a7671568532763f6913143c85be1bd4a3bd2a63f070bdbdada9aad826.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.3285543698494421
+  },
+  {
+    "title": "商业分析专家",
+    "salary": "25-40K·16薪",
+    "education": "本科",
+    "skill": [
+      "ETL",
+      "HQL",
+      "数据分析",
+      "运营",
+      "SAS",
+      "Python",
+      "SQL",
+      "数据仓库",
+      "商业分析",
+      "商业智能",
+      "Excel",
+      "Tableau",
+      "Hive"
+    ],
+    "info": "住房补贴，带薪年假，员工旅游，餐补，定期体检，全勤奖，年终奖，加班补助，包吃，股票期权，免费班车，零食下午茶，通讯补贴，五险一金，节日福利，交通补助",
+    "kind1": "AI/数据",
+    "kind2": "数据",
+    "kind3": "数据分析师",
+    "description": "职位描述\n1. 构建并维护全面的、准确的、能反映服务业务线特征的整体指标体系, 并基于日常指标监控，及时发现并定位业务问题\n2. 通过专题分析，对业务问题进行深入分析，为公司运营决策、产品方向、销售策略提供数据支持\n3. 沉淀分析思路与框架， 提炼数据产品需求，与相关团队（如技术开发团队） 协作并推动数据产品的落地\n4. 与相关团队协作进行数据建模和快速迭代，推动业务部门的数据化运营\n5. 与相关团队协作组织数据技术与产品相关的理念、技能、工具的培训\n职位要求\n1. 统计、数学、信息技术、生物统计等本科以上学历，3-8年相关工作经历\n2. 熟练运用SQL、EXCEL等工具，有丰富的数据分析、挖掘、清洗和建模的经验，能高效的与数据技术团队进行沟通\n3. 良好的数据敏感度,能从海量数据，包括外部数据和定性数据中，提炼核心结果，解决实际问题，创造实际价值\n4. 熟练独立编写商业数据分析报告，能高效的与业务和运营团队进行沟通\n5. 大项目的经验，有丰富的跨团队、部门的项目资源整合能力，能够独立开展研究项目\n6. 有客户数据模型建立和运营经验、数据化运营经验、数据类产品类规划经验，尤其是有互联网公司的运营分析相关经验的优先\n7. 熟悉数据分析工具（SAS、R、Python）、可视化工具（Tableau）、数据工具（ETL, Hive, HQL）、A/B Test设计和测试的优先",
+    "province": "浙江省",
+    "city": "杭州市",
+    "district": "西湖区",
+    "address": "杭州西湖区阿里中心·杭州Z空间(西南门)西溪路556号",
+    "major": ["数学"],
+    "neo4j": 11856,
+    "company": "蚂蚁集团",
+    "logo": "https://img.bosszhipin.com/beijin/mcs/banner/b10345f203d9c0270a26df28e9c00429cfcd208495d565ef66e7dff9f98764da.jpg?x-oss-process=image/resize,w_100,limit_0",
+    "match_value": 0.2877437641177057
+  }
+])
+
+const relationData_salary = ref([
+  [
+    {
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "PHP"
+      }
+    },
+    {
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "[p]1",
+        "title": "[P]1"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "cloud"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "OceanBase"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Spring"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数据库"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "boot"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "1000",
+        "title": "支付宝（杭州）信息技术有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "40-70K·16薪"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "硕士"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "748",
+        "title": "高级Java开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "Java"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Sdk"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Android"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Android UI"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "os"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "hybird"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Android SDK"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "前端"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "蚂蚁集团"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "30-50K·24薪"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "8849",
+        "title": "Android技术专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "移动开发"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Socket技术"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "小程序"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "后端"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "ts"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Redis"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "消息队列"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Egg.js"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Linux"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "MongoDB"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "滴滴出行"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "35-60K·15薪"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "7950",
+        "title": "资深前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "Node.js"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "算法"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "H5"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "ap"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "WebGL"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node.js"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数据"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Koa"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "游戏"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Webpack"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "canvas"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "蚂蚁智信（杭州）信息技术有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "30-60K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5285",
+        "title": "web前端"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "全栈开发经验"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "运维开发"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "后端"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "计算机相关专业"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "dns"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Python"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Shell"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "服务端开发经验"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "阿里云"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "30-60K·16薪"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "8204",
+        "title": "python开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "Python"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "统计"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "推荐"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数据"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "深度学习"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数学/统计相关专业"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "XGBoost"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "PyTorch"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "TensorFlow"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "计算机相关专业"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Hadoop"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "SQL"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Python"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Spark"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C++"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "机器学习"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数据挖掘"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "蚂蚁集团"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "30-60K·17薪"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "10155",
+        "title": "数据挖掘专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "数据挖掘"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "通信"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "自动化"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "控制"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "电子"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "英语"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Ai"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "视觉系统"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Docker"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Python"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "k8s"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C++"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Linux"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "1000",
+        "title": "中电金信软件有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "35-55K·14薪"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "硕士"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "2271",
+        "title": "资深后端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "后端其他开发"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Go"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "区块链"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "分布式技术"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C++"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "蚂蚁集团"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "30-55K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "7479",
+        "title": "C＋＋"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "c/c++"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "英文"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTTP"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "前端"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州爱逛网络信息服务有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "20-30K·16薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5155",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "数学"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "电子"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "自然语言处理经验"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "RAG"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "搜索/信息检索算法经验"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "nlp"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Python"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "query"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数据结构"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C++"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "阿里巴巴集团"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "30-45K·16薪"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "硕士"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "10319",
+        "title": "阿里通义实验室-大模型NLP算法专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "搜索算法"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Android"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C#"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Unity3D"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JavaScript"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "IOS"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "零壹比特"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "30-50K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "8739",
+        "title": "Unity游戏开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "游戏3D开发"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "运维"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "银行"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "架构师"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Spring"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "微服务"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "网商银行"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "25-35K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "7891",
+        "title": "高级Java开发工程师/技术专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "java"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "小程序"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "C"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Node"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTTP"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Linux"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Angular"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "1000",
+        "title": "上海哈啰普惠科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "25-40K"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5228",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "vue"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "React"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州涂鸦信息技术有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-30K"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5252",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "three.js"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "WebGL"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "canvas"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "浙江讯盟科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "15-25K·14薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5173",
+        "title": "3D前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JVM"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "架构师"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Hibernate"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Unix"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "SQL"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Spring"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数据库"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Linux"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "蚂蚁集团"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "25-45K"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "8611",
+        "title": "政务区块链应用研发专家-java方向"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "区块链工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "计算机"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "前端"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "杭州微声科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "20-25K·13薪"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5112",
+        "title": "前端开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HTML5"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JS"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "web"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Javascript"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "CSS"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "100",
+        "title": "浙江永旗区块链科技有限公司"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "16-26K"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "大专"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "5176",
+        "title": "web前端工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "前端开发工程师"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "JVM"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "PC端"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "架构师"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Android"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "软件工程师"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "MySQL"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Spring"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Dubbo"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "SpringBoot"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "后端开发"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Java"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "IOS"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Linux"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "MyBatis"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "1000",
+        "title": "菜鸟网络"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "20-40K·16薪"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "7814",
+        "title": "Java高级开发工程师"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "java"
+      }
+    }
+  ],
+  [
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "专业",
+      "m": {
+        "title": "数学"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Hive"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Tableau"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Excel"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "商业智能"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "商业分析"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数据仓库"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "SQL"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "Python"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "SAS"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "运营"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "数据分析"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "HQL"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "技能",
+      "m": {
+        "title": "ETL"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "公司",
+      "m": {
+        "scale": "10000",
+        "title": "蚂蚁集团"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "薪资",
+      "m": {
+        "title": "25-40K·16薪"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "学历需求",
+      "m": {
+        "title": "本科"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "西湖区",
+        "Superior": "杭州市"
+      }
+    },
+    {
+      "n": {
+        "id": "11856",
+        "title": "商业分析专家"
+      },
+      "type(r)": "包含职位",
+      "m": {
+        "title": "数据分析师"
       }
     }
   ]
