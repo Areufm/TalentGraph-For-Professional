@@ -12,7 +12,7 @@
       </div>
       <div class="rright">
         <div class="rrtop">
-          <img @click="toSkill" src="../../../assets/FunctionCard/ability2.png" alt="能力评价入口" />
+          <img @click="toProfile" src="../../../assets/FunctionCard/ability2.png" alt="能力评价入口" />
         </div>
         <div class="rrbottom">
           <img @click="toResume" src="../../../assets/FunctionCard/cv2.png" alt="简历上传入口" />
@@ -46,8 +46,8 @@ const toRecommend = () => {
 const toResume = () => {
   router.push("/profile");
 };
-const toSkill = () => {
-  router.push("/skill-evaluation");
+const toProfile = () => {
+  router.push("/");
 };
 </script>
 
