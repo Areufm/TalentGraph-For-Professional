@@ -27,7 +27,7 @@ const mutations = {
     state.avatar = avatar;
   },
   SET_MENU_LIST: (state, menuList) => {
-    state.menuList = menuList;
+    // state.menuList = menuList;
   },
 };
 
