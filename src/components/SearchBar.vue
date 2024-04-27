@@ -2,7 +2,7 @@
   <form class="form">
     <div style="width: 50px;">
     </div>
-    <input class="input" placeholder="搜索职位、公司" required="" type="text" v-model="searchQuery"
+    <input class="input" :placeholder="searchQuery" required="" type="text" v-model="searchQuery"
       @keydown.enter.prevent="handleSearch" />
     <button class="reset" type="reset">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -20,7 +20,26 @@
   </form>
 </template>
 
-<script>
+<script setup>
+import { ref, defineProps, onMounted } from "vue";
+import { useRouter } from "vue-router";
+const searchQuery = ref("");
+const router = useRouter();
+
+const props = defineProps({
+  searchValue: String,
+})
+
+onMounted(() => {
+  searchQuery.value = props.searchValue
+})
+
+const handleSearch = () => {
+  router.push({ name: "Research", params: { query: searchQuery.value } });
+};
+
+</script>
+<!-- <script>
 export default {
   data() {
     return {
@@ -39,7 +58,7 @@ export default {
     },
   },
 };
-</script>
+</script> -->
 
 <style scoped>
 .form button {
