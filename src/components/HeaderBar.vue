@@ -112,7 +112,7 @@
           <img src="../assets/zkn.jpg" alt="头像" style="border-radius: 50%; height: 45px; width: 45px" />
         </template>
         <template #default>
-          <button @click="authStore.logout" style="border: 0; outline: none; background-color: transparent">
+          <button @click="logout" style="border: 0; outline: none; background-color: transparent">
             退出登录
           </button>
         </template>
@@ -191,6 +191,11 @@ const toLogin = () => {
 const toResume = () => {
   router.push("/profile");
 };
+
+const logout = () => {
+  authStore.logout();
+  router.push("/")
+}
 
 const showPopup = () => {
   var overlay = document.getElementById("overlay");
