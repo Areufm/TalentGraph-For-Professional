@@ -10,10 +10,15 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 
+import { viteMockServe } from "vite-plugin-mock";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    viteMockServe({
+      mockPath: "mock", // 存放mock数据的文件夹
+      localEnabled: true, // 是否启用本地 mock
+    }),
     AutoImport({
       imports: [
         "vue",
