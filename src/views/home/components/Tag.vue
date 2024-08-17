@@ -535,8 +535,8 @@ const originalData = [
 
 const activeName = ref("first");
 
-const handleClick = (tab: TabsPaneContext, event: Event) => {
-    activeName.value = tab.name as string;
+const handleClick = (tab: TabsPaneContext) => {
+    activeName.value = tab.paneName as string;
 };
 </script>
 
