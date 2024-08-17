@@ -1,29 +1,19 @@
-# vue-a15
+## TalentGraph For Professional
 
-This template should help get you started developing with Vue 3 in Vite.
+切换分支查看不同页面 
+<br>
+默认分支为求职者端
+<br>
+company为公司页面
+<br>
+admin为管理员端页面
+<br>
+templete为模板页面
+<br>
 
-## Recommended IDE Setup
+求职者端使用vue3+pinia+element-plus+relationship-graph搭建
+<br>
+后台使用vue2+vuex+element+echarts搭建
+<br>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+企业管理员端需开启后台及数据库使用，当前暂未适配，仅可预览求职者端
