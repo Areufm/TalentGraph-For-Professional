@@ -1,10 +1,10 @@
 ﻿import { createPinia } from "pinia";
 
-const store = createPinia();
+const stores = createPinia();
 
 // 全局注册 store
 export function setupStore(app) {
-  app.use(store);
+  app.use(stores);
 }
 
-export { store };
+export { stores };
