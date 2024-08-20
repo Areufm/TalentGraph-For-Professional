@@ -18,6 +18,8 @@ export default defineConfig({
     viteMockServe({
       mockPath: "mock", // 存放mock数据的文件夹
       localEnabled: true, // 是否启用本地 mock
+      prodEnabled: false, // 生产环境禁用 mock
+      logger: true, // 启用日志输出，便于调试
     }),
     AutoImport({
       imports: [
