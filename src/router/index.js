@@ -56,11 +56,12 @@ const routes = [
 ];
 
 const router = createRouter({
+  scrollBehavior: () => ({ left: 0, top: 0 }), // 每次跳转后滚动条回到顶部
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   window.document.title = to.meta.title
     ? to.meta.title + " - 职业猫"
     : "职业猫";
