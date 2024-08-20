@@ -4,7 +4,7 @@
       <img src="../../../assets/zkn.jpg" alt="Profile Picture" />
 
       <div class="profile-name">
-        <h3>猫猫鼠</h3>
+        <h3>{{ authStore.userInfo.name }}</h3>
         <p>我的简历完成度: <span>77%</span></p>
       </div>
     </div>
@@ -25,7 +25,10 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useAuthStore } from "@/stores/auth";
+const authStore = useAuthStore();
+</script>
 
 <style scoped>
 .info {
