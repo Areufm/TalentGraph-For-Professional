@@ -441,8 +441,7 @@ const clickImg = () => {
 </script>
 
 <style scoped>
-.upload-demo>>>.el-upload-dragger,
-.upload-demo ::v-deep .el-upload-dragger {
+.upload-demo :deep(.el-upload-dragger) {
   border-radius: 30px;
   background-color: transparent;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
