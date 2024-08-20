@@ -7429,7 +7429,7 @@ sort-button:active {
   /* 移除不必要的上外边距 */
 }
 
-::v-deep .demo-progress .el-progress--line {
+:deep(.demo-progress .el-progress--line) {
   margin-bottom: 15px;
   max-width: 200px;
 }

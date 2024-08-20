@@ -2,15 +2,13 @@
   <div class="card" @click="handleToggleDrawer">
     <div class="card-details">
       <div style="display: flex">
-        <div
-          style="
+        <div style="
             display: flex;
             flex-direction: column;
             top: 0;
             width: 170px;
             /* justify-content: center; */
-          "
-        >
+          ">
           <p class="work_name">前端开发工程师</p>
           <p class="work_salary">12K-15K</p>
         </div>
@@ -58,15 +56,18 @@ const handleToggleDrawer = () => {
   margin-top: 10px;
   font-size: 28px;
 }
+
 .percentage-label {
   display: block;
   margin-top: 10px;
   font-size: 12px;
 }
-::v-deep .demo-progress .el-progress--line {
+
+:deep(.demo-progress .el-progress--line) {
   margin-bottom: 15px;
   max-width: 200px;
 }
+
 .card {
   /* width: 350px; */
   /* width: 30%; */

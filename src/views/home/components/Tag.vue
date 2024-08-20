@@ -541,7 +541,7 @@ const handleClick = (tab: TabsPaneContext) => {
 </script>
 
 <style scoped>
-::v-deep .el-tabs__header {
+:deep(.el-tabs__header) {
     overflow: hidden;
     display: flex;
     justify-content: space-around;
