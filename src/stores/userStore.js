@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { storage } from "@/utils/storage";
 import { refreshToken } from "@/api/user";
-import { store } from "@/store";
+import { stores } from "@/stores";
 
 // 使用setup模式定义
 export const userStore = defineStore("userStore", () => {
@@ -57,5 +57,5 @@ export const userStore = defineStore("userStore", () => {
 });
 
 export function useUserStore() {
-  return userStore(store);
+  return userStore(stores);
 }
