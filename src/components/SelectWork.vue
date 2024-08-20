@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 // const value = ref(["Internet", "Front-end & Mobile development", "Front-end dev"]);
 const value = ref()
 

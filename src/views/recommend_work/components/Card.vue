@@ -35,7 +35,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 
 // 定义props，接收父组件传递的方法
 const props = defineProps({

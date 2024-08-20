@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, defineProps, watch, onBeforeMount } from "vue";
+import { ref, onMounted, watch, onBeforeMount } from "vue";
 
 const props = defineProps({
   checked_type: { type: String, required: false, default: "" }, // 接收来自父组件的checked_type
