@@ -42,7 +42,7 @@
       <!-- <a href="/form" class="header_left_text">在线表单</a> -->
       <!-- <button @click="changeLogin">切换登录状态</button> -->
     </div>
-    <div v-if="authStore.isLogin" class="header_right">
+    <div v-if="isLogin" class="header_right">
       <el-popover :width="300"
         popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px;">
         <template #reference>
@@ -141,8 +141,10 @@ import { regionData } from "element-china-area-data";
 import { useAuthStore } from "@/stores/auth";
 import { UploadFilled } from "@element-plus/icons-vue";
 import SelectArea from "./SelectArea.vue";
+import { storeToRefs } from "pinia";
 
 const authStore = useAuthStore();
+const { isLogin } = storeToRefs(authStore)
 const router = useRouter();
 const centerDialogVisible = ref(false);
 const selectedOptions = ref(["11", "1101", "110101"]); // 初始化选中值

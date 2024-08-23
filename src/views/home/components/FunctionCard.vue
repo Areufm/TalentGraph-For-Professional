@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="card">
-    <div v-if="authStore.isLogin" class="left">
+    <div v-if="isLogin" class="left">
       <PersonCard />
     </div>
     <div v-else class="left">
@@ -28,6 +28,7 @@ import Login from "./Login.vue";
 import { ref, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+import { storeToRefs } from "pinia";
 
 onBeforeMount(() => {
   // 初始化时从本地存储恢复登录状态
@@ -38,8 +39,9 @@ onBeforeMount(() => {
 });
 
 const authStore = useAuthStore();
-
+const { isLogin } = storeToRefs(authStore)
 const router = useRouter();
+
 const toRecommend = () => {
   router.push("/recommend");
 };
