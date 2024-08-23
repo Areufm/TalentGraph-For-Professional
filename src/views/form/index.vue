@@ -62,7 +62,7 @@
               <SelectWork />
             </el-form-item>
             <el-form-item label="技能点">
-              <el-input v-model="skillString" clearable @input="updateSkillArray" />
+              <el-input v-model="skillString" placeholder="请用英文逗号,分隔开" clearable @input="updateSkillArray" />
             </el-form-item>
             <el-form-item label="个人信息描述">
               <el-input v-model="form.info" :autosize="{ minRows: 5, maxRows: 11 }" type="textarea"
@@ -424,14 +424,6 @@ const options = [
         ],
       },
     ],
-    // children: [
-    //   { value: "Electrical Engineer", label: "电气工程师" },
-    //   { value: "Electrical Design Engineer", label: "电气设计工程师" },
-    //   { value: "Automation", label: "自动化" },
-    //   { value: "Mechatronics Engineer", label: "机电工程师" },
-    //   { value: "Building Electromechanical Engineer", label: "建筑机电工程师" },
-    //   { value: "Other", label: "其他" },
-    // ],
   },
   {
     value: "Telecommunications",
