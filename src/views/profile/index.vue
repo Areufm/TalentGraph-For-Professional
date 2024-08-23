@@ -497,16 +497,15 @@ import Relationship from './components/Relationship.vue';
 import { Check, Close, Minus, Plus } from '@element-plus/icons-vue'
 import China from "./components/China.vue"
 import { useAuthStore } from "@/stores/auth";
+import { storage } from "@/utils/storage";
 
 const authStore = useAuthStore();
 onBeforeMount(() => {
   // 初始化时从本地存储恢复登录状态
-  const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+  const storedIsLoggedIn = storage.get("isLoggedIn");
   if (storedIsLoggedIn === "true") {
     authStore.isLogin = true;
-
   }
-  console.log(authStore.isLogin);
   if (!authStore.isLogin) {
     ElMessage.error("请先登录账户！");
     router.push("/login");

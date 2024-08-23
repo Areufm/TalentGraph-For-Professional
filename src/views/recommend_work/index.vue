@@ -190,6 +190,7 @@ import Card from "./components/Card.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import Info from "./components/Info.vue";
 import Relationship from "@/components/Chart/Relationship.vue";
+import { storage } from "@/utils/storage";
 
 const relationshipRef = ref(0);
 
@@ -208,7 +209,7 @@ function handleCardHover(index) {
 
 onBeforeMount(() => {
   // 初始化时从本地存储恢复登录状态
-  const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+  const storedIsLoggedIn = storage.get("isLoggedIn");
   if (storedIsLoggedIn === "true") {
     authStore.isLogin = true;
   }

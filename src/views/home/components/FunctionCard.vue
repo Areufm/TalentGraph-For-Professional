@@ -29,10 +29,12 @@ import { ref, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import { storeToRefs } from "pinia";
+import { storage } from "@/utils/storage";
 
 onBeforeMount(() => {
   // 初始化时从本地存储恢复登录状态
-  const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+  const storedIsLoggedIn = storage.get("isLoggedIn");
+
   if (storedIsLoggedIn === "true") {
     authStore.isLogin = true;
   }

@@ -142,6 +142,7 @@ import { useAuthStore } from "@/stores/auth";
 import { UploadFilled } from "@element-plus/icons-vue";
 import SelectArea from "./SelectArea.vue";
 import { storeToRefs } from "pinia";
+import { storage } from "@/utils/storage";
 
 const authStore = useAuthStore();
 const { isLogin } = storeToRefs(authStore)
@@ -151,7 +152,7 @@ const selectedOptions = ref(["11", "1101", "110101"]); // 初始化选中值
 
 onBeforeMount(() => {
   // 初始化时从本地存储恢复登录状态
-  const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+  const storedIsLoggedIn = storage.get("isLoggedIn");
   if (storedIsLoggedIn === "true") {
     authStore.isLogin = true;
   }
