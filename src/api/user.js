@@ -7,9 +7,24 @@ import request from "@/utils/request";
  */
 export const login = (data) => {
   return request({
-    url: "/auth/auth/login", // mock接口
+    url: "/api/login", // mock接口
     method: "post",
     data,
+  });
+};
+
+/**
+ *
+ * @param accessToken
+ * @returns
+ */
+export const getUserInfoByToken = (accessToken) => {
+  return request({
+    url: "/api/getUserInfo", // mock接口
+    method: "get",
+    params: {
+      accessToken,
+    },
   });
 };
 
@@ -35,27 +50,12 @@ export function importFile(deptId, file) {
 
 /**
  *
- * @param accessToken
- * @returns
- */
-export const getUserInfoByToken = (accessToken) => {
-  return request({
-    url: "/auth/auth/getUserInfoByToken", // mock接口
-    method: "get",
-    params: {
-      accessToken,
-    },
-  });
-};
-
-/**
- *
  * @param refreshToken
  * @returns
  */
 export const refreshToken = (refreshToken) => {
   return request({
-    url: `/auth/auth/refreshToken/`, // mock接口
+    url: `/api/refreshToken`, // mock接口
     method: "get",
     params: {
       refreshToken,
