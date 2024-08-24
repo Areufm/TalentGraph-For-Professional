@@ -11,7 +11,7 @@
         <img src="../../assets/login2.png" alt="" style="width: 100%; border-radius: 20px" @click="clickImg" />
       </div>
       <div class="form">
-        <el-form :model="form" label-width="auto" style="width: 100%">
+        <el-form :model="userInfo" label-width="auto" style="width: 100%">
           <div v-if="active == 0" style="width: 70%; margin: 0 auto">
             <el-upload class="upload-demo" drag action="" style="background-color: transparent" accept=".docx, .pdf"
               :before-upload="beforeUpload" @progress="simulateSuccess">
@@ -26,30 +26,30 @@
           </div>
           <div v-if="active == 1" style="width: 70%; margin: 0 auto">
             <el-form-item label="姓名" style="text-align: center">
-              <el-input v-model="form.name" clearable style="margin: 0 auto;" />
+              <el-input v-model="userInfo.name" clearable style="margin: 0 auto;" />
             </el-form-item>
             <el-form-item label="年龄">
               <!-- <el-input v-model="form.age" clearable /> -->
-              <el-input v-model="form.age" type="number" style="margin: 0 10px" />
+              <el-input v-model="userInfo.age" type="number" style="margin: 0 10px" />
 
               <!-- <el-input-number v-model="form.age" controls-position="right" style="width: 500px">
               </el-input-number> -->
             </el-form-item>
             <el-form-item label="电话号码">
-              <el-input v-model="form.phone" clearable />
+              <el-input v-model="userInfo.phone" clearable />
             </el-form-item>
           </div>
           <div v-if="active == 2" style="width: 70%; margin: 0 auto">
             <el-form-item label="邮箱">
-              <el-input v-model="form.email" clearable />
+              <el-input v-model="userInfo.email" clearable />
             </el-form-item>
             <el-form-item label="地区">
               <el-cascader style="width: 500px" placeholder="请选择求职地区" size="default" :options="regionData"
-                v-model="form.area" @change="handleChange">
+                v-model="userInfo.area" @change="handleChange">
               </el-cascader>
             </el-form-item>
             <el-form-item label="学历">
-              <el-select v-model="form.education" placeholder="请选择你的学历">
+              <el-select v-model="userInfo.education" placeholder="请选择你的学历">
                 <el-option label="专科" value="专科" />
                 <el-option label="本科" value="本科" />
                 <el-option label="硕士" value="硕士" />
@@ -65,7 +65,7 @@
               <el-input v-model="skillString" placeholder="请用英文逗号,分隔开" clearable @input="updateSkillArray" />
             </el-form-item>
             <el-form-item label="个人信息描述">
-              <el-input v-model="form.info" :autosize="{ minRows: 5, maxRows: 11 }" type="textarea"
+              <el-input v-model="userInfo.info" :autosize="{ minRows: 5, maxRows: 11 }" type="textarea"
                 placeholder="请输入你的个人信息" clearable />
             </el-form-item>
           </div>
@@ -98,9 +98,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, h, computed } from "vue";
+import { ref, reactive, computed } from "vue";
 import SelectWork from "@/components/SelectWork.vue"
-import HeaderBar from "@/components/HeaderBar.vue";
 import {
   Edit,
   Picture,
@@ -113,6 +112,8 @@ import { regionData } from "element-china-area-data";
 // import { ElNotification } from "element-plus";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+import { getUserInfoByToken } from "@/api/user";
+import { storeToRefs } from "pinia";
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -128,16 +129,18 @@ const handleChange = (value) => {
   console.log(value);
 };
 
-const form = reactive(authStore.userInfo);
+
+const { userInfo } = storeToRefs(authStore);
 
 const active = ref(0);
 
 const submit = () => {
-  authStore.setUserInfo(form);
+  authStore.updateUserInfo(userInfo.value);
   console.log("Form data saved:", authStore.userInfo);
   ElNotification({
     title: "提交成功",
-    message: h("i", { style: "color: teal" }, "恭喜你提交成功！"),
+    message: "恭喜你提交成功！",
+    type: "success",
     offset: 50,
   });
   router.push("/");
@@ -146,16 +149,16 @@ const submit = () => {
 // 计算属性，将数组转为字符串以供展示
 const skillString = computed({
   get() {
-    return form.skill.join(', ');
+    return userInfo.value.skill.join(', ');
   },
   set(value) {
-    form.skill = value.split(',').map(skill => skill.trim());
+    userInfo.value.skill = value.split(',').map(skill => skill.trim());
   }
 });
 
 // 更新 skill 数组
 const updateSkillArray = (value) => {
-  form.skill = value.split(',').map(skill => skill.trim());
+  userInfo.value.skill = value.split(',').map(skill => skill.trim());
 };
 
 const value = ref([]);
@@ -165,48 +168,27 @@ const props = {
 };
 
 
-const uploadFile = (response, file, fileList) => {
-  // 假设这是一个模拟成功的响应对象
-  const mockResponse = {
-    code: 200,
-    message: "上传成功",
-    data: {
-      name: "John Doe",
-      age: "30",
-      phone: "123-456-7890",
-      email: "johndoe@example.com",
-      area: "",
-      education: [
-        {
-          school_name: "杭州大学",
-          school_time: ["", ""],
-          school_degree: "",
-        },
-      ],
-      work: "",
-      skill: [],
-      info: "尊敬的各位老师、同学们，大家好！我是来自XX大学XX学院XX专业的XXX，非常荣幸有机会在此向大家作一个详细的自我介绍。首先，关于我的基本情况。我出生于美丽的XX省XX市，自小在父母的悉心教诲和良好家庭氛围的影响下，养成了积极向上、勤奋刻苦的生活态度。高中时期，我凭借优异的成绩考入了心仪的XX大学，开始了我的大学生涯。现就读于XX专业，年级排名前X%，对所学专业怀有深厚的兴趣和热情。在学术方面，我始终秉持严谨治学的精神，积极参与各类专业课程的学习与实践。我对XX领域的理论知识进行了深入研究，尤其对XX专题有独到的理解和探索。此外，我还通过阅读专业文献、参加学术讲座和研讨会，不断拓宽视野，紧跟学科前沿动态。至今，我在导师的指导下参与了一项校级科研项目——“XXX”，负责XX部分的工作，项目成果已发表于《XX期刊》。这些学术经历不仅提升了我的专业知识水平，也锻炼了我的独立思考和团队协作能力。在实践能力方面，我深知理论与实践相结合的重要性。在校期间，我积极参与各类实践活动以提升自己的综合素质。曾担任XX社团的副社长，组织策划了多次大型活动，如“XX文化节”、“XX论坛”，在活动筹备过程中，我提升了组织协调、沟通交流以及危机应对的能力。同时，我利用寒暑假时间进行了与专业相关的实习，曾在XX公司担任XX岗位实习生，负责XX工作。实习期间，我将所学知识应用于实际工作中，深化了对专业知识的理解，也积累了宝贵的社会工作经验。对于个人兴趣爱好，我热衷于XX（比如阅读、摄影、运动等）。阅读让我在快节奏的学习生活中保持内心的宁静，从各类书籍中汲取知识、启迪思维；摄影则帮助我捕捉生活中的美好瞬间，培养了我观察事物的独特视角；而定期的体育锻炼，如跑步、篮球等，既强健了体魄，也磨炼了意志，使我更好地应对学习和生活的挑战。展望未来，我深感责任重大、使命光荣。我计划在完成本科学业后继续深造，攻读XX方向的研究生学位，进一步提升专业素养，致力于在XX领域做出自己的贡献。同时，我也期待在未来的学术研究和职业发展中，能够与志同道合的伙伴们携手共进，共同推动行业进步，服务社会。最后，我想说，我是一个热爱生活、积极进取的人，始终坚信“学无止境，行者无疆”。在接下来的大学生活中，我将继续努力学习，全面提升自己，以期在未来的人生道路上，实现自我价值，为社会的发展贡献自己的一份力量。谢谢大家！以上就是我的自我介绍，如果有任何问题或想要进一步了解我，非常欢迎各位老师和同学随时与我交流。再次感谢大家的倾听！",
-    },
-  };
+const uploadFile = async (response, file, fileList) => {
+
+  const token = authStore.getToken();
+  console.log("token", token);
+
+  const res = await getUserInfoByToken(token);
+  console.log("res.data", res.data);
 
   // 如果响应码表示上传成功
-  if (mockResponse.code === 200) {
+  if (res.code === 200) {
     // 将响应数据赋值给表单
-    const responseData = mockResponse.data;
-    form.name = responseData.name;
-    form.age = responseData.age;
-    form.phone = responseData.phone;
-    form.email = responseData.email;
-    form.area = responseData.area;
-    form.education = responseData.education;
-    form.work = responseData.work;
-    form.skill = responseData.skill;
-    form.info = responseData.info;
+
+    userInfo.value = res.data
+    console.log("userInfo", userInfo.value);
+
 
     // 显示上传成功的提示信息
     ElNotification({
       title: "简历上传成功",
-      message: h("i", { style: "color: teal" }, "简历正在解析中..."),
+      message: "简历正在解析中...",
+      type: "info",
       offset: 50,
     });
 
@@ -218,7 +200,7 @@ const uploadFile = (response, file, fileList) => {
   } else {
     ElNotification({
       title: "上传失败！",
-      message: h("i", { style: "color: teal" }, "简历上传失败，请重新上传！"),
+      message: "简历上传失败，请重新上传！",
       type: "error",
       offset: 50,
     });
@@ -229,6 +211,7 @@ const simulateSuccess = (file, fileList) => {
   // 模拟上传成功，直接调用原本的on-success回调
   uploadFile(null, file, fileList);
 };
+
 const beforeUpload = (file) => {
   // 忽略实际上传，直接返回true
   return true;

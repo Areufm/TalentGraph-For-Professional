@@ -62,7 +62,7 @@ const isLogin = ref(true);
       <img src="../../assets/login.png" alt="" style=" ">
     </div>
     <div class="right">
-      <form class="form">
+      <!-- <form class="form">
         <p class="title">Login</p>
         <p class="message">登录职业猫CareerCat</p>
 
@@ -72,13 +72,41 @@ const isLogin = ref(true);
         </label>
 
         <label>
-          <input required="" placeholder="" type="password" class="input" />
+          <input required="" placeholder="" :type="passwordType" class="input" />
           <span>密码</span>
+          <el-icon class="icon-right" @click="showPwd">
+            <i-ep-view v-if="isShow" />
+            <i-ep-hide v-else />
+          </el-icon>
         </label>
         <button class="submit" @click="handleLogin">登录</button>
         <p class="signin">暂时没有账户 ? <a href="/register">去注册</a></p>
         <p class="signin">暂不注册 <a href="/">返回首页</a></p>
-      </form>
+      </form> -->
+      <el-form :model="LoginForm" :rules="loginRules" ref="loginFormRef" label-width="80px" class="form">
+        <p class="title">Login</p>
+        <p class="message">登录职业猫CareerCat</p>
+
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="LoginForm.username" placeholder="请输入用户名" class="input" />
+        </el-form-item>
+
+
+        <el-form-item label="密码" prop="password">
+          <el-input :type="passwordType" v-model="LoginForm.password" placeholder="请输入密码" class="input" />
+          <!-- <el-icon class="icon-right" @click="showPwd">
+            <i-ep-view v-if="isShow" />
+            <i-ep-hide v-else />
+          </el-icon> -->
+        </el-form-item>
+
+        <el-button type="primary" class="submit" @click="handleLogin">
+          登录
+        </el-button>
+
+        <p class="signin">暂时没有账户? <a href="/register">去注册</a></p>
+        <p class="signin">暂不注册 <a href="/">返回首页</a></p>
+      </el-form>
     </div>
   </div>
 
@@ -90,6 +118,8 @@ import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";
 import { useAuthStore } from '@/stores/auth'
+import { login } from "@/api/user";
+import { storage } from "@/utils/storage";
 
 const authStore = useAuthStore()
 
@@ -109,10 +139,9 @@ const validatePassword = (rule, value, callback) => {
   }
 };
 
-const LoginForm = reactive({
+const LoginForm = ref({
   username: "",
   password: "",
-  password_confirm: "",
 });
 
 const loginRules = reactive({
@@ -123,7 +152,6 @@ const loginRules = reactive({
 });
 
 const isShow = ref(true);
-const isShow_confirm = ref(true);
 const passwordType = ref("password");
 const redirect = ref(undefined);
 const route = useRoute();
@@ -134,25 +162,28 @@ const showPwd = () => {
   isShow.value = !isShow.value;
 };
 
-const showPwd_confirm = () => {
-  if (passwordConfirmType.value === "password") {
-    passwordConfirmType.value = "";
-  } else {
-    passwordConfirmType.value = "password";
-  }
-  isShow_confirm.value = !isShow_confirm.value;
-};
 
 const handleLogin = () => {
-  ElNotification({
-    title: "登录成功！",
-    message: "恭喜你成功登录",
-    type: "success",
-    offset: 50,
-  });
-  authStore.login()
-  console.log(authStore.isLogin);
-  router.push("/form");
+  console.log("Loginform:", LoginForm.value);
+  login(LoginForm.value)
+    .then((res) => {
+      const { data } = res; //data是后端返回的数据
+      storage.set("accessToken", data.accessToken); //accessToken是后端返回的token
+      storage.set("refreshToken", data.refreshToken);
+      console.log(data);
+      authStore.login()
+      router.push("/form");
+      ElNotification({
+        title: "登录成功！",
+        message: "恭喜你成功登录",
+        type: "success",
+        offset: 50,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      ElMessage.error("登陆失败");
+    });
 };
 </script>
 
@@ -184,6 +215,10 @@ const handleLogin = () => {
   width: 50%;
   /* 或者设置一个固定或自适应的宽度，保持与左侧图片的布局平衡 */
 }
+
+/* input[type="password"]::-ms-reveal {
+  display: none;
+} */
 
 .form {
   display: flex;
@@ -237,79 +272,86 @@ const handleLogin = () => {
 
 .message,
 .signin {
-  color: rgba(88, 87, 87, 0.822);
-  font-size: 14px;
+  color: rgba(88, 87, 87, 0.822) !important;
+  font-size: 14px !important;
 }
 
 .signin {
-  text-align: center;
+  text-align: center !important;
 }
 
 .signin a {
-  color: royalblue;
+  color: royalblue !important;
 }
 
 .signin a:hover {
-  text-decoration: underline royalblue;
+  text-decoration: underline royalblue !important;
 }
 
 .flex {
-  display: flex;
-  width: 100%;
-  gap: 6px;
+  display: flex !important;
+  width: 100% !important;
+  gap: 6px !important;
 }
 
 .form label {
-  position: relative;
+  position: relative !important;
+}
+
+.form label .icon-right {
+  position: absolute !important;
+  right: 10px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
 }
 
 .form label .input {
-  width: 95%;
-  padding: 10px 10px 20px 10px;
-  outline: 0;
-  border: 1px solid rgba(105, 105, 105, 0.397);
-  border-radius: 10px;
+  width: 95% !important;
+  padding: 10px 10px 20px 10px !important;
+  outline: 0 !important;
+  border: 1px solid rgba(105, 105, 105, 0.397) !important;
+  border-radius: 10px !important;
 }
 
 .form label .input+span {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  color: grey;
-  font-size: 0.9em;
-  cursor: text;
-  transition: 0.3s ease;
+  position: absolute !important;
+  left: 10px !important;
+  top: 15px !important;
+  color: grey !important;
+  font-size: 0.9em !important;
+  cursor: text !important;
+  transition: 0.3s ease !important;
 }
 
 .form label .input:placeholder-shown+span {
-  top: 15px;
-  font-size: 0.9em;
+  top: 15px !important;
+  font-size: 0.9em !important;
 }
 
 .form label .input:focus+span,
 .form label .input:valid+span {
-  top: 30px;
-  font-size: 0.7em;
-  font-weight: 600;
+  top: 30px !important;
+  font-size: 0.7em !important;
+  font-weight: 600 !important;
 }
 
 .form label .input:valid+span {
-  color: green;
+  color: green !important;
 }
 
 .submit {
-  border: none;
-  outline: none;
-  background-color: royalblue;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  transform: 0.3s ease;
+  border: none !important;
+  outline: none !important;
+  background-color: royalblue !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  transition: 0.3s ease !important;
 }
 
 .submit:hover {
-  background-color: rgb(56, 90, 194);
+  background-color: rgb(56, 90, 194) !important;
 }
 
 @keyframes pulse {
