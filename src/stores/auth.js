@@ -1,13 +1,16 @@
 ﻿import { defineStore } from "pinia";
 import { ref } from "vue";
 import { storage } from "@/utils/storage";
+import { stores } from "@/stores";
 
 // 使用setup模式
-export const useAuthStore = defineStore(
+export const authStore = defineStore(
   "auth",
   () => {
     let isLogin = ref(false);
+    const token = ref("");
     const userInfo = ref({
+      id: "",
       name: "",
       age: "",
       phone: "",
@@ -38,15 +41,53 @@ export const useAuthStore = defineStore(
       storage.remove("auth");
     };
 
-    const setUserInfo = (newUserInfo) => {
+    const updateUserInfo = (newUserInfo) => {
       Object.assign(userInfo.value, newUserInfo);
     };
 
+    const getToken = () => {
+      return storage.get("accessToken");
+    };
+
+    const getUserInfo = () => {
+      return storage.get("userInfo");
+    };
+
+    const setUserInfo = (data) => {
+      storage.set("userInfo", data);
+    };
+
+    // const isLogin = () => {
+    //   const user = storage.get("userInfo");
+    //   return user != null && user != undefined;
+    // };
+
+    const getNewToken = (token) => {
+      return (
+        new Promise() <
+        any >
+        ((resolve, reject) => {
+          refreshToken(token)
+            .then((res) => {
+              resolve(res);
+            })
+            .catch((error) => {
+              reject(error);
+            });
+        })
+      );
+    };
+
     return {
+      token,
       isLogin,
       userInfo,
       login,
       logout,
+      updateUserInfo,
+      getToken,
+      getNewToken,
+      getUserInfo,
       setUserInfo,
     };
   },
@@ -57,6 +98,10 @@ export const useAuthStore = defineStore(
     },
   }
 );
+
+export function useAuthStore() {
+  return authStore(stores);
+}
 
 // export const useAuthStore = defineStore("auth", {
 //   state: () => ({
