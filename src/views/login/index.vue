@@ -187,7 +187,7 @@ const handleLogin = () => {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .login {
   display: flex;
   justify-content: space-between;
@@ -195,174 +195,161 @@ const handleLogin = () => {
   top: 20%;
   left: 10%;
   align-items: center;
-}
 
-.left {
-  width: 50%;
-  /* 或者设置一个固定的宽度，以保证图片与登录框之间的间距 */
-  background: transparent;
-  /* 如果需要让图片背景透明的话 */
-}
+  .left {
+    width: 50%;
+    background: transparent;
 
-.left img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  /* 确保图片适应容器大小而不变形 */
-}
-
-.right {
-  width: 50%;
-  /* 或者设置一个固定或自适应的宽度，保持与左侧图片的布局平衡 */
-}
-
-/* input[type="password"]::-ms-reveal {
-  display: none;
-} */
-
-.form {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 350px;
-  background-color: #ffffff;
-  padding: 30px;
-  border: rgba(88, 87, 87, 0.822) solid 2px;
-  border-radius: 20px;
-  /* position: absolute;
-  top: 50%;
-  left: 70%;
-  transform: translate(-50%, -50%); */
-}
-
-.title {
-  font-size: 28px;
-  color: royalblue;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-}
-
-.title::before,
-.title::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: royalblue;
-}
-
-.title::before {
-  width: 18px;
-  height: 18px;
-  background-color: royalblue;
-}
-
-.title::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
-}
-
-.message,
-.signin {
-  color: rgba(88, 87, 87, 0.822) !important;
-  font-size: 14px !important;
-}
-
-.signin {
-  text-align: center !important;
-}
-
-.signin a {
-  color: royalblue !important;
-}
-
-.signin a:hover {
-  text-decoration: underline royalblue !important;
-}
-
-.flex {
-  display: flex !important;
-  width: 100% !important;
-  gap: 6px !important;
-}
-
-.form label {
-  position: relative !important;
-}
-
-.form label .icon-right {
-  position: absolute !important;
-  right: 10px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-}
-
-.form label .input {
-  width: 95% !important;
-  padding: 10px 10px 20px 10px !important;
-  outline: 0 !important;
-  border: 1px solid rgba(105, 105, 105, 0.397) !important;
-  border-radius: 10px !important;
-}
-
-.form label .input+span {
-  position: absolute !important;
-  left: 10px !important;
-  top: 15px !important;
-  color: grey !important;
-  font-size: 0.9em !important;
-  cursor: text !important;
-  transition: 0.3s ease !important;
-}
-
-.form label .input:placeholder-shown+span {
-  top: 15px !important;
-  font-size: 0.9em !important;
-}
-
-.form label .input:focus+span,
-.form label .input:valid+span {
-  top: 30px !important;
-  font-size: 0.7em !important;
-  font-weight: 600 !important;
-}
-
-.form label .input:valid+span {
-  color: green !important;
-}
-
-.submit {
-  border: none !important;
-  outline: none !important;
-  background-color: royalblue !important;
-  padding: 10px !important;
-  border-radius: 10px !important;
-  color: #fff !important;
-  font-size: 16px !important;
-  transition: 0.3s ease !important;
-}
-
-.submit:hover {
-  background-color: rgb(56, 90, 194) !important;
-}
-
-@keyframes pulse {
-  from {
-    transform: scale(0.9);
-    opacity: 1;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
 
-  to {
-    transform: scale(1.8);
-    opacity: 0;
+  .right {
+    width: 50%;
+  }
+
+  .form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    background-color: #ffffff;
+    padding: 30px;
+    border: rgba(88, 87, 87, 0.822) solid 2px;
+    border-radius: 20px;
+
+    label {
+      position: relative;
+
+      .icon-right {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .input {
+        width: 95%;
+        padding: 10px 10px 20px 10px;
+        outline: 0;
+        border: 1px solid rgba(105, 105, 105, 0.397);
+        border-radius: 10px;
+
+        &+span {
+          position: absolute;
+          left: 10px;
+          top: 15px;
+          color: grey;
+          font-size: 0.9em;
+          cursor: text;
+          transition: 0.3s ease;
+        }
+
+        &:placeholder-shown+span {
+          top: 15px;
+          font-size: 0.9em;
+        }
+
+        &:focus+span,
+        &:valid+span {
+          top: 30px;
+          font-size: 0.7em;
+          font-weight: 600;
+        }
+
+        &:valid+span {
+          color: green;
+        }
+      }
+    }
+
+    .submit {
+      border: none;
+      outline: none;
+      background-color: royalblue;
+      padding: 10px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      transition: 0.3s ease;
+
+      &:hover {
+        background-color: rgb(56, 90, 194);
+      }
+    }
+  }
+
+  .title {
+    font-size: 28px;
+    color: royalblue;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      left: 0px;
+      background-color: royalblue;
+    }
+
+    &::before {
+      width: 18px;
+      height: 18px;
+    }
+
+    &::after {
+      width: 18px;
+      height: 18px;
+      animation: pulse 1s linear infinite;
+    }
+  }
+
+  .message,
+  .signin {
+    color: rgba(88, 87, 87, 0.822) !important;
+    font-size: 14px !important;
+
+    &.signin {
+      text-align: center !important;
+
+      a {
+        color: royalblue !important;
+
+        &:hover {
+          text-decoration: underline royalblue !important;
+        }
+      }
+    }
+  }
+
+  .flex {
+    display: flex !important;
+    width: 100% !important;
+    gap: 6px !important;
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
   }
 }
 </style>

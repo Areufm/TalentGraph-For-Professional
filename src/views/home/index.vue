@@ -59,7 +59,7 @@ import FunctionCard from "./components/FunctionCard.vue";
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 h1 {
   text-align: center;
   margin-bottom: 20px;
@@ -90,12 +90,11 @@ h1 {
   /* 添加默认背景颜色或者透明背景 */
   background-color: transparent;
   text-decoration: none;
-}
 
-/* 鼠标悬停时添加渐变背景 */
-.work:hover {
-  background: rgb(140, 209, 230);
-  color: white;
+  &:hover {
+    background: rgb(140, 209, 230);
+    color: white;
+  }
 }
 
 .n-layout {
@@ -107,7 +106,7 @@ h1 {
 .n-layout-content {
   /* flex: 1; */
   /* height: 90%; */
-  height: calc(100vh-140px);
+  height: calc(100vh - 140px);
   /* background: rgba(167, 167, 167, 0.277); */
   /* background: linear-gradient(to bottom, rgb(186, 236, 255), rgb(164, 216, 236),
       rgb(191, 228, 242), rgb(205, 227, 235), rgb(210, 233, 241), white); */

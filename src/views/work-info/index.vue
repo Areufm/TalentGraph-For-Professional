@@ -116,7 +116,7 @@ const currentJob = {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .container {
   margin: 0 auto;
   /* background: linear-gradient(
@@ -162,12 +162,12 @@ const currentJob = {
 
 .job-details {
   margin-bottom: 20px;
-}
 
-.job-details p {
-  margin: 0;
-  margin-bottom: 10px;
-  font-size: medium;
+  p {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: medium;
+  }
 }
 
 .job-card {
@@ -228,34 +228,36 @@ const currentJob = {
   overflow: hidden;
   transition: all 0.2s;
   cursor: pointer;
-}
 
-.send-button span {
-  display: block;
-  margin-left: 0.3em;
-  transition: all 0.3s ease-in-out;
-}
+  span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
 
-.send-button svg {
-  display: block;
-  transform-origin: center center;
-  transition: transform 0.3s ease-in-out;
-}
+  svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
 
-.send-button:hover .svg-wrapper {
-  animation: fly-1 0.6s ease-in-out infinite alternate;
-}
+  &:hover {
+    .svg-wrapper {
+      animation: fly-1 0.6s ease-in-out infinite alternate;
+    }
 
-.send-button:hover svg {
-  transform: translateX(1.2em) rotate(45deg) scale(1.1);
-}
+    svg {
+      transform: translateX(1.2em) rotate(45deg) scale(1.1);
+    }
 
-.send-button:hover span {
-  transform: translateX(5em);
-}
+    span {
+      transform: translateX(5em);
+    }
+  }
 
-.send-button:active {
-  transform: scale(0.95);
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 @keyframes fly-1 {

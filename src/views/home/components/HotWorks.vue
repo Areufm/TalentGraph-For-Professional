@@ -385,7 +385,8 @@ const jobsData = [
   },
 ];
 </script>
-<style scoped>
+
+<style scoped lang="scss">
 .cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -403,62 +404,63 @@ const jobsData = [
   transition: 0.5s ease-out;
   overflow: visible;
   margin: 10px;
-}
 
-.card-details {
-  color: black;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
+  .card-details {
+    color: black;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
 
-.card-button {
-  width: 100%;
-  border-radius: 1rem;
-  border: none;
-  background-color: #008bf8;
-  color: #fff;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  margin-top: auto;
-  opacity: 0;
-  transition: 0.3s ease-out;
-}
+  .card-button {
+    width: 100%;
+    border-radius: 1rem;
+    border: none;
+    background-color: #008bf8;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-top: auto;
+    opacity: 0;
+    transition: 0.3s ease-out;
+  }
 
-.text-body {
-  color: rgb(134, 134, 134);
-}
+  .text-body {
+    color: rgb(134, 134, 134);
+  }
 
-.text-title {
-  font-size: 1.5em;
-  font-weight: bold;
-}
+  .text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
 
-/*Text*/
-.work_name {
-  font-size: 1.5em;
-  font-weight: bold;
-}
+  /*Text*/
+  .work_name {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
 
-.work_salary {
-  margin-left: auto;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: red;
-}
+  .work_salary {
+    margin-left: auto;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: red;
+  }
 
-/*Hover*/
-.card:hover {
-  border-color: #008bf8;
-  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-}
+  /*Hover*/
+  &:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 
-.card:hover .card-button {
-  transform: translate(0%, -10%);
-  opacity: 1;
+    .card-button {
+      transform: translate(0%, -10%);
+      opacity: 1;
+    }
+  }
 }
 </style>
+
 <!-- <style scoped>
 .card {
   /* width: 350px; */

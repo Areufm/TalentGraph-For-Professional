@@ -7,30 +7,14 @@
       <img src="../../assets/login.png" alt="" style="" />
     </div>
     <div class="right">
-      <form
-        class="form"
-        :ref="registerForm"
-        :rules="registerRules"
-        :model="registerForm"
-        auto-complete="off"
-        label-position="left"
-      >
+      <form class="form" :ref="registerForm" :rules="registerRules" :model="registerForm" auto-complete="off"
+        label-position="left">
         <p class="title">Register</p>
         <p class="message">注册职业猫CareerCat</p>
 
         <label>
-          <input
-            required=""
-            placeholder=""
-            type="text"
-            class="input"
-            :key="passwordType"
-            :ref="username"
-            v-model="registerForm.username"
-            name="username"
-            tabindex="1"
-            autocomplete="off"
-          />
+          <input required="" placeholder="" type="text" class="input" :key="passwordType" :ref="username"
+            v-model="registerForm.username" name="username" tabindex="1" autocomplete="off" />
           <span>用户名</span>
         </label>
 
@@ -40,19 +24,9 @@
     </label> -->
 
         <label>
-          <input
-            required=""
-            placeholder=""
-            class="input"
-            :key="passwordType"
-            :ref="registerForm.password"
-            v-model="registerForm.password"
-            :type="passwordType"
-            name="password"
-            tabindex="2"
-            auto-complete="off"
-            @keyup.enter.native="handleRegister()"
-          />
+          <input required="" placeholder="" class="input" :key="passwordType" :ref="registerForm.password"
+            v-model="registerForm.password" :type="passwordType" name="password" tabindex="2" auto-complete="off"
+            @keyup.enter.native="handleRegister()" />
           <span>密码</span>
           <el-icon class="icon-right" @click="showPwd">
             <i-ep-view v-if="isShow" />
@@ -60,19 +34,9 @@
           </el-icon>
         </label>
         <label>
-          <input
-            required=""
-            placeholder=""
-            class="input"
-            :key="passwordConfirmType"
-            :ref="registerForm.password_confirm"
-            v-model="registerForm.password_confirm"
-            :type="passwordConfirmType"
-            name="password_confirm"
-            tabindex="3"
-            auto-complete="off"
-            @keyup.enter.native="handleRegister()"
-          />
+          <input required="" placeholder="" class="input" :key="passwordConfirmType"
+            :ref="registerForm.password_confirm" v-model="registerForm.password_confirm" :type="passwordConfirmType"
+            name="password_confirm" tabindex="3" auto-complete="off" @keyup.enter.native="handleRegister()" />
           <span>确认密码</span>
           <el-icon class="icon-right" @click="showPwd_confirm">
             <i-ep-view v-if="isShow_confirm" />
@@ -172,7 +136,7 @@ const handleRegister = () => {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .register {
   display: flex;
   justify-content: space-between;
@@ -180,181 +144,176 @@ const handleRegister = () => {
   top: 20%;
   left: 10%;
   align-items: center;
-}
 
-.left {
-  width: 50%;
-  /* 或者设置一个固定的宽度，以保证图片与登录框之间的间距 */
-  background: transparent;
-  /* 如果需要让图片背景透明的话 */
-}
+  .left {
+    width: 50%;
+    background: transparent;
 
-.left img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  /* 确保图片适应容器大小而不变形 */
-}
-
-.right {
-  width: 50%;
-  /* 或者设置一个固定或自适应的宽度，保持与左侧图片的布局平衡 */
-}
-
-input[type="password"]::-ms-reveal {
-  display: none;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  max-width: 350px;
-  background-color: #ffffff;
-  padding: 30px;
-  border: rgba(88, 87, 87, 0.822) solid 2px;
-  border-radius: 20px;
-}
-
-.title {
-  font-size: 28px;
-  color: royalblue;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-}
-
-.title::before,
-.title::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: royalblue;
-}
-
-.title::before {
-  width: 18px;
-  height: 18px;
-  background-color: royalblue;
-}
-
-.title::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
-}
-
-.message,
-.signin {
-  color: rgba(88, 87, 87, 0.822);
-  font-size: 14px;
-}
-
-.signin {
-  text-align: center;
-  margin: 5px;
-}
-
-.signin a {
-  color: royalblue;
-}
-
-.signin a:hover {
-  text-decoration: underline royalblue;
-}
-
-.flex {
-  display: flex;
-  width: 100%;
-  gap: 6px;
-}
-
-.form label {
-  position: relative;
-}
-
-.form label .icon-right {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.form label .input {
-  width: 95%;
-  padding: 10px 10px 20px 10px;
-  outline: 0;
-  border: 1px solid rgba(105, 105, 105, 0.397);
-  border-radius: 10px;
-}
-
-.form label .input + span {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  color: grey;
-  font-size: 0.9em;
-  cursor: text;
-  transition: 0.3s ease;
-}
-
-.form label .input:placeholder-shown + span {
-  top: 15px;
-  font-size: 0.9em;
-}
-
-.form label .input:focus + span,
-.form label .input:valid + span {
-  top: 30px;
-  font-size: 0.7em;
-  font-weight: 600;
-}
-
-.form label .input:valid + span {
-  color: green;
-}
-
-.submit {
-  border: none;
-  outline: none;
-  background-color: royalblue;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  transform: 0.3s ease;
-}
-
-.submit:hover {
-  background-color: rgb(56, 90, 194);
-}
-
-.show-pwd {
-  position: absolute;
-  right: 10px;
-  top: 7px;
-  font-size: 16px;
-  color: #888888;
-  cursor: pointer;
-  user-select: none;
-}
-
-@keyframes pulse {
-  from {
-    transform: scale(0.9);
-    opacity: 1;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
 
-  to {
-    transform: scale(1.8);
-    opacity: 0;
+  .right {
+    width: 50%;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 350px;
+    background-color: #ffffff;
+    padding: 30px;
+    border: rgba(88, 87, 87, 0.822) solid 2px;
+    border-radius: 20px;
+
+    label {
+      position: relative;
+
+      .icon-right {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .input {
+        width: 95%;
+        padding: 10px 10px 20px 10px;
+        outline: 0;
+        border: 1px solid rgba(105, 105, 105, 0.397);
+        border-radius: 10px;
+
+        &+span {
+          position: absolute;
+          left: 10px;
+          top: 15px;
+          color: grey;
+          font-size: 0.9em;
+          cursor: text;
+          transition: 0.3s ease;
+        }
+
+        &:placeholder-shown+span {
+          top: 15px;
+          font-size: 0.9em;
+        }
+
+        &:focus+span,
+        &:valid+span {
+          top: 30px;
+          font-size: 0.7em;
+          font-weight: 600;
+        }
+
+        &:valid+span {
+          color: green;
+        }
+      }
+    }
+
+    .submit {
+      border: none;
+      outline: none;
+      background-color: royalblue;
+      padding: 10px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      transform: 0.3s ease;
+
+      &:hover {
+        background-color: rgb(56, 90, 194);
+      }
+    }
+  }
+
+  .show-pwd {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    font-size: 16px;
+    color: #888888;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .title {
+    font-size: 28px;
+    color: royalblue;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      left: 0px;
+      background-color: royalblue;
+    }
+
+    &::before {
+      width: 18px;
+      height: 18px;
+    }
+
+    &::after {
+      width: 18px;
+      height: 18px;
+      animation: pulse 1s linear infinite;
+    }
+  }
+
+  .message,
+  .signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+
+    &.signin {
+      text-align: center;
+      margin: 5px;
+
+      a {
+        color: royalblue;
+
+        &:hover {
+          text-decoration: underline royalblue;
+        }
+      }
+    }
+  }
+
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+
+  input[type="password"]::-ms-reveal {
+    display: none;
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
   }
 }
 </style>

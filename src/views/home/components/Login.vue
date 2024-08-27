@@ -87,7 +87,7 @@ const handleLogin = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .form {
   display: flex;
   width: 100%;
@@ -105,18 +105,15 @@ const handleLogin = () => {
 .signin {
   color: rgba(88, 87, 87, 0.822);
   font-size: 14px;
-}
-
-.signin {
   text-align: center;
-}
 
-.signin a {
-  color: royalblue;
-}
+  a {
+    color: royalblue;
 
-.signin a:hover {
-  text-decoration: underline royalblue;
+    &:hover {
+      text-decoration: underline royalblue;
+    }
+  }
 }
 
 .flex {
@@ -127,41 +124,41 @@ const handleLogin = () => {
 
 .form label {
   position: relative;
-}
 
-.form label .input {
-  width: 95%;
-  padding: 10px 10px 20px 10px;
-  outline: 0;
-  border: 1px solid rgba(105, 105, 105, 0.397);
-  border-radius: 10px;
-  background-color: transparent;
-}
+  .input {
+    width: 95%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+    background-color: transparent;
 
-.form label .input + span {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  color: grey;
-  font-size: 0.9em;
-  cursor: text;
-  transition: 0.3s ease;
-}
+    &+span {
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      color: grey;
+      font-size: 0.9em;
+      cursor: text;
+      transition: 0.3s ease;
+    }
 
-.form label .input:placeholder-shown + span {
-  top: 15px;
-  font-size: 0.9em;
-}
+    &:placeholder-shown+span {
+      top: 15px;
+      font-size: 0.9em;
+    }
 
-.form label .input:focus + span,
-.form label .input:valid + span {
-  top: 30px;
-  font-size: 0.7em;
-  font-weight: 600;
-}
+    &:focus+span,
+    &:valid+span {
+      top: 30px;
+      font-size: 0.7em;
+      font-weight: 600;
+    }
 
-.form label .input:valid + span {
-  color: green;
+    &:valid+span {
+      color: green;
+    }
+  }
 }
 
 .submit {
@@ -173,10 +170,10 @@ const handleLogin = () => {
   color: #fff;
   font-size: 16px;
   transform: 0.3s ease;
-}
 
-.submit:hover {
-  background-color: rgb(56, 90, 194);
+  &:hover {
+    background-color: rgb(56, 90, 194);
+  }
 }
 
 @keyframes pulse {

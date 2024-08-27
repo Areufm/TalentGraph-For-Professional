@@ -4,7 +4,7 @@
 
 <script setup></script>
 
-<style scoped>
+<style scoped lang="scss">
 button {
   width: 200px;
   padding: 1.2em 3em;
@@ -20,17 +20,17 @@ button {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-}
 
-button:hover {
-  background-color: #008bf8;
-  /* background-color: #23c483; */
-  box-shadow: 0px 15px 20px rgba(78, 95, 203, 0.4);
-  color: #fff;
-  transform: translateY(-7px);
-}
+  &:hover {
+    background-color: #008bf8;
+    /* background-color: #23c483; */
+    box-shadow: 0px 15px 20px rgba(78, 95, 203, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
 
-button:active {
-  transform: translateY(-1px);
+  &:active {
+    transform: translateY(-1px);
+  }
 }
 </style>
