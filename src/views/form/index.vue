@@ -447,7 +447,7 @@ const options = [
 ];
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .upload-demo :deep(.el-upload-dragger) {
   border-radius: 30px;
   background-color: transparent;
@@ -465,32 +465,32 @@ const options = [
       rgb(221, 239, 245) 20%,
       rgb(225, 238, 242) 30%,
       white);
-}
 
-.card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70vw;
-  height: 60vh;
-  padding: 30px;
-  border-radius: 30px;
-  /* background: #fef6f6aa; */
-  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
+  .card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 60vh;
+    padding: 30px;
+    border-radius: 30px;
+    /* background: #fef6f6aa; */
+    box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 
-.form {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-  padding: 10px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  /* max-height: 500px; */
+    .form {
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      padding: 10px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      /* max-height: 500px; */
+    }
+  }
 }
 </style>

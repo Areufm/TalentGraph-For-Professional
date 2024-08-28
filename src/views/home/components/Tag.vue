@@ -540,7 +540,7 @@ const handleClick = (tab: TabsPaneContext) => {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 :deep(.el-tabs__header) {
     overflow: hidden;
     display: flex;

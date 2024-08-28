@@ -31,35 +31,21 @@ const authStore = useAuthStore();
 </script>
 
 <style scoped lang="scss">
-.info {
-  margin: 0 10px;
-
-  .bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
+.profile-card {
+  width: 100%;
+  /* height: 100%; */
+  /* background-color: #ffffff; */
+  /* background-color: rgb(230, 245, 248); */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: Arial, sans-serif;
 
   .top {
     display: flex;
     margin: 20px;
     justify-content: center;
-  }
-
-  .profile-name {
-    margin: auto 20px;
-  }
-
-  .profile-card {
-    width: 100%;
-    /* height: 100%; */
-    /* background-color: #ffffff; */
-    /* background-color: rgb(230, 245, 248); */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    font-family: Arial, sans-serif;
 
     img {
       width: 100px;
@@ -68,21 +54,47 @@ const authStore = useAuthStore();
       margin-bottom: 10px;
     }
 
-    h3 {
-      margin: 0;
-      font-size: 20px;
-      color: #333;
-    }
+    .profile-name {
+      margin: auto 20px;
 
-    p {
-      margin: 10px 0;
-      font-size: 16px;
-      color: #666;
-    }
+      h3 {
+        margin: 0;
+        font-size: 20px;
+        color: #333;
+      }
 
-    span {
-      font-weight: bold;
-      color: #ff6600;
+      p {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #666;
+
+        span {
+          font-weight: bold;
+          color: #ff6600;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .info {
+      margin: 0 10px;
+
+      h1 {
+        margin: 0;
+        font-size: 30px;
+        color: #333;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 16px;
+        color: #666;
+      }
     }
   }
 }

@@ -16,7 +16,7 @@
               </div>
             </div>
           </div>
-          <div class="profile-name">
+          <div class="profile-name-right">
             <div style="display: flex; margin: 10px">
               <el-form-item label="姓名:" prop="name">
                 <el-input v-model="formData.name" style="margin: 0 10px" />
@@ -580,167 +580,148 @@ const submitForm = () => {
 };
 </script>
 
-<style scoped>
-.profile-top {
-  /* display: flex; */
-  margin: 20px;
-  justify-content: center;
-}
-
-.profile-name {
-  margin: auto 20px;
-}
-
-.profile-card {
-  width: 200px;
-  /* width: 30%; */
-  /* height: 100%; */
-  /* background-color: #ffffff; */
-  /* background-color: rgb(230, 245, 248); */
-  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818) 2%, rgba(188, 228, 244, 0.616) 8%,
-      rgb(211, 238, 248) 15%, rgb(221, 239, 245) 20%, rgb(225, 238, 242) 30%, white);
-  padding: 0px;
-  border-radius: 15px;
-  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
-
-.profile-card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.profile-card h3 {
-  margin: 0;
-  font-size: 20px;
-  color: #333;
-}
-
-.profile-card p {
-  margin: 10px 0;
-  font-size: 12px;
-  color: #666;
-}
-
-.profile-card span {
-  font-weight: bold;
-  color: #ff6600;
-}
-
-.list-form {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.form-button {
-  margin-left: 10px;
-}
-
-.input-div {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid rgb(1, 235, 252);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: 0px 0px 100px rgba(1, 235, 252, 0.425),
-    inset 0px 0px 10px rgb(1, 235, 252), 0px 0px 5px rgb(255, 255, 255);
-}
-
-.icon {
-  color: rgb(1, 235, 252);
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.input {
-  position: absolute;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer !important;
-}
-
-.item-card {
-  /* width: 100%; */
-  /* height: 100%; */
-  background-color: #ffffff;
-
-  /* background-color: rgb(230, 245, 248); */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  /* text-align: center; */
-  font-family: Arial, sans-serif;
-  margin: 5px 0;
-}
-
-.info {
-  text-indent: 32px;
-}
-
-.profile img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.profile h3 {
-  margin: 0;
-  font-size: 20px;
-  color: #333;
-}
-
-.top {
-  display: flex;
-  margin: 20px;
-}
-
-.profile-name {
-  margin: auto 20px;
-  text-align: center;
-}
-
-.profile p {
-  margin: 10px 0;
-  font-size: 16px;
-  color: #666;
-}
-
+<style scoped lang="scss">
 .container {
   margin-top: 50px;
   display: flex;
-  /* background-color: rgb(230, 245, 248); */
-  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818) 2%, rgba(188, 228, 244, 0.616) 8%,
-      rgb(211, 238, 248) 15%, rgb(221, 239, 245) 20%, rgb(225, 238, 242) 30%, white);
-  /* height: 100vh; */
+  background: linear-gradient(to bottom,
+      rgba(192, 230, 245, 0.818) 2%,
+      rgba(188, 228, 244, 0.616) 8%,
+      rgb(211, 238, 248) 15%,
+      rgb(221, 239, 245) 20%,
+      rgb(225, 238, 242) 30%,
+      white);
   height: 100%;
   width: 100%;
-}
 
-.left {
-  display: flex;
-  flex-direction: column;
-  flex: 2;
-  /* border: 2px black solid; */
-  margin: 0 0 0 100px;
-  padding: 10px;
-}
+  .left {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    margin: 0 0 0 100px;
+    padding: 10px;
+  }
 
-.right {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  /* border: 2px black solid; */
-  margin: 0 100px 0 0;
-  padding: 10px;
+  .right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0 100px 0 0;
+    padding: 10px;
+  }
+
+  .item-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    margin: 5px 0;
+
+    .top {
+      display: flex;
+      margin: 20px;
+
+      .profile-card {
+        width: 200px;
+        background: linear-gradient(to bottom,
+            rgba(192, 230, 245, 0.818) 2%,
+            rgba(188, 228, 244, 0.616) 8%,
+            rgb(211, 238, 248) 15%,
+            rgb(221, 239, 245) 20%,
+            rgb(225, 238, 242) 30%,
+            white);
+        padding: 0;
+        border-radius: 15px;
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        font-family: Arial, sans-serif;
+
+
+        .profile-top {
+          margin: 20px;
+          justify-content: center;
+
+          img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+          }
+
+          .profile-name {
+            margin: auto 20px;
+            text-align: center;
+
+            h3 {
+              margin: 0;
+              font-size: 20px;
+              color: #333;
+            }
+
+            p {
+              margin: 10px 0;
+              font-size: 12px;
+              color: #666;
+
+              span {
+                font-weight: bold;
+                color: #ff6600;
+              }
+            }
+          }
+
+
+        }
+
+      }
+
+      .profile-name-right {
+        margin: auto 20px;
+      }
+
+
+    }
+
+    .input-div {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid rgb(1, 235, 252);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: 0px 0px 100px rgba(1, 235, 252, 0.425),
+        inset 0px 0px 10px rgb(1, 235, 252), 0px 0px 5px rgb(255, 255, 255);
+
+      .input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer !important;
+      }
+
+      .icon {
+        color: rgb(1, 235, 252);
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+
+    }
+
+    .list-form {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .form-button {
+      margin-left: 10px;
+    }
+  }
 }
 </style>
