@@ -1,41 +1,20 @@
 ﻿<template>
-  <n-layout>
-    <HeaderBar />
-    <!-- <div style="margin: 50px 0 0 0;width: 100vw;height: 150px;background-color: blue;">
-    </div> -->
-    <img src="../../assets/city.png" alt=""
-      style="margin-top:10px;width: 100%;height: 140px;background: rgba(192, 230, 245);">
-    <n-layout-content content-style="padding: 24px;">
+  <el-container>
+    <el-header>
+      <HeaderBar />
+    </el-header>
+    <img
+      src="../../assets/city.png"
+      alt=""
+      style="width: 100%; height: 140px; background: rgba(192, 230, 245)"
+    />
+    <el-main class="hide-scrollbar">
       <div class="centerPosition" style="margin-top: 10px">
         <SearchBar />
         <div class="hotwork">
           热门职位：
-          <a href="" class="work">
-            python
-          </a>
-          <a href="" class="work">
-            ml工程师
-          </a>
-          <a href="" class="work">
-            运维
-          </a>
-          <a href="" class="work">
-            测试
-          </a>
-          <a href="" class="work">
-            Java
-          </a>
-          <a href="" class="work">
-            C#
-          </a>
-          <a href="" class="work">
-            深度学习
-          </a>
-          <a href="" class="work">
-            教师
-          </a>
-          <a href="" class="work">
-            电子
+          <a v-for="hotWork in hotWorks" href="" class="work">
+            {{ hotWork }}
           </a>
         </div>
       </div>
@@ -46,8 +25,8 @@
       <div class="get-more">
         <GetMore />
       </div>
-    </n-layout-content>
-  </n-layout>
+    </el-main>
+  </el-container>
 </template>
 
 <script setup>
@@ -56,7 +35,19 @@ import SearchBar from "@/components/SearchBar.vue";
 import GetMore from "./components/GetMore.vue";
 import Tag from "./components/Tag.vue";
 import FunctionCard from "./components/FunctionCard.vue";
+import { getHotWorkTags } from "@/api/info";
+import { onMounted } from "vue";
 
+const hotWorks = ref([]);
+
+const getTags = async () => {
+  const res = await getHotWorkTags();
+  hotWorks.value = res.data;
+};
+
+onMounted(() => {
+  getTags();
+});
 </script>
 
 <style scoped lang="scss">
@@ -97,26 +88,26 @@ h1 {
   }
 }
 
-.n-layout {
-  display: flex;
-  flex-direction: column;
-  /* height: 100vh; */
+.el-container {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
 }
 
-.n-layout-content {
-  /* flex: 1; */
-  /* height: 90%; */
-  height: calc(100vh - 140px);
-  /* background: rgba(167, 167, 167, 0.277); */
-  /* background: linear-gradient(to bottom, rgb(186, 236, 255), rgb(164, 216, 236),
-      rgb(191, 228, 242), rgb(205, 227, 235), rgb(210, 233, 241), white); */
-  background: linear-gradient(to bottom, rgba(192, 230, 245, 0.818) 2%, rgba(188, 228, 244, 0.616) 8%,
-      rgb(211, 238, 248) 15%, rgb(221, 239, 245) 20%, rgb(225, 238, 242) 30%, white);
-  /* background-color: rgb(242, 244, 247); */
-  /* background: rgb(225, 222, 222); */
+.el-main {
+  background: linear-gradient(
+    to bottom,
+    rgba(192, 230, 245, 0.818) 2%,
+    rgba(188, 228, 244, 0.616) 8%,
+    rgb(211, 238, 248) 15%,
+    rgb(221, 239, 245) 20%,
+    rgb(225, 238, 242) 30%,
+    white
+  );
   display: flex;
   flex-direction: column;
-  margin-top: -10px;
+  height: calc(100vh - 60px);
+  overflow: auto;
 }
 
 .get-more {
@@ -124,5 +115,14 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* 适用于Firefox */
+  -ms-overflow-style: none; /* 适用于Internet Explorer 10+ */
+
+  &::-webkit-scrollbar {
+    display: none; /* 适用于Webkit浏览器 */
+  }
 }
 </style>
