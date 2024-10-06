@@ -49,7 +49,6 @@ service.interceptors.request.use(
 // 登录过期处理：如果返回 401 状态码，提示用户登录过期，并清空本地存储的数据，重定向到登录页面。
 service.interceptors.response.use((response) => {
   const { code } = response.data;
-  console.log(code);
 
   // console.log(response, code);
   if (code === 200) {
