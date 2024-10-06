@@ -7064,10 +7064,13 @@ const relationData_salary = ref([
 ])
 </script>
 
-<style scoped>
-.title_company {
+<style lang="scss"coped>
+.title_company,
+.title_job,
+.title_salary,
+.title_region,
+.title_skill {
   font-size: 17px;
-  color: royalblue;
   font-weight: 600;
   letter-spacing: -1px;
   position: relative;
@@ -7075,169 +7078,72 @@ const relationData_salary = ref([
   align-items: center;
   padding-left: 30px;
   margin: auto 20px;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+  }
+
+  &::before {
+    width: 18px;
+    height: 18px;
+  }
+
+  &::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
 }
 
-.title_company::before,
-.title_company::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: royalblue;
-}
+.title_company {
+  color: royalblue;
 
-.title_company::before {
-  width: 18px;
-  height: 18px;
-  background-color: royalblue;
-}
-
-.title_company::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
+  &::before,
+  &::after {
+    background-color: royalblue;
+  }
 }
 
 .title_job {
-  font-size: 17px;
   color: rgb(238, 178, 94);
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  margin: auto 20px;
-}
 
-.title_job::before,
-.title_job::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: rgb(238, 178, 94);
-}
-
-.title_cotitle_jobmpany::before {
-  width: 18px;
-  height: 18px;
-  background-color: rgb(238, 178, 94);
-}
-
-.title_job::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
+  &::before,
+  &::after {
+    background-color: rgb(238, 178, 94);
+  }
 }
 
 .title_salary {
-  font-size: 17px;
   color: #ff0000;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  margin: auto 20px;
-}
 
-.title_salary::before,
-.title_salary::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: #ff0000;
-}
-
-.title_salary::before {
-  width: 18px;
-  height: 18px;
-  background-color: #ff0000;
-}
-
-.title_salary::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
+  &::before,
+  &::after {
+    background-color: #ff0000;
+  }
 }
 
 .title_region {
-  font-size: 17px;
   color: #ff1493;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  margin: auto 20px;
-}
 
-.title_region::before,
-.title_region::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: #ff1493;
-}
-
-.title_region::before {
-  width: 18px;
-  height: 18px;
-  background-color: #ff1493;
-}
-
-.title_region::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
+  &::before,
+  &::after {
+    background-color: #ff1493;
+  }
 }
 
 .title_skill {
-  font-size: 17px;
   color: rgb(0, 206, 209);
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  margin: auto 20px;
-}
 
-.title_skill::before,
-.title_skill::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: rgb(0, 206, 209);
-}
-
-.title_skill::before {
-  width: 18px;
-  height: 18px;
-  background-color: rgb(0, 206, 209);
-}
-
-.title_skill::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
+  &::before,
+  &::after {
+    background-color: rgb(0, 206, 209);
+  }
 }
 
 @keyframes pulse {
@@ -7265,42 +7171,37 @@ sort-button {
   color: #000000;
   overflow: hidden;
   box-shadow: 0 0 0 0 transparent;
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
-}
 
-sort-button:hover {
-  color: white;
-  background: rgb(61, 106, 255);
-  box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
+  &:hover {
+    color: white;
+    background: rgb(61, 106, 255);
+    box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+    transition: all 0.2s ease-out;
 
-sort-button:hover::before {
-  -webkit-animation: sh02 0.5s 0s linear;
-  -moz-animation: sh02 0.5s 0s linear;
-  animation: sh02 0.5s 0s linear;
-}
+    &::before {
+      animation: sh02 0.5s 0s linear;
+    }
+  }
 
-sort-button::before {
-  content: "";
-  display: block;
-  width: 0px;
-  height: 86%;
-  position: absolute;
-  top: 7%;
-  left: 0%;
-  opacity: 0;
-  background: #04242a;
-  box-shadow: 0 0 50px 30px #fff;
-  -webkit-transform: skewX(-20deg);
-  -moz-transform: skewX(-20deg);
-  -ms-transform: skewX(-20deg);
-  -o-transform: skewX(-20deg);
-  transform: skewX(-20deg);
+  &::before {
+    content: "";
+    display: block;
+    width: 0px;
+    height: 86%;
+    position: absolute;
+    top: 7%;
+    left: 0%;
+    opacity: 0;
+    background: #04242a;
+    box-shadow: 0 0 50px 30px #fff;
+    transform: skewX(-20deg);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 0 transparent;
+    transition: box-shadow 0.2s ease-in;
+  }
 }
 
 @keyframes sh02 {
@@ -7317,13 +7218,6 @@ sort-button::before {
     opacity: 0;
     left: 100%;
   }
-}
-
-sort-button:active {
-  box-shadow: 0 0 0 0 transparent;
-  -webkit-transition: box-shadow 0.2s ease-in;
-  -moz-transition: box-shadow 0.2s ease-in;
-  transition: box-shadow 0.2s ease-in;
 }
 
 .container {
@@ -7344,7 +7238,6 @@ sort-button:active {
 .top {
   display: flex;
   margin: 0px auto;
-  /* height: 50px; */
   text-align: center;
   align-items: center;
 }
@@ -7356,21 +7249,21 @@ sort-button:active {
 }
 
 .some {
-  /* margin-top: 60px; */
   display: flex;
   flex-grow: 1;
   width: 100%;
   margin: 10px 0 0 0;
-  /* height: calc(100vh-50px); */
+}
+
+.left,
+.right {
+  overflow-y: auto;
 }
 
 .left {
   display: flex;
   flex-direction: column;
   width: 300px;
-  /* margin-left: 30px; */
-  overflow-y: auto;
-  /* height: 60vh; */
 }
 
 .right {
@@ -7378,35 +7271,28 @@ sort-button:active {
   border: 2px rgb(142, 136, 136) solid;
   border-radius: 10px;
   margin: 5px 0 10px 10px;
-  /* height: 60vh; */
   overflow-y: scroll;
   position: relative;
-  /* padding: 20px; */
 }
 
 .left::-webkit-scrollbar,
 .right::-webkit-scrollbar {
   width: 0.5em;
-  /* 设置滚动条的宽度 */
 }
 
 .left::-webkit-scrollbar-track,
 .right::-webkit-scrollbar-track {
   background-color: transparent;
-  /* 设置滚动条轨道的背景颜色 */
 }
 
 .left::-webkit-scrollbar-thumb,
 .right::-webkit-scrollbar-thumb {
   background-color: #88888800;
-  /* 设置滚动条的颜色 */
 }
 
-/* 添加或修改 el-progress 组件容器的 CSS 类名，例如：custom-progress */
 .custom-progress {
   margin-left: auto;
   position: relative;
-  /* 使内部元素能够基于此容器进行定位 */
 }
 
 .percentage-value {
@@ -7416,18 +7302,12 @@ sort-button:active {
   transform: translate(-50%, -50%);
   display: block;
   font-size: 20px;
-  margin-top: 0;
-  /* 移除不必要的上外边距 */
 }
 
 .percentage-label {
-  /* position: absolute;
-  left: 50%;
-  transform: translateX(-50%); */
   display: block;
   font-size: 12px;
   margin-top: 80px;
-  /* 移除不必要的上外边距 */
 }
 
 :deep(.demo-progress .el-progress--line) {
@@ -7436,18 +7316,24 @@ sort-button:active {
 }
 
 .card {
-  /* width: 350px; */
-  /* width: 30%; */
   height: 135px;
   border-radius: 20px;
-  /* background: #f5f5f5; */
   position: relative;
-  /* padding: 1rem; */
   border: 2px solid #c3c6ce;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: 0.5s ease-out;
   overflow: visible;
   margin: 5px 0;
+
+  &:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  &:hover .card-button {
+    transform: translate(-50%, 20%);
+    opacity: 1;
+  }
 }
 
 .card-details {
@@ -7455,7 +7341,6 @@ sort-button:active {
   height: 100%;
   display: grid;
   align-items: center;
-  /* place-content: center; */
 }
 
 .card-button {
@@ -7474,71 +7359,37 @@ sort-button:active {
   transition: 0.3s ease-out;
 }
 
-/*Hover*/
-.card:hover {
-  border-color: #008bf8;
-  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-}
-
-.card:hover .card-button {
-  transform: translate(-50%, 20%);
-  opacity: 1;
-}
-
 .company_name {
   color: rgb(134, 134, 134);
   margin-left: 10px;
   width: 170px;
   overflow: hidden;
-  /* 超出部分隐藏 */
   text-overflow: ellipsis;
-  /* 超出部分以省略号显示 */
   white-space: nowrap;
 }
 
 .job {
-  /* margin-right: 15px; */
   margin-left: auto;
 }
 
-.text-title {
+.text-title,
+.work_name,
+.work_salary {
   font-size: 1.5em;
   font-weight: bold;
-}
-
-/*Text*/
-.work_name {
-  font-size: 1.5em;
-  /* font-size: 20px; */
-  font-weight: bold;
-  margin: 10px;
-  display: block;
-  /* width: 150px; */
-  overflow: hidden;
-  /* 超出部分隐藏 */
-  text-overflow: ellipsis;
-  /* 超出部分以省略号显示 */
-  white-space: nowrap;
-  /* 禁止文本换行 */
 }
 
 .work_salary {
   margin: 5px 10px;
-  font-size: 1.3em;
-  /* font-size: 20px; */
-  font-weight: bold;
   color: red;
-  /* display: flex; */
 }
 
 .Info-container {
-  /* padding: 50px; */
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  /* height: 100vh; */
 }
 
 .job-header {
@@ -7560,12 +7411,12 @@ sort-button:active {
 
 .job-details {
   margin-bottom: 20px;
-}
 
-.job-details p {
-  margin: 0;
-  margin-bottom: 10px;
-  font-size: medium;
+  p {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: medium;
+  }
 }
 
 .job-card {
@@ -7576,12 +7427,7 @@ sort-button:active {
 }
 
 .job-info {
-  /* background-color: white; */
-  /* border: 1px rgb(181, 178, 178) solid;
-  border-radius: 30px;
-  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5); */
   padding: 0px 50px;
-  /* height: 70vh; */
   overflow-y: auto;
 }
 
@@ -7608,8 +7454,19 @@ sort-button:active {
   border-radius: 20px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
   display: inline-block;
-  padding: 5px 15px;
-  font-size: 13px;
+  overflow: visible;
+  position: relative;
+  transition: 0.5s ease-out;
+
+  &:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  &:hover .card-button {
+    transform: translate(-50%, 20%);
+    opacity: 1;
+  }
 }
 
 .send-button {
