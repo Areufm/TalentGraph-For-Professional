@@ -1,29 +1,51 @@
 ﻿<template>
-  <n-layout-header>
+  <div class="layout-header">
     <div class="header_left">
-      <img src="../assets/workcat2.png" alt="logo"
-        style="border-radius: 50%; height: 35px; width: 35px; margin: 0 10px" />
+      <img src="../assets/workcat2.png" alt="logo" />
       <div class="header_left_title">职业猫</div>
       <div class="nav-city">
-        <p class="nav-city-box" ka="header-switch-city" @click="centerDialogVisible = true">
+        <p
+          class="nav-city-box"
+          ka="header-switch-city"
+          @click="centerDialogVisible = true"
+        >
           <!-- <i class="icon-poi"></i> -->
-          <svg class="icon-poi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
-            <path fill="currentColor"
-              d="M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544">
-            </path>
-            <path fill="currentColor"
-              d="M512 512a96 96 0 1 0 0-192 96 96 0 0 0 0 192m0 64a160 160 0 1 1 0-320 160 160 0 0 1 0 320"></path>
+          <svg
+            class="icon-poi"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1024 1024"
+            data-v-ea893728=""
+          >
+            <path
+              fill="currentColor"
+              d="M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544"
+            ></path>
+            <path
+              fill="currentColor"
+              d="M512 512a96 96 0 1 0 0-192 96 96 0 0 0 0 192m0 64a160 160 0 1 1 0-320 160 160 0 0 1 0 320"
+            ></path>
           </svg>
           <span class="nav-city-selected">{{ lastSelectedRegionText }}</span>
           <span class="switchover-city">[切换城市]</span>
         </p>
-        <el-dialog v-model="centerDialogVisible" title="请选择您的地区" width="500" style="
+        <el-dialog
+          v-model="centerDialogVisible"
+          title="请选择您的地区"
+          width="500"
+          style="
             border-radius: 15px;
             justify-content: center;
             align-items: center;
-          ">
-          <el-cascader placeholder="请选择地区" size="default" :options="regionData" v-model="selectedOptions" @change=""
-            style="display: flex">
+          "
+        >
+          <el-cascader
+            placeholder="请选择地区"
+            size="default"
+            :options="regionData"
+            v-model="selectedOptions"
+            @change=""
+            style="display: flex"
+          >
           </el-cascader>
           <!-- <SelectArea /> -->
           <template #footer>
@@ -43,14 +65,16 @@
       <!-- <button @click="changeLogin">切换登录状态</button> -->
     </div>
     <div v-if="isLogin" class="header_right">
-      <el-popover :width="300"
-        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px;">
+      <el-popover
+        :width="300"
+        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px;"
+      >
         <template #reference>
           <p style="color: white">简历</p>
         </template>
         <template #default>
-          <div class="card-container">
-            <button class="card-btn" @click="showPopup">
+          <div class="resume-upload">
+            <button class="card-btn" @click="resumeDialog = true">
               <img src="../assets/resume-file4.png" alt="卡片图片1" />
               附件上传
             </button>
@@ -62,30 +86,44 @@
         </template>
       </el-popover>
 
-      <div id="overlay">
-        <div class="popup">
-          <p class="popup_title">
-            新增附件简历
-            <svg style="
-                width: 20px;
-                height: 20px;
-                position: absolute;
-                right: 20px;
-                top: 15px;
-              " @click="hidePopup" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728="">
-              <path fill="currentColor"
-                d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z">
-              </path>
-            </svg>
-          </p>
+      <a href="/profile" class="header_right_text">个人信息</a>
+      <p class="header_right_text">{{ authStore.userInfo.name }}</p>
 
-          <div style="
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-            ">
-            <el-upload class="upload-demo" drag action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-              multiple>
+      <el-popover
+        :width="50"
+        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 10px;text-align: center"
+      >
+        <template #reference>
+          <img
+            src="../assets/zkn.jpg"
+            alt="头像"
+            style="border-radius: 50%; height: 45px; width: 45px"
+          />
+        </template>
+        <template #default>
+          <button
+            @click="logout"
+            style="border: 0; outline: none; background-color: transparent"
+          >
+            退出登录
+          </button>
+        </template>
+      </el-popover>
+
+      <el-dialog
+        v-model="resumeDialog"
+        title="附件上传"
+        width="800"
+        align-center
+      >
+        <div class="resume_dialog">
+          <div class="resume_dialog_content">
+            <el-upload
+              class="upload-demo"
+              drag
+              action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+              multiple
+            >
               <el-icon class="el-icon--upload"><upload-filled /></el-icon>
               <div class="el-upload__text">
                 拖拽文件到此 或 <em>点击上传文件</em>
@@ -96,42 +134,39 @@
                 </div>
               </template>
             </el-upload>
-            <img src="../assets/resume-online2.png" alt="" style="width: 40%; height: 100%" />
+            <img
+              src="../assets/resume-online2.png"
+              alt="在线填写简历"
+              style="width: 250px"
+            />
           </div>
-          <div class="popup_btn">
-            <button class="cancelBtn" @click="hidePopup">上传简历附件</button>
-            <button class="confirmBtn" @click="toResume">在线填写简历</button>
+          <div class="resume_dialog_btn">
+            <el-button type="primary" round>上传简历附件</el-button>
+            <el-button type="primary" round @click="toResume"
+              >在线填写简历</el-button
+            >
           </div>
         </div>
-      </div>
-      <a href="/profile" class="header_right_text">个人信息</a>
-      <p class="header_right_text">{{ authStore.userInfo.name }}</p>
-      <el-popover :width="50"
-        popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 10px;text-align: center">
-        <template #reference>
-          <img src="../assets/zkn.jpg" alt="头像" style="border-radius: 50%; height: 45px; width: 45px" />
-        </template>
-        <template #default>
-          <button @click="logout" style="border: 0; outline: none; background-color: transparent">
-            退出登录
-          </button>
-        </template>
-      </el-popover>
+      </el-dialog>
     </div>
+
     <div v-else class="header_right">
       <a href="/boss" class="header_right_text">我要招聘</a>
       <a href="/login" class="header_right_text">我要求职</a>
-      <button style="
+      <button
+        style="
           border: rgb(255, 255, 255) solid 2px;
           border-radius: 50px;
           background-color: rgba(255, 255, 255, 0);
           color: white;
           padding: 5px 10px;
-        " @click="toLogin">
+        "
+        @click="toLogin"
+      >
         登录 / 注册
       </button>
     </div>
-  </n-layout-header>
+  </div>
 </template>
 
 <script setup>
@@ -144,8 +179,9 @@ import SelectArea from "./SelectArea.vue";
 import { storeToRefs } from "pinia";
 import { storage } from "@/utils/storage";
 
+const resumeDialog = ref(false);
 const authStore = useAuthStore();
-const { isLogin } = storeToRefs(authStore)
+const { isLogin } = storeToRefs(authStore);
 const router = useRouter();
 const centerDialogVisible = ref(false);
 const selectedOptions = ref(["11", "1101", "110101"]); // 初始化选中值
@@ -197,8 +233,8 @@ const toResume = () => {
 
 const logout = () => {
   authStore.logout();
-  router.push("/")
-}
+  router.push("/");
+};
 
 const showPopup = () => {
   var overlay = document.getElementById("overlay");
@@ -211,207 +247,152 @@ const hidePopup = () => {
 };
 </script>
 
-<style scoped>
-/* 遮罩层 */
-#overlay {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-  /* IE9以下不支持rgba模式 */
-  background-color: rgba(0, 0, 0, 0.5);
-  /* 兼容IE8及以下 */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000, endColorstr=#7f000000);
-  display: none;
-  z-index: 1000;
+<style lang="scss" scoped>
+.resume_dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+
+  &_content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &_btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
 }
 
-/* 弹出框主体 */
-.popup {
-  background-color: #ffffff;
-  width: 45%;
-  height: 50%;
-  border-radius: 25px;
-  margin: 200px auto;
-  text-align: center;
-  position: relative;
-  /* top: 20%; */
-}
-
-/* 弹出框的标题 */
-.popup_title {
-  height: 50px;
-  line-height: 50px;
-  border-bottom: solid 1px #cccccc;
-  font-size: large;
-  font-weight: bold;
-}
-
-/* 弹出框的内容 */
-.popup_content {
-  height: 50px;
-  line-height: 50px;
-  padding: 15px 20px;
-}
-
-/* 弹出框的按钮栏 */
-.popup_btn {
-  padding-bottom: 10px;
-}
-
-/* 弹出框的按钮 */
-.popup_btn button {
-  color: #778899;
-  width: 40%;
-  height: 40px;
-  cursor: pointer;
-  border: solid 1px #cccccc;
-  border-radius: 15px;
-  margin: 5px 10px;
-  color: #ffffff;
-  background-color: #337ab7;
-}
-
-.n-layout-header {
-  /* background: rgba(0, 102, 255); */
+.layout-header {
   background: rgb(98, 145, 217);
-  padding: 24px;
-  /* height: 70px; */
-  height: 50px;
+  width: 100%;
+  height: 60px;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 1;
   display: flex;
   align-items: center;
+
+  .header_left {
+    margin-left: 80px;
+    display: flex;
+    align-items: center;
+
+    img {
+      border-radius: 50%;
+      height: 35px;
+      width: 35px;
+      margin: 0 10px;
+    }
+
+    &_title {
+      margin: 10px;
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    &_text {
+      margin: 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-city {
+      float: left;
+      position: relative;
+      cursor: pointer;
+      height: 49px;
+      line-height: 49px;
+      color: rgb(0, 64, 255);
+      display: flex;
+      align-items: center;
+      margin: 5px;
+
+      .nav-city-selected {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 84px;
+        vertical-align: middle;
+        font-weight: bold;
+      }
+
+      .icon-poi {
+        display: inline-block;
+        vertical-align: top;
+        width: 18px;
+        height: 18px;
+        /* background: url(https://img.bosszhipin.com/static/file/2023/umua62pczi1679922532668.png) 0 -18px/18px auto no-repeat; */
+        margin: 16px 3px 0 24px;
+      }
+
+      .switchover-city {
+        font-size: 12px;
+        color: #fff;
+        margin-left: 10px;
+      }
+
+      .city-box {
+        top: 49px;
+      }
+
+      .city-box {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .header_right {
+    display: flex;
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+
+    &_text,
+    &_resume {
+      margin: 0 15px;
+      color: white;
+      display: flex;
+      text-decoration: none;
+    }
+  }
 }
 
-.header_left {
-  margin-left: 80px;
-  display: flex;
-  align-items: center;
-}
-
-.header_right {
-  display: flex;
-  margin-left: auto;
+.resume-upload {
+  max-width: 300px;
   justify-content: center;
   align-items: center;
-  position: relative;
-  padding: 10px;
-}
 
-.card-container {
-  justify-content: center;
-  align-items: center;
-}
+  .card-btn {
+    width: 145px;
+    height: 160px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
 
-.card-btn {
-  width: 145px;
-  /* 按钮宽度 */
-  height: 160px;
-  /* 按钮高度 */
-  /* margin: 5px; */
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  /* 透明背景 */
-  border: none;
-  /* 无边框 */
-  cursor: pointer;
-  /* 鼠标悬停时显示手形光标 */
-  outline: none;
-  /* 无焦点轮廓 */
-}
-
-.card-btn img {
-  /* width: 100%; */
-  /* 图片填满按钮 */
-  height: 80%;
-  object-fit: cover;
-  border-radius: 10px;
-  /* 图片覆盖按钮，保持宽高比 */
-  /* border-radius: 20px; */
-}
-
-.header_right_resume:hover .card-container {
-  display: block;
-  background: transparent;
-  /* justify-content: center;
-  align-items: center;
-  width: 250px; */
-}
-
-.header_left_title {
-  margin: 10px;
-  color: white;
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.header_left_text {
-  margin: 10px;
-  color: white;
-  text-decoration: none;
-  /* 取消链接下划线 */
-}
-
-.header_right_text,
-.header_right_resume {
-  margin: 0 15px;
-  color: white;
-  display: flex;
-  /* padding: 10px; */
-  /* width: 70px; */
-  text-decoration: none;
-}
-
-.nav-city {
-  float: left;
-  position: relative;
-  cursor: pointer;
-  height: 49px;
-  line-height: 49px;
-  /* color: #00bebd; */
-  color: rgb(0, 64, 255);
-
-  display: flex;
-  align-items: center;
-  margin: 5px;
-}
-
-.nav-city .nav-city-selected {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 84px;
-  vertical-align: middle;
-  font-weight: bold;
-}
-
-.nav-city .icon-poi {
-  display: inline-block;
-  vertical-align: top;
-  width: 18px;
-  height: 18px;
-  /* background: url(https://img.bosszhipin.com/static/file/2023/umua62pczi1679922532668.png) 0 -18px/18px auto no-repeat; */
-  margin: 16px 3px 0 24px;
-}
-
-.nav-city .switchover-city {
-  font-size: 12px;
-  color: #fff;
-  margin-left: 10px;
-}
-
-.nav-city .city-box {
-  top: 49px;
-}
-
-.nav-city .city-box {
-  font-size: 14px;
+    img {
+      width: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
 }
 </style>
