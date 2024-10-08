@@ -6,3 +6,11 @@ export const getHotWorkTags = () => {
     method: "get",
   });
 };
+
+export const getHotWorks = (data) => {
+  return request({
+    url: "/api/info/hotWorks",
+    method: "post",
+    data,
+  });
+};
