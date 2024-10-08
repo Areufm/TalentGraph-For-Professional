@@ -8,14 +8,26 @@
     </div>
     <div class="right">
       <div class="rleft">
-        <img @click="toRecommend" src="../../../assets/FunctionCard/recommend2.png" alt="推荐入口" />
+        <img
+          @click="toRecommend"
+          src="../../../assets/FunctionCard/recommend2.png"
+          alt="推荐入口"
+        />
       </div>
       <div class="rright">
         <div class="rrtop">
-          <img @click="toProfile" src="../../../assets/FunctionCard/ability2.png" alt="能力评价入口" />
+          <img
+            @click="toProfile"
+            src="../../../assets/FunctionCard/ability2.png"
+            alt="能力评价入口"
+          />
         </div>
         <div class="rrbottom">
-          <img @click="toResume" src="../../../assets/FunctionCard/cv2.png" alt="简历上传入口" />
+          <img
+            @click="toResume"
+            src="../../../assets/FunctionCard/cv2.png"
+            alt="简历上传入口"
+          />
         </div>
       </div>
     </div>
@@ -41,7 +53,7 @@ onBeforeMount(() => {
 });
 
 const authStore = useAuthStore();
-const { isLogin } = storeToRefs(authStore)
+const { isLogin } = storeToRefs(authStore);
 const router = useRouter();
 
 const toRecommend = () => {
@@ -55,7 +67,7 @@ const toProfile = () => {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 img {
   width: 100%;
   height: 100%;
@@ -65,60 +77,60 @@ img {
 .card {
   display: flex;
   margin: 30px 100px;
-}
 
-.left {
-  height: 300px;
-  flex: 2;
-  width: 400px;
-  /* border: 2px rgba(161, 159, 159, 0.682) solid; */
-  border-radius: 10px;
-  margin: 10px;
-  display: flex;
-}
+  .left {
+    height: 300px;
+    flex: 2;
+    width: 400px;
+    /* border: 2px rgba(161, 159, 159, 0.682) solid; */
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+  }
 
-.right {
-  height: 300px;
-  flex: 3;
-  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+  .right {
+    height: 300px;
+    flex: 3;
+    /* border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px; */
-  margin: 10px;
-  display: flex;
-}
+    margin: 10px;
+    display: flex;
 
-.rleft {
-  /* height: 280px; */
-  flex: 2;
-  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+    .rleft {
+      /* height: 280px; */
+      flex: 2;
+      /* border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px; */
-  /* margin: 10px; */
-}
+      /* margin: 10px; */
+    }
 
-.rright {
-  /* height: 280px; */
-  flex: 1;
-  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+    .rright {
+      /* height: 280px; */
+      flex: 1;
+      /* border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px; */
-  display: flex;
-  flex-direction: column;
-  margin: 0 10px;
-}
+      display: flex;
+      flex-direction: column;
+      margin: 0 10px;
 
-.rrtop {
-  height: 50%;
-  /* flex:1; */
-  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+      .rrtop {
+        height: 50%;
+        /* flex:1; */
+        /* border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px; */
-  /* padding: 5px; */
-  /* margin: 0 0 0px 0; */
-}
+        /* padding: 5px; */
+        /* margin: 0 0 0px 0; */
+      }
 
-.rrbottom {
-  height: 50%;
-  /* flex:1; */
-  /* border: 2px rgba(161, 159, 159, 0.682) solid;
+      .rrbottom {
+        height: 50%;
+        /* flex:1; */
+        /* border: 2px rgba(161, 159, 159, 0.682) solid;
   border-radius: 10px; */
-  /* margin: 0px 0 0 0; */
-  /* padding: 5px; */
+        /* margin: 0px 0 0 0; */
+        /* padding: 5px; */
+      }
+    }
+  }
 }
 </style>
