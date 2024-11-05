@@ -56,10 +56,12 @@ const isLogin = ref(true);
 }
 </style> -->
 <template>
-  <h1 style="position: absolute; top: 7%; left: 10%;color: royalblue;">欢迎使用职业猫CareerCat用户端</h1>
+  <h1 style="position: absolute; top: 7%; left: 10%; color: royalblue">
+    欢迎使用职业猫CareerCat用户端
+  </h1>
   <div class="login">
     <div class="left">
-      <img src="../../assets/login.png" alt="" style=" ">
+      <img src="../../assets/login.png" alt="" style="" />
     </div>
     <div class="right">
       <!-- <form class="form">
@@ -83,18 +85,32 @@ const isLogin = ref(true);
         <p class="signin">暂时没有账户 ? <a href="/register">去注册</a></p>
         <p class="signin">暂不注册 <a href="/">返回首页</a></p>
       </form> -->
-      <el-form :model="LoginForm" :rules="loginRules" ref="loginFormRef" label-width="80px" class="form">
+      <el-form
+        :model="LoginForm"
+        :rules="loginRules"
+        ref="loginFormRef"
+        label-width="80px"
+        class="form"
+      >
         <p class="title">Login</p>
         <p class="message">登录职业猫CareerCat</p>
 
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="LoginForm.username" placeholder="请输入用户名" class="input" />
+          <el-input
+            v-model="LoginForm.username"
+            placeholder="请输入用户名"
+            class="input"
+          />
         </el-form-item>
 
-
         <el-form-item label="密码" prop="password">
-          <el-input :type="passwordType" v-model="LoginForm.password" placeholder="请输入密码" class="input" show-password/>
-          
+          <el-input
+            :type="passwordType"
+            v-model="LoginForm.password"
+            placeholder="请输入密码"
+            class="input"
+            show-password
+          />
         </el-form-item>
 
         <el-button type="primary" class="submit" @click="handleLogin">
@@ -106,19 +122,17 @@ const isLogin = ref(true);
       </el-form>
     </div>
   </div>
-
-
 </template>
 
 <script setup>
 import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";
-import { useAuthStore } from '@/stores/auth'
+import { useAuthStore } from "@/store/auth";
 import { login } from "@/api/user";
 import { storage } from "@/utils/storage";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 
 const validateUsername = (rule, value, callback) => {
   if (!validUsername(value)) {
@@ -153,7 +167,6 @@ const redirect = ref(undefined);
 const route = useRoute();
 const router = useRouter();
 
-
 const handleLogin = () => {
   console.log("Loginform:", LoginForm.value);
   login(LoginForm.value)
@@ -162,7 +175,7 @@ const handleLogin = () => {
       storage.set("accessToken", data.accessToken); //accessToken是后端返回的token
       storage.set("refreshToken", data.refreshToken);
       console.log(data);
-      authStore.login()
+      authStore.login();
       router.push("/form");
       ElNotification({
         title: "登录成功！",
@@ -230,7 +243,7 @@ const handleLogin = () => {
         border: 1px solid rgba(105, 105, 105, 0.397);
         border-radius: 10px;
 
-        &+span {
+        & + span {
           position: absolute;
           left: 10px;
           top: 15px;
@@ -240,19 +253,19 @@ const handleLogin = () => {
           transition: 0.3s ease;
         }
 
-        &:placeholder-shown+span {
+        &:placeholder-shown + span {
           top: 15px;
           font-size: 0.9em;
         }
 
-        &:focus+span,
-        &:valid+span {
+        &:focus + span,
+        &:valid + span {
           top: 30px;
           font-size: 0.7em;
           font-weight: 600;
         }
 
-        &:valid+span {
+        &:valid + span {
           color: green;
         }
       }

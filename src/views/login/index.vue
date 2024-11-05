@@ -44,17 +44,18 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";
-import { useAuthStore } from "@/stores/auth";
+import { useAuthStore } from "@/store/auth";
 import { login } from "@/api/user";
 import { storage } from "@/utils/storage";
+import { ElNotification, ElMessage } from "element-plus";
 
 const authStore = useAuthStore();
 
-const validateUsername = (rule, value, callback) => {
+const validateUsername = (rule: any, value: string, callback: Function) => {
   if (!validUsername(value)) {
     callback(new Error("请输入正确的用户名"));
   } else {
@@ -62,7 +63,7 @@ const validateUsername = (rule, value, callback) => {
   }
 };
 
-const validatePassword = (rule, value, callback) => {
+const validatePassword = (rule: any, value: string, callback: Function) => {
   if (value.length < 6) {
     callback(new Error("密码不能少于6位"));
   } else {
@@ -102,7 +103,6 @@ const handleLogin = () => {
       const { data } = res; //data是后端返回的数据
       storage.set("accessToken", data.accessToken); //accessToken是后端返回的token
       storage.set("refreshToken", data.refreshToken);
-      console.log(data);
       authStore.login();
       router.push("/form");
       ElNotification({

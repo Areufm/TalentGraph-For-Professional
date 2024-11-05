@@ -2,29 +2,42 @@
   <HeaderBar />
   <div class="container">
     <div class="search">
-      <SearchBar :searchValue = "searchValue"/>
+      <SearchBar :searchValue="searchValue" />
     </div>
     <div class="center">
       <div class="left">
         <!-- <Card /> -->
-        <div class="card" v-for="(job, index) in currentJobs" :key="index" @click="selectJob(job)">
+        <div
+          class="card"
+          v-for="(job, index) in currentJobs"
+          :key="index"
+          @click="selectJob(job)"
+        >
           <div class="card-details">
             <div style="display: flex">
               <p class="work_name">{{ job.title }}</p>
               <p class="work_salary">{{ job.salary }}</p>
             </div>
             <div style="display: flex; font-size: 1.2em">
-              <p v-for="(keyword, i) in job.skill.slice(0, 5)" :key="i" style="margin: 10px">
+              <p
+                v-for="(keyword, i) in job.skill.slice(0, 5)"
+                :key="i"
+                style="margin: 10px"
+              >
                 {{ keyword }}
               </p>
             </div>
-            <div style="display: flex;align-items: center">
-              <img :src="job.logo" alt="" style="
+            <div style="display: flex; align-items: center">
+              <img
+                :src="job.logo"
+                alt=""
+                style="
                   width: 40px;
                   height: 40px;
                   border-radius: 50%;
                   margin-right: 10px;
-                " />
+                "
+              />
               <p class="text-body">{{ job.company }}</p>
               <p class="text-body" style="margin-left: auto">{{ job.kind2 }}</p>
             </div>
@@ -34,43 +47,46 @@
           </button>
         </div>
         <div style="margin: 30px auto">
-          <el-pagination :page-size="pageSize" :pager-count="7" layout="prev, pager, next" :total="total"
-            @current-change="changePage" />
+          <el-pagination
+            :page-size="pageSize"
+            :pager-count="7"
+            layout="prev, pager, next"
+            :total="total"
+            @current-change="changePage"
+          />
         </div>
       </div>
-
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts"setup>
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const searchValue = ref("前端工程师")
+const searchValue = ref("前端工程师");
 
 const getMore = () => {
   const href = router.resolve({
     name: "WorkInfo",
-    path: "/workInfo",
   });
   window.open(href.href, "_blank");
 };
 
-import { ref } from "vue";
+import { ref,computed } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import Card from "./components/Card.vue";
 
-import { useJobStore } from "@/stores/job";
+import { useJobStore } from "@/store/job";
+import { JobInfo } from "@/types/job";
 
 const jobStore = useJobStore();
 
-function selectJob(job) {
+function selectJob(job:JobInfo) {
   jobStore.selectJob(job);
 }
-
 
 const currentPage = ref(1); // 当前页码
 const pageSize = ref(10); // 每页显示的数据条数
@@ -3537,7 +3553,7 @@ const currentJobs = computed(() => {
   return jobsData.value.slice(start, end);
 });
 
-const changePage = (newPage) => {
+const changePage = (newPage:number) => {
   currentPage.value = newPage;
 };
 </script>
@@ -3546,13 +3562,15 @@ const changePage = (newPage) => {
 .container {
   margin-top: 50px;
   /* background-color: rgb(242, 242, 245); */
-  background: linear-gradient(to bottom,
-      rgba(192, 230, 245, 0.818) 2%,
-      rgba(188, 228, 244, 0.616) 8%,
-      rgb(211, 238, 248) 15%,
-      rgb(221, 239, 245) 20%,
-      rgb(225, 238, 242) 30%,
-      white);
+  background: linear-gradient(
+    to bottom,
+    rgba(192, 230, 245, 0.818) 2%,
+    rgba(188, 228, 244, 0.616) 8%,
+    rgb(211, 238, 248) 15%,
+    rgb(221, 239, 245) 20%,
+    rgb(225, 238, 242) 30%,
+    white
+  );
   height: calc(100vh-50px);
   overflow-y: auto;
   justify-content: center;
@@ -3580,7 +3598,6 @@ const changePage = (newPage) => {
   margin: 0 auto;
   /* margin-left: 150px; */
 }
-
 
 .card {
   /* width: 350px; */

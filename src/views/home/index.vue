@@ -29,14 +29,14 @@
   </el-container>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import GetMore from "./components/GetMore.vue";
 import Tag from "./components/Tag.vue";
 import FunctionCard from "./components/FunctionCard.vue";
 import { getHotWorkTags } from "@/api/info";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 const hotWorks = ref([]);
 

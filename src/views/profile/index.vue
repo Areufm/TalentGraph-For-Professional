@@ -22,18 +22,24 @@
                 <el-input v-model="formData.name" style="margin: 0 10px" />
               </el-form-item>
               <el-form-item label="年龄:" prop="age">
-                <el-input v-model="formData.age" type="number" style="margin: 0 10px" />
-
+                <el-input
+                  v-model="formData.age"
+                  type="number"
+                  style="margin: 0 10px"
+                />
               </el-form-item>
             </div>
             <div style="display: flex; margin: 10px">
               <el-form-item label="电话:" prop="phone">
-                <el-input v-model="formData.phone" type="tel" style="margin: 0 10px" />
+                <el-input
+                  v-model="formData.phone"
+                  type="tel"
+                  style="margin: 0 10px"
+                />
               </el-form-item>
               <el-form-item label="邮箱:" prop="email">
                 <el-input v-model="formData.email" style="margin: 0 10px" />
               </el-form-item>
-
             </div>
             <div style="display: flex; margin: 10px">
               <el-form-item label="求职地区">
@@ -43,10 +49,19 @@
             <div style="display: flex; margin: 10px">
               <el-form-item label="求职岗位">
                 <!-- <SelectWork style="width: auto;" /> -->
-                <el-cascader style="width: auto" v-model="value" :options="options" :props="props1"
-                  :show-all-levels="false" @change="handleChange" placeholder="请选择你的求职岗位" />
+                <el-cascader
+                  style="width: auto"
+                  v-model="value"
+                  :options="options"
+                  :props="props1"
+                  :show-all-levels="false"
+                  @change="handleChange"
+                  placeholder="请选择你的求职岗位"
+                />
               </el-form-item>
-              <el-button type="danger" style="margin-left: auto;">取消</el-button>
+              <el-button type="danger" style="margin-left: auto"
+                >取消</el-button
+              >
               <el-button type="primary" @click="submitForm">保存</el-button>
             </div>
           </div>
@@ -54,23 +69,61 @@
       </div>
       <div class="item-card">
         <h3>教育经历</h3>
-        <div v-for="(item, index) in formData.education" :key="index" class="list-form">
+        <div
+          v-for="(item, index) in formData.education"
+          :key="index"
+          class="list-form"
+        >
           <div style="display: flex">
-            <el-form-item class="form-style" label="学校名称" :rules="[
-              { required: true, message: '学校名称不能为空', trigger: 'blur' },
-            ]">
-              <el-input v-model="formData.education[index].school_name" placeholder="请填写学校名称" style="width: 130px" />
+            <el-form-item
+              class="form-style"
+              label="学校名称"
+              :rules="[
+                {
+                  required: true,
+                  message: '学校名称不能为空',
+                  trigger: 'blur',
+                },
+              ]"
+            >
+              <el-input
+                v-model="formData.education[index].school_name"
+                placeholder="请填写学校名称"
+                style="width: 130px"
+              />
             </el-form-item>
-            <el-form-item class="form-style" label="时间" style="width: 250px;" :rules="[
-              { required: true, message: '就读日期不能为空', trigger: 'blur' },
-            ]">
-              <el-date-picker v-model="formData.education[index].school_time" style="margin-left: auto;"
-                type="monthrange" range-separator="To" start-placeholder="Start" end-placeholder="End" />
+            <el-form-item
+              class="form-style"
+              label="时间"
+              style="width: 250px"
+              :rules="[
+                {
+                  required: true,
+                  message: '就读日期不能为空',
+                  trigger: 'blur',
+                },
+              ]"
+            >
+              <el-date-picker
+                v-model="formData.education[index].school_time"
+                style="margin-left: auto"
+                type="monthrange"
+                range-separator="To"
+                start-placeholder="Start"
+                end-placeholder="End"
+              />
             </el-form-item>
-            <el-form-item style="width: 130px;" label="学历" :rules="[
-              { required: true, message: '学历不能为空', trigger: 'blur' },
-            ]">
-              <el-select v-model="formData.education[index].school_degree" placeholder="请选择你的学历">
+            <el-form-item
+              style="width: 130px"
+              label="学历"
+              :rules="[
+                { required: true, message: '学历不能为空', trigger: 'blur' },
+              ]"
+            >
+              <el-select
+                v-model="formData.education[index].school_degree"
+                placeholder="请选择你的学历"
+              >
                 <el-option label="专科" value="专科" />
                 <el-option label="本科" value="本科" />
                 <el-option label="硕士" value="硕士" />
@@ -80,47 +133,74 @@
           </div>
 
           <el-form-item label-width="0" class="form-button">
-            <el-button v-if="index + 1 == formData.education.length" type="primary" @click="addItem(form.list.length)">
+            <el-button
+              v-if="index + 1 == formData.education.length"
+              type="primary"
+              @click="addItem()"
+            >
               +
             </el-button>
-            <el-button v-if="index !== 0" type="danger" @click="deleteItem(item, index)">
+            <el-button
+              v-if="index !== 0"
+              type="danger"
+              @click="deleteItem(item, index)"
+            >
               -
             </el-button>
           </el-form-item>
         </div>
       </div>
-      <div class="item-card ">
+      <div class="item-card">
         <h3>个人介绍</h3>
-        <p style="text-indent: 32px;">{{ formData.info }}</p>
+        <p style="text-indent: 32px">{{ formData.info }}</p>
       </div>
       <div class="item-card">
         <h3>技能点</h3>
-        <div v-for="(item, index) in formData.skill" :key="index" class="list-form">
+        <div
+          v-for="(item, index) in formData.skill"
+          :key="index"
+          class="list-form"
+        >
           <div style="display: flex">
-            <el-form-item class="form-style" label="技能点" :rules="[
-              { required: true, message: '技能点不能为空', trigger: 'blur' },
-            ]">
-              <el-input v-model="formData.skill[index]" placeholder="请填写技能点" style="width: 130px" />
+            <el-form-item
+              class="form-style"
+              label="技能点"
+              :rules="[
+                { required: true, message: '技能点不能为空', trigger: 'blur' },
+              ]"
+            >
+              <el-input
+                v-model="formData.skill[index]"
+                placeholder="请填写技能点"
+                style="width: 130px"
+              />
             </el-form-item>
           </div>
 
           <el-form-item label-width="0" class="form-button">
             <!-- 添加新技能点 -->
-            <el-button v-if="index + 1 == formData.skill.length" type="primary" @click="formData.skill.push('')">
+            <el-button
+              v-if="index + 1 == formData.skill.length"
+              type="primary"
+              @click="formData.skill.push('')"
+            >
               +
             </el-button>
             <!-- 删除技能点 -->
-            <el-button v-if="index !== 0" type="danger" @click="formData.skill.splice(index, 1)">
+            <el-button
+              v-if="index !== 0"
+              type="danger"
+              @click="formData.skill.splice(index, 1)"
+            >
               -
             </el-button>
           </el-form-item>
         </div>
       </div>
-      <div class="item-card graph" style="height: 500px;">
+      <div class="item-card graph" style="height: 500px">
         <h3>个人图谱</h3>
         <Relationship />
       </div>
-
     </div>
     <div class="right">
       <Text />
@@ -129,12 +209,23 @@
           <h4>上传简历附件</h4>
           <div class="input-div">
             <input class="input" name="file" type="file" />
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round"
-              stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"
-              class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              fill="none"
+              stroke="currentColor"
+              class="icon"
+            >
               <polyline points="16 16 12 12 8 16"></polyline>
               <line y2="21" x2="12" y1="12" x1="12"></line>
-              <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+              <path
+                d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"
+              ></path>
               <polyline points="16 16 12 12 8 16"></polyline>
             </svg>
           </div>
@@ -144,56 +235,122 @@
 
       <div class="item-card">
         <h4>个人隐私项</h4>
-        <div style="display: flex;justify-content: space-between;align-items: center">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
           <p>姓名</p>
-          <el-switch v-model="hideValue1" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
-            :inactive-icon="Close" />
+          <el-switch
+            v-model="hideValue1"
+            class="mt-2"
+            style="margin-left: 24px"
+            inline-prompt
+            :active-icon="Check"
+            :inactive-icon="Close"
+          />
         </div>
-        <div style="display: flex;justify-content: space-between;align-items: center">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
           <p>年龄</p>
-          <el-switch v-model="hideValue2" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
-            :inactive-icon="Close" />
+          <el-switch
+            v-model="hideValue2"
+            class="mt-2"
+            style="margin-left: 24px"
+            inline-prompt
+            :active-icon="Check"
+            :inactive-icon="Close"
+          />
         </div>
-        <div style="display: flex;justify-content: space-between;align-items: center">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
           <p>电话号码</p>
-          <el-switch v-model="hideValue3" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
-            :inactive-icon="Close" />
+          <el-switch
+            v-model="hideValue3"
+            class="mt-2"
+            style="margin-left: 24px"
+            inline-prompt
+            :active-icon="Check"
+            :inactive-icon="Close"
+          />
         </div>
-        <div style="display: flex;justify-content: space-between;align-items: center">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
           <p>详细地址</p>
-          <el-switch v-model="hideValue4" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
-            :inactive-icon="Close" />
+          <el-switch
+            v-model="hideValue4"
+            class="mt-2"
+            style="margin-left: 24px"
+            inline-prompt
+            :active-icon="Check"
+            :inactive-icon="Close"
+          />
         </div>
-        <div style="display: flex;justify-content: space-between;align-items: center">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
           <p>邮箱</p>
-          <el-switch v-model="hideValue5" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Check"
-            :inactive-icon="Close" />
+          <el-switch
+            v-model="hideValue5"
+            class="mt-2"
+            style="margin-left: 24px"
+            inline-prompt
+            :active-icon="Check"
+            :inactive-icon="Close"
+          />
         </div>
-
       </div>
-      <div class="item-card" style="height: 400px;padding:5px  0">
+      <div class="item-card" style="height: 400px; padding: 5px 0">
         <!-- <h4>能力数据图</h4> -->
         <Radar />
         <!-- <China /> -->
       </div>
-      <div class="item-card" style="height: 400px;padding:0 0 20px 0">
+      <div class="item-card" style="height: 400px; padding: 0 0 20px 0">
         <!-- <Radar /> -->
         <China />
       </div>
       <div class="item-card">
         <h4>评价推荐结果</h4>
-        <el-rate v-model="star" :texts="['不满意', '一般', '还行', '很棒', '非常满意']" show-text size="large" />
+        <el-rate
+          v-model="star"
+          :texts="['不满意', '一般', '还行', '很棒', '非常满意']"
+          show-text
+          size="large"
+        />
       </div>
     </div>
   </el-form>
 </template>
 
+<script lang="ts" setup>
+const value = ref([
+  "Internet",
+  "Front-end & Mobile development",
+  "Front-end dev",
+]);
 
-
-<script setup>
-const value = ref(["Internet", "Front-end & Mobile development", "Front-end dev"])
-
-const handleChange = (value) => {
+const handleChange = (value: string) => {
   console.log(value);
 };
 
@@ -433,15 +590,16 @@ const options = [
   },
 ];
 
-
-const { proxy } = getCurrentInstance();
 const emit = defineEmits(["update:modelValue"]);
 const props = defineProps({
   details: {
     type: Object,
-    default: () => { },
+    default: () => {},
   },
 });
+const props1 = {
+  expandTrigger: 'hover' as const,
+}
 const form = ref({
   hdmc: "",
   list: [
@@ -478,26 +636,29 @@ const dialogSuccess = () => {
 const addItem = () => {
   formData.education.push({
     school_name: "",
-    school_time: "",
-    school_degree: ""
+    school_time: ["",""],
+    school_degree: "",
   });
 };
-const deleteItem = (item, index) => {
-  formData.education.splice(index, 1);
+const deleteItem = (item: any, index: number) => {
+  formData?.education?.splice(index, 1);
 };
 
-
-import { reactive, ref } from 'vue';
+import { reactive, ref, onBeforeMount } from "vue";
 import Radar from "@/components/Chart/Radar.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
-import Text from './components/Text.vue';
-import SelectWork from '@/components/SelectWork.vue';
-import SelectArea from "@/components/SelectArea.vue"
-import Relationship from './components/Relationship.vue';
-import { Check, Close, Minus, Plus } from '@element-plus/icons-vue'
-import China from "./components/China.vue"
-import { useAuthStore } from "@/stores/auth";
+import Text from "./components/Text.vue";
+import SelectWork from "@/components/SelectWork.vue";
+import SelectArea from "@/components/SelectArea.vue";
+import Relationship from "./components/Relationship.vue";
+import { Check, Close, Minus, Plus } from "@element-plus/icons-vue";
+import China from "./components/China.vue";
+import { useAuthStore } from "@/store/auth";
 import { storage } from "@/utils/storage";
+import { ElMessage } from "element-plus";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const authStore = useAuthStore();
 onBeforeMount(() => {
@@ -512,71 +673,81 @@ onBeforeMount(() => {
   }
 });
 
-const hideValue1 = ref(true)
-const hideValue2 = ref(false)
-const hideValue3 = ref(true)
-const hideValue4 = ref(true)
-const hideValue5 = ref(false)
+const hideValue1 = ref(true);
+const hideValue2 = ref(false);
+const hideValue3 = ref(true);
+const hideValue4 = ref(true);
+const hideValue5 = ref(false);
 
 const star = ref(null); //评价星星
 const formData = reactive(authStore.userInfo);
 
 const formRules = {
-  name: { required: true, message: '姓名不能为空', trigger: 'blur' },
-  age: { required: true, message: '年龄不能为空', trigger: 'blur' },
-  phone: { required: true, message: '电话不能为空', trigger: 'blur' },
+  name: { required: true, message: "姓名不能为空", trigger: "blur" },
+  age: { required: true, message: "年龄不能为空", trigger: "blur" },
+  phone: { required: true, message: "电话不能为空", trigger: "blur" },
   // ... 其他表单字段的验证规则
 };
 
-const avatarUrl = ref('');
-const handleAvatarSuccess = (response, file) => {
+const avatarUrl = ref("");
+const handleAvatarSuccess = (response:any, file:File) => {
   avatarUrl.value = response.url;
 };
 
-const beforeAvatarUpload = (file) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+const beforeAvatarUpload = (file:File) => {
+  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   const isLt2M = file.size / 1024 / 1024 < 2;
 
   if (!isJpgOrPng) {
-    ElMessage.error('只能上传jpg/png格式的图片!');
+    ElMessage.error("只能上传jpg/png格式的图片!");
   }
   if (!isLt2M) {
-    ElMessage.error('上传图片大小不能超过2MB!');
+    ElMessage.error("上传图片大小不能超过2MB!");
   }
 
   return isJpgOrPng && isLt2M;
 };
 
-const resumeUrl = ref('');
-const resumeName = ref('');
-const handleResumeSuccess = (response, file) => {
+const resumeUrl = ref("");
+const resumeName = ref("");
+const handleResumeSuccess = (response: any, file: File) => {
   resumeUrl.value = response.url;
   resumeName.value = file.name;
 };
 
-const beforeResumeUpload = (file) => {
-  const isPdfOrDoc = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type);
+const beforeResumeUpload = (file: File) => {
+  const isPdfOrDoc = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ].includes(file.type);
   const isLt5M = file.size / 1024 / 1024 < 5;
 
   if (!isPdfOrDoc) {
-    ElMessage.error('只能上传PDF或DOC(X)格式的文件!');
+    ElMessage.error("只能上传PDF或DOC(X)格式的文件!");
   }
   if (!isLt5M) {
-    ElMessage.error('上传文件大小不能超过5MB!');
+    ElMessage.error("上传文件大小不能超过5MB!");
   }
 
   return isPdfOrDoc && isLt5M;
 };
 
-const formRef = ref(null);
+import type { FormInstance } from 'element-plus';
+
+const formRef = ref<FormInstance | null>(null);
 
 const submitForm = () => {
-  formRef.value.validate().then(() => {
-    // 表单验证通过后执行提交逻辑
-    console.log('表单提交:', formData);
-  }).catch((err) => {
-    console.error('表单验证失败:', err);
-  });
+  if (!formRef.value) return;
+  formRef.value
+    .validate()
+    .then(() => {
+      // 表单验证通过后执行提交逻辑
+      console.log("表单提交:", formData);
+    })
+    .catch((err: Error) => {
+      console.error("表单验证失败:", err);
+    });
 };
 </script>
 
@@ -584,13 +755,15 @@ const submitForm = () => {
 .container {
   margin-top: 50px;
   display: flex;
-  background: linear-gradient(to bottom,
-      rgba(192, 230, 245, 0.818) 2%,
-      rgba(188, 228, 244, 0.616) 8%,
-      rgb(211, 238, 248) 15%,
-      rgb(221, 239, 245) 20%,
-      rgb(225, 238, 242) 30%,
-      white);
+  background: linear-gradient(
+    to bottom,
+    rgba(192, 230, 245, 0.818) 2%,
+    rgba(188, 228, 244, 0.616) 8%,
+    rgb(211, 238, 248) 15%,
+    rgb(221, 239, 245) 20%,
+    rgb(225, 238, 242) 30%,
+    white
+  );
   height: 100%;
   width: 100%;
 
@@ -624,19 +797,20 @@ const submitForm = () => {
 
       .profile-card {
         width: 200px;
-        background: linear-gradient(to bottom,
-            rgba(192, 230, 245, 0.818) 2%,
-            rgba(188, 228, 244, 0.616) 8%,
-            rgb(211, 238, 248) 15%,
-            rgb(221, 239, 245) 20%,
-            rgb(225, 238, 242) 30%,
-            white);
+        background: linear-gradient(
+          to bottom,
+          rgba(192, 230, 245, 0.818) 2%,
+          rgba(188, 228, 244, 0.616) 8%,
+          rgb(211, 238, 248) 15%,
+          rgb(221, 239, 245) 20%,
+          rgb(225, 238, 242) 30%,
+          white
+        );
         padding: 0;
         border-radius: 15px;
         box-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
         text-align: center;
         font-family: Arial, sans-serif;
-
 
         .profile-top {
           margin: 20px;
@@ -670,17 +844,12 @@ const submitForm = () => {
               }
             }
           }
-
-
         }
-
       }
 
       .profile-name-right {
         margin: auto 20px;
       }
-
-
     }
 
     .input-div {
@@ -709,8 +878,6 @@ const submitForm = () => {
         font-size: 2rem;
         cursor: pointer;
       }
-
-
     }
 
     .list-form {

@@ -1,26 +1,53 @@
 ﻿<template>
   <form class="form">
-    <div style="width: 50px;">
-    </div>
-    <input class="input" :placeholder="searchQuery" required="" type="text" v-model="searchQuery"
-      @keydown.enter.prevent="handleSearch" />
+    <div style="width: 50px"></div>
+    <input
+      class="input"
+      :placeholder="searchQuery"
+      required
+      type="text"
+      v-model="searchQuery"
+      @keydown.enter.prevent="handleSearch"
+    />
     <button class="reset" type="reset">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-        stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        ></path>
       </svg>
     </button>
     <button @click.prevent="handleSearch">
-      <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search"
-        style="margin-right: 30px;">
-        <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
-          stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+      <svg
+        width="16"
+        height="16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="search"
+        style="margin-right: 30px"
+      >
+        <path
+          d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+          stroke="currentColor"
+          stroke-width="1.333"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
       </svg>
     </button>
   </form>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 const searchQuery = ref("");
@@ -28,16 +55,15 @@ const router = useRouter();
 
 const props = defineProps({
   searchValue: String,
-})
+});
 
 onMounted(() => {
-  searchQuery.value = props.searchValue
-})
+  searchQuery.value = props.searchValue as string;
+});
 
 const handleSearch = () => {
   router.push({ name: "Research", params: { query: searchQuery.value } });
 };
-
 </script>
 <!-- <script>
 export default {
@@ -137,7 +163,7 @@ input:focus {
 }
 
 /* close button shown when typing */
-input:not(:placeholder-shown)~.reset {
+input:not(:placeholder-shown) ~ .reset {
   opacity: 1;
   visibility: visible;
 }

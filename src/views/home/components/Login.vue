@@ -3,12 +3,12 @@
     <h3 style="margin-top: auto">登录职业猫CareerCat</h3>
 
     <label>
-      <input required="" placeholder="" type="text" class="input" />
+      <input required placeholder="" type="text" class="input" />
       <span>用户名</span>
     </label>
 
     <label>
-      <input required="" placeholder="" type="password" class="input" />
+      <input required placeholder="" type="password" class="input" />
       <span>密码</span>
     </label>
     <button class="submit" @click="handleLogin">登录</button>
@@ -16,15 +16,16 @@
   </form>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";
-import { useAuthStore } from "@/stores/auth";
+import { useAuthStore } from "@/store/auth";
+import { ElNotification } from "element-plus";
 
 const authStore = useAuthStore();
 
-const validateUsername = (rule, value, callback) => {
+const validateUsername = (rule: any, value: string, callback: Function) => {
   if (!validUsername(value)) {
     callback(new Error("请输入正确的用户名"));
   } else {
@@ -32,7 +33,7 @@ const validateUsername = (rule, value, callback) => {
   }
 };
 
-const validatePassword = (rule, value, callback) => {
+const validatePassword = (rule: any, value: string, callback: Function) => {
   if (value.length < 6) {
     callback(new Error("密码不能少于6位"));
   } else {
@@ -54,7 +55,6 @@ const loginRules = reactive({
 });
 
 const isShow = ref(true);
-const isShow_confirm = ref(true);
 const passwordType = ref("password");
 const redirect = ref(undefined);
 const route = useRoute();
@@ -63,15 +63,6 @@ const router = useRouter();
 const showPwd = () => {
   passwordType.value = passwordType.value === "password" ? "" : "password";
   isShow.value = !isShow.value;
-};
-
-const showPwd_confirm = () => {
-  if (passwordConfirmType.value === "password") {
-    passwordConfirmType.value = "";
-  } else {
-    passwordConfirmType.value = "password";
-  }
-  isShow_confirm.value = !isShow_confirm.value;
 };
 
 const handleLogin = () => {
@@ -133,7 +124,7 @@ const handleLogin = () => {
     border-radius: 10px;
     background-color: transparent;
 
-    &+span {
+    & + span {
       position: absolute;
       left: 10px;
       top: 15px;
@@ -143,19 +134,19 @@ const handleLogin = () => {
       transition: 0.3s ease;
     }
 
-    &:placeholder-shown+span {
+    &:placeholder-shown + span {
       top: 15px;
       font-size: 0.9em;
     }
 
-    &:focus+span,
-    &:valid+span {
+    &:focus + span,
+    &:valid + span {
       top: 30px;
       font-size: 0.7em;
       font-weight: 600;
     }
 
-    &:valid+span {
+    &:valid + span {
       color: green;
     }
   }

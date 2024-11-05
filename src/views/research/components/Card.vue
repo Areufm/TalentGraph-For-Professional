@@ -34,16 +34,17 @@
         <p class="text-body" style="margin-left: auto">{{ job.kind2 }}</p>
       </div>
     </div>
-    <button class="card-button" @click="getMore">More info</button>
+    <button class="card-button" @click="">More info</button>
   </div>
 </template>
 
-<script setup>
-import { useJobStore } from "@/stores/job";
+<script lang="ts" setup>
+import { useJobStore } from "@/store/job";
+import { JobInfo } from "@/types/job";
 
 const jobStore = useJobStore();
 
-function selectJob(job) {
+function selectJob(job: JobInfo) {
   jobStore.selectJob(job);
 }
 
