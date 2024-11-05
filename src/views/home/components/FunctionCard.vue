@@ -34,12 +34,12 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import PersonCard from "./PersonCard.vue";
 import Login from "./Login.vue";
 import { ref, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "@/stores/auth";
+import { useAuthStore } from "@/store/auth";
 import { storeToRefs } from "pinia";
 import { storage } from "@/utils/storage";
 

@@ -1,19 +1,5 @@
-## TalentGraph For Professional
+# Vue 3 + TypeScript + Vite
 
-切换分支查看不同页面 
-<br>
-默认分支为求职者端
-<br>
-company为公司页面
-<br>
-admin为管理员端页面
-<br>
-templete为模板页面
-<br>
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-求职者端使用vue3+pinia+element-plus+relationship-graph搭建
-<br>
-后台使用vue2+vuex+element+echarts搭建
-<br>
-
-企业管理员端需开启后台及数据库使用，当前暂未适配，仅可预览求职者端
+Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).

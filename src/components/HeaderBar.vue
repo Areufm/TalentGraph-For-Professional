@@ -169,11 +169,11 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, computed, onMounted, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { regionData } from "element-china-area-data";
-import { useAuthStore } from "@/stores/auth";
+import { useAuthStore } from "@/store/auth";
 import { UploadFilled } from "@element-plus/icons-vue";
 import SelectArea from "./SelectArea.vue";
 import { storeToRefs } from "pinia";
@@ -204,7 +204,7 @@ const changeLogin = () => {
   // 这里添加登录逻辑，登录成功后调用 authStore.login()
 };
 
-function findLabelByValue(data, value) {
+function findLabelByValue(data: any, value: any): string {
   for (const item of data) {
     if (item.value === value) {
       return item.label;
@@ -234,16 +234,6 @@ const toResume = () => {
 const logout = () => {
   authStore.logout();
   router.push("/");
-};
-
-const showPopup = () => {
-  var overlay = document.getElementById("overlay");
-  overlay.style.display = "block";
-};
-
-const hidePopup = () => {
-  var overlay = document.getElementById("overlay");
-  overlay.style.display = "none";
 };
 </script>
 

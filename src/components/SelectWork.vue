@@ -12,7 +12,7 @@ const props1 = {
     expandTrigger: "hover" as const,
 }
 
-const handleChange = (value) => {
+const handleChange = (value:string) => {
     console.log(value);
 };
 

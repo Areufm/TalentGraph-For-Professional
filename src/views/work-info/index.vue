@@ -5,12 +5,16 @@
       <h1 class="job-title">{{ currentJob.title }}</h1>
 
       <div style="display: flex; align-items: center">
-        <img :src="currentJob.logo" alt="" style="
+        <img
+          :src="currentJob.logo"
+          alt=""
+          style="
             border-radius: 50%;
             width: 40px;
             height: 40px;
             margin-right: 15px;
-          " />
+          "
+        />
         <p class="company-name">{{ currentJob.company }}</p>
       </div>
       <div class="job-details">
@@ -24,17 +28,27 @@
         <p>公司福利： {{ currentJob.info }}</p>
         <p style="display: flex; align-items: center">
           推荐评价：
-          <el-rate v-model="rateValue" :texts="['不满意', '一般', '还行', '很棒', '非常满意']" show-text />
+          <el-rate
+            v-model="rateValue"
+            :texts="['不满意', '一般', '还行', '很棒', '非常满意']"
+            show-text
+          />
         </p>
       </div>
       <button class="send-button">
         <div class="svg-wrapper-1">
           <div class="svg-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
               <path fill="none" d="M0 0h24v24H0z"></path>
-              <path fill="currentColor"
-                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
-              </path>
+              <path
+                fill="currentColor"
+                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+              ></path>
             </svg>
           </div>
         </div>
@@ -51,39 +65,35 @@
         <h2>要求和技能</h2>
 
         <div class="flex">
-          <p class="job-description-card" v-for="(keyword, i) in currentJob.skill.slice(0, 5) " :key="i">
+          <p
+            class="job-description-card"
+            v-for="(keyword, i) in currentJob.skill.slice(0, 5)"
+            :key="i"
+          >
             {{ keyword }}
           </p>
         </div>
         <h2>职位描述</h2>
-        <p style=" white-space: pre-wrap;">{{ currentJob.description }}</p>
+        <p style="white-space: pre-wrap">{{ currentJob.description }}</p>
       </div>
     </div>
   </div>
-  <div v-else style="margin-top: 100px">
-    ？？？？正在加载中
-    <h1>JOB: -- {{ infoJob }}</h1>
-    <h1>{{ currentNum }}</h1>
-    <button @click="jobStore.addNum()">+1</button>
-    <button @click="console.log(infoJob)">job</button>
-  </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import HeaderBar from "@/components/HeaderBar.vue";
 import Radar from "@/components/Chart/Radar.vue";
-import { ref, onMounted, onBeforeMount } from "vue";
+import { ref, computed, onMounted, onBeforeMount } from "vue";
 
 const rateValue = ref();
 
-import { useJobStore } from "@/stores/job";
+import { useJobStore } from "@/store/job";
 import { storeToRefs } from "pinia";
 
 const jobStore = useJobStore();
 
-const { infoJob } = storeToRefs(jobStore)
+const infoJob = computed(() => currentJob.info);
 // const currentJob = computed(() => jobStore.getCurrentJob);
-const currentNum = computed(() => jobStore.getCurrentNum);
 
 const currentJob = {
   title: "Android",
@@ -128,13 +138,15 @@ const currentJob = {
     rgb(225, 238, 242),
     white
   ); */
-  background: linear-gradient(to bottom,
-      rgba(192, 230, 245, 0.818) 2%,
-      rgba(188, 228, 244, 0.616) 8%,
-      rgb(211, 238, 248) 15%,
-      rgb(221, 239, 245) 20%,
-      rgb(225, 238, 242) 40%,
-      white);
+  background: linear-gradient(
+    to bottom,
+    rgba(192, 230, 245, 0.818) 2%,
+    rgba(188, 228, 244, 0.616) 8%,
+    rgb(211, 238, 248) 15%,
+    rgb(221, 239, 245) 20%,
+    rgb(225, 238, 242) 40%,
+    white
+  );
   /* padding: 50px; */
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   display: flex;

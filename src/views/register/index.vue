@@ -7,14 +7,30 @@
       <img src="../../assets/login.png" alt="" style="" />
     </div>
     <div class="right">
-      <form class="form" :ref="registerForm" :rules="registerRules" :model="registerForm" auto-complete="off"
-        label-position="left">
+      <form
+        class="form"
+        ref="registerForm"
+        :rules="registerRules"
+        :model="registerForm"
+        auto-complete="off"
+        label-position="left"
+      >
         <p class="title">Register</p>
         <p class="message">注册职业猫CareerCat</p>
 
         <label>
-          <input required="" placeholder="" type="text" class="input" :key="passwordType" :ref="username"
-            v-model="registerForm.username" name="username" tabindex="1" autocomplete="off" />
+          <input
+            required
+            placeholder=""
+            type="text"
+            class="input"
+            :key="passwordType"
+            ref="username"
+            v-model="registerForm.username"
+            name="username"
+            tabindex="1"
+            autocomplete="off"
+          />
           <span>用户名</span>
         </label>
 
@@ -24,9 +40,19 @@
     </label> -->
 
         <label>
-          <input required="" placeholder="" class="input" :key="passwordType" :ref="registerForm.password"
-            v-model="registerForm.password" :type="passwordType" name="password" tabindex="2" auto-complete="off"
-            @keyup.enter.native="handleRegister()" />
+          <input
+            required
+            placeholder=""
+            class="input"
+            :key="passwordType"
+            :ref="registerForm.password"
+            v-model="registerForm.password"
+            :type="passwordType"
+            name="password"
+            tabindex="2"
+            auto-complete="off"
+            @keyup.enter.native="handleRegister()"
+          />
           <span>密码</span>
           <el-icon class="icon-right" @click="showPwd">
             <i-ep-view v-if="isShow" />
@@ -34,9 +60,19 @@
           </el-icon>
         </label>
         <label>
-          <input required="" placeholder="" class="input" :key="passwordConfirmType"
-            :ref="registerForm.password_confirm" v-model="registerForm.password_confirm" :type="passwordConfirmType"
-            name="password_confirm" tabindex="3" auto-complete="off" @keyup.enter.native="handleRegister()" />
+          <input
+            required
+            placeholder=""
+            class="input"
+            :key="passwordConfirmType"
+            :ref="registerForm.password_confirm"
+            v-model="registerForm.password_confirm"
+            :type="passwordConfirmType"
+            name="password_confirm"
+            tabindex="3"
+            auto-complete="off"
+            @keyup.enter.native="handleRegister()"
+          />
           <span>确认密码</span>
           <el-icon class="icon-right" @click="showPwd_confirm">
             <i-ep-view v-if="isShow_confirm" />
@@ -53,12 +89,13 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive, watch, nextTick } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";
+import { ElNotification } from "element-plus";
 
-const validateUsername = (rule, value, callback) => {
+const validateUsername = (rule: any, value: string, callback: Function) => {
   if (!validUsername(value)) {
     callback(new Error("请输入正确的用户名"));
   } else {
@@ -66,7 +103,7 @@ const validateUsername = (rule, value, callback) => {
   }
 };
 
-const validatePassword = (rule, value, callback) => {
+const validatePassword = (rule: any, value: string, callback: Function) => {
   if (value.length < 6) {
     callback(new Error("密码不能少于6位"));
   } else {
@@ -74,7 +111,11 @@ const validatePassword = (rule, value, callback) => {
   }
 };
 
-const validatePasswordConfirm = (rule, value, callback) => {
+const validatePasswordConfirm = (
+  rule: any,
+  value: string,
+  callback: Function
+) => {
   if (registerForm.password !== registerForm.password_confirm) {
     callback(new Error("两次密码不相同！"));
   } else {
@@ -188,7 +229,7 @@ const handleRegister = () => {
         border: 1px solid rgba(105, 105, 105, 0.397);
         border-radius: 10px;
 
-        &+span {
+        & + span {
           position: absolute;
           left: 10px;
           top: 15px;
@@ -198,19 +239,19 @@ const handleRegister = () => {
           transition: 0.3s ease;
         }
 
-        &:placeholder-shown+span {
+        &:placeholder-shown + span {
           top: 15px;
           font-size: 0.9em;
         }
 
-        &:focus+span,
-        &:valid+span {
+        &:focus + span,
+        &:valid + span {
           top: 30px;
           font-size: 0.7em;
           font-weight: 600;
         }
 
-        &:valid+span {
+        &:valid + span {
           color: green;
         }
       }

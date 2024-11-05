@@ -13,7 +13,7 @@
         </div>
         <div style="display: flex">
           <p
-            v-for="(keyword, i) in job.skill.slice(0, 4)"
+            v-for="(keyword, i) in job?.skill?.slice(0, 4)"
             :key="i"
             style="margin: 10px"
           >
@@ -22,7 +22,7 @@
         </div>
         <div style="display: flex">
           <img
-            :src="job.logo"
+            :src="job?.logo || undefined"
             alt=""
             style="
               width: 40px;
@@ -40,22 +40,23 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useRouter } from "vue-router";
 import { getHotWorks } from "@/api/info";
 import { ref, onMounted, watch } from "vue";
+import { JobInfo } from "@/types/job";
 
-onMounted(() => {
-  getJobs(label);
-});
+const props = defineProps<{
+  label: string;
+}>();
 
-const { label } = defineProps(["label"]);
 const router = useRouter();
 
-const jobsData = ref([]);
-const getJobs = async (label) => {
+const jobsData = ref<JobInfo[]>([]);
+
+const getJobs = async (label: string) => {
   try {
-    const res = await getHotWorks(label);
+    const res = await getHotWorks({ label });
     console.log("jobsData res", res);
     jobsData.value = res.data;
   } catch (error) {
@@ -63,9 +64,12 @@ const getJobs = async (label) => {
   }
 };
 
+onMounted(() => {
+  getJobs(props.label);
+});
 // 监听 label 的变化
 watch(
-  () => label,
+  () => props.label,
   (newLabel) => {
     console.log("newLabel", newLabel);
 
@@ -76,7 +80,6 @@ watch(
 const getMore = () => {
   const href = router.resolve({
     name: "WorkInfo",
-    path: "/workInfo",
   });
   window.open(href.href, "_blank");
 };

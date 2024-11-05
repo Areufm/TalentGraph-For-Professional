@@ -2,13 +2,15 @@
   <div class="card" @click="handleToggleDrawer">
     <div class="card-details">
       <div style="display: flex">
-        <div style="
+        <div
+          style="
             display: flex;
             flex-direction: column;
             top: 0;
             width: 170px;
             /* justify-content: center; */
-          ">
+          "
+        >
           <p class="work_name">前端开发工程师</p>
           <p class="work_salary">12K-15K</p>
         </div>
@@ -34,8 +36,7 @@
   </div>
 </template>
 
-<script setup>
-
+<script lang="ts" setup>
 // 定义props，接收父组件传递的方法
 const props = defineProps({
   toggleDrawer: Function,

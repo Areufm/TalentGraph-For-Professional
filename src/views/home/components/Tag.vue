@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import type { TabsPaneContext } from "element-plus";
 import HotWorks from "./HotWorks.vue";
 
