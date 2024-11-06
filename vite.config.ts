@@ -8,8 +8,16 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 
+const pathSrc = resolve(__dirname, "src");
+
 // https://vite.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@": pathSrc,
+    },
+    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
+  },
   plugins: [
     vue(),
     viteMockServe({
@@ -25,6 +33,7 @@ export default defineConfig({
           prefix: "Icon",
         }),
       ],
+      dts: resolve(pathSrc, "auto-imports.d.ts"),
     }),
     Components({
       resolvers: [
@@ -33,15 +42,10 @@ export default defineConfig({
         }),
         ElementPlusResolver(),
       ],
+      dts: resolve(pathSrc, "components.d.ts"),
     }),
     Icons({
       autoInstall: true,
     }),
   ],
-  resolve: {
-    alias: {
-      "@": resolve(__dirname, "src"),
-    },
-    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
-  },
 });
