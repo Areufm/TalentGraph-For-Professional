@@ -4,7 +4,6 @@ import { resolve } from "path";
 import { viteMockServe } from "vite-plugin-mock";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
@@ -19,17 +18,7 @@ export default defineConfig({
       logger: true, // 启用日志输出，便于调试
     }),
     AutoImport({
-      imports: [
-        "vue",
-        {
-          "naive-ui": [
-            "useDialog",
-            "useMessage",
-            "useNotification",
-            "useLoadingBar",
-          ],
-        },
-      ],
+      imports: ["vue"],
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
@@ -42,7 +31,6 @@ export default defineConfig({
         IconsResolver({
           enabledCollections: ["ep"],
         }),
-        NaiveUiResolver(),
         ElementPlusResolver(),
       ],
     }),

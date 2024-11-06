@@ -13,7 +13,7 @@
     "axios": "^1.6.7",
     "echarts": "^5.5.0",
     "element-china-area-data": "^6.1.0",
-    "element-plus": "^2.5.6",
+    "element-plus": "^2.8.7",
     "mockjs": "^1.1.0",
     "naive-ui": "^2.38.1",
     "pinia": "^2.1.7",
