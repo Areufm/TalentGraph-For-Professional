@@ -3,7 +3,7 @@
  */
 export const storage = {
   //存储
-  set(key: string, value: string) {
+  set(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
   },
   //取出数据
@@ -25,7 +25,7 @@ export const storage = {
  */
 export const sessionStorage = {
   //存储
-  set(key: string, value: string) {
+  set(key: string, value: any) {
     window.sessionStorage.setItem(key, JSON.stringify(value));
   },
   //取出数据
