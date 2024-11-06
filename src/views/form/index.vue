@@ -10,7 +10,7 @@
         "
       >
         <img
-          src="../../assets/login2.png"
+          :src="formImg"
           alt=""
           style="width: 100%; border-radius: 20px"
           @click="clickImg"
@@ -131,11 +131,12 @@
 </template>
 
 <script lang="ts" setup>
+import formImg from "@/assets/img/form.png";
 import { ref, computed } from "vue";
 import SelectWork from "@/components/SelectWork.vue";
 import { UploadFilled } from "@element-plus/icons-vue";
 import { regionData } from "element-china-area-data";
-import { ElNotification } from "element-plus";
+// import { ElNotification } from "element-plus";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/store/auth";
 import { getUserInfoByToken } from "@/api/user";

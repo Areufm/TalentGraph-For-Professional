@@ -3,12 +3,12 @@
     <el-header>
       <HeaderBar />
     </el-header>
-    <img
-      src="../../assets/city.png"
-      alt=""
-      style="width: 100%; height: 140px; background: rgba(192, 230, 245)"
-    />
     <el-main class="hide-scrollbar">
+      <img
+        :src="cityImg"
+        alt=""
+        style="width: 100%; height: 140px; background: rgba(192, 230, 245)"
+      />
       <div class="centerPosition" style="margin-top: 10px">
         <SearchBar />
         <div class="hotwork">
@@ -30,6 +30,7 @@
 </template>
 
 <script lang="ts" setup>
+import cityImg from "@/assets/img/city.png";
 import HeaderBar from "@/components/HeaderBar.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import GetMore from "./components/GetMore.vue";

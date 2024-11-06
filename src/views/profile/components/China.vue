@@ -7,7 +7,7 @@
 <script setup>
 import { ref, nextTick, onMounted } from "vue";
 // import china from "@/assets/china.json";
-import china from "@/assets/chinaChange.json";
+import china from "@/constant/chinaChange.json";
 import * as echarts from "echarts";
 let dataList = ref([]);
 const mapEcharts = () => {

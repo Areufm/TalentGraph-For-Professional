@@ -8,26 +8,14 @@
     </div>
     <div class="right">
       <div class="rleft">
-        <img
-          @click="toRecommend"
-          src="../../../assets/FunctionCard/recommend2.png"
-          alt="推荐入口"
-        />
+        <img @click="toRecommend" :src="recommend" alt="推荐入口" />
       </div>
       <div class="rright">
         <div class="rrtop">
-          <img
-            @click="toProfile"
-            src="../../../assets/FunctionCard/ability2.png"
-            alt="能力评价入口"
-          />
+          <img @click="toProfile" :src="ability" alt="能力评价入口" />
         </div>
         <div class="rrbottom">
-          <img
-            @click="toResume"
-            src="../../../assets/FunctionCard/cv2.png"
-            alt="简历上传入口"
-          />
+          <img @click="toResume" :src="cv" alt="简历上传入口" />
         </div>
       </div>
     </div>
@@ -35,6 +23,9 @@
 </template>
 
 <script lang="ts" setup>
+import recommend from "@/assets/img/FunctionCard/recommend.png";
+import ability from "@/assets/img/FunctionCard/ability.png";
+import cv from "@/assets/img/FunctionCard/cv.png";
 import PersonCard from "./PersonCard.vue";
 import Login from "./Login.vue";
 import { ref, onBeforeMount } from "vue";

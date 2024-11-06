@@ -4,7 +4,7 @@
   </h1>
   <div class="login">
     <div class="left">
-      <img src="../../assets/login.png" alt="" style="" />
+      <img :src="loginImg" alt="" style="" />
     </div>
     <div class="right">
       <form class="form" @submit.prevent="handleLogin">
@@ -45,6 +45,7 @@
 </template>
 
 <script lang="ts" setup>
+import loginImg from "@/assets/img/login.png";
 import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";

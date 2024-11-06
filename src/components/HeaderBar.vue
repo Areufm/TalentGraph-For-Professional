@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="layout-header">
     <div class="header_left">
-      <img src="../assets/workcat2.png" alt="logo" />
+      <img :src="logo" alt="logo" />
       <div class="header_left_title">职业猫</div>
       <div class="nav-city">
         <p
@@ -70,16 +70,16 @@
         popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px;"
       >
         <template #reference>
-          <p style="color: white">简历</p>
+          <p st yle="color: white">简历</p>
         </template>
         <template #default>
           <div class="resume-upload">
             <button class="card-btn" @click="resumeDialog = true">
-              <img src="../assets/resume-file4.png" alt="卡片图片1" />
+              <img :src="fileUpload" alt="卡片图片1" />
               附件上传
             </button>
             <button class="card-btn" @click="toResume">
-              <img src="../assets/resume-online4.png" alt="卡片图片2" />
+              <img :src="fileOnline" alt="卡片图片2" />
               在线填写
             </button>
           </div>
@@ -95,7 +95,7 @@
       >
         <template #reference>
           <img
-            src="../assets/zkn.jpg"
+            :src="avatarImg"
             alt="头像"
             style="border-radius: 50%; height: 45px; width: 45px"
           />
@@ -170,6 +170,10 @@
 </template>
 
 <script lang="ts" setup>
+import logo from "@/assets/img/Header/logo.png";
+import fileUpload from "@/assets/img/Header/file-upload.png";
+import fileOnline from "@/assets/img/Header/file-online.png";
+import avatarImg from "@/assets/img/xue.jpg";
 import { ref, computed, onMounted, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { regionData } from "element-china-area-data";
