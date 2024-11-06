@@ -3,11 +3,11 @@
  */
 export const storage = {
   //存储
-  set(key, value) {
+  set(key: string, value: string) {
     localStorage.setItem(key, JSON.stringify(value));
   },
   //取出数据
-  get(key) {
+  get(key: string) {
     const value = localStorage.getItem(key);
     if (value && value !== "undefined" && value !== "null") {
       return JSON.parse(value);
@@ -15,7 +15,7 @@ export const storage = {
     return null;
   },
   // 删除数据
-  remove(key) {
+  remove(key: string) {
     localStorage.removeItem(key);
   },
 };
@@ -25,11 +25,11 @@ export const storage = {
  */
 export const sessionStorage = {
   //存储
-  set(key, value) {
+  set(key: string, value: string) {
     window.sessionStorage.setItem(key, JSON.stringify(value));
   },
   //取出数据
-  get(key) {
+  get(key: string) {
     const value = window.sessionStorage.getItem(key);
     if (value && value !== "undefined" && value !== "null") {
       return JSON.parse(value);
@@ -37,7 +37,7 @@ export const sessionStorage = {
     return null;
   },
   // 删除数据
-  remove(key) {
+  remove(key: string) {
     window.sessionStorage.removeItem(key);
   },
 };
