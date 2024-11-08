@@ -83,7 +83,10 @@ import RelationGraph, {
   RGLink,
   RGUserEvent,
   RelationGraphComponent,
+  JsonLine,
+  JsonNode,
 } from "relation-graph/vue3";
+import { GraphLine, GraphNode, GraphSourceNode } from "@/types/graph";
 
 // 官方数据
 // const demoData = {
@@ -1403,19 +1406,20 @@ const demoData = [
 ];
 
 //数据转换
-const transformData = (demoData) => {
+const transformData = (demoData: GraphSourceNode[][]) => {
   let typeCounter = 1;
   let idCounter = 1;
   let rootId = "";
-  const nodes = [];
-  const lines = {};
+  const nodes: JsonNode[] = [];
+  const lines: JsonLine[] = [];
+  // const lines: { [key: string]: JsonLine } = {};
 
   demoData.forEach((jsonDataGroup) => {
     let flag = 1;
     let position = `职位${typeCounter}`;
     jsonDataGroup.forEach((item) => {
       if (flag) {
-        const root = {
+        const root: JsonNode = {
           id: item.n.id,
           text: item.n.title,
           data: {
@@ -1431,7 +1435,7 @@ const transformData = (demoData) => {
       }
 
       // 检查已有节点中是否有相同 m.title 的节点
-      let existingNodeWithSameTitle = nodes.find(
+      let existingNodeWithSameTitle: JsonNode | undefined = nodes.find(
         (node) => node.text === item.m.title
       );
       let mId;
@@ -1439,13 +1443,16 @@ const transformData = (demoData) => {
       if (existingNodeWithSameTitle) {
         // 如果存在，复用其 mId
         mId = existingNodeWithSameTitle.id;
-        if (!existingNodeWithSameTitle.data.typeCount.includes(typeCounter)) {
+        if (
+          existingNodeWithSameTitle.data &&
+          !existingNodeWithSameTitle.data.typeCount.includes(position)
+        ) {
           existingNodeWithSameTitle.data["typeCount"].push(position);
         }
       } else {
         // 否则创建新的 mId
         mId = `m${idCounter++}`;
-        const node = {
+        const node: GraphNode = {
           id: mId,
           text: item.m.title,
           color: "rgba(0, 206, 209, 1)",
@@ -1501,8 +1508,8 @@ const transformData = (demoData) => {
 
   return {
     rootId,
-    nodes: nodes,
-    lines: Object.values(lines), // 转换为数组形式返回
+    nodes,
+    lines, // 转换为数组形式返回
   };
 };
 
@@ -1567,13 +1574,15 @@ const doFilter = () => {
   const graphInstance = graphRef.value!.getInstance();
   const _all_nodes = graphInstance.getNodes();
   const _all_links = graphInstance.getLinks();
-  _all_nodes.forEach((thisNode) => {
+  _all_nodes.forEach((thisNode: RGNode) => {
     let _isHideThisLine = false;
     if (checked_type.value !== "") {
       //   console.log(checked_type.value);
       //   console.log(thisNode.data["typeCount"]);
 
-      let typeCount = Object.values(thisNode.data["typeCount"]);
+      let typeCount = thisNode.data
+        ? Object.values(thisNode.data["typeCount"])
+        : [];
       //   console.log(typeCount);
 
       //   console.log(typeCount.includes(Number(checked_type.value)));
@@ -1584,7 +1593,10 @@ const doFilter = () => {
       }
     }
     if (checked_isgoodman.value !== "") {
-      if (thisNode.data["isGoodMan"] !== checked_isgoodman.value) {
+      if (
+        thisNode.data &&
+        thisNode.data["isGoodMan"] !== checked_isgoodman.value
+      ) {
         _isHideThisLine = true;
       }
     }
@@ -1592,7 +1604,10 @@ const doFilter = () => {
   });
   _all_links.forEach((thisLink) => {
     thisLink.relations.forEach((thisLine) => {
-      if (rel_checkList.value.indexOf(thisLine.data["type"]) === -1) {
+      if (
+        thisLine.data &&
+        rel_checkList.value.indexOf(thisLine.data["type"]) === -1
+      ) {
         if (!thisLine.isHide) {
           thisLine.isHide = true;
           console.log("Hide line:", thisLine);
