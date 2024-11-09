@@ -8,7 +8,7 @@
           <!-- <PersonCard /> -->
           <div class="profile-card">
             <div class="profile-top">
-              <img src="../../assets/zkn.jpg" alt="Profile Picture" />
+              <img :src="xue" alt="Profile Picture" />
 
               <div class="profile-name">
                 <h3>{{ formData.name }}</h3>
@@ -51,8 +51,8 @@
                 <!-- <SelectWork style="width: auto;" /> -->
                 <el-cascader
                   style="width: auto"
-                  v-model="value"
-                  :options="options"
+                  v-model="jobSearch"
+                  :options="jobSearchOptions"
                   :props="props1"
                   :show-all-levels="false"
                   @change="handleChange"
@@ -114,7 +114,7 @@
               />
             </el-form-item>
             <el-form-item
-              style="width: 130px"
+              style="width: 150px"
               label="学历"
               :rules="[
                 { required: true, message: '学历不能为空', trigger: 'blur' },
@@ -344,18 +344,20 @@
 </template>
 
 <script lang="ts" setup>
-const value = ref([
+const jobSearch = ref([
   "Internet",
   "Front-end & Mobile development",
   "Front-end dev",
 ]);
 
-const handleChange = (value: string) => {
+import type { CascaderValue } from "element-plus";
+
+const handleChange = (value: CascaderValue) => {
   console.log(value);
 };
 
 // 求职岗位选项数据
-const options = [
+const jobSearchOptions = [
   {
     value: "Internet",
     label: "互联网",
@@ -598,8 +600,8 @@ const props = defineProps({
   },
 });
 const props1 = {
-  expandTrigger: 'hover' as const,
-}
+  expandTrigger: "hover" as const,
+};
 const form = ref({
   hdmc: "",
   list: [
@@ -636,7 +638,7 @@ const dialogSuccess = () => {
 const addItem = () => {
   formData.education.push({
     school_name: "",
-    school_time: ["",""],
+    school_time: ["", ""],
     school_degree: "",
   });
 };
@@ -657,6 +659,7 @@ import { useAuthStore } from "@/store/auth";
 import { storage } from "@/utils/storage";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
+import xue from "@/assets/img/xue.jpg";
 
 const router = useRouter();
 
@@ -679,7 +682,7 @@ const hideValue3 = ref(true);
 const hideValue4 = ref(true);
 const hideValue5 = ref(false);
 
-const star = ref(null); //评价星星
+const star = ref(0); //评价星星
 const formData = reactive(authStore.userInfo);
 
 const formRules = {
@@ -690,11 +693,11 @@ const formRules = {
 };
 
 const avatarUrl = ref("");
-const handleAvatarSuccess = (response:any, file:File) => {
+const handleAvatarSuccess = (response: any, file: File) => {
   avatarUrl.value = response.url;
 };
 
-const beforeAvatarUpload = (file:File) => {
+const beforeAvatarUpload = (file: File) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   const isLt2M = file.size / 1024 / 1024 < 2;
 
@@ -733,7 +736,7 @@ const beforeResumeUpload = (file: File) => {
   return isPdfOrDoc && isLt5M;
 };
 
-import type { FormInstance } from 'element-plus';
+import type { FormInstance } from "element-plus";
 
 const formRef = ref<FormInstance | null>(null);
 
