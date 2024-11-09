@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="profile-card">
     <div class="top">
-      <img src="../../../assets/zkn.jpg" alt="Profile Picture" />
+      <img :src="xue" alt="Profile Picture" />
 
       <div class="profile-name">
         <h3>{{ authStore.userInfo.name }}</h3>
@@ -27,15 +27,13 @@
 
 <script lang="ts" setup>
 import { useAuthStore } from "@/store/auth";
+import xue from "@/assets/img/xue.jpg";
 const authStore = useAuthStore();
 </script>
 
 <style scoped lang="scss">
 .profile-card {
   width: 100%;
-  /* height: 100%; */
-  /* background-color: #ffffff; */
-  /* background-color: rgb(230, 245, 248); */
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
