@@ -46,7 +46,7 @@ import SearchBar from "@/components/SearchBar.vue";
 import GetMore from "@/components/GetMore.vue";
 import HotWorks from "./components/HotWorks.vue";
 import FunctionCard from "./components/FunctionCard.vue";
-import { getHotWorkTags } from "@/api/info";
+import { getHotWorkTags } from "@/api/work";
 import { onMounted, ref } from "vue";
 
 const hotWorkTab = ref("internet");

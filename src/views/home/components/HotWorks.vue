@@ -39,16 +39,16 @@
           </p>
         </div>
       </div>
-      <button class="card-button" @click="getMore">More info</button>
+      <button class="card-button" @click="getMore(job.neo4j)">More info</button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
-import { getHotWorks } from "@/api/info";
+import { getHotWorks } from "@/api/work";
 import { ref, onMounted, watch } from "vue";
-import { JobInfo } from "@/types/job";
+import { WorkInfo } from "@/types/work";
 
 const props = defineProps<{
   label: string;
@@ -56,7 +56,7 @@ const props = defineProps<{
 
 const router = useRouter();
 
-const jobsData = ref<JobInfo[]>([]);
+const jobsData = ref<WorkInfo[]>([]);
 
 const getJobs = async (label: string) => {
   try {
@@ -81,9 +81,10 @@ watch(
   }
 );
 
-const getMore = () => {
+const getMore = (neo4j: number) => {
   const href = router.resolve({
     name: "WorkInfo",
+    params: { neo4j },
   });
   window.open(href.href, "_blank");
 };

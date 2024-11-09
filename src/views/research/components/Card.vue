@@ -40,11 +40,11 @@
 
 <script lang="ts" setup>
 import { useJobStore } from "@/store/job";
-import { JobInfo } from "@/types/job";
+import { WorkInfo } from "@/types/work";
 
 const jobStore = useJobStore();
 
-function selectJob(job: JobInfo) {
+function selectJob(job: WorkInfo) {
   jobStore.selectJob(job);
 }
 

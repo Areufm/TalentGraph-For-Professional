@@ -270,13 +270,13 @@ onBeforeMount(() => {
 
 import { useJobStore } from "@/store/job";
 import { storeToRefs } from "pinia";
-import { JobInfo } from "@/types/job";
+import { JobIWorkInfonfo } from "@/types/work";
 
 const jobStore = useJobStore();
 
 const { currentJob } = storeToRefs(jobStore);
 
-function selectJob(job: JobInfo, index: number) {
+function selectJob(job: WorkInfo, index: number) {
   relationshipRef.value = index + 1;
   jobStore.selectJob(job);
   toggleDrawer();
