@@ -11,16 +11,16 @@
           <p class="work_name">{{ job.title }}</p>
           <p class="work_salary">{{ job.salary }}</p>
         </div>
-        <div style="display: flex">
-          <p
+        <div style="display: flex; gap: 10px; max-width: 320px; overflow: auto">
+          <el-tag
+            type="primary"
             v-for="(keyword, i) in job?.skill?.slice(0, 4)"
             :key="i"
-            style="margin: 10px"
           >
             {{ keyword }}
-          </p>
+          </el-tag>
         </div>
-        <div style="display: flex">
+        <div style="display: flex; align-items: center">
           <img
             :src="job?.logo || undefined"
             alt=""
@@ -31,8 +31,12 @@
               margin-right: 10px;
             "
           />
-          <p class="text-body">{{ job.company }}</p>
-          <p class="text-body" style="margin-left: auto">{{ job.kind2 }}</p>
+          <p class="text-body">
+            {{ job.company }}
+          </p>
+          <p class="text-body" style="margin-left: auto">
+            {{ job.kind2 }}
+          </p>
         </div>
       </div>
       <button class="card-button" @click="getMore">More info</button>
@@ -57,7 +61,7 @@ const jobsData = ref<JobInfo[]>([]);
 const getJobs = async (label: string) => {
   try {
     const res = await getHotWorks({ label });
-    console.log("jobsData res", res);
+    console.log("jobsData res--->", res);
     jobsData.value = res.data;
   } catch (error) {
     console.error("Error fetching jobs data:", error);
@@ -87,39 +91,42 @@ const getMore = () => {
 
 <style scoped lang="scss">
 .cards-container {
+  margin: 0 80px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
 }
 
 .card {
-  max-width: 400px;
-  width: 80%;
-  height: 154px;
+  width: 360px;
+  height: 180px;
   border-radius: 20px;
   position: relative;
-  padding: 1.8rem;
-  border: 1px solid #c3c6ce;
+  padding: 20px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
   transition: 0.5s ease-out;
   overflow: visible;
-  margin: 10px;
 
   .card-details {
     color: black;
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    justify-content: space-between;
+    gap: 5px;
   }
 
   .card-button {
-    width: 100%;
-    border-radius: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 110px;
+    width: 140px;
+    border-radius: 50px;
     border: none;
-    background-color: #008bf8;
+    background-color: #008df89c;
     color: #fff;
-    font-size: 1rem;
+    font-size: 14px;
     padding: 0.5rem 1rem;
     margin-top: auto;
     opacity: 0;
@@ -127,30 +134,34 @@ const getMore = () => {
   }
 
   .text-body {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 16px;
     color: rgb(134, 134, 134);
   }
 
-  .text-title {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-
-  /*Text*/
   .work_name {
-    font-size: 1.5em;
+    font-size: 20px;
     font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .work_salary {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     margin-left: auto;
-    font-size: 1.5em;
+    font-size: 20px;
     font-weight: bold;
     color: red;
   }
 
   /*Hover*/
   &:hover {
-    border-color: #008bf8;
+    border-color: #008df8a5;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 
     .card-button {
@@ -160,77 +171,3 @@ const getMore = () => {
   }
 }
 </style>
-
-<!-- <style scoped>
-.card {
-  /* width: 350px; */
-  width: 30%;
-  height: 154px;
-  border-radius: 20px;
-  /* background: #f5f5f5; */
-  position: relative;
-  padding: 1.8rem;
-  /* padding: 1.8rem; */
-  border: 2px solid #c3c6ce;
-  transition: 0.5s ease-out;
-  overflow: visible;
-  margin: 10px;
-}
-
-.card-details {
-  color: black;
-  height: 100%;
-  gap: 0.5em;
-  display: grid;
-  /* place-content: center; */
-}
-
-.card-button {
-  transform: translate(-50%, 125%);
-  width: 60%;
-  border-radius: 1rem;
-  border: none;
-  background-color: #008bf8;
-  color: #fff;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  opacity: 0;
-  transition: 0.3s ease-out;
-}
-
-.text-body {
-  color: rgb(134, 134, 134);
-}
-
-.text-title {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-/*Text*/
-.work_name {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.work_salary {
-  margin-left: auto;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: red;
-}
-
-/*Hover*/
-.card:hover {
-  border-color: #008bf8;
-  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-}
-
-.card:hover .card-button {
-  transform: translate(-50%, 50%);
-  opacity: 1;
-}
-</style> -->
