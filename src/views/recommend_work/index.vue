@@ -1,19 +1,8 @@
 ﻿<template>
-  <HeaderBar />
   <div class="container">
     <div class="top">
-      <div style="display: flex">
-        <svg
-          style="width: 30px"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1024 1024"
-          data-v-ea893728=""
-        >
-          <path
-            fill="currentColor"
-            d="M288 128h608L736 384l160 256H288v320h-96V64h96z"
-          ></path>
-        </svg>
+      <div style="display: flex; align-items: center">
+        <el-icon color=" rgba(98,145,217)" size="28px"><StarFilled /></el-icon>
         <h2>求职岗位： {{ recommendWork }}</h2>
       </div>
       <div class="sort">
@@ -107,7 +96,9 @@
 
           <div class="job-card">
             <div class="job-info">
-              <h2 v-if="currentJob.major && currentJob.major.length > 0">专业方向</h2>
+              <h2 v-if="currentJob.major && currentJob.major.length > 0">
+                专业方向
+              </h2>
               <ul
                 v-for="(majorInfo, i) in currentJob.major?.slice(0, 5)"
                 :key="i"
@@ -172,63 +163,56 @@
     </el-drawer>
     <div class="some">
       <div class="left">
-        <!-- <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(0)" />
-        <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(1)" />
-        <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(2)" />
-        <Card :toggle-drawer="toggleDrawer" @mouseover="handleCardHover(3)" /> -->
-
         <div
           class="card"
           v-for="(job, index) in currentJobs"
           :key="index"
           @click="selectJob(job, index)"
         >
-          <div class="card-details">
+          <div
+            style="
+              height: 100%;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <!-- 岗位信息 -->
             <div
-              style="display: flex; align-items: center; padding-right: 10px"
+              style="
+                max-width: 200px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+              "
             >
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  top: 0;
-                  width: 200px;
-                  /* justify-content: center; */
-                "
-              >
-                <p class="work_name">{{ job.title }}</p>
-                <p class="work_salary">{{ job.salary }}</p>
-              </div>
-              <el-progress
-                class="custom-progress"
-                type="dashboard"
-                :percentage="(job.match_value * 100).toFixed(1)"
-                :width="70"
-              >
-                <template #default="{ percentage }">
-                  <span class="percentage-value">{{ percentage }}%</span>
-                  <span class="percentage-label">岗位匹配度</span>
-                </template>
-              </el-progress>
+              <p class="work_name">{{ job.title }}</p>
+              <p class="work_salary">{{ job.salary }}</p>
             </div>
+            <!-- 匹配度 -->
+            <el-progress
+              class="custom-progress"
+              type="dashboard"
+              :percentage="Number((job.match_value * 100).toFixed(1))"
+              :width="70"
+            >
+              <template #default="{ percentage }">
+                <span class="percentage-value">{{ percentage }}%</span>
+                <span class="percentage-label">岗位匹配度</span>
+              </template>
+            </el-progress>
+          </div>
 
-            <div
-              style="display: flex; align-items: center; padding-right: 10px"
-            >
-              <!-- <img
-                :src="job.logo"
-                alt=""
-                style="width: 30px; height: 30px; border-radius: 50%"
-              /> -->
-              <p class="company_name">{{ job.company }}</p>
-              <p class="job">{{ job.kind2 }}</p>
-            </div>
-            <!-- <button class="card-button" @click="handleToggleDrawer">More info</button> -->
+          <div style="width: 100%; display: flex; align-items: center">
+            <p class="company_name">{{ job.company }}</p>
+            <p class="job">{{ job.kind2 }}</p>
           </div>
         </div>
 
         <!-- 换页组件 -->
-        <div style="margin: 20px auto 0 auto">
+        <div style="margin: 10px auto 0 auto">
           <el-pagination
             small
             background
@@ -254,14 +238,11 @@
   </div>
 </template>
 
-<script lang="ts"setup>
-import { ref, onBeforeMount,computed } from "vue";
+<script lang="ts" setup>
+import { ref, onBeforeMount, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/store/auth";
-
-import Card from "./components/Card.vue";
-import HeaderBar from "@/components/HeaderBar.vue";
-import Info from "./components/Info.vue";
+import { StarFilled } from "@element-plus/icons-vue";
 import Relationship from "@/components/Chart/Relationship.vue";
 import { storage } from "@/utils/storage";
 import { ElMessage, ElMessageBox } from "element-plus";
@@ -273,12 +254,6 @@ const changeButton = () => {
   relationData.value = relationData_salary.value;
   // console.log(jobsData.value);
 };
-
-// 假设Card组件现在能接受cardIndex并发出hover事件
-function handleCardHover(index: number) {
-  relationshipRef.value = index + 1;
-  // console.log(relationshipRef.value);
-}
 
 onBeforeMount(() => {
   // 初始化时从本地存储恢复登录状态
@@ -301,7 +276,7 @@ const jobStore = useJobStore();
 
 const { currentJob } = storeToRefs(jobStore);
 
-function selectJob(job:JobInfo, index: number) {
+function selectJob(job: JobInfo, index: number) {
   relationshipRef.value = index + 1;
   jobStore.selectJob(job);
   toggleDrawer();
@@ -867,7 +842,7 @@ const currentJobs = computed(() => {
   return jobsData.value.slice(start, end);
 });
 
-const changePage = (newPage:number) => {
+const changePage = (newPage: number) => {
   currentPage.value = newPage;
 };
 
@@ -7305,9 +7280,10 @@ sort-button {
 
 .container {
   height: 100vh;
+  width: 100vw;
   margin: 0 auto;
   background-color: #fff;
-  padding: 50px 30px 0 30px;
+  padding: 0 30px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   background: linear-gradient(
     to bottom,
@@ -7329,8 +7305,6 @@ sort-button {
 
 .sort {
   display: flex;
-  position: absolute;
-  left: 350px;
 }
 
 .some {
@@ -7349,6 +7323,7 @@ sort-button {
   display: flex;
   flex-direction: column;
   width: 300px;
+  align-items: center;
 }
 
 .right {
@@ -7386,7 +7361,7 @@ sort-button {
   left: 50%;
   transform: translate(-50%, -50%);
   display: block;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .percentage-label {
@@ -7402,52 +7377,29 @@ sort-button {
 
 .card {
   height: 135px;
+  width: 290px;
   border-radius: 20px;
   position: relative;
-  border: 2px solid #c3c6ce;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: 0.5s ease-out;
   overflow: visible;
   margin: 5px 0;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 
   &:hover {
     border-color: #008bf8;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
   }
-
-  &:hover .card-button {
-    transform: translate(-50%, 20%);
-    opacity: 1;
-  }
-}
-
-.card-details {
-  color: black;
-  height: 100%;
-  display: grid;
-  align-items: center;
-}
-
-.card-button {
-  transform: translate(-50%, 125%);
-  width: 60%;
-  border-radius: 1rem;
-  border: none;
-  background-color: #008bf8;
-  color: #fff;
-  font-size: 1rem;
-  padding: 0.3rem 1rem;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  opacity: 0;
-  transition: 0.3s ease-out;
 }
 
 .company_name {
   color: rgb(134, 134, 134);
-  margin-left: 10px;
-  width: 170px;
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -7455,17 +7407,22 @@ sort-button {
 
 .job {
   margin-left: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .text-title,
 .work_name,
 .work_salary {
-  font-size: 1.5em;
+  font-size: 20px;
   font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .work_salary {
-  margin: 5px 10px;
   color: red;
 }
 
