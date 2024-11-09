@@ -31,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: { title: "首页" },
       },
       {
-        path: "/work-info",
+        path: "/work-info/neo4j=:neo4j",
         name: "WorkInfo",
         component: () => import("@/views/work-info/index.vue"),
         meta: { title: "工作详细信息" },
