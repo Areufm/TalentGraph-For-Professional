@@ -37,13 +37,4 @@ import { RouterView } from "vue-router";
   overflow: auto;
   padding: 0;
 }
-
-.hide-scrollbar {
-  scrollbar-width: none; /* 适用于Firefox */
-  -ms-overflow-style: none; /* 适用于Internet Explorer 10+ */
-
-  &::-webkit-scrollbar {
-    display: none; /* 适用于Webkit浏览器 */
-  }
-}
 </style>
