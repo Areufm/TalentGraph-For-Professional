@@ -18,8 +18,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
+<script lang="ts" setup>
+import { onMounted } from "vue";
 import Typed from "typed.js";
 
 onMounted(() => {
@@ -29,10 +29,10 @@ onMounted(() => {
       //   "Typed.js is awesome!",
     ],
     typeSpeed: 50,
-    loop: true,
-    backSpeed: 20,
-    showCursor: true,
-    cursorChar: "_",
+    // loop: true,
+    // backSpeed: 20,
+    showCursor: false,
+    // cursorChar: "_",
   });
 });
 </script>
