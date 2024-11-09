@@ -1,5 +1,4 @@
 ﻿<template>
-  <HeaderBar />
   <div v-if="currentJob" class="container">
     <div class="job-header">
       <h1 class="job-title">{{ currentJob.title }}</h1>

@@ -1,5 +1,4 @@
 ﻿<template>
-  <HeaderBar />
   <div class="container">
     <div class="search">
       <SearchBar :searchValue="searchValue" />
@@ -60,7 +59,7 @@
   </div>
 </template>
 
-<script lang="ts"setup>
+<script lang="ts" setup>
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -74,8 +73,7 @@ const getMore = () => {
   window.open(href.href, "_blank");
 };
 
-import { ref,computed } from "vue";
-import HeaderBar from "@/components/HeaderBar.vue";
+import { ref, computed } from "vue";
 import SearchBar from "@/components/SearchBar.vue";
 import Card from "./components/Card.vue";
 
@@ -84,7 +82,7 @@ import { JobInfo } from "@/types/job";
 
 const jobStore = useJobStore();
 
-function selectJob(job:JobInfo) {
+function selectJob(job: JobInfo) {
   jobStore.selectJob(job);
 }
 
@@ -3553,14 +3551,13 @@ const currentJobs = computed(() => {
   return jobsData.value.slice(start, end);
 });
 
-const changePage = (newPage:number) => {
+const changePage = (newPage: number) => {
   currentPage.value = newPage;
 };
 </script>
 
 <style scoped>
 .container {
-  margin-top: 50px;
   /* background-color: rgb(242, 242, 245); */
   background: linear-gradient(
     to bottom,
