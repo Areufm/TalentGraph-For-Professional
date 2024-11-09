@@ -68,58 +68,35 @@ img {
 .card {
   display: flex;
   margin: 30px 100px;
+  height: 300px;
+  gap: 10px;
 
   .left {
-    height: 300px;
-    flex: 2;
-    width: 400px;
-    /* border: 2px rgba(161, 159, 159, 0.682) solid; */
-    border-radius: 10px;
-    margin: 10px;
+    flex: 1;
     display: flex;
   }
 
   .right {
-    height: 300px;
-    flex: 3;
-    /* border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px; */
-    margin: 10px;
+    width: 700px;
     display: flex;
+    gap: 10px;
 
     .rleft {
-      /* height: 280px; */
-      flex: 2;
-      /* border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px; */
-      /* margin: 10px; */
+      width: 450px;
     }
 
     .rright {
-      /* height: 280px; */
       flex: 1;
-      /* border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px; */
       display: flex;
+      gap: 10px;
       flex-direction: column;
-      margin: 0 10px;
 
       .rrtop {
-        height: 50%;
-        /* flex:1; */
-        /* border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px; */
-        /* padding: 5px; */
-        /* margin: 0 0 0px 0; */
+        height: 145px;
       }
 
       .rrbottom {
-        height: 50%;
-        /* flex:1; */
-        /* border: 2px rgba(161, 159, 159, 0.682) solid;
-  border-radius: 10px; */
-        /* margin: 0px 0 0 0; */
-        /* padding: 5px; */
+        height: 145px;
       }
     }
   }
