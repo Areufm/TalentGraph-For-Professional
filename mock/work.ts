@@ -1,9 +1,10 @@
 import type { HotWorksResponse, HotWorkTagsResponse } from "../src/types/mock";
+import { options } from "../src/constant/constant";
 
 export default [
   // 模拟主页获取搜索框下方热门工作标签tags
   {
-    url: "/api/info/tags",
+    url: "/api/work/tags",
     method: "get",
     response: (): HotWorkTagsResponse => {
       return {
@@ -25,10 +26,9 @@ export default [
   },
   // 模拟主页tabs里获取热门岗位
   {
-    url: "/api/info/hotWorks",
+    url: "/api/work/hotWorks",
     method: "post",
-    response: (req): HotWorksResponse => {
-      console.log("req", req);
+    response: (req: any): HotWorksResponse => {
       if (req.body.label === "internet") {
         return {
           code: 200,
@@ -591,6 +591,31 @@ export default [
         return {
           code: 400,
           message: "Get HotWorks failed",
+        };
+      }
+    },
+  },
+  // 模拟获取工作详细信息
+  {
+    url: "/api/work/workInfo",
+    method: "get",
+    response: (req: any) => {
+      const url = new URL(req.url, "http://localhost"); // 使用 URL 构造函数解析传参
+      const neo4j = url.searchParams.get("neo4j");
+      const workInfo = options.allWorks.find(
+        (work) => work.neo4j === Number(neo4j)
+      );
+      // 如果找到对应数据，返回该数据，否则返回错误信息
+      if (workInfo) {
+        return {
+          code: 200,
+          data: workInfo,
+          message: "Get WorkInfo successful",
+        };
+      } else {
+        return {
+          code: 404,
+          message: "未找到该工作信息",
         };
       }
     },

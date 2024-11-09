@@ -1,4 +1,4 @@
-export interface JobInfo {
+export interface WorkInfo {
   title: string; // 职位名称
   salary: string; // 薪资
   education?: string | null; // 学历要求
@@ -13,7 +13,7 @@ export interface JobInfo {
   district?: string | null; // 区
   address?: string | null; // 地址
   major?: string[] | null; // 专业要求
-  neo4j?: number | null; // neo4j图谱信息
+  neo4j: number; // neo4j图谱信息
   company?: string | null; // 公司名称
   logo?: string | null; // 公司logo
   match_value?: number | null; // 匹配值

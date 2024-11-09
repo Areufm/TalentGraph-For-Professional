@@ -1,10 +1,10 @@
 ﻿import { defineStore } from "pinia";
 import { store } from "@/store";
 import { ref } from "vue";
-import type { JobInfo } from "@/types/job";
+import type { WorkInfo } from "@/types/work";
 
 export const jobStore = defineStore("jobStore", () => {
-  const currentJob = ref<JobInfo>({
+  const currentJob = ref<WorkInfo>({
     title: "高级Java开发工程师/技术专家",
     salary: "25-35K·13薪",
     education: "本科",
@@ -30,7 +30,7 @@ export const jobStore = defineStore("jobStore", () => {
     return currentJob;
   };
 
-  const selectJob = (job: JobInfo) => {
+  const selectJob = (job: WorkInfo) => {
     currentJob.value = job;
   };
 

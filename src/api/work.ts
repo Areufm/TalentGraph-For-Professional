@@ -3,15 +3,23 @@ import { HotWorksRequest } from "@/types/mock";
 
 export const getHotWorkTags = () => {
   return request({
-    url: "/api/info/tags",
+    url: "/api/work/tags",
     method: "get",
   });
 };
 
 export const getHotWorks = (data: HotWorksRequest) => {
   return request({
-    url: "/api/info/hotWorks",
+    url: "/api/work/hotWorks",
     method: "post",
     data,
+  });
+};
+
+export const getWorkInfo = (neo4j: number) => {
+  return request({
+    url: "/api/work/workInfo",
+    method: "get",
+    params: { neo4j },
   });
 };

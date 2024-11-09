@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { JobInfo } from "./job";
+import { WorkInfo } from "./work";
 import { User } from "./user";
 
 export interface BaseResponse<T> {
@@ -52,4 +52,4 @@ export interface HotWorksRequest {
   label: string;
 }
 
-export interface HotWorksResponse extends BaseResponse<JobInfo[]> {}
+export interface HotWorksResponse extends BaseResponse<WorkInfo[]> {}
