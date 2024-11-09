@@ -270,7 +270,7 @@ onBeforeMount(() => {
 
 import { useJobStore } from "@/store/job";
 import { storeToRefs } from "pinia";
-import { JobIWorkInfonfo } from "@/types/work";
+import { WorkInfo } from "@/types/work";
 
 const jobStore = useJobStore();
 
