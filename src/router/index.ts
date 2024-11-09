@@ -1,16 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "@/views/home/index.vue";
+import MainLayout from "@/components/MainLayout/MainLayout.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/:pathMatch(.*)*",
     component: () => import("@/views/error/404.vue"),
-  },
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-    meta: { title: "首页" },
   },
   {
     path: "/login",
@@ -25,28 +20,41 @@ const routes: Array<RouteRecordRaw> = [
     meta: { title: "注册账户" },
   },
   {
-    path: "/work-info",
-    name: "WorkInfo",
-    component: () => import("@/views/work-info/index.vue"),
-    meta: { title: "工作详细信息" },
-  },
-  {
-    path: "/recommend",
-    name: "Recommend",
-    component: () => import("@/views/recommend_work/index.vue"),
-    meta: { title: "推荐岗位" },
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: () => import("@/views/profile/index.vue"),
-    meta: { title: "个人信息" },
-  },
-  {
-    path: "/research/:query?",
-    name: "Research",
-    component: () => import("@/views/research/index.vue"),
-    meta: { title: "搜索结果" },
+    path: "/",
+    redirect: "/home",
+    component: MainLayout,
+    children: [
+      {
+        path: "/home",
+        name: "Home",
+        component: Home,
+        meta: { title: "首页" },
+      },
+      {
+        path: "/work-info",
+        name: "WorkInfo",
+        component: () => import("@/views/work-info/index.vue"),
+        meta: { title: "工作详细信息" },
+      },
+      {
+        path: "/recommend",
+        name: "Recommend",
+        component: () => import("@/views/recommend_work/index.vue"),
+        meta: { title: "推荐岗位" },
+      },
+      {
+        path: "/profile",
+        name: "Profile",
+        component: () => import("@/views/profile/index.vue"),
+        meta: { title: "个人信息" },
+      },
+      {
+        path: "/research/:query?",
+        name: "Research",
+        component: () => import("@/views/research/index.vue"),
+        meta: { title: "搜索结果" },
+      },
+    ],
   },
   {
     path: "/form",
