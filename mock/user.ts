@@ -42,14 +42,14 @@ export default [
           code: 200,
           data: {
             id: 1,
-            name: "John Doe",
-            age: 30,
+            name: "x0r",
+            age: 19,
             phone: "123-456-7890",
             email: "johndoe@example.com",
             area: "",
             education: [
               {
-                school_name: "杭州大学",
+                school_name: "",
                 school_time: ["", ""],
                 school_degree: "",
               },
@@ -98,8 +98,8 @@ export default [
         code: 200,
         data: {
           id: 1,
-          name: "John Doe",
-          age: 30,
+          name: "x0r",
+          age: 19,
           phone: "123-456-7890",
           email: "johndoe@example.com",
           area: "",
