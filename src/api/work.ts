@@ -23,3 +23,11 @@ export const getWorkInfo = (neo4j: number) => {
     params: { neo4j },
   });
 };
+
+export const getSearchWorks = (query: string) => {
+  return request({
+    url: "/api/work/searchWorks",
+    method: "get",
+    params: { query },
+  });
+};

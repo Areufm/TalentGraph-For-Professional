@@ -600,7 +600,7 @@ export default [
     url: "/api/work/workInfo",
     method: "get",
     response: (req: any) => {
-      const url = new URL(req.url, "http://localhost"); // 使用 URL 构造函数解析传参
+      const url = new URL(req.url, "http://localhost");
       const neo4j = url.searchParams.get("neo4j");
       const workInfo = options.allWorks.find(
         (work) => work.neo4j === Number(neo4j)
@@ -616,6 +616,30 @@ export default [
         return {
           code: 404,
           message: "未找到该工作信息",
+        };
+      }
+    },
+  },
+  // 模拟搜索工作岗位
+  {
+    url: "/api/work/searchWorks",
+    method: "get",
+    response: (req: any) => {
+      const url = new URL(req.url, "http://localhost");
+      const query = url.searchParams.get("query") as string;
+      const searchWorks = options.allWorks.filter((work) => {
+        return work.title.includes(query);
+      });
+      if (searchWorks.length > 0) {
+        return {
+          code: 200,
+          data: searchWorks,
+          message: "Search Work successful",
+        };
+      } else {
+        return {
+          code: 404,
+          message: "未找到相关工作信息",
         };
       }
     },
