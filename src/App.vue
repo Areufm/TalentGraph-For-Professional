@@ -8,4 +8,9 @@ import { RouterView } from "vue-router";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+#app {
+  min-height: 700px;
+  min-width: 1100px;
+}
+</style>
