@@ -15,7 +15,6 @@
     "element-china-area-data": "^6.1.0",
     "element-plus": "^2.8.7",
     "mockjs": "^1.1.0",
-    "naive-ui": "^2.38.1",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "relation-graph": "^2.1.38",
