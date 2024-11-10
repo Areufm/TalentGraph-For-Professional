@@ -18,7 +18,7 @@
       </div>
       <div class="form">
         <el-form :model="userInfo" label-width="auto" style="width: 100%">
-          <div v-if="active === 0" style="width: 70%; margin: 0 auto">
+          <div v-if="active === 0" style="width: 90%; margin: 0 auto">
             <el-upload
               class="upload-demo"
               drag
@@ -37,32 +37,24 @@
               </template>
             </el-upload>
           </div>
-          <div v-if="active === 1" style="width: 70%; margin: 0 auto">
-            <el-form-item label="姓名" style="text-align: center">
-              <el-input
-                v-model="userInfo.name"
-                clearable
-                style="margin: 0 auto"
-              />
+          <div v-if="active === 1" style="width: 90%; margin: 0 auto">
+            <el-form-item label="姓名" style="width: 300px">
+              <el-input v-model="userInfo.name" clearable />
             </el-form-item>
-            <el-form-item label="年龄">
-              <el-input
-                v-model="userInfo.age"
-                type="number"
-                style="margin: 0 10px"
-              />
+            <el-form-item label="年龄" style="width: 300px">
+              <el-input v-model="userInfo.age" type="number" />
             </el-form-item>
-            <el-form-item label="电话号码">
+            <el-form-item label="电话号码" style="width: 300px">
               <el-input v-model="userInfo.phone" clearable />
             </el-form-item>
           </div>
-          <div v-if="active === 2" style="width: 70%; margin: 0 auto">
-            <el-form-item label="邮箱">
+          <div v-if="active === 2" style="width: 90%; margin: 0 auto">
+            <el-form-item label="邮箱" style="width: 300px">
               <el-input v-model="userInfo.email" clearable />
             </el-form-item>
-            <el-form-item label="地区">
+            <el-form-item label="地区" style="width: 300px">
               <el-cascader
-                style="width: 500px"
+                style="width: 300px"
                 placeholder="请选择求职地区"
                 size="default"
                 :options="regionData"
@@ -71,7 +63,7 @@
               >
               </el-cascader>
             </el-form-item>
-            <el-form-item label="学历">
+            <el-form-item label="学历" style="width: 300px">
               <el-select
                 v-model="userInfo.education"
                 placeholder="请选择你的学历"
@@ -85,12 +77,12 @@
           </div>
           <div
             v-if="active === 3"
-            style="width: 70%; margin: 0 auto; max-height: 350px"
+            style="width: 100%; margin: 0 auto; max-height: 350px"
           >
-            <el-form-item label="求职岗位">
+            <el-form-item label="求职岗位" style="width: 300px">
               <SelectWork />
             </el-form-item>
-            <el-form-item label="技能点">
+            <el-form-item label="技能点" style="width: 300px">
               <el-input
                 v-model="skillString"
                 placeholder="请用英文逗号,分隔开"
@@ -101,7 +93,7 @@
             <el-form-item label="个人信息描述">
               <el-input
                 v-model="userInfo.info"
-                :autosize="{ minRows: 5, maxRows: 11 }"
+                :autosize="{ minRows: 3, maxRows: 5 }"
                 type="textarea"
                 placeholder="请输入你的个人信息"
                 clearable
@@ -136,7 +128,6 @@ import { ref, computed } from "vue";
 import SelectWork from "@/components/SelectWork.vue";
 import { UploadFilled } from "@element-plus/icons-vue";
 import { regionData } from "element-china-area-data";
-// import { ElNotification } from "element-plus";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/store/auth";
 import { getUserInfoByToken } from "@/api/user";
@@ -240,9 +231,11 @@ const beforeUpload = (file: File) => {
 }
 
 .container {
-  /* margin-top: 50px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   background: linear-gradient(
     to bottom,
     rgba(192, 230, 245, 0.818) 2%,
@@ -254,15 +247,10 @@ const beforeUpload = (file: File) => {
   );
 
   .card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70vw;
-    height: 60vh;
+    width: 800px;
+    height: 400px;
     padding: 30px;
     border-radius: 30px;
-    /* background: #fef6f6aa; */
     box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
     align-items: center;
     justify-content: center;
@@ -276,7 +264,6 @@ const beforeUpload = (file: File) => {
       align-items: center;
       justify-content: center;
       text-align: center;
-      /* max-height: 500px; */
     }
   }
 }
