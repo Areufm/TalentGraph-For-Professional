@@ -4,60 +4,47 @@
       <div class="pic-404">
         <img
           class="pic-404__parent"
-          src="../../assets/404_images/404.png"
+          src="../../assets/img/404_images/404.png"
           alt="404"
         />
         <img
           class="pic-404__child left"
-          src="../../assets/404_images/404_cloud.png"
+          src="../../assets/img/404_images/404_cloud.png"
           alt="404"
         />
         <img
           class="pic-404__child mid"
-          src="../../assets/404_images/404_cloud.png"
+          src="../../assets/img/404_images/404_cloud.png"
           alt="404"
         />
         <img
           class="pic-404__child right"
-          src="../../assets/404_images/404_cloud.png"
+          src="../../assets/img/404_images/404_cloud.png"
           alt="404"
         />
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
-        <div class="bullshit__info">
-          All rights reserved
-          <a
-            style="color: #20a0ff"
-            href="https://wallstreetcn.com"
-            target="_blank"
-            >wallstreetcn</a
-          >
+
+        <div class="bullshit__headline">
+          网站管理员说，你不能进入这个页面...
         </div>
-        <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">
-          Please check that the URL you entered is correct, or click the button
-          below to return to the homepage.
+          请检查您输入的网址是否正确，或单击下面的按钮返回到主页。
         </div>
-        <a href="/" class="bullshit__return-home">Back to home</a>
+        <a href="/" class="bullshit__return-home">返回主页</a>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { computed } from "vue";
-
-const message = computed(() => {
-  return "The webmaster said that you can not enter this page...";
-});
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss" scoped>
 .wscn-http404-container {
   transform: translate(-50%, -50%);
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
 }
 
@@ -271,5 +258,9 @@ const message = computed(() => {
       }
     }
   }
+}
+
+.bullshit__return-home {
+  text-decoration: none;
 }
 </style>
