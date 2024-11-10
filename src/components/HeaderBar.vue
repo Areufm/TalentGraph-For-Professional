@@ -269,8 +269,9 @@ const logout = () => {
 .layout-header {
   background: rgb(98, 145, 217);
   width: 100%;
+  min-width: 1350px;
   height: 60px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
