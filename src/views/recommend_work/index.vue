@@ -1,16 +1,13 @@
 ﻿<template>
   <div class="container">
+    <!-- 上方信息 -->
     <div class="top">
-      <div style="display: flex; align-items: center">
+      <div style="display: flex; align-items: center; width: 300px">
         <el-icon color=" rgba(98,145,217)" size="28px"><StarFilled /></el-icon>
         <h2>求职岗位： {{ recommendWork }}</h2>
       </div>
       <div class="sort">
         <p style="font-size: 17px; font-weight: bold">请选择推荐方式:</p>
-        <!-- <el-button type="primary" style="margin: auto 20px">名企优先</el-button>
-        <el-button type="primary" style="margin: auto 20px">薪资优先</el-button>
-        <el-button type="primary" style="margin: auto 20px">同城优先</el-button>
-        <el-button type="primary" style="margin: auto 20px">技能优先</el-button> -->
         <sort-button
           type="primary"
           style="margin: auto 20px"
@@ -36,132 +33,10 @@
           >同城优先</sort-button
         >
       </div>
-      <!-- 知识图谱节点说明
-      <div style="display: flex; margin-left: auto;">
-        <p class="title_job">岗位</p>
-        <p class="title_salary">薪资</p>
-        <p class="title_region">地区</p>
-        <p class="title_skill">技能</p>
-        <p class="title_company">公司</p>
-      </div> -->
     </div>
-    <!-- 职位具体信息 -->
-    <el-drawer
-      v-model="drawer"
-      direction="rtl"
-      size="60%"
-      style="
-        background: linear-gradient(
-          to bottom,
-          rgba(192, 230, 245) 2%,
-          rgba(188, 228, 244) 8%,
-          rgb(211, 238, 248) 15%,
-          rgb(221, 239, 245) 20%,
-          rgb(225, 238, 242) 40%,
-          white
-        );
-      "
-    >
-      <template #header>
-        <h1 class="job-title">{{ currentJob.title }}</h1>
-      </template>
-      <template #default>
-        <!-- <Info /> -->
-        <div class="Info-container">
-          <div class="job-header">
-            <div style="display: flex; align-items: center">
-              <img
-                :src="currentJob.logo ?? ''"
-                alt=""
-                style="
-                  border-radius: 50%;
-                  width: 50px;
-                  height: 50px;
-                  margin-right: 15px;
-                "
-              />
-              <p class="company-name">{{ currentJob.company }}</p>
-            </div>
-            <div class="job-details">
-              <p style="color: red">薪资范围： {{ currentJob.salary }}</p>
-              <p>
-                工作地点： {{ currentJob.province }} - {{ currentJob.city }} -
-                {{ currentJob.district }} -
-                {{ currentJob.address }}
-              </p>
-
-              <p>公司福利： {{ currentJob.info }}</p>
-            </div>
-          </div>
-
-          <div class="job-card">
-            <div class="job-info">
-              <h2 v-if="currentJob.major && currentJob.major.length > 0">
-                专业方向
-              </h2>
-              <ul
-                v-for="(majorInfo, i) in currentJob.major?.slice(0, 5)"
-                :key="i"
-              >
-                <li>{{ majorInfo }}</li>
-              </ul>
-              <h2>要求和技能</h2>
-
-              <div class="flex">
-                <p
-                  class="job-description-card"
-                  v-for="(keyword, i) in currentJob.skill?.slice(0, 5)"
-                  :key="i"
-                >
-                  {{ keyword }}
-                </p>
-              </div>
-              <h2>职位描述</h2>
-              <p style="text-indent: 32px">
-                {{ currentJob.description }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </template>
-      <template #footer>
-        <div style="display: flex">
-          <p style="display: flex; align-items: center">
-            推荐评价：
-            <el-rate
-              v-model="rateValue"
-              :texts="['不满意', '一般', '还行', '很棒', '非常满意']"
-              show-text
-            />
-          </p>
-          <div style="margin-left: auto; display: flex; align-items: center">
-            <!-- <el-button @click="cancelClick">取消</el-button> -->
-
-            <button class="send-button" @click="confirmClick">
-              <div class="svg-wrapper-1">
-                <div class="svg-wrapper">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path
-                      fill="currentColor"
-                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-              <span>投递简历</span>
-            </button>
-          </div>
-          <!-- <el-button type="primary" @click="confirmClick">confirm</el-button> -->
-        </div>
-      </template>
-    </el-drawer>
+    <!-- 卡片和图谱 -->
     <div class="some">
+      <!-- 推荐卡片 -->
       <div class="left">
         <div
           class="card"
@@ -224,6 +99,7 @@
           />
         </div>
       </div>
+      <!-- 知识图谱 -->
       <div class="right">
         <Relationship :relationInfo="relationInfo" />
         <div style="position: absolute; bottom: 0; left: 0">
@@ -236,6 +112,122 @@
       </div>
     </div>
   </div>
+  <!-- 职位具体信息弹窗 -->
+  <el-drawer
+    v-model="drawer"
+    direction="rtl"
+    size="60%"
+    style="
+      background: linear-gradient(
+        to bottom,
+        rgba(192, 230, 245) 2%,
+        rgba(188, 228, 244) 8%,
+        rgb(211, 238, 248) 15%,
+        rgb(221, 239, 245) 20%,
+        rgb(225, 238, 242) 40%,
+        white
+      );
+    "
+  >
+    <template #header>
+      <h1 class="job-title">{{ currentJob.title }}</h1>
+    </template>
+    <template #default>
+      <!-- <Info /> -->
+      <div class="Info-container">
+        <div class="job-header">
+          <div style="display: flex; align-items: center">
+            <img
+              :src="currentJob.logo ?? ''"
+              alt=""
+              style="
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                margin-right: 15px;
+              "
+            />
+            <p class="company-name">{{ currentJob.company }}</p>
+          </div>
+          <div class="job-details">
+            <p style="color: red">薪资范围： {{ currentJob.salary }}</p>
+            <p>
+              工作地点： {{ currentJob.province }} - {{ currentJob.city }} -
+              {{ currentJob.district }} -
+              {{ currentJob.address }}
+            </p>
+
+            <p>公司福利： {{ currentJob.info }}</p>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <div class="job-info">
+            <h2 v-if="currentJob.major && currentJob.major.length > 0">
+              专业方向
+            </h2>
+            <ul
+              v-for="(majorInfo, i) in currentJob.major?.slice(0, 5)"
+              :key="i"
+            >
+              <li>{{ majorInfo }}</li>
+            </ul>
+            <h2>要求和技能</h2>
+
+            <div class="flex">
+              <p
+                class="job-description-card"
+                v-for="(keyword, i) in currentJob.skill?.slice(0, 5)"
+                :key="i"
+              >
+                {{ keyword }}
+              </p>
+            </div>
+            <h2>职位描述</h2>
+            <p style="text-indent: 32px">
+              {{ currentJob.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template #footer>
+      <div style="display: flex">
+        <p style="display: flex; align-items: center">
+          推荐评价：
+          <el-rate
+            v-model="rateValue"
+            :texts="['不满意', '一般', '还行', '很棒', '非常满意']"
+            show-text
+          />
+        </p>
+        <div style="margin-left: auto; display: flex; align-items: center">
+          <!-- <el-button @click="cancelClick">取消</el-button> -->
+
+          <button class="send-button" @click="confirmClick">
+            <div class="svg-wrapper-1">
+              <div class="svg-wrapper">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z"></path>
+                  <path
+                    fill="currentColor"
+                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <span>投递简历</span>
+          </button>
+        </div>
+        <!-- <el-button type="primary" @click="confirmClick">confirm</el-button> -->
+      </div>
+    </template>
+  </el-drawer>
 </template>
 
 <script lang="ts" setup>
@@ -7217,6 +7209,7 @@ const relationData_salary = ref([
 }
 
 sort-button {
+  cursor: pointer;
   position: relative;
   padding: 5px 10px;
   border-radius: 7px;
@@ -7304,7 +7297,9 @@ sort-button {
 }
 
 .sort {
+  margin-left: 10px;
   display: flex;
+  align-items: center;
 }
 
 .some {
