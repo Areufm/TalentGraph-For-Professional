@@ -14,7 +14,7 @@ export interface WorkInfo {
   address?: string | null; // 地址
   major?: string[] | null; // 专业要求
   neo4j: number; // neo4j图谱信息
-  company?: string | null; // 公司名称
-  logo?: string | null; // 公司logo
+  company: string; // 公司名称
+  logo: string; // 公司logo
   match_value?: number | null; // 匹配值
 }
