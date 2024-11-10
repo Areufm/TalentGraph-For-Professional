@@ -1,23 +1,24 @@
 ﻿<template>
   <div v-if="currentJob" class="container">
     <div class="job-header">
-      <h1 class="job-title">{{ currentJob.title }}</h1>
-
-      <div style="display: flex; align-items: center">
-        <img
-          :src="currentJob.logo"
-          alt=""
-          style="
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-          "
-        />
-        <p class="company-name">{{ currentJob.company }}</p>
+      <div>
+        <h1 class="job-title">{{ currentJob.title }}</h1>
+        <h2 style="color: red">薪资范围： {{ currentJob.salary }}</h2>
       </div>
       <div class="job-details">
-        <p style="color: red">薪资范围： {{ currentJob.salary }}</p>
+        <div style="display: flex; align-items: center">
+          <img
+            :src="currentJob?.logo || undefined"
+            alt=""
+            style="
+              border-radius: 50%;
+              width: 40px;
+              height: 40px;
+              margin-right: 15px;
+            "
+          />
+          <p class="company-name">{{ currentJob.company }}</p>
+        </div>
         <p>
           工作地点： {{ currentJob.province }} - {{ currentJob.city }} -
           {{ currentJob.district }} -
@@ -33,32 +34,34 @@
             show-text
           />
         </p>
-      </div>
-      <button class="send-button">
-        <div class="svg-wrapper-1">
-          <div class="svg-wrapper">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-            >
-              <path fill="none" d="M0 0h24v24H0z"></path>
-              <path
-                fill="currentColor"
-                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-              ></path>
-            </svg>
+        <button class="send-button">
+          <div class="svg-wrapper-1">
+            <div class="svg-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path
+                  fill="currentColor"
+                  d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                ></path>
+              </svg>
+            </div>
           </div>
-        </div>
-        <span>投递简历</span>
-      </button>
+          <span>投递简历</span>
+        </button>
+      </div>
     </div>
 
     <div class="job-card">
       <div class="job-info">
-        <h2 v-if="currentJob.major.length > 0">专业方向</h2>
-        <ul v-for="(majorInfo, i) in currentJob.major.slice(0, 5)" :key="i">
+        <h2 v-if="currentJob.major && currentJob?.major?.length > 0">
+          专业方向
+        </h2>
+        <ul v-for="(majorInfo, i) in currentJob?.major?.slice(0, 5)" :key="i">
           <li>{{ majorInfo }}</li>
         </ul>
         <h2>要求和技能</h2>
@@ -66,7 +69,7 @@
         <div class="flex">
           <p
             class="job-description-card"
-            v-for="(keyword, i) in currentJob.skill.slice(0, 5)"
+            v-for="(keyword, i) in currentJob?.skill?.slice(0, 5)"
             :key="i"
           >
             {{ keyword }}
@@ -80,22 +83,26 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted, onBeforeMount } from "vue";
+import { ref, onBeforeMount } from "vue";
+import { useRoute } from "vue-router";
+import { getWorkInfo } from "@/api/work";
+import { WorkInfo } from "@/types/work";
 
-const rateValue = ref();
-
+const rateValue = ref(); // 评分
 const route = useRoute();
-let currentJob = ref<any>();
+const currentJob = ref<WorkInfo>();
 
+// 获取工作详细信息
 const fetchWorkInfo = async (neo4j: number) => {
   try {
     const res = await getWorkInfo(neo4j);
     console.log("fetchData res--->", res);
-
-    // 确保返回的结果是有效的
-    currentJob.value = res.data; // 或者根据具体API返回结构调整
+    currentJob.value = res.data;
+    if (currentJob.value && currentJob.value.title) {
+      document.title = currentJob.value.title + "工作详情-职业猫";
+    }
   } catch (error) {
-    console.error("请求失败：", error); // 打印错误信息
+    console.error("请求失败：", error);
   }
 };
 
@@ -105,30 +112,11 @@ onBeforeMount(() => {
     fetchWorkInfo(neo4j);
   }
 });
-
-import { useJobStore } from "@/store/job";
-import { storeToRefs } from "pinia";
-import { useRoute } from "vue-router";
-import { getWorkInfo } from "@/api/work";
-import { WorkInfo } from "@/types/work";
-
-const jobStore = useJobStore();
-
-// const currentJob = computed(() => jobStore.getCurrentJob);
 </script>
 
 <style scoped lang="scss">
 .container {
-  margin: 0 auto;
-  /* background: linear-gradient(
-    to bottom,
-    rgb(192, 230, 245),
-    rgb(188, 228, 244),
-    rgb(211, 238, 248),
-    rgb(221, 239, 245),
-    rgb(225, 238, 242),
-    white
-  ); */
+  padding: 50px;
   background: linear-gradient(
     to bottom,
     rgba(192, 230, 245, 0.818) 2%,
@@ -138,18 +126,21 @@ const jobStore = useJobStore();
     rgb(225, 238, 242) 40%,
     white
   );
-  /* padding: 50px; */
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
 }
 
 .job-header {
-  width: 45vw;
-  margin: 60px auto 20px 50px;
+  flex: 1;
+  height: 80%;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .job-title {
@@ -165,6 +156,10 @@ const jobStore = useJobStore();
 
 .job-details {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 
   p {
     margin: 0;
@@ -176,17 +171,15 @@ const jobStore = useJobStore();
 .job-card {
   align-items: center;
   justify-content: center;
-  width: 50vw;
-  margin: 0 50px 0 auto;
+  width: 700px;
+  height: 550px;
 }
 
 .job-info {
-  /* background-color: white; */
-  border: 1px rgb(181, 178, 178) solid;
   border-radius: 30px;
   box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5);
   padding: 40px 50px;
-  height: 70vh;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -215,11 +208,16 @@ const jobStore = useJobStore();
   display: inline-block;
   padding: 5px 15px;
   font-size: 13px;
+
+  &:nth-child(1) {
+    margin-left: 0;
+  }
 }
 
 .send-button {
+  width: 115px;
   font-family: inherit;
-  font-size: 17px;
+  font-size: 15px;
   background: skyblue;
   color: white;
   padding: 0.5em 0.7em;
