@@ -1,9 +1,7 @@
 ﻿<template>
-  <h1 style="position: absolute; top: 7%; left: 10%; color: royalblue">
-    欢迎使用职业猫CareerCat用户端
-  </h1>
   <div class="login">
     <div class="left">
+      <h1 style="color: royalblue">欢迎使用职业猫CareerCat用户端</h1>
       <img :src="loginImg" alt="" style="" />
     </div>
     <div class="right">
@@ -35,10 +33,19 @@
           </el-icon>
         </label>
 
-        <button class="submit" type="submit">登录</button>
-
-        <p class="signin">暂时没有账户? <a href="/register">去注册</a></p>
-        <p class="signin">暂不注册 <a href="/">返回首页</a></p>
+        <div
+          style="
+            width: 100%;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          "
+        >
+          <button class="submit" type="submit">登录</button>
+          <p class="signin">暂时没有账户? <a href="/register">去注册</a></p>
+          <p class="signin">暂不注册 <a href="/">返回首页</a></p>
+        </div>
       </form>
     </div>
   </div>
@@ -52,8 +59,6 @@ import { validUsername } from "@/utils/validate";
 import { useAuthStore } from "@/store/auth";
 import { login } from "@/api/user";
 import { storage } from "@/utils/storage";
-import { ElNotification, ElMessage } from "element-plus";
-
 const authStore = useAuthStore();
 
 const validateUsername = (rule: any, value: string, callback: Function) => {
@@ -98,7 +103,7 @@ const togglePassword = () => {
 
 // 处理登录
 const handleLogin = () => {
-  console.log("Loginform:", LoginForm.value);
+  console.log("LoginForm:", LoginForm.value);
   login(LoginForm.value)
     .then((res) => {
       const { data } = res; //data是后端返回的数据
@@ -124,13 +129,14 @@ const handleLogin = () => {
 .login {
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  top: 20%;
-  left: 10%;
   align-items: center;
 
   .left {
-    width: 50%;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: transparent;
 
     img {
@@ -141,15 +147,17 @@ const handleLogin = () => {
   }
 
   .right {
-    width: 50%;
+    flex: 2;
   }
 
   .form {
     display: flex;
-    width: 100%;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
-    max-width: 350px;
+    width: 400px;
+    height: 450px;
+    min-width: 400px;
     background-color: #ffffff;
     padding: 30px;
     border: rgba(88, 87, 87, 0.822) solid 2px;
@@ -166,7 +174,7 @@ const handleLogin = () => {
       }
 
       .input {
-        width: 95%;
+        width: 100%;
         padding: 10px 10px 20px 10px;
         outline: 0;
         border: 1px solid rgba(105, 105, 105, 0.397);
@@ -201,6 +209,7 @@ const handleLogin = () => {
     }
 
     .submit {
+      width: 100%;
       border: none;
       outline: none;
       background-color: royalblue;
