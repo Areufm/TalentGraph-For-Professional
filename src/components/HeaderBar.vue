@@ -41,7 +41,7 @@
           <el-cascader
             placeholder="请选择地区"
             size="default"
-            :options="regionData"
+            :options="regionOptions"
             v-model="selectedOptions"
             @change=""
             style="display: flex"
@@ -58,11 +58,13 @@
           </template>
         </el-dialog>
       </div>
-      <a href="/" class="header_left_text">首页</a>
-      <a href="/recommend" class="header_left_text">推荐岗位</a>
-      <a href="/research" class="header_left_text">搜索岗位</a>
-      <!-- <a href="/form" class="header_left_text">在线表单</a> -->
-      <!-- <button @click="changeLogin">切换登录状态</button> -->
+      <router-link to="/home" class="header_left_text">首页</router-link>
+      <router-link to="/recommend" class="header_left_text"
+        >推荐岗位</router-link
+      >
+      <router-link to="/research" class="header_left_text"
+        >搜索岗位</router-link
+      >
     </div>
     <div v-if="isLogin" class="header_right">
       <el-popover
@@ -177,7 +179,10 @@ import avatarImg from "@/assets/img/xue.jpg";
 import { ref, computed, onMounted, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { regionData } from "element-china-area-data";
+import type { CascaderOption } from "element-plus";
 import { useAuthStore } from "@/store/auth";
+
+const regionOptions = regionData as CascaderOption[];
 import { UploadFilled } from "@element-plus/icons-vue";
 import SelectArea from "./SelectArea.vue";
 import { storeToRefs } from "pinia";
