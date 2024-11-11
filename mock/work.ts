@@ -603,7 +603,7 @@ export default [
       const url = new URL(req.url, "http://localhost");
       const neo4j = url.searchParams.get("neo4j");
       const workInfo = options.allWorks.find(
-        (work) => work.neo4j === Number(neo4j)
+        (work) => work?.neo4j === Number(neo4j)
       );
       // 如果找到对应数据，返回该数据，否则返回错误信息
       if (workInfo) {
@@ -628,7 +628,7 @@ export default [
       const url = new URL(req.url, "http://localhost");
       const query = url.searchParams.get("query") as string;
       const searchWorks = options.allWorks.filter((work) => {
-        return work.title.includes(query);
+        return work?.title?.includes(query);
       });
       if (searchWorks.length > 0) {
         return {
