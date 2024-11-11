@@ -7272,8 +7272,8 @@ sort-button {
 }
 
 .container {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   margin: 0 auto;
   background-color: #fff;
   padding: 0 30px;
@@ -7306,7 +7306,7 @@ sort-button {
   display: flex;
   flex-grow: 1;
   width: 100%;
-  margin: 10px 0 0 0;
+  margin:  0;
 }
 
 .left,
@@ -7319,6 +7319,7 @@ sort-button {
   flex-direction: column;
   width: 300px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .right {
