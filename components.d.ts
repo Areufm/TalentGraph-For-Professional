@@ -36,7 +36,6 @@ declare module 'vue' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     HeaderBar: typeof import('./src/components/HeaderBar.vue')['default']
-    HotCompany: typeof import('./src/components/HotCompany.vue')['default']
     IEpHide: typeof import('~icons/ep/hide')['default']
     IEpView: typeof import('~icons/ep/view')['default']
     Radar: typeof import('./src/components/Chart/Radar.vue')['default']
