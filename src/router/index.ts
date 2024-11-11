@@ -49,7 +49,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: { title: "个人信息" },
       },
       {
-        path: "/research/query=:query",
+        path: "/research/:query?",
         name: "Research",
         component: () => import("@/views/research/index.vue"),
         meta: { title: "搜索结果" },
