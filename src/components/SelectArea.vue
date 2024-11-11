@@ -2,9 +2,9 @@
   <el-cascader
     placeholder="请选择地区"
     size="default"
-    :options="regionData"
+    :options="regionOptions"
     v-model="selectedOptions"
-    @change="handleChange"
+    @change=""
   >
   </el-cascader>
 </template>
@@ -12,7 +12,9 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import { regionData } from "element-china-area-data";
+import type { CascaderOption } from "element-plus";
 
+const regionOptions = regionData as CascaderOption[];
 const selectedOptions = ref(["33", "3301", "330106"]); // 初始化选中值
 
 function findLabelByValue(data: any, value: any): string {
