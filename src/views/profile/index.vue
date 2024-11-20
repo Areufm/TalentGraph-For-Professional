@@ -156,6 +156,13 @@
       </div>
       <div class="item-card">
         <h3>技能点</h3>
+        <!-- 如果没有技能点，显示一个添加按钮 -->
+        <div v-if="!formData.skill?.length" class="list-form">
+          <el-button type="primary" @click="formData.skill.push('')">
+            添加技能点
+          </el-button>
+        </div>
+        <!-- 有技能点时的列表渲染 -->
         <div
           v-for="(item, index) in formData.skill"
           :key="index"
@@ -188,7 +195,7 @@
             </el-button>
             <!-- 删除技能点 -->
             <el-button
-              v-if="index !== 0"
+              v-if="formData.skill.length >= 1"
               type="danger"
               @click="formData.skill.splice(index, 1)"
             >
@@ -203,7 +210,9 @@
       </div>
     </div>
     <div class="right">
-      <Text />
+      <div>
+        <Text />
+      </div>
       <div class="item-card">
         <div style="display: flex; justify-content: space-between">
           <h4>上传简历附件</h4>
@@ -321,14 +330,18 @@
           />
         </div>
       </div>
-      <div class="item-card" style="height: 400px; padding: 5px 0">
+      <div class="item-card">
         <!-- <h4>能力数据图</h4> -->
-        <Radar />
+        <div style="height: 400px; padding: 5px 0">
+          <Radar />
+        </div>
         <!-- <China /> -->
       </div>
-      <div class="item-card" style="height: 400px; padding: 0 0 20px 0">
+      <div class="item-card">
         <!-- <Radar /> -->
-        <China />
+        <div style="height: 400px; padding: 0 0 20px 0">
+          <China />
+        </div>
       </div>
       <div class="item-card">
         <h4>评价推荐结果</h4>
@@ -756,7 +769,6 @@ const submitForm = () => {
 
 <style scoped lang="scss">
 .container {
-  margin-top: 50px;
   display: flex;
   background: linear-gradient(
     to bottom,
@@ -769,12 +781,13 @@ const submitForm = () => {
   );
   height: 100%;
   width: 100%;
+  overflow: auto;
+  padding: 0 100px;
 
   .left {
     display: flex;
     flex-direction: column;
     flex: 2;
-    margin: 0 0 0 100px;
     padding: 10px;
   }
 
@@ -782,7 +795,6 @@ const submitForm = () => {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin: 0 100px 0 0;
     padding: 10px;
   }
 
