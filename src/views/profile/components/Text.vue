@@ -40,7 +40,8 @@ onMounted(() => {
 <style scoped lang="scss">
 .card {
   margin: 5px 0;
-  height: 250px;
+  height: 220px;
+  // min-height: 220px;
   width: 100%;
   border: 1px rgb(181, 178, 178) solid;
   border-radius: 10px;
