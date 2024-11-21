@@ -8,6 +8,8 @@
 import { ref, nextTick, onMounted } from "vue";
 import * as echarts from "echarts";
 import { getChina } from "@/api/chart";
+import china from "@/constant/chinaChange.json";
+import { GeoJSONSourceInput } from "echarts/types/src/coord/geo/geoTypes.js";
 
 interface DataItem {
   name: string;
@@ -22,14 +24,13 @@ interface DataItem {
   };
 }
 
-let dataList = ref<DataItem[]>([]);
-const china = ref();
+const chinaData = ref<DataItem[]>([]);
 let myChart: echarts.ECharts | null = null;
 
 const getChinaData = async () => {
   try {
     const res = await getChina();
-    china.value = res.data;
+    chinaData.value = res.data;
     // 确保获取到地图数据后再初始化
     await initMap();
   } catch (error) {
@@ -38,14 +39,14 @@ const getChinaData = async () => {
 };
 
 const initMap = async () => {
-  if (!china.value) return;
+  if (!chinaData.value) return;
 
   const mapDom = document.querySelector("#mapDom");
   if (!mapDom) return;
 
   myChart = echarts.init(mapDom as HTMLElement);
   // 使用实际的地图数据注册
-  echarts.registerMap("china", china.value);
+  echarts.registerMap("china", china as GeoJSONSourceInput);
 
   const options = {
     title: {
@@ -84,7 +85,7 @@ const initMap = async () => {
         label: {
           show: false,
         },
-        data: dataList.value,
+        data: chinaData.value,
       },
     ],
   };
@@ -92,54 +93,6 @@ const initMap = async () => {
   myChart.setOption(options);
 };
 onMounted(async () => {
-  dataList.value = [
-    { name: "北京", value: 290 },
-    { name: "天津", value: 320 },
-    { name: "河北", value: 240 },
-    { name: "山西", value: 520 },
-    { name: "内蒙古", value: 120 },
-    { name: "辽宁", value: 210 },
-    { name: "吉林", value: 620 },
-    { name: "黑龙江", value: 20 },
-    { name: "上海", value: 220 },
-    { name: "江苏", value: 820 },
-    { name: "浙江", value: 320 },
-    { name: "安徽", value: 520 },
-    { name: "福建", value: 120 },
-    { name: "江西", value: 620 },
-    { name: "山东", value: 920 },
-    { name: "河南", value: 220 },
-    { name: "湖北", value: 720 },
-    { name: "湖南", value: 210 },
-    { name: "广东", value: 20 },
-    { name: "广西", value: 20 },
-    { name: "海南", value: 240 },
-    { name: "重庆", value: 20 },
-    { name: "四川", value: 240 },
-    { name: "贵州", value: 420 },
-    { name: "云南", value: 320 },
-    { name: "西藏", value: 20 },
-    { name: "陕西", value: 240 },
-    { name: "甘肃", value: 920 },
-    { name: "青海", value: 720 },
-    { name: "宁夏", value: 120 },
-    { name: "新疆", value: 420 },
-    { name: "台湾", value: 230 },
-    { name: "香港", value: 420 },
-    { name: "澳门", value: 210 },
-    {
-      name: "南海诸岛",
-      value: 0,
-      itemStyle: {
-        normal: {
-          opacity: 0,
-          label: {
-            show: false,
-          },
-        },
-      },
-    },
-  ];
   // 等待 DOM 更新
   await nextTick();
   // 获取地图数据并初始化
