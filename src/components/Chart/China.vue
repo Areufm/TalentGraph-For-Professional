@@ -4,20 +4,52 @@
     <div id="mapDom" style="width: 100%; height: 100%"></div>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import { ref, nextTick, onMounted } from "vue";
-// import china from "@/assets/china.json";
-import china from "@/constant/chinaChange.json";
 import * as echarts from "echarts";
-let dataList = ref([]);
-const mapEcharts = () => {
-  let initMap = echarts.init(document.querySelector("#mapDom"));
-  echarts.registerMap("china", china);
-  let options = {
+import { getChina } from "@/api/chart";
+
+interface DataItem {
+  name: string;
+  value: number;
+  itemStyle?: {
+    normal: {
+      opacity: number;
+      label: {
+        show: boolean;
+      };
+    };
+  };
+}
+
+let dataList = ref<DataItem[]>([]);
+const china = ref();
+let myChart: echarts.ECharts | null = null;
+
+const getChinaData = async () => {
+  try {
+    const res = await getChina();
+    china.value = res.data;
+    // 确保获取到地图数据后再初始化
+    await initMap();
+  } catch (error) {
+    console.error("获取地图数据失败:", error);
+  }
+};
+
+const initMap = async () => {
+  if (!china.value) return;
+
+  const mapDom = document.querySelector("#mapDom");
+  if (!mapDom) return;
+
+  myChart = echarts.init(mapDom as HTMLElement);
+  // 使用实际的地图数据注册
+  echarts.registerMap("china", china.value);
+
+  const options = {
     title: {
       text: "目标职业分布图",
-      sublink:
-        "http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12",
     },
     tooltip: {
       trigger: "item",
@@ -42,7 +74,6 @@ const mapEcharts = () => {
       calculable: true,
       inRange: {
         color: ["LightSkyBlue", "DodgerBlue", "MediumBlue", "MidnightBlue"],
-        // color: ["lightskyblue", "yellow", "orangered"],
       },
     },
     series: [
@@ -57,9 +88,10 @@ const mapEcharts = () => {
       },
     ],
   };
-  initMap.setOption(options);
+
+  myChart.setOption(options);
 };
-onMounted(() => {
+onMounted(async () => {
   dataList.value = [
     { name: "北京", value: 290 },
     { name: "天津", value: 320 },
@@ -108,57 +140,18 @@ onMounted(() => {
       },
     },
   ];
-  //   dataList.value = [
-  //     { name: "北京市", value: 290 },
-  //     { name: "天津市", value: 320 },
-  //     { name: "河北省", value: 240 },
-  //     { name: "山西省", value: 520 },
-  //     { name: "内蒙古自治区", value: 120 },
-  //     { name: "辽宁省", value: 210 },
-  //     { name: "吉林省", value: 620 },
-  //     { name: "黑龙江省", value: 20 },
-  //     { name: "上海市", value: 220 },
-  //     { name: "江苏省", value: 820 },
-  //     { name: "浙江省", value: 320 },
-  //     { name: "安徽省", value: 520 },
-  //     { name: "福建省", value: 120 },
-  //     { name: "江西省", value: 620 },
-  //     { name: "山东省", value: 920 },
-  //     { name: "河南省", value: 220 },
-  //     { name: "湖北省", value: 720 },
-  //     { name: "湖南省", value: 210 },
-  //     { name: "广东省", value: 20 },
-  //     { name: "广西壮族自治区", value: 20 },
-  //     { name: "海南省", value: 240 },
-  //     { name: "重庆市", value: 20 },
-  //     { name: "四川省", value: 240 },
-  //     { name: "贵州省", value: 420 },
-  //     { name: "云南省", value: 320 },
-  //     { name: "西藏自治区", value: 20 },
-  //     { name: "陕西省", value: 240 },
-  //     { name: "甘肃省", value: 920 },
-  //     { name: "青海省", value: 720 },
-  //     { name: "宁夏回族自治区", value: 120 },
-  //     { name: "新疆维吾尔自治区", value: 420 },
-  //     { name: "台湾省", value: 230 },
-  //     { name: "香港特别行政区", value: 420 },
-  //     { name: "澳门特别行政区", value: 210 },
-  //     {
-  //       name: "南海诸岛",
-  //       value: 0,
-  //       itemStyle: {
-  //         normal: {
-  //           opacity: 0,
-  //           label: {
-  //             show: false,
-  //           },
-  //         },
-  //       },
-  //     },
-  //   ];
-  nextTick(() => {
-    mapEcharts();
-  });
+  // 等待 DOM 更新
+  await nextTick();
+  // 获取地图数据并初始化
+  await getChinaData();
+});
+
+// 组件卸载时清理图表实例
+onUnmounted(() => {
+  if (myChart) {
+    myChart.dispose();
+    myChart = null;
+  }
 });
 </script>
 <style></style>

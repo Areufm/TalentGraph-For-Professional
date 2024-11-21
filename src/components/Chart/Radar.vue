@@ -15,13 +15,28 @@ import { CanvasRenderer } from "echarts/renderers";
 echarts.use([TitleComponent, LegendComponent, RadarChart, CanvasRenderer]);
 
 import { ref, onMounted } from "vue";
+import { getRadar } from "@/api/chart";
 
 const chart = ref();
+const radarData = ref([]);
+let myChart: echarts.ECharts | null = null;
+
+// 获取雷达图数据
+const getRadarData = async () => {
+  const res = await getRadar();
+  radarData.value = res.data;
+};
 
 onMounted(() => {
-  var myChart = echarts.init(chart.value);
-  // 指定图表的配置项和数据
-  let option = {
+  getRadarData();
+});
+
+// 初始化图表配置
+const initChart = () => {
+  if (!radarData.value.length) return;
+
+  myChart = echarts.init(chart.value);
+  const option = {
     title: {
       text: "能力数据图",
     },
@@ -35,29 +50,34 @@ onMounted(() => {
         { name: "能力评分", max: 1 },
         { name: "学历评分", max: 1 },
         { name: "地区评分", max: 1 },
-        // { name: "Customer Support", max: 38000 },
-        // { name: "Development", max: 52000 },
-        // { name: "Marketing", max: 25000 },
       ],
     },
     series: [
       {
         name: "Budget vs spending",
         type: "radar",
-        data: [
-          {
-            value: [0.7, 0.8, 0.6],
-            name: "个人值",
-          },
-          {
-            value: [0.65, 0.5, 0.4],
-            name: "平均值",
-          },
-        ],
+        data: radarData.value,
       },
     ],
   };
-  // 使用刚指定的配置项和数据显示图表。
   myChart.setOption(option);
+};
+// 监听数据变化
+watch(
+  radarData,
+  () => {
+    if (radarData.value.length > 0) {
+      initChart();
+    }
+  },
+  { deep: true }
+);
+
+// 组件卸载时销毁图表实例
+onUnmounted(() => {
+  if (myChart) {
+    myChart.dispose();
+    myChart = null;
+  }
 });
 </script>

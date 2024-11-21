@@ -661,13 +661,13 @@ const deleteItem = (item: any, index: number) => {
 
 import { reactive, ref, onBeforeMount } from "vue";
 import Radar from "@/components/Chart/Radar.vue";
+import China from "@/components/Chart/China.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import Text from "./components/Text.vue";
 import SelectWork from "@/components/SelectWork.vue";
 import SelectArea from "@/components/SelectArea.vue";
 import Relationship from "./components/Relationship.vue";
 import { Check, Close, Minus, Plus } from "@element-plus/icons-vue";
-import China from "./components/China.vue";
 import { useAuthStore } from "@/store/auth";
 import { storage } from "@/utils/storage";
 import { ElMessage } from "element-plus";

@@ -17,163 +17,15 @@ import RelationGraph, {
   JsonNode,
 } from "relation-graph/vue3";
 import { GraphSourceNode } from "@/types/graph";
+import { getUserGraph } from "@/api/chart";
 
-const demoData = [
-  [
-    {
-      m: {
-        title: "PHP",
-      },
-      n: {
-        id: "[p]1",
-        title: "[P]1",
-      },
-      "type(r)": "技能",
-    },
-    {
-      m: {
-        title: "Java",
-      },
-      n: {
-        id: "[p]1",
-        title: "[P]1",
-      },
-      "type(r)": "技能",
-    },
-    {
-      m: {
-        title: "JS",
-      },
-      n: {
-        id: "[p]1",
-        title: "[P]1",
-      },
-      "type(r)": "技能",
-    },
-    {
-      m: {
-        title: "HTML",
-      },
-      n: {
-        id: "[p]1",
-        title: "[P]1",
-      },
-      "type(r)": "技能",
-    },
-    {
-      m: {
-        title: "CSS",
-      },
-      n: {
-        id: "[p]1",
-        title: "[P]1",
-      },
-      "type(r)": "技能",
-    },
-  ],
-  [
-    {
-      m: {
-        title: "vue",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "Javascript",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "web",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "CSS",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "HTML",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "HTML5",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "React",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "JS",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "小程序",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-    {
-      m: {
-        title: "JQuery",
-      },
-      n: {
-        id: "c4e55fa3-5819-44eb-9694-882a9aa5bce0",
-        title: "前端开发工程师",
-      },
-      "type(r)": "热门技能",
-    },
-  ],
-];
+const graphData = ref([]); // 个人图谱数据
+
+// 获取用户图谱数据
+const getUserGraphData = async () => {
+  const res = await getUserGraph();
+  graphData.value = res.data;
+};
 
 /**
  * 创建一个新的节点
@@ -227,7 +79,6 @@ const transformData = (demoData: GraphSourceNode[][]) => {
           data: {
             isGoodMan: true,
             typeCount: [position],
-            // sexType: "female",
           },
         };
         nodes.push(rootNode);
@@ -299,38 +150,34 @@ const graphOptions: RGOptions = {
 };
 
 const graphRef = ref<RelationGraphComponent>();
-const checked_type = ref("");
 
-const checked_isgoodman = ref("");
-const rel_checkList = ref([
-  "专业",
-  "技能",
-  "公司",
-  "薪资",
-  "学历需求",
-  "包含职位",
-]);
-const all_rel_type = ref([
-  "专业",
-  "技能",
-  "公司",
-  "薪资",
-  "学历需求",
-  "包含职位",
-]);
+// 初始化图谱
+const initGraph = async () => {
+  await getUserGraphData();
+  if (graphData.value.length) {
+    await setGraphData();
+  }
+};
 
 onMounted(() => {
-  setGraphData();
+  initGraph();
 });
 
 const setGraphData = async () => {
-  const transform = transformData(demoData);
+  const transform = transformData(graphData.value);
   console.log(transform);
   const __graph_json_data: RGJsonData = transform;
   const graphInstance = graphRef.value!.getInstance();
   await graphInstance.setJsonData(__graph_json_data);
   await graphInstance.setZoom(50);
 };
+
+// 清理工作
+onUnmounted(() => {
+  if (graphRef.value) {
+    graphRef.value.getInstance().clearGraph();
+  }
+});
 </script>
 
 <style lang="scss" scoped>
