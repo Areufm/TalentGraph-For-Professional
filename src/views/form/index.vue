@@ -57,7 +57,7 @@
                 style="width: 300px"
                 placeholder="请选择求职地区"
                 size="default"
-                :options="regionData"
+                :options="regionOptions"
                 v-model="userInfo.area"
                 @change="handleChange"
               >
@@ -128,11 +128,15 @@ import { ref, computed } from "vue";
 import SelectWork from "@/components/SelectWork.vue";
 import { UploadFilled } from "@element-plus/icons-vue";
 import { regionData } from "element-china-area-data";
+import type { CascaderOption } from "element-plus";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/store/auth";
 import { getUserInfoByToken } from "@/api/user";
 import { BaseResponse, UserInfoResponse } from "@/types/mock";
 import { User } from "@/types/user";
+import type { UploadFile, UploadFiles } from "element-plus";
+
+const regionOptions = regionData as CascaderOption[];
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -183,7 +187,7 @@ const uploadFile = async (response: any, file: File, fileList: File[]) => {
   const token = authStore.getToken();
   console.log("token--->", token);
 
-  const res: UserInfoResponse = await getUserInfoByToken(token);
+  const res: any = await getUserInfoByToken(token);
   console.log("getUserInfoByToken res--->", res);
 
   // 如果响应码表示上传成功
@@ -214,8 +218,12 @@ const uploadFile = async (response: any, file: File, fileList: File[]) => {
   }
 };
 
-const simulateSuccess = (file: File, fileList: File[]) => {
-  uploadFile(null, file, fileList);
+const simulateSuccess = (
+  response: any,
+  file: UploadFile,
+  uploadFiles: UploadFiles
+) => {
+  uploadFile(null, file as unknown as File, uploadFiles as unknown as File[]);
 };
 
 const beforeUpload = (file: File) => {

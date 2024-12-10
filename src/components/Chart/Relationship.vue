@@ -2013,7 +2013,7 @@ onMounted(() => {
 const setGraphData = async () => {
   const transform = transformData(demoData, userData);
   console.log(transform);
-  const __graph_json_data: RGJsonData = transform;
+  const __graph_json_data: RGJsonData = transform as RGJsonData;
   const graphInstance = graphRef.value!.getInstance();
   await graphInstance.setJsonData(__graph_json_data);
   //   await graphInstance.setZoom(80);
