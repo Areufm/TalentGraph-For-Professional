@@ -136,11 +136,7 @@
                 </div>
               </template>
             </el-upload>
-            <img
-              src="../assets/resume-online2.png"
-              alt="在线填写简历"
-              style="width: 250px"
-            />
+            <img :src="resumeOnline" alt="在线填写简历" style="width: 250px" />
           </div>
           <div class="resume_dialog_btn">
             <el-button type="primary" round>上传简历附件</el-button>
@@ -175,6 +171,7 @@
 import logo from "@/assets/img/Header/logo.png";
 import fileUpload from "@/assets/img/Header/file-upload.png";
 import fileOnline from "@/assets/img/Header/file-online.png";
+import resumeOnline from "@/assets/img/Header/resume-online.png";
 import avatarImg from "@/assets/img/xue.jpg";
 import { ref, computed, onMounted, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";

@@ -4,7 +4,7 @@
   </h1>
   <div class="register">
     <div class="left">
-      <img src="../../assets/login.png" alt="" style="" />
+      <img src="../../assets/img/login.png" alt="" style="" />
     </div>
     <div class="right">
       <form
