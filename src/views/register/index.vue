@@ -1,177 +1,107 @@
 ﻿<template>
-  <h1 style="position: absolute; top: 7%; left: 10%; color: royalblue">
-    欢迎注册职业猫CareerCat用户端
-  </h1>
   <div class="register">
     <div class="left">
-      <img src="../../assets/img/login.png" alt="" style="" />
+      <h1 style="color: royalblue">欢迎注册职业猫CareerCat用户端</h1>
+      <img :src="loginImg" alt="" style="" />
     </div>
     <div class="right">
-      <form
-        class="form"
-        ref="registerForm"
-        :rules="registerRules"
-        :model="registerForm"
-        auto-complete="off"
-        label-position="left"
-      >
+      <form class="form" @submit.prevent="handleRegister">
         <p class="title">Register</p>
         <p class="message">注册职业猫CareerCat</p>
 
         <label>
           <input
             required
-            placeholder=""
             type="text"
+            v-model="RegisterForm.username"
             class="input"
-            :key="passwordType"
-            ref="username"
-            v-model="registerForm.username"
-            name="username"
-            tabindex="1"
-            autocomplete="off"
           />
           <span>用户名</span>
         </label>
 
-        <!-- <label>
-      <input required="" placeholder="" type="email" class="input" />
-      <span>Email</span>
-    </label> -->
-
         <label>
           <input
             required
-            placeholder=""
-            class="input"
-            :key="passwordType"
-            :ref="registerForm.password"
-            v-model="registerForm.password"
             :type="passwordType"
-            name="password"
-            tabindex="2"
-            auto-complete="off"
-            @keyup.enter.native="handleRegister()"
+            v-model="RegisterForm.password"
+            class="input"
           />
           <span>密码</span>
-          <el-icon class="icon-right" @click="showPwd">
+          <el-icon class="icon-right" @click="togglePassword">
             <i-ep-view v-if="isShow" />
             <i-ep-hide v-else />
           </el-icon>
         </label>
+
         <label>
           <input
             required
-            placeholder=""
+            :type="passwordTypeConfirm"
+            v-model="RegisterForm.password_confirm"
             class="input"
-            :key="passwordConfirmType"
-            :ref="registerForm.password_confirm"
-            v-model="registerForm.password_confirm"
-            :type="passwordConfirmType"
-            name="password_confirm"
-            tabindex="3"
-            auto-complete="off"
-            @keyup.enter.native="handleRegister()"
           />
           <span>确认密码</span>
-          <el-icon class="icon-right" @click="showPwd_confirm">
-            <i-ep-view v-if="isShow_confirm" />
+          <el-icon class="icon-right" @click="togglePasswordConfirm">
+            <i-ep-view v-if="isShowConfirm" />
             <i-ep-hide v-else />
           </el-icon>
         </label>
-        <button class="submit" :plain="true" @click="handleRegister">
-          注册
-        </button>
-        <p class="signin">已经有一个账户 ? <a href="/login">去登陆</a></p>
-        <p class="signin">暂不注册 <a href="/">返回首页</a></p>
+
+        <div
+          style="
+            width: 100%;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          "
+        >
+          <button class="submit" type="submit">注册</button>
+          <p class="signin">已有账户? <a href="/login">去登录</a></p>
+          <p class="signin">暂不登录 <a href="/">返回首页</a></p>
+        </div>
       </form>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, watch, nextTick } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { validUsername } from "@/utils/validate";
-import { ElNotification } from "element-plus";
+import loginImg from "@/assets/img/login.png";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-const validateUsername = (rule: any, value: string, callback: Function) => {
-  if (!validUsername(value)) {
-    callback(new Error("请输入正确的用户名"));
-  } else {
-    callback();
-  }
-};
+const router = useRouter();
 
-const validatePassword = (rule: any, value: string, callback: Function) => {
-  if (value.length < 6) {
-    callback(new Error("密码不能少于6位"));
-  } else {
-    callback();
-  }
-};
-
-const validatePasswordConfirm = (
-  rule: any,
-  value: string,
-  callback: Function
-) => {
-  if (registerForm.password !== registerForm.password_confirm) {
-    callback(new Error("两次密码不相同！"));
-  } else {
-    callback();
-  }
-};
-
-const registerForm = reactive({
+const RegisterForm = ref({
   username: "",
   password: "",
   password_confirm: "",
 });
 
-const registerRules = reactive({
-  username: [{ required: true, trigger: "blur", validator: validateUsername }],
-  password: [
-    { required: true, trigger: "change", validator: validatePassword },
-  ],
-  password_confirm: [
-    { required: true, trigger: "blur", validator: validatePasswordConfirm },
-  ],
-});
+const passwordType = ref("password"); // 密码输入框类型
+const passwordTypeConfirm = ref("password"); // 确认密码输入框类型
+const isShow = ref(false); // 是否显示密码
+const isShowConfirm = ref(false); // 是否显示确认密码
 
-const isShow = ref(true);
-const isShow_confirm = ref(true);
-const passwordType = ref("password");
-const passwordConfirmType = ref("password");
-const redirect = ref(undefined);
-const route = useRoute();
-const router = useRouter();
-
-const showPwd = () => {
-  passwordType.value = passwordType.value === "password" ? "" : "password";
+// 切换密码显示/隐藏
+const togglePassword = () => {
   isShow.value = !isShow.value;
-  // nextTick(() => {
-  //   registerForm.password.focus();
-  // });
+  passwordType.value = isShow.value ? "text" : "password";
 };
 
-const showPwd_confirm = () => {
-  if (passwordConfirmType.value === "password") {
-    passwordConfirmType.value = "";
-  } else {
-    passwordConfirmType.value = "password";
-  }
-  isShow_confirm.value = !isShow_confirm.value;
-  // nextTick(() => {
-  //   registerForm.password_confirm.value.focus();
-  // });
+// 切换确认密码显示/隐藏
+const togglePasswordConfirm = () => {
+  isShowConfirm.value = !isShowConfirm.value;
+  passwordTypeConfirm.value = isShowConfirm.value ? "text" : "password";
 };
 
+// 处理注册
 const handleRegister = () => {
   ElNotification({
     title: "注册成功！",
-    message: "This is a success message",
+    message: "恭喜你成功注册",
     type: "success",
+    offset: 50,
   });
   router.push("/login");
 };
@@ -181,13 +111,14 @@ const handleRegister = () => {
 .register {
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  top: 20%;
-  left: 10%;
   align-items: center;
 
   .left {
-    width: 50%;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: transparent;
 
     img {
@@ -198,15 +129,17 @@ const handleRegister = () => {
   }
 
   .right {
-    width: 50%;
+    flex: 2;
   }
 
   .form {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
-    width: 100%;
-    max-width: 350px;
+    width: 400px;
+    height: 450px;
+    min-width: 400px;
     background-color: #ffffff;
     padding: 30px;
     border: rgba(88, 87, 87, 0.822) solid 2px;
@@ -223,7 +156,7 @@ const handleRegister = () => {
       }
 
       .input {
-        width: 95%;
+        width: 100%;
         padding: 10px 10px 20px 10px;
         outline: 0;
         border: 1px solid rgba(105, 105, 105, 0.397);
@@ -258,6 +191,7 @@ const handleRegister = () => {
     }
 
     .submit {
+      width: 100%;
       border: none;
       outline: none;
       background-color: royalblue;
@@ -265,22 +199,12 @@ const handleRegister = () => {
       border-radius: 10px;
       color: #fff;
       font-size: 16px;
-      transform: 0.3s ease;
+      transition: 0.3s ease;
 
       &:hover {
         background-color: rgb(56, 90, 194);
       }
     }
-  }
-
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: #888888;
-    cursor: pointer;
-    user-select: none;
   }
 
   .title {
@@ -318,31 +242,26 @@ const handleRegister = () => {
 
   .message,
   .signin {
-    color: rgba(88, 87, 87, 0.822);
-    font-size: 14px;
+    color: rgba(88, 87, 87, 0.822) !important;
+    font-size: 14px !important;
 
     &.signin {
-      text-align: center;
-      margin: 5px;
+      text-align: center !important;
 
       a {
-        color: royalblue;
+        color: royalblue !important;
 
         &:hover {
-          text-decoration: underline royalblue;
+          text-decoration: underline royalblue !important;
         }
       }
     }
   }
 
   .flex {
-    display: flex;
-    width: 100%;
-    gap: 6px;
-  }
-
-  input[type="password"]::-ms-reveal {
-    display: none;
+    display: flex !important;
+    width: 100% !important;
+    gap: 6px !important;
   }
 
   @keyframes pulse {
