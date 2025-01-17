@@ -2,8 +2,24 @@
   box-sizing: border-box;
   -webkit-user-select: auto;
   user-select: auto;
-  scrollbar-width: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgb(193, 190, 190); // 滑块颜色
+  border-radius: 5px; // 滑块圆角
+}
+
+// 兼容Firefox、IE
+* {
+  scrollbar-width: 10px;
+  scrollbar-base-color: green;
+  scrollbar-track-color: red;
+  scrollbar-arrow-color: blue;
 }
 
 button,

@@ -159,7 +159,7 @@ sort-button {
   width: 100%;
   margin: 0 auto;
   background-color: #fff;
-  padding: 0 30px;
+  padding: 0 30px 10px 30px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   background: linear-gradient(
     to bottom,
@@ -170,6 +170,7 @@ sort-button {
     rgb(225, 238, 242),
     white
   );
+  overflow-y: auto;
 }
 
 .top {
@@ -189,6 +190,7 @@ sort-button {
   display: flex;
   flex-grow: 1;
   width: 100%;
+
   margin: 0;
 }
 
@@ -444,19 +446,4 @@ sort-button {
   to {
     transform: translateY(-0.1em);
   }
-}
-
-::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
-
-::-webkit-scrollbar-track {
-  width: 0px;
-  height: 0px;
-}
-
-::-webkit-scrollbar-thumb {
-  width: 0px;
-  height: 0px;
 }

@@ -3,7 +3,7 @@
     <el-header>
       <HeaderBar />
     </el-header>
-    <el-main class="hide-scrollbar">
+    <el-main>
       <RouterView />
     </el-main>
   </el-container>
