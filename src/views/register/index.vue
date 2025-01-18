@@ -2,6 +2,7 @@
   <div class="register">
     <div class="left">
       <h1 style="color: royalblue">欢迎注册职业猫CareerCat用户端</h1>
+
       <img :src="loginImg" alt="" style="" />
     </div>
     <div class="right">
@@ -109,6 +110,7 @@ const handleRegister = () => {
 
 <style lang="scss" scoped>
 .register {
+  height: 100vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -120,6 +122,12 @@ const handleRegister = () => {
     justify-content: center;
     align-items: center;
     background: transparent;
+
+    h1 {
+      position: absolute;
+      top: 20px;
+      margin-bottom: 20px;
+    }
 
     img {
       width: 100%;

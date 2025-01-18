@@ -127,6 +127,7 @@ const handleLogin = () => {
 
 <style lang="scss" scoped>
 .login {
+  height: 100vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,6 +139,12 @@ const handleLogin = () => {
     justify-content: center;
     align-items: center;
     background: transparent;
+
+    h1 {
+      position: absolute;
+      top: 20px;
+      margin-bottom: 20px;
+    }
 
     img {
       width: 100%;
