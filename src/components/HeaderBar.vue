@@ -72,7 +72,7 @@
         popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px;"
       >
         <template #reference>
-          <p st yle="color: white">简历</p>
+          <p style="color: white; cursor: pointer">简历</p>
         </template>
         <template #default>
           <div class="resume-upload">
@@ -373,11 +373,13 @@ const logout = () => {
   max-width: 300px;
   justify-content: center;
   align-items: center;
+  display: flex;
 
   .card-btn {
     width: 145px;
     height: 160px;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: transparent;
@@ -389,6 +391,7 @@ const logout = () => {
       width: 120px;
       object-fit: cover;
       border-radius: 10px;
+      margin-bottom: 5px;
     }
   }
 }
