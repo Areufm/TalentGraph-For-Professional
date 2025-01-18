@@ -22,7 +22,7 @@
         </div>
         <div style="display: flex; align-items: center">
           <img
-            :src="job?.logo || undefined"
+            v-lazy="job?.logo || undefined"
             alt=""
             style="
               width: 40px;

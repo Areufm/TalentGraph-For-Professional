@@ -77,11 +77,11 @@
         <template #default>
           <div class="resume-upload">
             <button class="card-btn" @click="resumeDialog = true">
-              <img :src="fileUpload" alt="卡片图片1" />
+              <img v-lazy="fileUpload" alt="卡片图片1" />
               附件上传
             </button>
             <button class="card-btn" @click="toResume">
-              <img :src="fileOnline" alt="卡片图片2" />
+              <img v-lazy="fileOnline" alt="卡片图片2" />
               在线填写
             </button>
           </div>
