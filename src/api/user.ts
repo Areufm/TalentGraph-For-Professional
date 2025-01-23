@@ -29,6 +29,13 @@ export const getUserInfoByToken = (accessToken: string) => {
   });
 };
 
+export const getParseUserInfo = () => {
+  return request<any>({
+    url: "/api/getParseUserInfo", // mock接口
+    method: "get",
+  });
+};
+
 /**
  *
  * 重新刷新token信息

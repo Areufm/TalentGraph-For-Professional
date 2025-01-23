@@ -131,7 +131,7 @@ import { regionData } from "element-china-area-data";
 import type { CascaderOption } from "element-plus";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/store/auth";
-import { getUserInfoByToken } from "@/api/user";
+import { getParseUserInfo } from "@/api/user";
 import { BaseResponse, UserInfoResponse } from "@/types/mock";
 import { User } from "@/types/user";
 import type { UploadFile, UploadFiles } from "element-plus";
@@ -166,6 +166,7 @@ const submit = () => {
     offset: 50,
   });
   router.push("/");
+  authStore.login();
 };
 
 // 计算属性，将数组转为字符串以供展示
@@ -184,11 +185,8 @@ const updateSkillArray = (value: string) => {
 };
 
 const uploadFile = async (response: any, file: File, fileList: File[]) => {
-  const token = authStore.getToken();
-  console.log("token--->", token);
-
-  const res: any = await getUserInfoByToken(token);
-  console.log("getUserInfoByToken res--->", res);
+  const res: any = await getParseUserInfo();
+  console.log("getParseUserInfo res--->", res);
 
   // 如果响应码表示上传成功
   if (res.code === 200) {
