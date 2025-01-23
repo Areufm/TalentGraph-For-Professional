@@ -152,7 +152,24 @@ const handleChange = (value: string) => {
   console.log(value);
 };
 
-const { userInfo } = authStore;
+const userInfo = reactive<User>({
+  id: 0,
+  name: "",
+  age: 1,
+  phone: "",
+  email: "",
+  area: "",
+  education: [
+    {
+      school_name: "",
+      school_time: ["", ""],
+      school_degree: "",
+    },
+  ],
+  work: "",
+  skill: [],
+  info: "",
+});
 
 const active = ref(0);
 
@@ -165,8 +182,8 @@ const submit = () => {
     type: "success",
     offset: 50,
   });
-  router.push("/");
   authStore.login();
+  router.push("/");
 };
 
 // 计算属性，将数组转为字符串以供展示
@@ -191,7 +208,7 @@ const uploadFile = async (response: any, file: File, fileList: File[]) => {
   // 如果响应码表示上传成功
   if (res.code === 200) {
     // 将响应数据赋值给表单
-    authStore.updateUserInfo(res?.data as User);
+    Object.assign(userInfo, res?.data as User);
     console.log("userInfo", userInfo);
 
     // 显示上传成功的提示信息

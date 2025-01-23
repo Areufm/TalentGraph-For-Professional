@@ -11,7 +11,7 @@ export const authStore = defineStore(
   () => {
     let isLogin = ref<boolean>(false);
     const token = ref<string>("");
-    const userInfo = ref<User>({
+    const userInfo: User = reactive<User>({
       id: 0,
       name: "",
       age: 1,
@@ -44,7 +44,7 @@ export const authStore = defineStore(
     };
 
     const updateUserInfo = (newUserInfo: User): void => {
-      Object.assign(userInfo.value, newUserInfo);
+      Object.assign(userInfo, newUserInfo);
     };
 
     const getToken = (): string => {
