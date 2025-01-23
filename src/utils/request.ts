@@ -90,7 +90,7 @@ service.interceptors.response.use((response: AxiosResponse) => {
     ElMessage.error("登录过期，请重新登陆");
     window.localStorage.clear();
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/login";
     }, 500);
   }
   return Promise.reject(response.data);
