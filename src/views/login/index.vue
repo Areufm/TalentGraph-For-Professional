@@ -57,7 +57,7 @@ import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";
 import { useAuthStore } from "@/store/auth";
-import { login } from "@/api/user";
+import { getUserInfoByToken, login } from "@/api/user";
 import { storage } from "@/utils/storage";
 const authStore = useAuthStore();
 
@@ -101,22 +101,42 @@ const togglePassword = () => {
   passwordType.value = isShow.value ? "text" : "password";
 };
 
+const getUserInfoData = async (accessToken: string) => {
+  const res = await getUserInfoByToken(accessToken);
+  const { data } = res;
+  authStore.setUserInfo(data);
+};
+
 // 处理登录
 const handleLogin = () => {
   console.log("LoginForm:", LoginForm.value);
   login(LoginForm.value)
     .then((res) => {
       const { data } = res; //data是后端返回的数据
-      storage.set("accessToken", data.accessToken); //accessToken是后端返回的token
-      storage.set("refreshToken", data.refreshToken);
-      authStore.login();
-      router.push("/form");
-      ElNotification({
-        title: "登录成功！",
-        message: "恭喜你成功登录",
-        type: "success",
-        offset: 50,
-      });
+      const { accessToken, refreshToken, id } = data;
+      if (id == 1) {
+        storage.set("accessToken", accessToken);
+        storage.set("refreshToken", refreshToken);
+        getUserInfoData(accessToken);
+        router.push("/");
+        authStore.login();
+        ElNotification({
+          title: "登录成功！",
+          message: "恭喜你成功登录",
+          type: "success",
+          offset: 50,
+        });
+      } else if (id == 2) {
+        storage.set("accessToken", accessToken);
+        storage.set("refreshToken", refreshToken);
+        router.push("/form");
+        ElNotification({
+          title: "登录成功！",
+          message: "请上传简历以继续使用",
+          type: "success",
+          offset: 50,
+        });
+      }
     })
     .catch((error) => {
       console.log(error);

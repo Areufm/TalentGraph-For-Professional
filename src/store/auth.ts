@@ -36,18 +36,18 @@ export const authStore = defineStore(
       storage.set("isLoggedIn", "true");
     };
 
-    const logout = () => {
+    const logout = (): void => {
       // 登出逻辑
       isLogin.value = false;
       window.localStorage.clear();
       storage.remove("auth");
     };
 
-    const updateUserInfo = (newUserInfo: User) => {
+    const updateUserInfo = (newUserInfo: User): void => {
       Object.assign(userInfo.value, newUserInfo);
     };
 
-    const getToken = () => {
+    const getToken = (): string => {
       return storage.get("accessToken");
     };
 
