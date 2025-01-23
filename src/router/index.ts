@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "@/views/home/index.vue";
 import MainLayout from "@/components/MainLayout/MainLayout.vue";
+import { storage } from "@/utils/storage";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -40,13 +41,13 @@ const routes: Array<RouteRecordRaw> = [
         path: "/recommend",
         name: "Recommend",
         component: () => import("@/views/recommend_work/index.vue"),
-        meta: { title: "推荐岗位" },
+        meta: { title: "推荐岗位", requireAuth: true },
       },
       {
         path: "/profile",
         name: "Profile",
         component: () => import("@/views/profile/index.vue"),
-        meta: { title: "个人信息" },
+        meta: { title: "个人信息", requireAuth: true },
       },
       {
         path: "/research/:query?",
@@ -74,6 +75,16 @@ router.beforeEach((to, _from, next) => {
   window.document.title = to.meta.title
     ? to.meta.title + " - 职业猫"
     : "职业猫";
+
+  const token: string = storage.get("accessToken");
+  if (
+    to.matched.some((record): boolean => record.meta.requireAuth as boolean)
+  ) {
+    if (!token) {
+      ElMessage.error("请先登录账户！");
+      return next({ name: "Login" });
+    }
+  }
   next();
 });
 

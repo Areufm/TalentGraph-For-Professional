@@ -677,17 +677,6 @@ import xue from "@/assets/img/xue.jpg";
 const router = useRouter();
 
 const authStore = useAuthStore();
-onBeforeMount(() => {
-  // 初始化时从本地存储恢复登录状态
-  const storedIsLoggedIn = storage.get("isLoggedIn");
-  if (storedIsLoggedIn === "true") {
-    authStore.isLogin = true;
-  }
-  if (!authStore.isLogin) {
-    ElMessage.error("请先登录账户！");
-    router.push("/login");
-  }
-});
 
 const hideValue1 = ref(true);
 const hideValue2 = ref(false);
