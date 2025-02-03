@@ -97,7 +97,7 @@ export default defineConfig({
                         return "vendor";
                     }
                 },
-                experimentalMinChunkSize: 20000,
+                experimentalMinChunkSize: 20000, // 调整最小 chunk 大小
             },
         },
         chunkSizeWarningLimit: 1000, // 调整警告阈值
