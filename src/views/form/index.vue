@@ -123,7 +123,7 @@
 </template>
 
 <script lang="ts" setup>
-import formImg from "@/assets/img/form.png";
+import formImg from "@/assets/img/form.webp";
 import { ref, computed } from "vue";
 import SelectWork from "@/components/SelectWork.vue";
 import { UploadFilled } from "@element-plus/icons-vue";

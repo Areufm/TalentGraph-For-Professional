@@ -23,9 +23,9 @@
 </template>
 
 <script lang="ts" setup>
-import recommend from "@/assets/img/FunctionCard/recommend.png";
-import ability from "@/assets/img/FunctionCard/ability.png";
-import cv from "@/assets/img/FunctionCard/cv.png";
+import recommend from "@/assets/img/FunctionCard/recommend.webp";
+import ability from "@/assets/img/FunctionCard/ability.webp";
+import cv from "@/assets/img/FunctionCard/cv.webp";
 import PersonCard from "./PersonCard.vue";
 import Login from "./Login.vue";
 import { ref, onBeforeMount } from "vue";

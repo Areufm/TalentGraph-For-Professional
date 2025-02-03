@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts" setup>
-import loginImg from "@/assets/img/login.png";
+import loginImg from "@/assets/img/login.webp";
 import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { validUsername } from "@/utils/validate";

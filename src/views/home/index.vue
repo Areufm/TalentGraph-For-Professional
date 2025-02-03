@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import type { TabsPaneContext } from "element-plus";
-import cityImg from "@/assets/img/city.png";
+import cityImg from "@/assets/img/city.webp";
 import SearchBar from "@/components/SearchBar.vue";
 import GetMore from "@/components/GetMore.vue";
 import HotWorks from "./components/HotWorks.vue";

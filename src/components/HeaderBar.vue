@@ -168,11 +168,11 @@
 </template>
 
 <script lang="ts" setup>
-import logo from "@/assets/img/Header/logo.png";
-import fileUpload from "@/assets/img/Header/file-upload.png";
-import fileOnline from "@/assets/img/Header/file-online.png";
-import resumeOnline from "@/assets/img/Header/resume-online.png";
-import avatarImg from "@/assets/img/xue.jpg";
+import logo from "@/assets/img/Header/logo.webp";
+import fileUpload from "@/assets/img/Header/file-upload.webp";
+import fileOnline from "@/assets/img/Header/file-online.webp";
+import resumeOnline from "@/assets/img/Header/resume-online.webp";
+import avatarImg from "@/assets/img/xue.webp";
 import { ref, computed, onMounted, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { regionData } from "element-china-area-data";

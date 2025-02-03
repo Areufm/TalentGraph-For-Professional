@@ -672,7 +672,7 @@ import { useAuthStore } from "@/store/auth";
 import { storage } from "@/utils/storage";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
-import xue from "@/assets/img/xue.jpg";
+import xue from "@/assets/img/xue.webp";
 
 const router = useRouter();
 

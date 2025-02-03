@@ -67,7 +67,7 @@
 </template>
 
 <script lang="ts" setup>
-import loginImg from "@/assets/img/login.png";
+import loginImg from "@/assets/img/login.webp";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 

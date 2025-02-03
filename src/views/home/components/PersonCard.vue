@@ -27,7 +27,7 @@
 
 <script lang="ts" setup>
 import { useAuthStore } from "@/store/auth";
-import xue from "@/assets/img/xue.jpg";
+import xue from "@/assets/img/xue.webp";
 const authStore = useAuthStore();
 </script>
 
