@@ -80,7 +80,7 @@ service.interceptors.response.use((response: AxiosResponse) => {
       // 那么把第一个以外的请求暂存起来
       return new Promise((resolve) => {
         // 用函数形式将 resolve 存入，等待 refreshToken 完成后再执行
-        requestsQueue.push((token: string) => {
+        requestsQueue.push((token: string):void => {
           config.headers.Authorization = token;
           resolve(service.request(config));
         });
