@@ -2,7 +2,7 @@
 
 本项目 main 分支为求职者端
 
-技术栈 `vue3` `ts` `relationship-graph` `pinia` `element-plus`
+技术栈 `vue3` `ts` `scss` `relation-graph` `pinia` `element-plus` `echarts`
 
 企业端及管理员端由于和后台服务器绑定 无法直接查看
 
