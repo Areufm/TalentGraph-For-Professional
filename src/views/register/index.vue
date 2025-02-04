@@ -1,14 +1,14 @@
 ﻿<template>
   <div class="register">
     <div class="left">
-      <h1 style="color: royalblue">欢迎注册职业猫CareerCat用户端</h1>
+      <h1 style="color: royalblue">欢迎注册职链智图CareerLink Graph用户端</h1>
 
       <img :src="loginImg" alt="" style="" />
     </div>
     <div class="right">
       <form class="form" @submit.prevent="handleRegister">
         <p class="title">Register</p>
-        <p class="message">注册职业猫CareerCat</p>
+        <p class="message">注册职链智图CareerLink Graph</p>
 
         <label>
           <input

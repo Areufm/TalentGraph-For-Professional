@@ -73,8 +73,8 @@ const router = createRouter({
 
 router.beforeEach((to, _from, next) => {
   window.document.title = to.meta.title
-    ? to.meta.title + " - 职业猫"
-    : "职业猫";
+    ? to.meta.title + " - 职链智图"
+    : "职链智图";
 
   const token: string = storage.get("accessToken");
   if (

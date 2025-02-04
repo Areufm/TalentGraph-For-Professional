@@ -1,13 +1,13 @@
 ﻿<template>
   <div class="login">
     <div class="left">
-      <h1 style="color: royalblue">欢迎使用职业猫CareerCat用户端</h1>
+      <h1 style="color: royalblue">欢迎使用职链智图CareerLink Graph用户端</h1>
       <img :src="loginImg" alt="" style="" />
     </div>
     <div class="right">
       <form class="form" @submit.prevent="handleLogin">
         <p class="title">Login</p>
-        <p class="message">登录职业猫CareerCat</p>
+        <p class="message">登录职链智图CareerLink Graph</p>
 
         <label>
           <input

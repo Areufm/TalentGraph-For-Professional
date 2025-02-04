@@ -2,7 +2,7 @@
   <div class="layout-header">
     <div class="header_left">
       <img :src="logo" alt="logo" />
-      <div class="header_left_title">职业猫</div>
+      <div class="header_left_title">职链智图</div>
       <div class="nav-city">
         <p
           class="nav-city-box"

@@ -99,7 +99,7 @@ const fetchWorkInfo = async (neo4j: number) => {
     console.log("fetchData res--->", res);
     currentJob.value = res.data;
     if (currentJob.value && currentJob.value.title) {
-      document.title = currentJob.value.title + "工作详情-职业猫";
+      document.title = currentJob.value.title + "工作详情-职链智图";
     }
   } catch (error) {
     console.error("请求失败：", error);
