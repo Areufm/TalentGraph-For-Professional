@@ -21,7 +21,7 @@
       </el-icon>
     </label>
 
-    <button class="submit" @click="handleLogin">登录</button>
+    <button class="submit">登录</button>
     <p class="signin">暂时没有账户 ? <a href="/register">去注册</a></p>
   </form>
 </template>
